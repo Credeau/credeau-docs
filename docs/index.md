@@ -1,7 +1,7 @@
 # Welcome to Credeau Product Documentation
 
-Explore comprehensive guides and documentation to help you start working with Credeau as quickly as possible.
+Get started with Credeau’s products using our comprehensive guides and technical documentation. Whether you're integrating, deploying, or exploring features — everything you need is right here.
 
-## Products
+## Available Products
 
 - [MobileForge](products/mobileforge/index.md)
