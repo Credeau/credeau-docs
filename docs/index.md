@@ -1,4 +1,4 @@
-# Welcome to Credeau Documentation
+# Welcome to Credeau Product Documentation
 
 Explore comprehensive guides and documentation to help you start working with Credeau as quickly as possible.
 
