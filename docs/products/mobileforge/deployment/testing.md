@@ -77,16 +77,7 @@ services:
       - DI_MONGODB_PORT="27017"
       - DI_MONGODB_DATABASE="sync_db"
       - DI_MONGODB_ENABLED_SOURCES="*"
-      - DI_MONGODB_MAX_POOL_SIZE="100"
-      - DI_MONGODB_MIN_POOL_SIZE="10"
-      - DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS="15000"
-      - DI_MONGODB_CONNECT_TIMEOUT_MS="10000"
-      - DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
-      - DI_MONGODB_RETRY_WRITES="true"
-      - DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
       - DI_KAFKA_BROKER_ENDPOINT="kafka:9092"
-      - ENABLED_TOPICS="-"
-      - KAFKA_CONSUMER_GROUP="-"
     depends_on:
       - kafka
       - postgres
@@ -106,16 +97,7 @@ services:
       - DI_MONGODB_PORT="27017"
       - DI_MONGODB_DATABASE="sync_db"
       - DI_MONGODB_ENABLED_SOURCES="*"
-      - DI_MONGODB_MAX_POOL_SIZE="100"
-      - DI_MONGODB_MIN_POOL_SIZE="10"
-      - DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS="15000"
-      - DI_MONGODB_CONNECT_TIMEOUT_MS="10000"
-      - DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
-      - DI_MONGODB_RETRY_WRITES="true"
-      - DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
       - DI_KAFKA_BROKER_ENDPOINT="kafka:9092"
-      - ENABLED_TOPICS="sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log"
-      - KAFKA_CONSUMER_GROUP="test-consumer-group"
     depends_on:
       - kafka
       - mongo
@@ -124,12 +106,33 @@ services:
   sms-extraction-api:
     image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/sms-extraction-api:<version>
     environment:
-      - ENV=testing
+      - DB_USER="credeau"
+      - DB_PASSWORD="123456"
+      - DB_HOST="postgres"
+      - DB_PORT="5432"
+      - DB_NAME="api_insights_db"
+      - MAX_SMS_COUNT="1000"
+      - DB_ENCRYPTION_KEY="<encryption key>"
 
   insights-api:
     image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/insights-api:<version>
     environment:
-      - ENV=testing
+      - LAUNCH_ENVIRONMENT="testing"
+      - DI_POSTGRES_USERNAME="credeau"
+      - DI_POSTGRES_PASSWORD="123456"
+      - DI_POSTGRES_HOST="postgres"
+      - DI_POSTGRES_PORT="5432"
+      - DI_POSTGRES_DATABASE="api_insights_db"
+      - DI_POSTGRES_SYNC_DATABASE="sync_db"
+      - DI_KAFKA_BROKER_ENDPOINT="kafka:9092"
+      - SMS_EXTRACTOR_SERVICE_URL="sms-extraction-api"
+      - SMS_EXTRACTOR_BATCH_SIZE="1000"
+      - DI_MONGODB_USERNAME="credeau"
+      - DI_MONGODB_PASSWORD="123456"
+      - DI_MONGODB_HOST="mongo"
+      - DI_MONGODB_PORT="27017"
+      - DI_MONGODB_DATABASE="sync_db"
+      - DI_MONGODB_ENABLED_SOURCES="*"
     depends_on:
       - mongo
       - postgres
