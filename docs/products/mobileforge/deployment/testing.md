@@ -4,7 +4,7 @@
 
 The testing environment simulates the full MobileForge data flow using containerized components. All services — including APIs, Kafka, Consumers, and Databases — are launched using Docker Compose, with production-like images pulled from AWS ECR.
 
----
+This environment is intended for functional testing on local machines or lightweight servers. It replicates the full data flow pipeline for validation, debugging, and integration testing.
 
 ## Prerequisites
 
@@ -12,9 +12,9 @@ The testing environment simulates the full MobileForge data flow using container
 - AWS CLI installed and configured (`aws configure`)
 - Access to Credeau's private ECR repository
 
----
+## Deployment Steps
 
-## Step 1: Authenticate with AWS ECR
+### Step 1: Authenticate with AWS ECR
 
 Run the following command to authenticate Docker with AWS ECR:
 
@@ -22,7 +22,7 @@ Run the following command to authenticate Docker with AWS ECR:
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 ```
 
-## Step 2: Create `docker-compose.testing.yml`
+### Step 2: Create `docker-compose.testing.yml`
 
 ```yaml
 version: 3.8
@@ -83,7 +83,7 @@ services:
             - postgres
 
     common-consumer:
-        image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/sms-consumer:<version>
+        image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/data-consumer:<version>
         environment:
             DI_POSTGRES_USERNAME: credeau
             DI_POSTGRES_PASSWORD: 123456
@@ -113,6 +113,8 @@ services:
             DB_NAME: api_insights_db
             MAX_SMS_COUNT: 1000
             DB_ENCRYPTION_KEY: <encryption key>
+        depends_on:
+            - postgres
 
     insights-api:
         image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/insights-api:<version>
@@ -139,16 +141,14 @@ services:
             - sms-extraction-api
 ```
 
-## Step 3: Start the Stack
+### Step 3: Start the Stack
 
 ```bash
 docker compose -f docker-compose.testing.yml up -d --pull always
 ```
 
-## Step 4: Verify
+### Step 4: Verify
 
 ```bash
 docker compose ps
 ```
-
-The output should list down 
