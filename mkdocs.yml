@@ -2,8 +2,8 @@ site_name: Credeau Documentation
 site_url: https://docs.credeau.com
 theme:
   name: material
-  logo: assets/images/credeau-logo.png
-  favicon: assets/images/favicon.ico
+  logo: assets/images/credeau_logo_transparent.png
+  favicon: assets/images/credeau_favicon.ico
   palette:
     - scheme: default
       primary: 'indigo'
