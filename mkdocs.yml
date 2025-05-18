@@ -1,0 +1,32 @@
+site_name: Credeau Documentation
+site_url: https://docs.credeau.com
+theme:
+  name: material
+  logo: assets/images/credeau-logo.png
+  favicon: assets/images/favicon.ico
+  palette:
+    - scheme: default
+      primary: 'indigo'
+      accent: 'indigo'
+nav:
+  - Home: index.md
+  - Products:
+      - MobileForge:
+          - Overview: products/mobileforge/index.md
+          - Components: products/mobileforge/components.md
+          - Deployment:
+              - Testing: products/mobileforge/deployment/testing.md
+              - Development: products/mobileforge/deployment/development.md
+              - Production: products/mobileforge/deployment/production.md
+          - Scaling: products/mobileforge/scaling.md
+          - Data Schemas:
+              - MongoDB: products/mobileforge/data-schemas/mongodb.md
+              - PostgreSQL: products/mobileforge/data-schemas/postgres.md
+plugins:
+  - search
+  - monorepo
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
