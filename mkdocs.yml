@@ -15,9 +15,9 @@ nav:
           - Overview: products/mobileforge/index.md
           - Components: products/mobileforge/components.md
           - Deployment:
-              - Testing: products/mobileforge/deployment/testing.md
-              - Development: products/mobileforge/deployment/development.md
-              - Production: products/mobileforge/deployment/production.md
+              - Testing Environment: products/mobileforge/deployment/testing.md
+              - Development Environment: products/mobileforge/deployment/development.md
+              - Production Environment: products/mobileforge/deployment/production.md
           - Scaling: products/mobileforge/scaling.md
           - Data Schemas:
               - MongoDB: products/mobileforge/data-schemas/mongodb.md
