@@ -15,9 +15,9 @@ nav:
           - Overview: products/mobileforge/index.md
           - Components: products/mobileforge/components.md
           - Deployment:
-              - Testing Environment: products/mobileforge/deployment/testing.md
-              - Development Environment: products/mobileforge/deployment/development.md
-              - Production Environment: products/mobileforge/deployment/production.md
+              - Database: products/mobileforge/deployment/database.md
+              - Sync Pipeline: products/mobileforge/deployment/sync_pipeline.md
+              - Insights Pipeline: products/mobileforge/deployment/insights_pipeline.md
           - Scaling: products/mobileforge/scaling.md
           - Data Schemas:
               - MongoDB: products/mobileforge/data-schemas/mongo.md
