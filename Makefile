@@ -8,7 +8,7 @@ serve:
 	mkdocs serve
 
 deploy:
-	mkdocs gh-deploy
+	mkdocs gh-deploy --clean
 
 clean:
 	rm -rf site
