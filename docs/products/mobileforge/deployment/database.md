@@ -461,42 +461,41 @@ use sync_db
 // 1. Device Sync Request Device Data
 db.createCollection("device_sync_request_device_data")
 db.device_sync_request_device_data.createIndex({ "client_id": 1, "user_id": 1 })
-db.device_sync_request_device_data.createIndex({ "created_at": 1 })
 
 // 2. Call Logs Sync Request Data
 db.createCollection("call_logs_sync_request_call_logs_data")
 db.call_logs_sync_request_call_logs_data.createIndex({ "client_id": 1, "user_id": 1 })
-db.call_logs_sync_request_call_logs_data.createIndex({ "created_at": 1 })
 
 // 3. Device Sync Request Apps Data
 db.createCollection("device_sync_request_apps_data")
 db.device_sync_request_apps_data.createIndex({ "client_id": 1, "user_id": 1 })
-db.device_sync_request_apps_data.createIndex({ "created_at": 1 })
 
 // 4. Contacts Sync Request Data
 db.createCollection("contacts_sync_request_contacts_data")
 db.contacts_sync_request_contacts_data.createIndex({ "client_id": 1, "user_id": 1 })
-db.contacts_sync_request_contacts_data.createIndex({ "created_at": 1 })
 
 // 5. Device Transpose
 db.createCollection("device_transpose")
-db.device_transpose.createIndex({ "client_id": 1, "user_id": 1 }, { unique: true })
-db.device_transpose.createIndex({ "created_at": 1 })
+db.device_transpose.createIndex({ "client_id": 1})
+db.device_transpose.createIndex({ "value": 1})
+db.device_transpose.createIndex({ "value_type": 1})
 
 // 6. Device Sync Request iOS Device Data
 db.createCollection("device_sync_request_ios_device_data")
 db.device_sync_request_ios_device_data.createIndex({ "client_id": 1, "user_id": 1 })
-db.device_sync_request_ios_device_data.createIndex({ "created_at": 1 })
 
 // 7. SMS Sync Request Data
 db.createCollection("sms_sync_request_sms_data")
 db.sms_sync_request_sms_data.createIndex({ "client_id": 1, "user_id": 1 })
-db.sms_sync_request_sms_data.createIndex({ "created_at": 1 })
 
 // 8. Device ID Mapper
 db.createCollection("device_id_mapper")
-db.device_id_mapper.createIndex({ "client_id": 1, "user_id": 1, "device_id": 1 }, { unique: true })
-db.device_id_mapper.createIndex({ "created_at": 1 })
+db.device_transpose.createIndex({ "android_id": 1})
+db.device_transpose.createIndex({ "app_device_id": 1})
+db.device_transpose.createIndex({ "device_id": 1})
+db.device_transpose.createIndex({ "assembled_id": 1})
+db.device_transpose.createIndex({ "client_id": 1})
+db.device_transpose.createIndex({ "google_adv_id": 1})
 ```
 
 ### Important Notes
