@@ -81,6 +81,8 @@ services:
         depends_on:
             - kafka
             - postgres
+        ports:
+            - 8000:8000
 
     common-consumer:
         image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/data-consumer:<version>
@@ -115,6 +117,8 @@ services:
             DB_ENCRYPTION_KEY: <encryption key>
         depends_on:
             - postgres
+        ports:
+            - 8082:8082
 
     insights-api:
         image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/insights-api:<version>
@@ -139,6 +143,8 @@ services:
             - mongo
             - postgres
             - sms-extraction-api
+        ports:
+            - 8001:8000
 ```
 
 ### Step 3: Start the Stack
