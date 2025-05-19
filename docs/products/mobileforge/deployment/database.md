@@ -450,10 +450,6 @@ db.createUser({
 })
 ```
 
-#### Required MongoDB Databases
-
-- `sync_db` (main application database)
-
 #### Create collections in MongoDB
 
 ```javascript
