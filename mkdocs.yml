@@ -20,7 +20,7 @@ nav:
               - Production Environment: products/mobileforge/deployment/production.md
           - Scaling: products/mobileforge/scaling.md
           - Data Schemas:
-              - MongoDB: products/mobileforge/data-schemas/mongodb.md
+              - MongoDB: products/mobileforge/data-schemas/mongo.md
               - PostgreSQL: products/mobileforge/data-schemas/postgres.md
 plugins:
   - search
