@@ -8,7 +8,7 @@ serve:
 	mkdocs serve
 
 deploy:
-	mkdocs gh-deploy --clean
+	mkdocs gh-deploy --clean --remote-branch gh-pages --remote-name origin
 
 clean:
 	rm -rf site
