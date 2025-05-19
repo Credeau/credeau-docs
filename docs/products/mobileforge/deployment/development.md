@@ -6,6 +6,12 @@ This development environment is designed to emulate the production setup of Mobi
 
 ## Option 1: Using Docker on Individual Servers with AWS EC2 Auto Scaling
 
+### Architecture Overview
+
+The diagram below illustrates a typical deployment of the MobileForge platform on AWS using services running as Docker containers on EC2 machines within AutoScaling Groups. It is intended as a reference architecture showcasing how various components work together in a functional setup.
+
+![MobileForge Architecture](../../../assets/diagrams/mobile_forge_solution_diagram_on_aws.png)
+
 ### Prerequisites
 
 - Docker installed on all servers.
