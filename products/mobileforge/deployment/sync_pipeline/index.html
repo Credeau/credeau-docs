@@ -689,9 +689,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pull-the-producer-api-image_1" class="md-nav__link">
+  <a href="#pull-the-consumer-api-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Pull the Producer API Image
+      Pull the Consumer API Image
     </span>
   </a>
   
@@ -1061,9 +1061,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pull-the-producer-api-image_1" class="md-nav__link">
+  <a href="#pull-the-consumer-api-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Pull the Producer API Image
+      Pull the Consumer API Image
     </span>
   </a>
   
@@ -1164,6 +1164,9 @@
 <li>Kafka Message Broker</li>
 <li>Consumer Service</li>
 </ol>
+<blockquote>
+<p><strong>Note:</strong> All required Docker images for the sync pipeline components will be provided by Credeau via AWS ECR or another designated container registry. Please ensure you have access credentials as required.</p>
+</blockquote>
 <h2 id="1-producer-api-deployment">1. Producer API Deployment<a class="headerlink" href="#1-producer-api-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1393,7 +1396,7 @@ aws<span class="w"> </span>kafka<span class="w"> </span>create-topic<span class=
 <li>AWS CLI configured (if using AWS ECR)</li>
 </ul>
 <h3 id="deployment-steps_1">Deployment Steps<a class="headerlink" href="#deployment-steps_1" title="Permanent link">&para;</a></h3>
-<h4 id="pull-the-producer-api-image_1">Pull the Producer API Image<a class="headerlink" href="#pull-the-producer-api-image_1" title="Permanent link">&para;</a></h4>
+<h4 id="pull-the-consumer-api-image">Pull the Consumer API Image<a class="headerlink" href="#pull-the-consumer-api-image" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code><span class="c1"># For AWS ECR</span>
 aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com
 docker<span class="w"> </span>pull<span class="w"> </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/credeau-consumer:&lt;version&gt;
@@ -1469,7 +1472,7 @@ docker<span class="w"> </span>pull<span class="w"> </span>&lt;account-id&gt;.dkr
 <th style="text-align: center;">SMS Consumer</th>
 <th style="text-align: center;">Events Consumer</th>
 <th style="text-align: center;">Common Consumer</th>
-<th style="text-align: center;">Kafka Brokers (8GB RAM, 2 vCPU)</th>
+<th style="text-align: center;">Kafka Brokers</th>
 </tr>
 </thead>
 <tbody>
@@ -1507,6 +1510,9 @@ docker<span class="w"> </span>pull<span class="w"> </span>&lt;account-id&gt;.dkr
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>With increasing data consumer nodes, do adjust the partition count of the respective topics to at least match the max number of nodes expected.</p>
+</blockquote>
 
 
 
