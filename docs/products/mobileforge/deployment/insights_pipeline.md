@@ -78,7 +78,7 @@ docker run -d \
 
 #### Recommended Node Specifications
 
-- Use nodes/EC2 instances with **at least 2GB RAM and 2 vCPUs** for running Insights API.
+- Use nodes/EC2 instances with **at least 16GB RAM and 4 vCPUs** for running Insights API.
 - This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.
 
 #### Scaling Guidance
@@ -86,7 +86,7 @@ docker run -d \
 - Monitor CPU and RAM usage for each service.
 - **Scale up** (add more pods/containers/instances) if max CPU or RAM usage exceeds **50%** for a period of 1 minute.
 
-## 3. SMS Extraction Deployment
+## 2. SMS Extraction Deployment
 
 ### Prerequisites
 
@@ -109,47 +109,31 @@ docker pull <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-sms-extraction:<
 Create a `.env` file with the following variables -
 
 ```bash
-DI_POSTGRES_USERNAME="mobileforge_user"
-DI_POSTGRES_PASSWORD="your_secure_password"
-DI_POSTGRES_HOST="<host address of deployed PostgresSQL host>"
-DI_POSTGRES_PORT="5432"
-DI_POSTGRES_DATABASE="api_insights_db"
-DI_POSTGRES_SYNC_DATABASE="sync_db"
-DI_MONGODB_USERNAME="mobileforge_user"
-DI_MONGODB_PASSWORD="your_secure_password"
-DI_MONGODB_HOST="<host address of deployed MongoDB host>"
-DI_MONGODB_PORT="27017"
-DI_MONGODB_DATABASE="sync_db"
-DI_MONGODB_ENABLED_SOURCES="*"
-DI_MONGODB_MAX_POOL_SIZE="100"
-DI_MONGODB_MIN_POOL_SIZE="10"
-DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS="15000"
-DI_MONGODB_CONNECT_TIMEOUT_MS="10000"
-DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
-DI_MONGODB_RETRY_WRITES="true"
-DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
-DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
-ENABLED_TOPICS="sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log"
-KAFKA_CONSUMER_GROUP="some-consumer-group"
+DB_USER="mobileforge_user"
+DB_PASSWORD="your_secure_password"
+DB_HOST="<host address of deployed PostgresSQL host>"
+DB_PORT="5432"
+DB_NAME="api_insights_db"
+MAX_SMS_COUNT="1000"
+DB_ENCRYPTION_KEY="<db_encryption_key>"
 ```
 
 #### Run the Container
 ```bash
 docker run -d \
-    --name consumer \
+    --name sms-extraction \
     --env-file .env \
-    <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-consumer:<version>
+    <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-sms-extraction:<version>
 ```
 
 ### Scaling Recommendations
 
 #### Recommended Node Specifications
 
-- Use nodes/EC2 instances with **at least 2GB RAM and 2 vCPUs** for running Producer API.
+- Use nodes/EC2 instances with **at least 16GB RAM and 4 vCPUs** for running SMS Extraction API.
 - This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.
 
 #### Scaling Guidance
 
 - Monitor CPU and RAM usage for each service.
 - **Scale up** (add more pods/containers/instances) if max CPU or RAM usage exceeds **50%** for a period of 1 minute.
-- For more enhanced scaling, monitor Kafka topic lags and trigger scale up as the lag increases more than 50 
