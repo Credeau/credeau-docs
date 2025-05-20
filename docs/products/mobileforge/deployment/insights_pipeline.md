@@ -137,3 +137,28 @@ docker run -d \
 
 - Monitor CPU and RAM usage for each service.
 - **Scale up** (add more pods/containers/instances) if max CPU or RAM usage exceeds **50%** for a period of 1 minute.
+
+## Scaling Ladder
+
+The following table provides recommended node counts based on daily active users (DAU):
+
+| Daily Active Users | Insights API Nodes | SMS Extraction API Nodes |
+|-------------------|-------------------|-------------------------|
+| 25K            | 1-2               | 1                       |
+| 50K            | 2-5               | 1-3                     |
+| 75K            | 4-7               | 2-4                     |
+| 100K           | 6-10              | 3-5                     |
+
+> **Note:** These recommendations assume:
+
+> - Each node has the minimum recommended specifications (16GB RAM, 4 vCPUs)
+> - Average user activity patterns
+> - Standard business hours usage
+> - Regular maintenance windows
+>
+> Adjust node counts based on:
+
+> - Peak usage times
+> - Geographic distribution of users
+> - Specific workload patterns
+> - Performance monitoring metrics

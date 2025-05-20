@@ -350,7 +350,7 @@ KAFKA_CONSUMER_GROUP=common-consumer-group
 
 ## Scaling Ladder
 
-| DAU | Producer Nodes | SMS Consumer | Events Consumer | Common Consumer | Kafka Brokers (8GB RAM, 2 vCPU) |
+| DAU | Producer Nodes | SMS Consumer | Events Consumer | Common Consumer | Kafka Brokers |
 |----------|:-------------:|:------------:|:--------------:|:--------------:|:-------------------------------:|
 | 25K | 1-3 | 1-4 | 1-2 | 1-2 | 1-3 |
 | 50K | 2-5 | 2-8 | 1-5 | 1-5 | 3 |
