@@ -64,6 +64,25 @@ docker run -d \
     <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-producer-api:<version>
 ```
 
+### Nodes Exposure and Scaling Recommendations
+
+#### Exposing Nodes with Load Balancer
+
+- For production deployments, expose your Producer API service using a load balancer (such as AWS Application Load Balancer or Network Load Balancer).
+- This ensures high availability, fault tolerance, and even distribution of traffic.
+- In Kubernetes, use a `Service` of type `LoadBalancer` to expose your pods.
+- For Docker Compose or EC2, place your containers behind an AWS ELB/ALB.
+
+#### Recommended Node Specifications
+
+- Use nodes/EC2 instances with **at least 2GB RAM and 2 vCPUs** for running Producer API.
+- This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.
+
+#### Scaling Guidance
+
+- Monitor CPU and RAM usage for each service.
+- **Scale up** (add more pods/containers/instances) if max CPU or RAM usage exceeds **50%** for a period of 1 minute.
+
 ## 2. Kafka Deployment
 
 ### Prerequisites
@@ -314,44 +333,24 @@ ENABLED_TOPICS=apps_and_device_batched,contacts_batched,call_logs_batched
 KAFKA_CONSUMER_GROUP=common-consumer-group
 ```
 
-## Verification Steps
+### Scaling Recommendations
 
-**Check Producer API**
+#### Recommended Node Specifications
 
-```bash
-curl http://<host_address>:8000/health
-```
+- Use nodes/EC2 instances with **at least 2GB RAM and 2 vCPUs** for running Producer API.
+- This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.
 
-**Verify Kafka**
+#### Scaling Guidance
 
-```bash
-# List topics
-kafka-topics.sh --bootstrap-server localhost:9092 --list
-```
+- Monitor CPU and RAM usage for each service.
+- **Scale up** (add more pods/containers/instances) if max CPU or RAM usage exceeds **50%** for a period of 1 minute.
+- For more enhanced scaling, monitor Kafka topic lags and trigger scale up as the lag increases more than 50 
 
-**Monitor Consumer**
+## Scaling Ladder
 
-```bash
-docker logs -f consumer
-```
-
-## Troubleshooting
-
-- Check container logs for each component
-- Verify network connectivity between components
-- Ensure all required environment variables are set correctly
-- Check Kafka topic configuration and consumer group status
-
-## Security Considerations
-
-1. **Network Security**
-    - Use private subnets for all components
-    - Implement proper security groups/firewall rules
-
-2. **Authentication**
-    - Use AWS IAM roles for ECR access
-
-3. **Monitoring**
-    - Set up CloudWatch or similar monitoring
-    - Configure alerts for component health
-    - Monitor message processing metrics
+| DAU | Producer Nodes | SMS Consumer | Events Consumer | Common Consumer | Kafka Brokers (8GB RAM, 2 vCPU) |
+|----------|:-------------:|:------------:|:--------------:|:--------------:|:-------------------------------:|
+| 25K | 1-3 | 1-4 | 1-2 | 1-2 | 1-3 |
+| 50K | 2-5 | 2-8 | 1-5 | 1-5 | 3 |
+| 75K | 3-7 | 3-12 | 2-7 | 2-7 | 3 |
+| 100K | 4-10 | 4-16 | 3-10 | 3-10 | 3-5 |
