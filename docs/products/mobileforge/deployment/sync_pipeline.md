@@ -2,8 +2,6 @@
 
 This document outlines the deployment steps for different components of the sync pipeline.
 
-
-
 ## Components Overview
 
 The sync pipeline consists of three main components -
