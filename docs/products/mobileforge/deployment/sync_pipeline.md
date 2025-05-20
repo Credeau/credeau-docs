@@ -267,7 +267,7 @@ DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<b
 
 ### Deployment Steps
 
-#### Pull the Producer API Image
+#### Pull the Consumer API Image
 
 ```bash
 # For AWS ECR
