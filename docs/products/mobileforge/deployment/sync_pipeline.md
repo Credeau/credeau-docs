@@ -2,6 +2,8 @@
 
 This document outlines the deployment steps for different components of the sync pipeline.
 
+
+
 ## Components Overview
 
 The sync pipeline consists of three main components -
@@ -9,6 +11,8 @@ The sync pipeline consists of three main components -
 1. Producer API
 2. Kafka Message Broker
 3. Consumer Service
+
+> **Note:** All required Docker images for the sync pipeline components will be provided by Credeau via AWS ECR or another designated container registry. Please ensure you have access credentials as required.
 
 ## 1. Producer API Deployment
 
