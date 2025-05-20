@@ -4,7 +4,8 @@ This document outlines the deployment steps for different components of the sync
 
 ## Components Overview
 
-The sync pipeline consists of three main components:
+The sync pipeline consists of three main components -
+
 1. Producer API
 2. Kafka Message Broker
 3. Consumer Service
@@ -51,7 +52,7 @@ DI_MONGODB_CONNECT_TIMEOUT_MS="10000"
 DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
 DI_MONGODB_RETRY_WRITES="true"
 DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
-DI_KAFKA_BROKER_ENDPOINT="<host address of deployed Kafka broker host>:9092"
+DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
 ```
 
 #### Run the Container
@@ -66,7 +67,8 @@ docker run -d \
 ## 2. Kafka Deployment
 
 ### Prerequisites
-- Kubernetes cluster (recommended) or Docker Compose
+
+- Kubernetes cluster or Docker Compose
 - Sufficient storage for message persistence
 - Network access between components
 
@@ -101,92 +103,119 @@ services:
 
 #### 2. AWS Managed Kafka (Recommended for Production Environments)
 
-Prerequisites
+**Prerequisites**
+
 - AWS CLI configured with appropriate permissions
 - VPC with at least 2 private subnets in different Availability Zones
 - Security groups for MSK cluster
 - IAM roles and policies for MSK
 
-##### Deployment Steps
+**Create Security Groups**
 
-1. **Create Security Groups**
-   ```bash
-   # Create security group for MSK
-   aws ec2 create-security-group \
-     --group-name msk-security-group \
-     --description "Security group for MSK cluster" \
-     --vpc-id <your-vpc-id>
+```bash
+# Create security group for MSK
+aws ec2 create-security-group \
+    --group-name msk-security-group \
+    --description "Security group for MSK cluster" \
+    --vpc-id <your-vpc-id>
 
-   # Add inbound rules for Kafka
-   aws ec2 authorize-security-group-ingress \
-     --group-id <msk-security-group-id> \
-     --protocol tcp \
-     --port 9092 \
-     --source-group <producer-consumer-security-group-id>
+# Add inbound rules for Kafka
+aws ec2 authorize-security-group-ingress \
+    --group-id <msk-security-group-id> \
+    --protocol tcp \
+    --port 9092 \
+    --source-group <producer-consumer-security-group-id>
 
-   aws ec2 authorize-security-group-ingress \
-     --group-id <msk-security-group-id> \
-     --protocol tcp \
-     --port 2181 \
-     --source-group <producer-consumer-security-group-id>
-   ```
+aws ec2 authorize-security-group-ingress \
+    --group-id <msk-security-group-id> \
+    --protocol tcp \
+    --port 2181 \
+    --source-group <producer-consumer-security-group-id>
+```
 
-2. **Create MSK Cluster**
-   ```bash
-   aws kafka create-cluster \
-     --cluster-name "mobileforge-sync-cluster" \
-     --kafka-version "3.5.1" \
-     --number-of-broker-nodes 3 \
-     --enhanced-monitoring PER_BROKER \
-     --broker-node-group-info \
-       '{
-         "ClientSubnets": ["<subnet-id-1>", "<subnet-id-2>", "<subnet-id-3>"],
-         "SecurityGroups": ["<msk-security-group-id>"],
-         "InstanceType": "kafka.t3.small"
-       }' \
-     --encryption-info \
-       '{
-         "EncryptionInTransit": {
-           "ClientBroker": "TLS",
-           "InCluster": true
-         }
-       }' \
-     --client-authentication \
-       '{
-         "Sasl": {
-           "Iam": {
-             "Enabled": true
-           }
-         },
-         "Tls": {
-           "CertificateAuthorityArnList": []
-         }
-       }'
-   ```
+**Create MSK Cluster**
 
-3. **Wait for Cluster Creation**
-   ```bash
-   # Check cluster status
-   aws kafka describe-cluster --cluster-arn <cluster-arn>
-   ```
+```bash
+aws kafka create-cluster \
+    --cluster-name "mobileforge-sync-cluster" \
+    --kafka-version "3.8.0" \
+    --number-of-broker-nodes 3 \
+    --enhanced-monitoring PER_BROKER \
+    --broker-node-group-info \
+    '{
+        "ClientSubnets": ["<subnet-id-1>", "<subnet-id-2>", "<subnet-id-3>"],
+        "SecurityGroups": ["<msk-security-group-id>"],
+        "InstanceType": "kafka.t3a.large",
+        "StorageInfo": {
+            "EbsStorageInfo": {
+                "VolumeSize": 100
+            }
+        }
+    }' \
+    --encryption-info \
+    '{
+        "EncryptionInTransit": {
+            "ClientBroker": "TLS",
+            "InCluster": true
+        }
+    }'
+```
 
-4. **Get Bootstrap Servers**
-   ```bash
-   # Get bootstrap servers for client configuration
-   aws kafka get-bootstrap-brokers --cluster-arn <cluster-arn>
-   ```
+**Wait for Cluster Creation**
 
-5. **Create Topics**
-   ```bash
-   # Create the sync topic
-   aws kafka create-topic \
-     --cluster-arn <cluster-arn> \
-     --topic sync-topic \
-     --partitions 3 \
-     --replication-factor 3
-   ```
+```bash
+# Check cluster status
+aws kafka describe-cluster --cluster-arn <cluster-arn>
+```
 
-##### Configuration for Producer and Consumer
+**Get Bootstrap Servers**
+
+```bash
+# Get bootstrap servers for client configuration
+aws kafka get-bootstrap-brokers --cluster-arn <cluster-arn>
+```
+
+**Create Topics**
+
+```bash
+# Create the sync topic
+aws kafka create-topic \
+    --cluster-arn <cluster-arn> \
+    --topic sms_batched \
+    --partitions 16 \
+    --replication-factor 3 \
+    --config retention.ms=1800000
+
+aws kafka create-topic \
+    --cluster-arn <cluster-arn> \
+    --topic events_log \
+    --partitions 20 \
+    --replication-factor 3 \
+    --config retention.ms=1800000
+
+aws kafka create-topic \
+    --cluster-arn <cluster-arn> \
+    --topic apps_and_device_batched \
+    --partitions 5 \
+    --replication-factor 3 \
+    --config retention.ms=1800000
+
+aws kafka create-topic \
+    --cluster-arn <cluster-arn> \
+    --topic contacts_batched \
+    --partitions 5 \
+    --replication-factor 3 \
+    --config retention.ms=1800000
+
+aws kafka create-topic \
+    --cluster-arn <cluster-arn> \
+    --topic call_logs_batched \
+    --partitions 5 \
+    --replication-factor 3 \
+    --config retention.ms=1800000
+```
+
+**Configuration for Producer and Consumer**
 
 Update the environment variables in your `.env` files to use the MSK bootstrap servers:
 
@@ -195,24 +224,7 @@ Update the environment variables in your `.env` files to use the MSK bootstrap s
 DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
 ```
 
-##### Security Best Practices
-
-1. **Network Security**
-   - Deploy MSK in private subnets
-   - Use security groups to restrict access
-   - Enable TLS for encryption in transit
-
-2. **Authentication**
-   - Enable IAM authentication for MSK
-   - Use AWS Secrets Manager for credentials
-   - Implement proper IAM roles and policies
-
-3. **Monitoring**
-   - Enable enhanced monitoring
-   - Set up CloudWatch alarms
-   - Monitor broker metrics and logs
-
-##### Cost Optimization
+#### Cost Optimization
 
 1. **Instance Types**
    - Use appropriate instance types based on workload
@@ -266,7 +278,7 @@ DI_MONGODB_CONNECT_TIMEOUT_MS="10000"
 DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
 DI_MONGODB_RETRY_WRITES="true"
 DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
-DI_KAFKA_BROKER_ENDPOINT="<host address of deployed Kafka broker host>:9092"
+DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
 ENABLED_TOPICS="sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log"
 KAFKA_CONSUMER_GROUP="some-consumer-group"
 ```
@@ -304,21 +316,24 @@ KAFKA_CONSUMER_GROUP=common-consumer-group
 
 ## Verification Steps
 
-1. **Check Producer API**
-   ```bash
-   curl http://localhost:8080/health
-   ```
+**Check Producer API**
 
-2. **Verify Kafka**
-   ```bash
-   # List topics
-   kafka-topics.sh --bootstrap-server localhost:9092 --list
-   ```
+```bash
+curl http://<host_address>:8000/health
+```
 
-3. **Monitor Consumer**
-   ```bash
-   docker logs -f consumer
-   ```
+**Verify Kafka**
+
+```bash
+# List topics
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+```
+
+**Monitor Consumer**
+
+```bash
+docker logs -f consumer
+```
 
 ## Troubleshooting
 
@@ -330,13 +345,13 @@ KAFKA_CONSUMER_GROUP=common-consumer-group
 ## Security Considerations
 
 1. **Network Security**
-   - Use private subnets for all components
-   - Implement proper security groups/firewall rules
+    - Use private subnets for all components
+    - Implement proper security groups/firewall rules
 
 2. **Authentication**
-   - Use AWS IAM roles for ECR access
+    - Use AWS IAM roles for ECR access
 
 3. **Monitoring**
-   - Set up CloudWatch or similar monitoring
-   - Configure alerts for component health
-   - Monitor message processing metrics
+    - Set up CloudWatch or similar monitoring
+    - Configure alerts for component health
+    - Monitor message processing metrics
