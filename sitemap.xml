@@ -2,38 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.credeau.com/</loc>
-         <lastmod>2025-05-19</lastmod>
+         <lastmod>2025-05-20</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/</loc>
-         <lastmod>2025-05-19</lastmod>
+         <lastmod>2025-05-20</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/components/</loc>
-         <lastmod>2025-05-19</lastmod>
+         <lastmod>2025-05-20</lastmod>
     </url>
     <url>
-         <loc>https://docs.credeau.com/products/mobileforge/scaling/</loc>
-         <lastmod>2025-05-19</lastmod>
+         <loc>https://docs.credeau.com/products/mobileforge/deployment/database/</loc>
+         <lastmod>2025-05-20</lastmod>
     </url>
     <url>
-         <loc>https://docs.credeau.com/products/mobileforge/data-schemas/mongo/</loc>
-         <lastmod>2025-05-19</lastmod>
+         <loc>https://docs.credeau.com/products/mobileforge/deployment/insights_pipeline/</loc>
+         <lastmod>2025-05-20</lastmod>
     </url>
     <url>
-         <loc>https://docs.credeau.com/products/mobileforge/data-schemas/postgres/</loc>
-         <lastmod>2025-05-19</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.credeau.com/products/mobileforge/deployment/development/</loc>
-         <lastmod>2025-05-19</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.credeau.com/products/mobileforge/deployment/production/</loc>
-         <lastmod>2025-05-19</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.credeau.com/products/mobileforge/deployment/testing/</loc>
-         <lastmod>2025-05-19</lastmod>
+         <loc>https://docs.credeau.com/products/mobileforge/deployment/sync_pipeline/</loc>
+         <lastmod>2025-05-20</lastmod>
     </url>
 </urlset>
