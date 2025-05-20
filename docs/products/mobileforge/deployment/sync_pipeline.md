@@ -354,3 +354,5 @@ KAFKA_CONSUMER_GROUP=common-consumer-group
 | 50K | 2-5 | 2-8 | 1-5 | 1-5 | 3 |
 | 75K | 3-7 | 3-12 | 2-7 | 2-7 | 3 |
 | 100K | 4-10 | 4-16 | 3-10 | 3-10 | 3-5 |
+
+> With increasing data consumer nodes, do adjust the partition count of the respective topics to at least match the max number of nodes expected.
