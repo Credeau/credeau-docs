@@ -18,6 +18,10 @@ nav:
               - Database: products/mobileforge/deployment/database.md
               - Sync Pipeline: products/mobileforge/deployment/sync_pipeline.md
               - Insights Pipeline: products/mobileforge/deployment/insights_pipeline.md
+      - MobileGator:
+          - Overview: products/mobilegator/index.md
+          - SDK:
+              - Web: products/mobilegator/sdk/web.md
 plugins:
   - search
   - monorepo
