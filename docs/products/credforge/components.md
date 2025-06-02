@@ -6,6 +6,8 @@ CredForge is built on two primary components - the **Config Manager** and the **
 
 Exposes core APIs that orchestrate the decisioning workflow by integrating workflow management, rules processing, feature computation, and external system connectivity.
 
+![CredForge Core APIs Architecture](../../assets/diagrams/cred_forge_core_apis.png)
+
 **Components:**
 
 - **Workflow Manager**: Orchestrates the decisioning process by executing predefined workflows against user input variables, ensuring proper sequencing and state management.
