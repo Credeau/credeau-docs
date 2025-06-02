@@ -4,10 +4,33 @@ theme:
   name: material
   logo: assets/images/credeau_logo_transparent.png
   favicon: assets/images/credeau_favicon.ico
+  font:
+    code: Roboto Mono
+    text: Roboto
   palette:
-    - scheme: default
-      primary: 'indigo'
-      accent: 'indigo'
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      primary: 'deep orange'
+      accent: 'deep orange'
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: 'deep orange'
+      accent: 'deep orange'
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - content.code.copy
 nav:
   - Home: index.md
   - Products:
@@ -22,6 +45,19 @@ nav:
           - Overview: products/mobilegator/index.md
           - SDK:
               - Web: products/mobilegator/sdk/web.md
+      - CredForge:
+          - Overview: products/credforge/index.md
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    actions:
+      - accept
+      - reject
 plugins:
   - search
   - monorepo
@@ -30,3 +66,10 @@ markdown_extensions:
   - codehilite
   - toc:
       permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
