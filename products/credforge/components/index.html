@@ -11,6 +11,8 @@
         <link rel="canonical" href="https://docs.credeau.com/products/credforge/components/">
       
       
+        <link rel="prev" href="../">
+      
       
       
       <link rel="icon" href="../../../assets/images/credeau_favicon.ico">
@@ -68,6 +70,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#components" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -250,18 +257,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -277,7 +286,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Products
@@ -633,18 +642,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -660,7 +671,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             CredForge
@@ -685,6 +696,89 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core APIs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Manager
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -722,6 +816,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core APIs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Manager
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -737,9 +859,65 @@
 
 
 
-  <h1>Components</h1>
-
-
+<h1 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h1>
+<p>CredForge is built on two primary components - the <strong>Config Manager</strong> and the <strong>Core APIs</strong>, each composed of modular services that can be independently scaled and deployed.</p>
+<h2 id="core-apis">Core APIs<a class="headerlink" href="#core-apis" title="Permanent link">&para;</a></h2>
+<p>Exposes core APIs that orchestrate the decisioning workflow by integrating workflow management, rules processing, feature computation, and external system connectivity.</p>
+<p><img alt="CredForge Core APIs Architecture" src="../../../assets/diagrams/cred_forge_core_apis.png" /></p>
+<p><strong>Components:</strong></p>
+<ul>
+<li>
+<p><strong>Workflow Manager</strong>: Orchestrates the decisioning process by executing predefined workflows against user input variables, ensuring proper sequencing and state management.</p>
+</li>
+<li>
+<p><strong>Rule Engine</strong>: Evaluates business rules and conditions through a configurable decision tree, enabling complex decision logic and policy enforcement.</p>
+</li>
+<li>
+<p><strong>Feature Engine</strong>: Processes input variables through configurable feature computation pipelines, transforming raw data into meaningful decisioning features.</p>
+</li>
+<li>
+<p><strong>External Connection Manager</strong>: Manages and orchestrates integrations with external services through configurable connection profiles and metadata-driven configurations.</p>
+</li>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li><strong>MongoDB</strong>: Document database for storing system configurations, workflow definitions, rule sets, and integration metadata across all core decisioning components.</li>
+<li><strong>PostgreSQL</strong>: Relational database for managing transactional data, audit trails, and application logs with robust data integrity and query capabilities.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="config-manager">Config Manager<a class="headerlink" href="#config-manager" title="Permanent link">&para;</a></h2>
+<p>⭐ <code>Releasing Soon, currently powered by Git. Follow below documentation for more.</code></p>
+<p>Responsible for orchestrating and managing the core decisioning components including workflow configuration, rules engine, feature computation engine, and external system integrations.</p>
+<p><strong>Components:</strong></p>
+<ul>
+<li>
+<p><strong>Admin Portal UI</strong>: Provides an intuitive web interface for administrators to manage system configurations, monitor workflows, and control decisioning parameters.</p>
+</li>
+<li>
+<p><strong>Admin Portal Backend</strong>: Exposes RESTful APIs to handle configuration management, export settings, and maintain system state across the decisioning platform.</p>
+</li>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li><strong>MongoDB</strong>: Document database for storing versioned configurations, system metadata, and portal settings with support for configuration history and rollback capabilities.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Components (Legacy deployments):</strong></p>
+<p>Client-managed Git repositories that store versioned configuration files for each core API component, enabling version control and deployment management.</p>
+<ul>
+<li><strong>Git Repositories</strong>:<ul>
+<li><code>cred-forge-wm-configs</code></li>
+<li><code>cred-forge-re-configs</code></li>
+<li><code>cred-forge-fe-configs</code></li>
+<li><code>cred-forge-ecm-configs</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>Each component is designed to be <strong>modular</strong>, allowing independent scaling, deployment, and monitoring depending on workload or use-case.</p>
 
 
 
