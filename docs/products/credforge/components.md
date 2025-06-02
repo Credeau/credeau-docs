@@ -2,6 +2,26 @@
 
 CredForge is built on two primary components - the **Config Manager** and the **Core APIs**, each composed of modular services that can be independently scaled and deployed.
 
+## Core APIs
+
+Exposes core APIs that orchestrate the decisioning workflow by integrating workflow management, rules processing, feature computation, and external system connectivity.
+
+**Components:**
+
+- **Workflow Manager**: Orchestrates the decisioning process by executing predefined workflows against user input variables, ensuring proper sequencing and state management.
+
+- **Rule Engine**: Evaluates business rules and conditions through a configurable decision tree, enabling complex decision logic and policy enforcement.
+
+- **Feature Engine**: Processes input variables through configurable feature computation pipelines, transforming raw data into meaningful decisioning features.
+
+- **External Connection Manager**: Manages and orchestrates integrations with external services through configurable connection profiles and metadata-driven configurations.
+
+- **Databases**:
+    - **MongoDB**: Document database for storing system configurations, workflow definitions, rule sets, and integration metadata across all core decisioning components.
+    - **PostgreSQL**: Relational database for managing transactional data, audit trails, and application logs with robust data integrity and query capabilities.
+
+---
+
 ## Config Manager
 
 ⭐ `Releasing Soon, currently powered by Git. Follow below documentation for more.`
@@ -26,26 +46,6 @@ Client-managed Git repositories that store versioned configuration files for eac
     - `cred-forge-re-configs`
     - `cred-forge-fe-configs`
     - `cred-forge-ecm-configs`
-
----
-
-## Core APIs
-
-Exposes core APIs that orchestrate the decisioning workflow by integrating workflow management, rules processing, feature computation, and external system connectivity.
-
-**Components:**
-
-- **Workflow Manager**: Orchestrates the decisioning process by executing predefined workflows against user input variables, ensuring proper sequencing and state management.
-
-- **Rule Engine**: Evaluates business rules and conditions through a configurable decision tree, enabling complex decision logic and policy enforcement.
-
-- **Feature Engine**: Processes input variables through configurable feature computation pipelines, transforming raw data into meaningful decisioning features.
-
-- **External Connection Manager**: Manages and orchestrates integrations with external services through configurable connection profiles and metadata-driven configurations.
-
-- **Databases**:
-    - **MongoDB**: Document database for storing system configurations, workflow definitions, rule sets, and integration metadata across all core decisioning components.
-    - **PostgreSQL**: Relational database for managing transactional data, audit trails, and application logs with robust data integrity and query capabilities.
 
 ---
 
