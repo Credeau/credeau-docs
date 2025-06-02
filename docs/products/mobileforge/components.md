@@ -1,4 +1,4 @@
-# Components
+# MobileForge Components
 
 MobileForge is built on two primary pipelines — the **Sync Pipeline** and the **Insights Pipeline**, each composed of modular services that can be independently scaled and deployed.
 

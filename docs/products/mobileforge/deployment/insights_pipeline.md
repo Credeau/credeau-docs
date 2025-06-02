@@ -1,4 +1,4 @@
-# Deployment: Insights Pipeline
+# Deployment: MobileForge Insights Pipeline
 
 This document outlines the deployment steps for different components of the insights pipeline.
 

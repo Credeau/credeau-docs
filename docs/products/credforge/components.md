@@ -1,4 +1,4 @@
-# Components
+# CredForge Components
 
 CredForge is built on two primary components - the **Config Manager** and the **Core APIs**, each composed of modular services that can be independently scaled and deployed.
 

@@ -1,4 +1,4 @@
-# Deployment: Sync Pipeline
+# Deployment: MobileForge Sync Pipeline
 
 This document outlines the deployment steps for different components of the sync pipeline.
 
