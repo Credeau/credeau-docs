@@ -48,6 +48,8 @@ nav:
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md
+          - Deployment:
+              - Database: products/credforge/deployment/database.md
 extra:
   consent:
     title: Cookie consent
