@@ -2,34 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.credeau.com/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/credforge/</loc>
+         <lastmod>2025-06-02</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/credforge/components/</loc>
+         <lastmod>2025-06-02</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/credforge/deployment/coreapis/</loc>
+         <lastmod>2025-06-02</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/credforge/deployment/database/</loc>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/components/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/deployment/database/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/deployment/insights_pipeline/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/deployment/sync_pipeline/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/web/</loc>
-         <lastmod>2025-05-28</lastmod>
+         <lastmod>2025-06-02</lastmod>
     </url>
 </urlset>
