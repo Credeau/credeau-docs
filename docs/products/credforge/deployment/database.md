@@ -144,9 +144,34 @@ sudo systemctl enable postgresql
 
 #### Required PostgreSQL Databases
 
-- `api_insights_db`
+- `cred_forge_db`
+
+#### Create database and user:
+
+```sql
+-- Create databases
+CREATE DATABASE cred_forge_db;
+
+-- Create user with password
+CREATE USER credforge_user WITH PASSWORD 'your_secure_password';
+
+-- Grant privileges for api_insights_db
+GRANT CONNECT ON DATABASE cred_forge_db TO credforge_user;
+GRANT USAGE ON SCHEMA public TO credforge_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO credforge_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO credforge_user;
+
+-- Set default privileges for future tables in both databases
+ALTER DEFAULT PRIVILEGES IN SCHEMA public 
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO credforge_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public 
+GRANT USAGE, SELECT ON SEQUENCES TO credforge_user;
+```
 
 #### Create Tables
+
+Database to use - `cred_forge_db`
 
 ```sql
 CREATE TABLE forge_request_workflow_state (
