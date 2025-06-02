@@ -47,6 +47,7 @@ nav:
               - Web: products/mobilegator/sdk/web.md
       - CredForge:
           - Overview: products/credforge/index.md
+          - Components: products/credforge/components.md
 extra:
   consent:
     title: Cookie consent
