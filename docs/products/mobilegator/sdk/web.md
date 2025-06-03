@@ -25,7 +25,7 @@ yarn add credlibkit-web
 CDN Integration - Alternatively, include the SDK via CDN:
  
 ```html
-<script  src="https://cdn.jsdelivr.net/npm/credlibkit-web/dist/web-sdk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/credlibkit-web@1/dist/web-sdk.min.js"></script>
 ```
  
 ES6 Module:
