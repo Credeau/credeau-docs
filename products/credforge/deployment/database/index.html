@@ -1102,6 +1102,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scaling-ladder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Ladder
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1437,6 +1446,15 @@
   <a href="#maintenance" class="md-nav__link">
     <span class="md-ellipsis">
       Maintenance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-ladder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Ladder
     </span>
   </a>
   
@@ -1829,6 +1847,55 @@
 <li>Vacuum operations (PostgreSQL)</li>
 <li>Database statistics updates</li>
 </ol>
+<h2 id="scaling-ladder">Scaling Ladder<a class="headerlink" href="#scaling-ladder" title="Permanent link">&para;</a></h2>
+<p>The following table provides recommended node specifications and counts for PostgreSQL and MongoDB deployments at various Daily Active User (DAU) scales.</p>
+<ul>
+<li><strong>PostgreSQL</strong>: 1GB RAM, 2 vCPU, 25GB disk (3000 IOPS, 125 MBPS)</li>
+<li><strong>MongoDB</strong>: 4GB RAM, 2 vCPU, 100GB disk (3000 IOPS, 125 MBPS)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Requests / Day</th>
+<th style="text-align: center;">PostgreSQL Nodes</th>
+<th style="text-align: center;">MongoDB Nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>10K</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td><strong>25K</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td><strong>50K</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><strong>75K</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr>
+<td><strong>100K</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>For high availability and failover, consider running at least 2 nodes (primary + standby/replica) at all times, even at lower DAU.</li>
+<li>Scale up node count and/or instance size if you observe CPU, RAM, or disk IOPS/throughput consistently above 50% utilization.</li>
+<li>Adjust disk size and IOPS as data volume grows.</li>
+<li>Monitor database metrics and tune accordingly.</li>
+</ul>
 
 
 
