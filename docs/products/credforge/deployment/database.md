@@ -281,8 +281,78 @@ db.createUser({
 #### Create collections in MongoDB
 
 ```javascript
-// Switch to sync_db database
-use cred_forge_db
+// 1. Clients
+db.createCollection("clients");
+db.clients.createIndex({ "client_id": 1 });
+db.clients.createIndex({ "auth_token": 1 });
+
+// 2. Ecm Client Metadata
+db.createCollection("ecm_client_metadata");
+db.ecm_client_metadata.createIndex({ "client_id": 1 });
+db.ecm_client_metadata.createIndex({ "engine": 1 });
+
+// 3. Ecm Output Log
+db.createCollection("ecm_output_log");
+db.ecm_output_log.createIndex({ "reference_id": 1 });
+db.ecm_output_log.createIndex({ "user_id": 1 });
+db.ecm_output_log.createIndex({ "engine": 1 });
+db.ecm_output_log.createIndex({ "request_id": 1 });
+db.ecm_output_log.createIndex({ "client_id": 1 });
+
+// 4. Ecm Request Log
+db.createCollection("ecm_request_log");
+db.ecm_request_log.createIndex({ "reference_id": 1 });
+db.ecm_request_log.createIndex({ "user_id": 1 });
+db.ecm_request_log.createIndex({ "request_id": 1 });
+db.ecm_request_log.createIndex({ "engine": 1 });
+db.ecm_request_log.createIndex({ "client_id": 1 });
+
+// 5. Ecm Response Log
+db.createCollection("ecm_response_log");
+db.ecm_response_log.createIndex({ "reference_id": 1 });
+db.ecm_response_log.createIndex({ "request_id": 1 });
+db.ecm_response_log.createIndex({ "user_id": 1 });
+db.ecm_response_log.createIndex({ "engine": 1 });
+db.ecm_response_log.createIndex({ "client_id": 1 });
+
+// 6. Request Workflow State
+db.createCollection("request_workflow_state");
+db.request_workflow_state.createIndex({ "client_id": 1 });
+db.request_workflow_state.createIndex({ "created_date": 1 });
+db.request_workflow_state.createIndex({ "user_id": 1 });
+db.request_workflow_state.createIndex({ "request_id": 1 });
+db.request_workflow_state.createIndex({ "reference_id": 1 });
+db.request_workflow_state.createIndex({ "workflow_strategy": 1 });
+db.request_workflow_state.createIndex({ "workflow_endpoint": 1 });
+
+// 7. Unauthorized Requests
+db.createCollection("unauthorized_requests");
+db.unauthorized_requests.createIndex({ "client_id": 1 });
+db.unauthorized_requests.createIndex({ "request_id": 1 });
+
+// 8. Usage
+db.createCollection("usage");
+db.usage.createIndex({ "client_id": 1 });
+db.usage.createIndex({ "request_id": 1 });
+db.usage.createIndex({ "api_name": 1 });
+
+// 9. Workflow Configs
+db.createCollection("workflow_configs");
+db.workflow_configs.createIndex({ "workflow_name": 1 });
+db.workflow_configs.createIndex({ "client_id": 1 });
+
+// 10. Workflow Endpoint Config
+db.createCollection("workflow_endpoint_config");
+db.workflow_endpoint_config.createIndex({ "workflow_endpoint": 1 });
+db.workflow_endpoint_config.createIndex({ "client_id": 1 });
+
+// 11. Workflow Event Log
+db.createCollection("workflow_event_log");
+db.workflow_event_log.createIndex({ "client_id": 1 });
+db.workflow_event_log.createIndex({ "reference_id": 1 });
+db.workflow_event_log.createIndex({ "request_id": 1 });
+db.workflow_event_log.createIndex({ "user_id": 1 });
+db.workflow_event_log.createIndex({ "event_type": 1 });
 ```
 
 ### Important Notes
