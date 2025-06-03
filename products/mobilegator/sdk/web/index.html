@@ -1089,16 +1089,16 @@
 <h2 id="adding-dependency">Adding Dependency<a class="headerlink" href="#adding-dependency" title="Permanent link">&para;</a></h2>
 <p>Add the SDK to your application using one of the following methods.</p>
 <p>Using npm:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>install<span class="w"> </span>credLibKit-web
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>install<span class="w"> </span>credlibkit-web
 </span></code></pre></div>
 <p>or using yarn:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>credLibKit-web
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>credlibkit-web
 </span></code></pre></div>
 <p>CDN Integration - Alternatively, include the SDK via CDN:</p>
-<div class="language-html highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">script</span>  <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/credLibKit-web/dist/web-sdk.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">script</span>  <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/credlibkit-web/dist/web-sdk.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></code></pre></div>
 <p>ES6 Module:</p>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">syncWebData</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;credLibKit-web&quot;</span><span class="p">;</span>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">syncWebData</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;credlibkit-web&quot;</span><span class="p">;</span>
 </span></code></pre></div>
 <blockquote>
 <p>Note:</p>
@@ -1111,7 +1111,7 @@
 <h2 id="function-reference">Function Reference<a class="headerlink" href="#function-reference" title="Permanent link">&para;</a></h2>
 <h3 id="sync-web-data">Sync Web Data<a class="headerlink" href="#sync-web-data" title="Permanent link">&para;</a></h3>
 <p>To collect and synchronize comprehensive browser and device data, call the syncWebData method with the following -</p>
-<p><code>credLibKit.syncWebData(user_id, client_id, secret_key,​base_url)</code></p>
+<p><code>syncWebData(user_id, client_id, secret_key,​base_url)</code></p>
 <h4 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -1145,7 +1145,7 @@
 <td>base_url</td>
 <td>string</td>
 <td>No</td>
-<td>Custom API endpoint (default: https://devdevicesense.credeau.com)</td>
+<td>Custom API endpoint (default: https://devicesync.credeau.com)</td>
 </tr>
 </tbody>
 </table>
@@ -1220,7 +1220,7 @@
 <p>The response to this method (success or failure) can be captured using async/await or promises.</p>
 <div class="language-js highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">credLibKit</span><span class="p">.</span><span class="nx">syncWebData</span><span class="p">(</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">syncWebData</span><span class="p">(</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="s2">&quot;USER_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// User identifier</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="s2">&quot;CLIENT_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Your client identifier</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Authentication key</span>
