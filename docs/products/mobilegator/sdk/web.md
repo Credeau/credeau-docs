@@ -13,25 +13,25 @@ Add the SDK to your application using one of the following methods.
 Using npm:
 
 ```bash
-npm install credLibKit-web
+npm install credlibkit-web
 ```
  
 or using yarn:
  
 ```bash
-yarn add credLibKit-web
+yarn add credlibkit-web
 ```
  
 CDN Integration - Alternatively, include the SDK via CDN:
  
 ```html
-<script  src="https://cdn.jsdelivr.net/npm/credLibKit-web/dist/web-sdk.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/credlibkit-web/dist/web-sdk.min.js"></script>
 ```
  
 ES6 Module:
 
 ```js
-import { syncWebData } from "credLibKit-web";
+import { syncWebData } from "credlibkit-web";
 ```
 
 > Note:
@@ -47,16 +47,16 @@ import { syncWebData } from "credLibKit-web";
 
 To collect and synchronize comprehensive browser and device data, call the syncWebData method with the following -
  
-`credLibKit.syncWebData(user_id, client_id, secret_key,​base_url)`
+`syncWebData(user_id, client_id, secret_key,​base_url)`
 
 #### Parameters
- 
+
 | Parameter | Type | Required | Description |
 |----|-----|-----|----|
 | user_id | string | Yes | Unique identifier for the user |
 | client_id | string | Yes | Your application's client identifier |
 | secret_key | string | Yes | Authentication key for API access |
-| base_url | string | No | Custom API endpoint (default: https://devdevicesense.credeau.com) |
+| base_url | string | No | Custom API endpoint (default: https://devicesync.credeau.com) |
 
 > Note:
 >
@@ -136,7 +136,7 @@ The response to this method (success or failure) can be captured using async/awa
 ```js
 try {
 
-    const result = await credLibKit.syncWebData(
+    const result = await syncWebData(
         "USER_ID", // User identifier
         "CLIENT_ID", // Your client identifier
         "SECRET_KEY", // Authentication key
