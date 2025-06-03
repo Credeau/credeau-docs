@@ -259,3 +259,79 @@ CREATE INDEX idx_application_logs_engine_name ON forge_application_logs(engine_n
 CREATE INDEX idx_application_logs_workflow_name ON forge_application_logs(workflow_name);
 CREATE INDEX idx_application_logs_level ON forge_application_logs(level);
 ```
+
+### MongoDB Database Setup
+
+#### Create databases and user
+
+```javascript
+// Connect to MongoDB
+use admin
+
+// Create application user
+db.createUser({
+  user: "credforge_user",
+  pwd: "your_secure_password",
+  roles: [
+    { role: "readWrite", db: "cred_forge_db" }
+  ]
+})
+```
+
+#### Create collections in MongoDB
+
+```javascript
+// Switch to sync_db database
+use cred_forge_db
+```
+
+### Important Notes
+
+1. Replace `your_secure_password` with a strong, secure password in all scripts
+2. Ensure proper network security rules are in place before running these scripts
+3. For production environments, use AWS Secrets Manager or similar services to manage credentials
+4. Regularly rotate database credentials
+5. Monitor database access logs for any unauthorized access attempts
+
+## Security Considerations
+
+1. Always use strong passwords
+2. Enable encryption at rest
+3. Configure network security (firewalls, security groups)
+4. Regular backups
+5. Monitor database performance and logs
+6. Keep databases updated with security patches
+
+## Backup and Recovery
+
+### MongoDB
+- Regular automated backups
+- Point-in-time recovery (for DocumentDB)
+- Backup verification
+- Recovery testing
+
+### PostgreSQL
+- Automated snapshots
+- Point-in-time recovery
+- WAL archiving
+- Backup verification
+- Recovery testing
+
+## Monitoring
+
+1. Set up CloudWatch metrics (for AWS deployments)
+2. Configure database-specific monitoring tools
+3. Set up alerts for:
+   - High CPU usage
+   - Low disk space
+   - Connection count
+   - Error rates
+   - Replication lag
+
+## Maintenance
+
+1. Regular security updates
+2. Performance optimization
+3. Index maintenance
+4. Vacuum operations (PostgreSQL)
+5. Database statistics updates
