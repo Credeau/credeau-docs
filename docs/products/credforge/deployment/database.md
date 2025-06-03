@@ -405,3 +405,25 @@ db.workflow_event_log.createIndex({ "event_type": 1 });
 3. Index maintenance
 4. Vacuum operations (PostgreSQL)
 5. Database statistics updates
+
+## Scaling Ladder
+
+The following table provides recommended node specifications and counts for PostgreSQL and MongoDB deployments at various Daily Active User (DAU) scales.
+
+- **PostgreSQL**: 1GB RAM, 2 vCPU, 25GB disk (3000 IOPS, 125 MBPS)
+- **MongoDB**: 4GB RAM, 2 vCPU, 100GB disk (3000 IOPS, 125 MBPS)
+
+| Requests / Day | PostgreSQL Nodes| MongoDB Nodes |
+|----------------|:---------------:|:-------------:|
+| **10K**        | 1               | 1             |
+| **25K**        | 2               | 2             |
+| **50K**        | 3               | 3             |
+| **75K**        | 4               | 4             |
+| **100K**       | 5               | 5             |
+
+**Notes:**
+
+- For high availability and failover, consider running at least 2 nodes (primary + standby/replica) at all times, even at lower DAU.
+- Scale up node count and/or instance size if you observe CPU, RAM, or disk IOPS/throughput consistently above 50% utilization.
+- Adjust disk size and IOPS as data volume grows.
+- Monitor database metrics and tune accordingly.
