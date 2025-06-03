@@ -22,7 +22,13 @@ nav:
           - Overview: products/mobilegator/index.md
           - SDK:
               - Web: products/mobilegator/sdk/web.md
-plugins:
+              - Android: products/mobilegator/sdk/android.md
+              - Flutter: products/mobilegator/sdk/flutter.md
+              - React Native: products/mobilegator/sdk/reactnative.md
+              - Ionic Capacitor: products/mobilegator/sdk/ioniccapacitor.md
+              - iOS: products/mobilegator/sdk/ios.md
+              - Error Codes: products/mobilegator/sdk/errorcodes.md
+plugins:  
   - search
   - monorepo
 markdown_extensions:
@@ -30,3 +36,6 @@ markdown_extensions:
   - codehilite
   - toc:
       permalink: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences
