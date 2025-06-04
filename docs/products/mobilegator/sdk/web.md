@@ -73,7 +73,7 @@ export default App;
 Import the SDK from NPM CDN -
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/credlibkit@1/dist/web-sdk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/credlibkit@latest/dist/web-sdk.min.js"></script>
 ```
 
 Implement data fetch by embedding CDN in HTML -
@@ -87,7 +87,7 @@ Implement data fetch by embedding CDN in HTML -
 		<title>Web SDK Data Display</title>
 	</head>
 	<body>
-		<script src="https://cdn.jsdelivr.net/npm/credlibkit@1/dist/web-sdk.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/credlibkit@latest/dist/web-sdk.min.js"></script>
 
 		<script>
 			const fetchData = async () => {
