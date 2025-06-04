@@ -1,4 +1,4 @@
-# WebSDK: MobileGator Web Analytics SDK
+# CredLibKit: MobileGator Web Analytics SDK
 
 The Web Analytics SDK enables comprehensive collection of browser telemetry, device information, and fraud detection metrics from web applications while maintaining user privacy and compliance.
 
@@ -15,25 +15,25 @@ Add the SDK to your application using one of the following methods.
 Fetch using npm -
 
 ```bash
-npm install credlibkit-web
+npm install credlibkit
 ```
 
 Fetch using yarn -
  
 ```bash
-yarn add credlibkit-web
+yarn add credlibkit
 ```
 
 Import the sync functions from fetched module -
 
 ```javascript
-import { syncWebData } from "credlibkit-web";
+import { syncWebData } from "credlibkit";
 ```
 
 Implement data fetch by importing the syncWebData function in your JavaScript code -
 
 ```javascript
-import { syncWebData } from "credlibkit-web";
+import { syncWebData } from "credlibkit";
 import { useEffect } from "react";
 
 const App = () => {
@@ -73,7 +73,7 @@ export default App;
 Import the SDK from NPM CDN -
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/credlibkit-web@1/dist/web-sdk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/credlibkit@1/dist/web-sdk.min.js"></script>
 ```
 
 Implement data fetch by embedding CDN in HTML -
@@ -87,7 +87,7 @@ Implement data fetch by embedding CDN in HTML -
 		<title>Web SDK Data Display</title>
 	</head>
 	<body>
-		<script src="https://cdn.jsdelivr.net/npm/credlibkit-web@1/dist/web-sdk.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/credlibkit@1/dist/web-sdk.min.js"></script>
 
 		<script>
 			const fetchData = async () => {
