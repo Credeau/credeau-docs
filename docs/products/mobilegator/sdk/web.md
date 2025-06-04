@@ -24,6 +24,50 @@ Fetch using yarn -
 yarn add credlibkit-web
 ```
 
+Import the sync functions from fetched module -
+
+```javascript
+import { syncWebData } from "credlibkit-web";
+```
+
+Implement data fetch by importing the syncWebData function in your JavaScript code -
+
+```javascript
+import { syncWebData } from "credlibkit-web";
+import { useEffect } from "react";
+
+const App = () => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await syncWebData(
+                    "<user_id>",
+                    "<client_id>",
+                    "<secret_key>"
+                );
+
+                if (result) {
+                    // Data collection successful
+                    console.log("Sync successful:", result);
+                } else {
+                    // Data collection failed
+                    console.log("Sync failed");
+                }
+            } catch (error) {
+                // Handle errors
+                console.error("SDK Error:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return <div>App</div>;
+};
+
+export default App;
+```
+
 ### CDN Integration
 
 Import the SDK from NPM CDN -
@@ -63,12 +107,6 @@ Implement data fetch by embedding CDN in HTML -
 		</script>
 	</body>
 </html>
-```
-
-### ES6
-
-```js
-import { syncWebData } from "credlibkit-web";
 ```
 
 > Note:
