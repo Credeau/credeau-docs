@@ -10,25 +10,62 @@ The Web SDK works on Google Chrome, Safari, Firefox, Opera and other popular mod
 
 Add the SDK to your application using one of the following methods.
 
-Using npm:
+### NPM/Yarn
+
+Fetch using npm -
 
 ```bash
 npm install credlibkit-web
 ```
- 
-or using yarn:
+
+Fetch using yarn -
  
 ```bash
 yarn add credlibkit-web
 ```
- 
-CDN Integration - Alternatively, include the SDK via CDN:
- 
+
+### CDN Integration
+
+Import the SDK from NPM CDN -
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/credlibkit-web@1/dist/web-sdk.min.js"></script>
 ```
- 
-ES6 Module:
+
+Implement data fetch by embedding CDN in HTML -
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Web SDK Data Display</title>
+	</head>
+	<body>
+		<script src="https://cdn.jsdelivr.net/npm/credlibkit-web@1/dist/web-sdk.min.js"></script>
+
+		<script>
+			const fetchData = async () => {
+				try {
+					const response = await credLibKit.syncWebData(
+						"<user_id>",
+						"<client_id>",
+						"<secret_key>"
+					);
+					console.log("In HTML Client File-Fetched data:", response);
+				} catch (error) {
+					console.error("In HTML Client File-Error fetching data:", error);
+				}
+			};
+
+			fetchData();
+		</script>
+	</body>
+</html>
+```
+
+### ES6
 
 ```js
 import { syncWebData } from "credlibkit-web";
