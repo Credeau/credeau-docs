@@ -45,6 +45,7 @@ nav:
           - Overview: products/mobilegator/index.md
           - SDK:
               - Web: products/mobilegator/sdk/web.md
+          - Insights: products/mobilegator/insights.md
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md
