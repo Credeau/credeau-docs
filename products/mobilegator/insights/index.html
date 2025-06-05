@@ -1,0 +1,2102 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.credeau.com/products/mobilegator/insights/">
+      
+      
+        <link rel="prev" href="../sdk/web/">
+      
+      
+        <link rel="next" href="../../credforge/">
+      
+      
+      <link rel="icon" href="../../../assets/images/credeau_favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Insights - Credeau Product Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deviceinsights-mobilegator-insights-fetch-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Credeau Product Documentation" class="md-header__button md-logo" aria-label="Credeau Product Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/images/credeau_logo_transparent.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Credeau Product Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Insights
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Credeau Product Documentation" class="md-nav__button md-logo" aria-label="Credeau Product Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/images/credeau_logo_transparent.png" alt="logo">
+
+    </a>
+    Credeau Product Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Products
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Products
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MobileForge
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            MobileForge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobileforge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobileforge/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobileforge/deployment/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobileforge/deployment/sync_pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sync Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobileforge/deployment/insights_pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insights Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MobileGator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            MobileGator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Insights
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insights
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (JSON)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-fields-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Fields (JSON)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      message values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success Responses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Success Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-200-ok-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 200 OK (Success)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-202-accepted-async-invocation-accepted" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 202 Accepted (Async Invocation Accepted)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Responses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-401-unauthorized-wrong-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 401 Unauthorized (Wrong credentials)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-403-forbidden-invalid-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 403 Forbidden (Invalid Access)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-422-unprocessable-content-wrong-request-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 422 Unprocessable Content (Wrong Request Payload)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-429-too-many-requests-rate-limit-exceeded" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 429 Too Many Requests (Rate Limit Exceeded)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synchronous API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CredForge
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            CredForge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credforge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credforge/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credforge/deployment/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (JSON)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-fields-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Fields (JSON)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      message values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success Responses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Success Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-200-ok-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 200 OK (Success)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-202-accepted-async-invocation-accepted" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 202 Accepted (Async Invocation Accepted)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Responses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-401-unauthorized-wrong-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 401 Unauthorized (Wrong credentials)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-403-forbidden-invalid-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 403 Forbidden (Invalid Access)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-422-unprocessable-content-wrong-request-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 422 Unprocessable Content (Wrong Request Payload)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-429-too-many-requests-rate-limit-exceeded" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP 429 Too Many Requests (Rate Limit Exceeded)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synchronous API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="deviceinsights-mobilegator-insights-fetch-api">DeviceInsights: MobileGator Insights Fetch API<a class="headerlink" href="#deviceinsights-mobilegator-insights-fetch-api" title="Permanent link">&para;</a></h1>
+<p>The DeviceInsights API provides programmatic access to user behavior and device performance insights collected through the MobileGator SDK. This endpoint allows you to retrieve detailed analytics and metrics about device usage, performance patterns, and user engagement across mobile and web platforms.</p>
+<h2 id="base-url">Base URL<a class="headerlink" href="#base-url" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://deviceinsights.credeau.com
+</span></code></pre></div>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
+<p>The following variables will be referenced throughout this documentation:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Format</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client_id</code></td>
+<td>Unique identifier for your organization</td>
+<td>Alphanumeric string</td>
+<td>Provided by Credeau during onboarding</td>
+</tr>
+<tr>
+<td><code>auth_token</code></td>
+<td>Secret token for API authentication</td>
+<td>Alphanumeric string</td>
+<td>Provided by Credeau during onboarding</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>Unique identifier for an end user</td>
+<td>Alphanumeric string, max 64 chars, non-PII</td>
+<td>Generated by your application</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td>Unique identifier for each API request</td>
+<td>Alphanumeric string</td>
+<td>Generated by Credeau API</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.</p>
+</blockquote>
+<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="synchronous-api">Synchronous API<a class="headerlink" href="#synchronous-api" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>POST<span class="w"> </span>/api/insights
+</span></code></pre></div>
+<p>The synchronous endpoint processes your request immediately and returns the results in the response. Use this for real-time insights where immediate response is required.</p>
+<h3 id="asynchronous-api">Asynchronous API<a class="headerlink" href="#asynchronous-api" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>POST<span class="w"> </span>/api/async_insights
+</span></code></pre></div>
+<p>The asynchronous endpoint processes the request in the background. You need to poll the same endpoint repeatedly until you receive a success response. Use this when you need guaranteed delivery of insights, especially in scenarios where network reliability might be a concern.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>The API requires two authentication headers:</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x-client-id</code></td>
+<td><code>&lt;client_id&gt;</code></td>
+</tr>
+<tr>
+<td><code>x-auth-token</code></td>
+<td><code>&lt;auth_token&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="request-parameters">Request Parameters<a class="headerlink" href="#request-parameters" title="Permanent link">&para;</a></h2>
+<h3 id="request-body-json">Request Body (JSON)<a class="headerlink" href="#request-body-json" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Unique identifier of the user</td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Client identifier (must match x-client-id header)</td>
+</tr>
+<tr>
+<td><code>groupings</code></td>
+<td>array</td>
+<td>Yes</td>
+<td>Array of insight categories to fetch</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>The <code>groupings</code> array must contain exactly these three values: <code>["sms", "fraud", "extracted_sms"]</code> to generate all available features. Any other combination or format will result in incomplete insights.</p>
+</blockquote>
+<h2 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
+<h3 id="response-fields-json">Response Fields (JSON)<a class="headerlink" href="#response-fields-json" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td><code>&lt;user_id&gt;</code></td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>&lt;request_id&gt;</code></td>
+</tr>
+<tr>
+<td><code>data_requested_time</code></td>
+<td>The timestamp (in <code>YYYY-MM-DD HH:MM:SS</code> format) when the API request was received</td>
+</tr>
+<tr>
+<td><code>data_processed_time</code></td>
+<td>The timestamp (in <code>YYYY-MM-DD HH:MM:SS</code> format) when the API finished processing and returned the response</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>The current status of the request processing (e.g., "featurization completed", "featurization in progress", "user not found")</td>
+</tr>
+<tr>
+<td><code>&lt;feature_name&gt;</code></td>
+<td>One of approximately 3000 different feature values generated from the user's data, such as <code>all_sms_count_nlp</code> (total SMS count), <code>txn_sms_count_nlp</code> (transaction SMS count), or <code>credit_sms_count_nlp</code> (credit-related SMS count)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="message-values"><code>message</code> values<a class="headerlink" href="#message-values" title="Permanent link">&para;</a></h3>
+<p><code>message</code> is an important field in the response that indicates the status of api call for a user.</p>
+<table>
+<thead>
+<tr>
+<th><code>message</code> Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"featurization in progress"</code></td>
+<td>Indicates that the system is currently processing and generating features for the user's data. This status is only returned by the asynchronous API endpoint while the request is being processed.</td>
+</tr>
+<tr>
+<td><code>"featurization completed"</code></td>
+<td>Indicates that all requested features have been successfully generated and are available in the response. This is the final success state for both synchronous and asynchronous API calls.</td>
+</tr>
+<tr>
+<td><code>"user not found"</code></td>
+<td>Indicates that no data has been collected for the specified user. This can occur if the user's data hasn't been synced from the MobileGator SDK or if data synchronization failed due to technical issues.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="success-responses">Success Responses<a class="headerlink" href="#success-responses" title="Permanent link">&para;</a></h3>
+<h4 id="http-200-ok-success">HTTP 200 OK (Success)<a class="headerlink" href="#http-200-ok-success" title="Permanent link">&para;</a></h4>
+<p>The API returns different response structures based on the user data availability. This response structure is the same for both synchronous and asynchronous API calls.</p>
+<p><strong>Case 1: User Data Available</strong></p>
+<p>When user data is successfully processed and features are generated:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;user_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;request_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">&quot;data_requested_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-04 08:47:47&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&quot;all_sms_count_nlp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">188</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&quot;txn_sms_count_nlp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">&quot;credit_sms_count_nlp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="c1">// Additional features (approximately 3000) are included in the response</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;featurization completed&quot;</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">&quot;data_processed_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-04 08:47:50&quot;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Case 2: User Data Not Available</strong></p>
+<p>When the API is called before user data is synced from the SDK or when data synchronization failed due to technical issues (such as network connectivity problems, app crashes, missing permissions, or abrupt app termination) -</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;user_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;request_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;data_requested_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-04 08:47:47&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user not found&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">&quot;data_processed_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-04 08:47:47&quot;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h4 id="http-202-accepted-async-invocation-accepted">HTTP 202 Accepted (Async Invocation Accepted)<a class="headerlink" href="#http-202-accepted-async-invocation-accepted" title="Permanent link">&para;</a></h4>
+<p>This response is specific to the asynchronous API endpoint (<code>/api/async_insights</code>). When the request is accepted for processing, the API returns a 202 status code with the following response structure:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;user_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;request_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">&quot;data_requested_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-04 08:47:47&quot;</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;featurization in progress&quot;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>This response is only returned by the asynchronous endpoint. The synchronous endpoint (<code>/api/insights</code>) will either return a 200 success response or an error response.</p>
+</blockquote>
+<h3 id="error-responses">Error Responses<a class="headerlink" href="#error-responses" title="Permanent link">&para;</a></h3>
+<h4 id="http-401-unauthorized-wrong-credentials">HTTP 401 Unauthorized (Wrong credentials)<a class="headerlink" href="#http-401-unauthorized-wrong-credentials" title="Permanent link">&para;</a></h4>
+<p>This error occurs when either an invalid client ID or authentication token is provided in the request headers. The response includes a request ID that can be used for troubleshooting.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Could not validate credentials. (request_id=&lt;request_id&gt;). It has been logged successfully on our servers. Please contact us with the request_id for assistance.&quot;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>If you receive this error:</p>
+<ol>
+<li>Verify that you're using the correct client ID and authentication token</li>
+<li>Contact Credeau support with the request_id for assistance</li>
+</ol>
+</blockquote>
+<hr />
+<h4 id="http-403-forbidden-invalid-access">HTTP 403 Forbidden (Invalid Access)<a class="headerlink" href="#http-403-forbidden-invalid-access" title="Permanent link">&para;</a></h4>
+<p>This error can occur in two scenarios:</p>
+<ol>
+<li>
+<p><strong>IP Not Whitelisted</strong>: When the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.</p>
+</li>
+<li>
+<p><strong>Incorrect API Path</strong>: When an incorrect or misspelled API path is used in the request URL. For example:</p>
+<ul>
+<li>Incorrect: <code>/api/insight</code></li>
+<li>Correct: <code>/api/insights</code></li>
+</ul>
+</li>
+</ol>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>403 Forbidden<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="p">&lt;</span><span class="nt">center</span><span class="p">&gt;&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>403 Forbidden<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;&lt;/</span><span class="nt">center</span><span class="p">&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>To resolve this error:</p>
+<ol>
+<li>Verify that you're using the correct API endpoint path</li>
+<li>If the path is correct, contact Credeau support to whitelist your IP address</li>
+<li>Provide your organization's name and the IP address(es) that need access</li>
+<li>Once whitelisted, you'll be able to access the API from the approved IP addresses</li>
+</ol>
+</blockquote>
+<hr />
+<h4 id="http-422-unprocessable-content-wrong-request-payload">HTTP 422 Unprocessable Content (Wrong Request Payload)<a class="headerlink" href="#http-422-unprocessable-content-wrong-request-payload" title="Permanent link">&para;</a></h4>
+<p>This error is returned when any of the required parameters (<code>user_id</code>, <code>client_id</code>, or <code>groupings</code>) is missing from the request payload. The response includes details about which fields are missing and the received input.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;missing&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">            </span><span class="nt">&quot;loc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">                </span><span class="s2">&quot;body&quot;</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">                </span><span class="s2">&quot;user_id&quot;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="p">],</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Field required&quot;</span><span class="p">,</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">                </span><span class="nt">&quot;client_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;client_id&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">                </span><span class="nt">&quot;groupings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">                    </span><span class="s2">&quot;sms&quot;</span><span class="p">,</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">                    </span><span class="s2">&quot;fraud&quot;</span><span class="p">,</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">                    </span><span class="s2">&quot;extracted_sms&quot;</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">                </span><span class="p">]</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h4 id="http-429-too-many-requests-rate-limit-exceeded">HTTP 429 Too Many Requests (Rate Limit Exceeded)<a class="headerlink" href="#http-429-too-many-requests-rate-limit-exceeded" title="Permanent link">&para;</a></h4>
+<p>This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.</p>
+<p><strong>Best Practice for Rate Limit Handling</strong></p>
+<p>When implementing retries for rate-limited requests:</p>
+<ol>
+<li>Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry</li>
+<li>Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems</li>
+</ol>
+<p>Example implementation:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_retry_delay</span><span class="p">(</span><span class="n">attempt</span><span class="p">,</span> <span class="n">base_delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="c1"># Calculate exponential backoff</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">delay</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">base_delay</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">),</span> <span class="n">max_delay</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="c1"># Add jitter (±20%)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">jitter</span> <span class="o">=</span> <span class="n">delay</span> <span class="o">*</span> <span class="mf">0.2</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="k">return</span> <span class="n">delay</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">jitter</span><span class="p">,</span> <span class="n">jitter</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.</p>
+<h2 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<h3 id="synchronous-api_1">Synchronous API<a class="headerlink" href="#synchronous-api_1" title="Permanent link">&para;</a></h3>
+<h4 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span>--location<span class="w"> </span><span class="s1">&#39;https://deviceinsights.credeau.com/api/insights&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>--header<span class="w"> </span><span class="s1">&#39;x-client-id: &lt;client_id&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>--header<span class="w"> </span><span class="s1">&#39;x-auth-token: &lt;auth_token&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>--header<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>--data<span class="w"> </span><span class="s1">&#39;{</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s1">    &quot;user_id&quot;: &quot;&lt;user_id&gt;&quot;,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="s1">    &quot;client_id&quot;: &quot;&lt;client_id&gt;&quot;,</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="s1">    &quot;groupings&quot;: [&quot;sms&quot;, &quot;fraud&quot;, &quot;extracted_sms&quot;]</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="s1">}&#39;</span>
+</span></code></pre></div>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">fetch_insights_sync</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">groupings</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="sd">    Fetch insights synchronously from the DeviceInsights API.</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="sd">    Args:</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="sd">        client_id (str): Client identifier</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="sd">        auth_token (str): Authentication token</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="sd">        user_id (str): User identifier</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="sd">        groupings (list): List of insight categories to fetch</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="sd">        timeout (int): Maximum time in seconds to wait for the response (default: 30)</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="sd">    Returns:</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="sd">        dict: The response containing insights data</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="sd">    Raises:</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="sd">        Exception: If request fails or timeout is exceeded</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://deviceinsights.credeau.com/api/insights&quot;</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>        <span class="s2">&quot;x-client-id&quot;</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>        <span class="s2">&quot;x-auth-token&quot;</span><span class="p">:</span> <span class="n">auth_token</span><span class="p">,</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>    <span class="p">}</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>        <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>        <span class="s2">&quot;groupings&quot;</span><span class="p">:</span> <span class="n">groupings</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>    <span class="p">}</span>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="c1"># Example usage</span>
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;&lt;client_id&gt;&quot;</span>
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="n">auth_token</span> <span class="o">=</span> <span class="s2">&quot;&lt;auth_token&gt;&quot;</span>
+</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="n">user_id</span> <span class="o">=</span> <span class="s2">&quot;&lt;user_id&gt;&quot;</span>
+</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="n">groupings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">,</span> <span class="s2">&quot;fraud&quot;</span><span class="p">,</span> <span class="s2">&quot;extracted_sms&quot;</span><span class="p">]</span>
+</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a>
+</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="n">result</span> <span class="o">=</span> <span class="n">fetch_insights_sync</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">groupings</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>The <code>timeout</code> parameter should be carefully configured based on your specific use case:</p>
+<ul>
+<li>For real-time user journeys (e.g., instant loan approvals), use shorter timeouts (20-30 seconds)</li>
+<li>For background processing or batch operations, longer timeouts (30-60 seconds) are recommended</li>
+<li>Consider implementing a timeout strategy that balances user experience with system reliability</li>
+</ul>
+<p>Rate Limiting -</p>
+<ul>
+<li>The API implements rate limiting with 429 (Too Many Requests) responses</li>
+<li>For production environments, consider implementing exponential backoff for rate-limited requests as suggested <a href="#http-429-too-many-requests-rate-limit-exceeded">here</a></li>
+</ul>
+</blockquote>
+<h3 id="asynchronous-api_1">Asynchronous API<a class="headerlink" href="#asynchronous-api_1" title="Permanent link">&para;</a></h3>
+<h4 id="curl_1">cURL<a class="headerlink" href="#curl_1" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>curl<span class="w"> </span>--location<span class="w"> </span><span class="s1">&#39;https://deviceinsights.credeau.com/api/async_insights&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>--header<span class="w"> </span><span class="s1">&#39;x-client-id: &lt;client_id&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>--header<span class="w"> </span><span class="s1">&#39;x-auth-token: &lt;auth_token&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>--header<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>--data<span class="w"> </span><span class="s1">&#39;{</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="s1">    &quot;user_id&quot;: &quot;13588589&quot;,</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s1">    &quot;client_id&quot;: &quot;&lt;client_id&gt;&quot;,</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="s1">    &quot;groupings&quot;: [&quot;sms&quot;, &quot;fraud&quot;, &quot;extracted_sms&quot;]</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="s1">}&#39;</span>
+</span></code></pre></div>
+<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">fetch_insights_async</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">groupings</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">retry_delay</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="sd">    Fetch insights asynchronously by polling the same endpoint until success.</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="sd">    Args:</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="sd">        client_id (str): Client identifier</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="sd">        auth_token (str): Authentication token</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="sd">        user_id (str): User identifier</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="sd">        groupings (list): List of insight categories to fetch</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="sd">        timeout (int): Maximum time in seconds to wait for the response (default: 30)</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="sd">        max_retries (int): Maximum number of polling attempts</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="sd">        retry_delay (int): Delay between polling attempts in seconds</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="sd">    Returns:</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="sd">        dict: The final response containing insights data</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="sd">    Raises:</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="sd">        Exception: If max retries exceeded, overall timeout exceeded, or request fails</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://deviceinsights.credeau.com/api/async_insights&quot;</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>        <span class="s2">&quot;x-client-id&quot;</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span>
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>        <span class="s2">&quot;x-auth-token&quot;</span><span class="p">:</span> <span class="n">auth_token</span><span class="p">,</span>
+</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>        <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span>
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>    <span class="p">}</span>
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>        <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span>
+</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>        <span class="s2">&quot;groupings&quot;</span><span class="p">:</span> <span class="n">groupings</span>
+</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>    <span class="p">}</span>
+</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>
+</span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span id="__span-13-39"><a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>
+</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
+</span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>        <span class="c1"># Check if we&#39;ve exceeded the overall timeout</span>
+</span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+</span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&gt;=</span> <span class="n">timeout</span><span class="p">:</span>
+</span><span id="__span-13-44"><a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall timeout of </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2"> seconds exceeded&quot;</span><span class="p">)</span>
+</span><span id="__span-13-45"><a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>
+</span><span id="__span-13-46"><a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>
+</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+</span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a>                <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-13-51"><a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a>
+</span><span id="__span-13-52"><a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a>            <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">202</span><span class="p">:</span>
+</span><span id="__span-13-53"><a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a>                <span class="c1"># Request is still processing, wait and retry</span>
+</span><span id="__span-13-54"><a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a>                <span class="n">remaining_time</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">-</span> <span class="n">elapsed_time</span>
+</span><span id="__span-13-55"><a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a>                <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">retry_delay</span><span class="p">,</span> <span class="n">remaining_time</span><span class="p">)</span>
+</span><span id="__span-13-56"><a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a>
+</span><span id="__span-13-57"><a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>                <span class="k">if</span> <span class="n">sleep_time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-13-58"><a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a>                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall timeout of </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2"> seconds exceeded&quot;</span><span class="p">)</span>
+</span><span id="__span-13-59"><a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a>
+</span><span id="__span-13-60"><a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a>                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+</span><span id="__span-13-61"><a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a>                <span class="k">continue</span>
+</span><span id="__span-13-62"><a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a>
+</span><span id="__span-13-63"><a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a>            <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">502</span><span class="p">,</span> <span class="mi">504</span><span class="p">]:</span>
+</span><span id="__span-13-64"><a id="__codelineno-13-64" name="__codelineno-13-64" href="#__codelineno-13-64"></a>                <span class="c1"># Handle gateway errors as temporary failures</span>
+</span><span id="__span-13-65"><a id="__codelineno-13-65" name="__codelineno-13-65" href="#__codelineno-13-65"></a>                <span class="n">remaining_time</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">-</span> <span class="n">elapsed_time</span>
+</span><span id="__span-13-66"><a id="__codelineno-13-66" name="__codelineno-13-66" href="#__codelineno-13-66"></a>                <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">retry_delay</span><span class="p">,</span> <span class="n">remaining_time</span><span class="p">)</span>
+</span><span id="__span-13-67"><a id="__codelineno-13-67" name="__codelineno-13-67" href="#__codelineno-13-67"></a>
+</span><span id="__span-13-68"><a id="__codelineno-13-68" name="__codelineno-13-68" href="#__codelineno-13-68"></a>                <span class="k">if</span> <span class="n">sleep_time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-13-69"><a id="__codelineno-13-69" name="__codelineno-13-69" href="#__codelineno-13-69"></a>                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall timeout of </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2"> seconds exceeded&quot;</span><span class="p">)</span>
+</span><span id="__span-13-70"><a id="__codelineno-13-70" name="__codelineno-13-70" href="#__codelineno-13-70"></a>
+</span><span id="__span-13-71"><a id="__codelineno-13-71" name="__codelineno-13-71" href="#__codelineno-13-71"></a>                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+</span><span id="__span-13-72"><a id="__codelineno-13-72" name="__codelineno-13-72" href="#__codelineno-13-72"></a>                <span class="k">continue</span>
+</span><span id="__span-13-73"><a id="__codelineno-13-73" name="__codelineno-13-73" href="#__codelineno-13-73"></a>
+</span><span id="__span-13-74"><a id="__codelineno-13-74" name="__codelineno-13-74" href="#__codelineno-13-74"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-13-75"><a id="__codelineno-13-75" name="__codelineno-13-75" href="#__codelineno-13-75"></a>                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Request failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-13-76"><a id="__codelineno-13-76" name="__codelineno-13-76" href="#__codelineno-13-76"></a>
+</span><span id="__span-13-77"><a id="__codelineno-13-77" name="__codelineno-13-77" href="#__codelineno-13-77"></a>        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">:</span>
+</span><span id="__span-13-78"><a id="__codelineno-13-78" name="__codelineno-13-78" href="#__codelineno-13-78"></a>            <span class="c1"># Handle per-request timeout</span>
+</span><span id="__span-13-79"><a id="__codelineno-13-79" name="__codelineno-13-79" href="#__codelineno-13-79"></a>            <span class="n">remaining_time</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">-</span> <span class="n">elapsed_time</span>
+</span><span id="__span-13-80"><a id="__codelineno-13-80" name="__codelineno-13-80" href="#__codelineno-13-80"></a>            <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">retry_delay</span><span class="p">,</span> <span class="n">remaining_time</span><span class="p">)</span>
+</span><span id="__span-13-81"><a id="__codelineno-13-81" name="__codelineno-13-81" href="#__codelineno-13-81"></a>
+</span><span id="__span-13-82"><a id="__codelineno-13-82" name="__codelineno-13-82" href="#__codelineno-13-82"></a>            <span class="k">if</span> <span class="n">sleep_time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-13-83"><a id="__codelineno-13-83" name="__codelineno-13-83" href="#__codelineno-13-83"></a>                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall timeout of </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2"> seconds exceeded&quot;</span><span class="p">)</span>
+</span><span id="__span-13-84"><a id="__codelineno-13-84" name="__codelineno-13-84" href="#__codelineno-13-84"></a>
+</span><span id="__span-13-85"><a id="__codelineno-13-85" name="__codelineno-13-85" href="#__codelineno-13-85"></a>            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+</span><span id="__span-13-86"><a id="__codelineno-13-86" name="__codelineno-13-86" href="#__codelineno-13-86"></a>            <span class="k">continue</span>
+</span><span id="__span-13-87"><a id="__codelineno-13-87" name="__codelineno-13-87" href="#__codelineno-13-87"></a>
+</span><span id="__span-13-88"><a id="__codelineno-13-88" name="__codelineno-13-88" href="#__codelineno-13-88"></a>        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-13-89"><a id="__codelineno-13-89" name="__codelineno-13-89" href="#__codelineno-13-89"></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Request failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-13-90"><a id="__codelineno-13-90" name="__codelineno-13-90" href="#__codelineno-13-90"></a>
+</span><span id="__span-13-91"><a id="__codelineno-13-91" name="__codelineno-13-91" href="#__codelineno-13-91"></a>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max retries (</span><span class="si">{</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">) exceeded while waiting for results&quot;</span><span class="p">)</span>
+</span><span id="__span-13-92"><a id="__codelineno-13-92" name="__codelineno-13-92" href="#__codelineno-13-92"></a>
+</span><span id="__span-13-93"><a id="__codelineno-13-93" name="__codelineno-13-93" href="#__codelineno-13-93"></a><span class="c1"># Example usage</span>
+</span><span id="__span-13-94"><a id="__codelineno-13-94" name="__codelineno-13-94" href="#__codelineno-13-94"></a><span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;&lt;client_id&gt;&quot;</span>
+</span><span id="__span-13-95"><a id="__codelineno-13-95" name="__codelineno-13-95" href="#__codelineno-13-95"></a><span class="n">auth_token</span> <span class="o">=</span> <span class="s2">&quot;&lt;auth_token&gt;&quot;</span>
+</span><span id="__span-13-96"><a id="__codelineno-13-96" name="__codelineno-13-96" href="#__codelineno-13-96"></a><span class="n">user_id</span> <span class="o">=</span> <span class="s2">&quot;&lt;user_id&gt;&quot;</span>
+</span><span id="__span-13-97"><a id="__codelineno-13-97" name="__codelineno-13-97" href="#__codelineno-13-97"></a><span class="n">groupings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">,</span> <span class="s2">&quot;fraud&quot;</span><span class="p">,</span> <span class="s2">&quot;extracted_sms&quot;</span><span class="p">]</span>
+</span><span id="__span-13-98"><a id="__codelineno-13-98" name="__codelineno-13-98" href="#__codelineno-13-98"></a>
+</span><span id="__span-13-99"><a id="__codelineno-13-99" name="__codelineno-13-99" href="#__codelineno-13-99"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-13-100"><a id="__codelineno-13-100" name="__codelineno-13-100" href="#__codelineno-13-100"></a>    <span class="c1"># Poll with 10 retries, 2 seconds between each attempt</span>
+</span><span id="__span-13-101"><a id="__codelineno-13-101" name="__codelineno-13-101" href="#__codelineno-13-101"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">fetch_insights_async</span><span class="p">(</span>
+</span><span id="__span-13-102"><a id="__codelineno-13-102" name="__codelineno-13-102" href="#__codelineno-13-102"></a>        <span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span>
+</span><span id="__span-13-103"><a id="__codelineno-13-103" name="__codelineno-13-103" href="#__codelineno-13-103"></a>        <span class="n">auth_token</span><span class="o">=</span><span class="n">auth_token</span><span class="p">,</span>
+</span><span id="__span-13-104"><a id="__codelineno-13-104" name="__codelineno-13-104" href="#__codelineno-13-104"></a>        <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span>
+</span><span id="__span-13-105"><a id="__codelineno-13-105" name="__codelineno-13-105" href="#__codelineno-13-105"></a>        <span class="n">groupings</span><span class="o">=</span><span class="n">groupings</span><span class="p">,</span>
+</span><span id="__span-13-106"><a id="__codelineno-13-106" name="__codelineno-13-106" href="#__codelineno-13-106"></a>        <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+</span><span id="__span-13-107"><a id="__codelineno-13-107" name="__codelineno-13-107" href="#__codelineno-13-107"></a>        <span class="n">max_retries</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-13-108"><a id="__codelineno-13-108" name="__codelineno-13-108" href="#__codelineno-13-108"></a>        <span class="n">retry_delay</span><span class="o">=</span><span class="mi">2</span>
+</span><span id="__span-13-109"><a id="__codelineno-13-109" name="__codelineno-13-109" href="#__codelineno-13-109"></a>    <span class="p">)</span>
+</span><span id="__span-13-110"><a id="__codelineno-13-110" name="__codelineno-13-110" href="#__codelineno-13-110"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-13-111"><a id="__codelineno-13-111" name="__codelineno-13-111" href="#__codelineno-13-111"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-13-112"><a id="__codelineno-13-112" name="__codelineno-13-112" href="#__codelineno-13-112"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note</strong></p>
+<p>The <code>timeout</code> parameter should be carefully configured based on your specific use case:</p>
+<ul>
+<li>For real-time user journeys (e.g., instant loan approvals), use shorter timeouts (20-30 seconds)</li>
+<li>For background processing or batch operations, longer timeouts (30-60 seconds) are recommended</li>
+<li>Consider implementing a timeout strategy that balances user experience with system reliability</li>
+</ul>
+<p>Rate Limiting -</p>
+<ul>
+<li>The API implements rate limiting with 429 (Too Many Requests) responses</li>
+<li>For production environments, consider implementing exponential backoff for rate-limited requests as suggested <a href="#http-429-too-many-requests-rate-limit-exceeded">here</a></li>
+</ul>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+  
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" checked>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
