@@ -6,39 +6,7 @@ The CollectDeviceData Flutter plugin provides a seamless interface to the underl
 
 The CollectDeviceData Flutter plugin supports Android 5.0 and above (API level 21+), requires Java 8 or higher, and is built using AndroidX. To ensure compatibility with Android 7.0 and lower, desugaring must be enabled in your project.
 
-### Repository Configuration
 
-In your app level `build.gradle` file, add the repository URLs to the `repositories` block above the `dependencies` block:
-
-=== "build.gradle"
-
-    ```kotlin
-    def awsAccessKey = project.findProperty("AWS_ACCESS_KEY") ?: ""
-    def awsSecretKey = project.findProperty("AWS_SECRET_KEY") ?: ""
-
-
-    repositories {
-        maven {
-            url "s3://deviceinsightssdk"
-            credentials(AwsCredentials) {
-            accessKey = awsAccessKey
-            secretKey = awsSecretKey
-            }   
-        }   
-    }
-       
-    ```
-
-
-> **Note**: Replace `<ACCESS_KEY>` and `<SECRET_KEY>` with the credentials provided by the Credeau team.
->
-> **The following will be shared by the Credeau team:**
->
-> - `<ACCESS_KEY>`
-> - `<SECRET_KEY>`
-
-
- 
 ## Add the required permissions in Android.manifest file:
 
 
@@ -57,6 +25,8 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" /> 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     
@@ -64,6 +34,13 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
  
 
 ## IOS Configuration
+
+
+### Create Podfile (if not present):
+
+Run `pod init` in ios folder - creates a podfile
+
+<br>
 
 Inject sdk dependency into the podfile in the ios application (developer needs to have access to the private repository – ask the admin team)
 
@@ -87,6 +64,7 @@ Now run `pod install`
 
 
 
+
 ## Installing the `flutter_collect_data` plugin:
 
 Add the `flutter_collect_data` plugin into the `pubspec.yaml` file in your flutter app to implement the functions of the CollectDeviceData SDK.
@@ -97,19 +75,37 @@ Add the `flutter_collect_data` plugin into the `pubspec.yaml` file in your flutt
     ```yaml
 
     dependencies:
-        flutter:
+      flutter:
         sdk: flutter
 
-        flutter_collect_data:
-            git:
-                url: https://github.com/Credeau/flutter_collect_data
-                ref: shubham/other-markets-version
+      flutter_collect_data:
+        git:
+          url: https://github.com/Credeau/flutter_collect_data
+          ref: shubham/other-markets-version
 
+      permission_handler: ^11.3.1
+      http: ^1.4.0
+      firebase_core: ^3.13.1
+      firebase_messaging: ^15.2.6
 
 
     ```
 
 Now run `flutter pub get`
+
+<br>
+
+## Import the Class from the flutter plugin.
+
+=== "Main.dart"
+
+    ```yaml
+
+    import 'package:flutter_collect_data/flutter_collect_data_method_channel.dart';
+    
+    ```
+
+<br>
 
 ## Initialize the `MethodChannelFlutterCollectData` instance:
 
@@ -129,7 +125,7 @@ This creates an instance of the MethodChannelFlutterCollectData class, which is 
 
 ### Request Required Permissions:
 
-Before calling any sync operation, request runtime permissions:
+Before calling any sync operation, request runtime permissions. For example:
 
 === "Main.dart"
 

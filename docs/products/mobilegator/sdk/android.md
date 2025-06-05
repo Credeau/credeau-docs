@@ -8,23 +8,22 @@ The CollectDeviceData Android SDK supports Android 5.0 and above (API level 21+)
 
 ### Repository Configuration
 
-In your app level `build.gradle` file, add the repository URLs to the `repositories` block above the `dependencies` block:
+In your project level `settings.gradle.kts` file, add the repository URLs to the `repositories` block in `dependencyResolutionManagement` block.
+
 
 === "build.gradle"
 
     ```kotlin
-    def awsAccessKey = project.findProperty("AWS_ACCESS_KEY") ?: ""
-    def awsSecretKey = project.findProperty("AWS_SECRET_KEY") ?: ""
-
-
     repositories {
+        google()
+        mavenCentral()
         maven {
-            url "s3://deviceinsightssdk"
-            credentials(AwsCredentials) {
-            accessKey = awsAccessKey
-            secretKey = awsSecretKey
-            }   
-        }   
+            setUrl("s3://deviceinsightssdk/")
+            credentials(AwsCredentials::class) {
+                accessKey = "<ACCESS_KEY>"
+                secretKey = "<SECRET_KEY>"
+            }
+        }
     }
        
     ```
@@ -48,11 +47,11 @@ Add the SDK to your application by adding the dependencies into your app level `
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.google.android.gms:play-services-ads-identifier:18.0.1")
     implementation("androidx.work:work-runtime-ktx:2.7.1")
-    implementation("com.credeau:collectDeviceData:1.0.5@aar")
+    implementation("com.credeau:collectDeviceData:2.0.6@aar")
     implementation("com.google.firebase:firebase-messaging:24.1.0")
        
     ``` 
- 
+
 ## Add the required permissions in Android.manifest file:
 
 
@@ -69,6 +68,8 @@ Add the SDK to your application by adding the dependencies into your app level `
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -77,9 +78,20 @@ Add the SDK to your application by adding the dependencies into your app level `
     ```
  
 
+## Import the `DeviceDataManager` class from the SDK:
+
+=== "MainActivity.java"
+
+    ```java
+    
+    import com.credeau.collectdevicedata.DeviceDataManager;
+
+    ```
+
+<br>
 
 
-## Now initialize the object of `DeviceDataManager` class from the SDK:
+### Now initialize the object of `DeviceDataManager` class from the SDK:
 
 
 === "MainActivity.java"
@@ -151,9 +163,9 @@ Disable syncs function disable the sync functionality for the categories passed 
 
     ```java
     
-    deviceDataManager.disableSyncs("sms", "contacts", "call_logs");
+    deviceDataManager.disableSyncs(new String[]{"sms", "contacts", "call_logs"});
 
-    
+
     ```
 
 <br>

@@ -74,7 +74,7 @@ Inject sdk dependency into the podfile in the ios application (developer needs t
 
     target 'App' do
       capacitor_pods
-      pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.1.3'
+      pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.2.3'
     end
        
     ``` 

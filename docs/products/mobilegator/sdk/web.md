@@ -1,4 +1,4 @@
-# WebSDK: Web Analytics SDK
+# WebSDK: MobileGator Web Analytics SDK
 
 The Web Analytics SDK enables comprehensive collection of browser telemetry, device information, and fraud detection metrics from web applications while maintaining user privacy and compliance.
 

@@ -27,7 +27,7 @@ Add the pod `CollectDevieIOSData` into the podfile of your app.
 
     # Pods for IosTestApp
   
-    pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.2.2'
+    pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.2.3'
 
     target 'IosTestAppTests' do
         inherit! :search_paths
