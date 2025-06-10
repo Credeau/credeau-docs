@@ -38,7 +38,7 @@ The CollectDeviceData Flutter plugin supports Android 5.0 and above (API level 2
 
 ### Create Podfile (if not present):
 
-Run `pod init` in ios folder - creates a podfile
+Run `flutter build ios` in ios folder - creates a podfile
 
 <br>
 

@@ -13,20 +13,17 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
 === "build.gradle"
 
     ```kotlin
-    def awsAccessKey = project.findProperty("AWS_ACCESS_KEY") ?: ""
-    def awsSecretKey = project.findProperty("AWS_SECRET_KEY") ?: ""
-
-
+   
     repositories {
         maven {
             url "s3://deviceinsightssdk"
             credentials(AwsCredentials) {
-            accessKey = awsAccessKey
-            secretKey = awsSecretKey
+            accessKey = <ACCESS_KEY>
+            secretKey = <SECRET_KEY>
             }   
         }   
     }
-       
+
     ```
 
 
@@ -56,6 +53,8 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" /> 
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
