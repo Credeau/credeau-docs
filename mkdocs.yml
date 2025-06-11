@@ -8,12 +8,10 @@ theme:
     code: Roboto Mono
     text: Roboto
   palette:
-    # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
-    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default 
       primary: 'deep orange'
@@ -21,7 +19,6 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: 'deep orange'
@@ -31,6 +28,7 @@ theme:
         name: Switch to system preference
   features:
     - content.code.copy
+
 nav:
   - Home: index.md
   - Products:
@@ -45,12 +43,19 @@ nav:
           - Overview: products/mobilegator/index.md
           - SDK:
               - Web: products/mobilegator/sdk/web.md
+              - Android: products/mobilegator/sdk/android.md
+              - Flutter: products/mobilegator/sdk/flutter.md
+              - React Native: products/mobilegator/sdk/reactnative.md
+              - Ionic Capacitor: products/mobilegator/sdk/ioniccapacitor.md
+              - iOS: products/mobilegator/sdk/ios.md
+              - Error Codes: products/mobilegator/sdk/errorcodes.md
           - Insights: products/mobilegator/insights.md
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md
           - Deployment:
               - Database: products/credforge/deployment/database.md
+
 extra:
   consent:
     title: Cookie consent
@@ -62,14 +67,18 @@ extra:
     actions:
       - accept
       - reject
+
 plugins:
   - search
   - monorepo
+
 markdown_extensions:
   - admonition
   - codehilite
   - toc:
       permalink: true
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
