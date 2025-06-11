@@ -1,4 +1,4 @@
-# WebSDK: MobileGator Web Analytics SDK
+# CredLibKit: MobileGator Web Analytics SDK
 
 The Web Analytics SDK enables comprehensive collection of browser telemetry, device information, and fraud detection metrics from web applications while maintaining user privacy and compliance.
 
@@ -10,28 +10,103 @@ The Web SDK works on Google Chrome, Safari, Firefox, Opera and other popular mod
 
 Add the SDK to your application using one of the following methods.
 
-Using npm:
+### NPM/Yarn
+
+Fetch using npm -
 
 ```bash
-npm install credLibKit-web
+npm install credlibkit
 ```
- 
-or using yarn:
+
+Fetch using yarn -
  
 ```bash
-yarn add credLibKit-web
+yarn add credlibkit
 ```
- 
-CDN Integration - Alternatively, include the SDK via CDN:
- 
+
+Import the sync functions from fetched module -
+
+```javascript
+import { syncWebData } from "credlibkit";
+```
+
+Implement data fetch by importing the syncWebData function in your JavaScript code -
+
+```javascript
+import { syncWebData } from "credlibkit";
+import { useEffect } from "react";
+
+const App = () => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await syncWebData(
+                    "<user_id>",
+                    "<client_id>",
+                    "<secret_key>"
+                );
+
+                if (result) {
+                    // Data collection successful
+                    console.log("Sync successful:", result);
+                } else {
+                    // Data collection failed
+                    console.log("Sync failed");
+                }
+            } catch (error) {
+                // Handle errors
+                console.error("SDK Error:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return <div>App</div>;
+};
+
+export default App;
+```
+
+### CDN Integration
+
+Import the SDK from NPM CDN -
+
 ```html
-<script  src="https://cdn.jsdelivr.net/npm/credLibKit-web/dist/web-sdk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/credlibkit@latest/dist/web-sdk.min.js"></script>
 ```
- 
-ES6 Module:
 
-```js
-import { syncWebData } from "credLibKit-web";
+Implement data fetch by embedding CDN in HTML -
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Web SDK Data Display</title>
+	</head>
+	<body>
+		<script src="https://cdn.jsdelivr.net/npm/credlibkit@latest/dist/web-sdk.min.js"></script>
+
+		<script>
+			const fetchData = async () => {
+				try {
+					const response = await credLibKit.syncWebData(
+						"<user_id>",
+						"<client_id>",
+						"<secret_key>"
+					);
+					console.log("In HTML Client File-Fetched data:", response);
+				} catch (error) {
+					console.error("In HTML Client File-Error fetching data:", error);
+				}
+			};
+
+			fetchData();
+		</script>
+	</body>
+</html>
 ```
 
 > Note:
@@ -47,16 +122,16 @@ import { syncWebData } from "credLibKit-web";
 
 To collect and synchronize comprehensive browser and device data, call the syncWebData method with the following -
  
-`credLibKit.syncWebData(user_id, client_id, secret_key,​base_url)`
+`syncWebData(user_id, client_id, secret_key,​base_url)`
 
 #### Parameters
- 
+
 | Parameter | Type | Required | Description |
 |----|-----|-----|----|
 | user_id | string | Yes | Unique identifier for the user |
 | client_id | string | Yes | Your application's client identifier |
 | secret_key | string | Yes | Authentication key for API access |
-| base_url | string | No | Custom API endpoint (default: https://devdevicesense.credeau.com) |
+| base_url | string | No | Custom API endpoint (default: https://devicesync.credeau.com) |
 
 > Note:
 >
@@ -136,7 +211,7 @@ The response to this method (success or failure) can be captured using async/awa
 ```js
 try {
 
-    const result = await credLibKit.syncWebData(
+    const result = await syncWebData(
         "USER_ID", // User identifier
         "CLIENT_ID", // Your client identifier
         "SECRET_KEY", // Authentication key

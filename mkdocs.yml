@@ -49,6 +49,7 @@ nav:
               - Ionic Capacitor: products/mobilegator/sdk/ioniccapacitor.md
               - iOS: products/mobilegator/sdk/ios.md
               - Error Codes: products/mobilegator/sdk/errorcodes.md
+          - Insights: products/mobilegator/insights.md
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md

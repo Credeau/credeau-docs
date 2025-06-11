@@ -259,3 +259,171 @@ CREATE INDEX idx_application_logs_engine_name ON forge_application_logs(engine_n
 CREATE INDEX idx_application_logs_workflow_name ON forge_application_logs(workflow_name);
 CREATE INDEX idx_application_logs_level ON forge_application_logs(level);
 ```
+
+### MongoDB Database Setup
+
+#### Create databases and user
+
+```javascript
+// Connect to MongoDB
+use admin
+
+// Create application user
+db.createUser({
+  user: "credforge_user",
+  pwd: "your_secure_password",
+  roles: [
+    { role: "readWrite", db: "cred_forge_db" }
+  ]
+})
+```
+
+#### Create collections in MongoDB
+
+```javascript
+// 1. Clients
+db.createCollection("clients");
+db.clients.createIndex({ "client_id": 1 });
+db.clients.createIndex({ "auth_token": 1 });
+
+// 2. Ecm Client Metadata
+db.createCollection("ecm_client_metadata");
+db.ecm_client_metadata.createIndex({ "client_id": 1 });
+db.ecm_client_metadata.createIndex({ "engine": 1 });
+
+// 3. Ecm Output Log
+db.createCollection("ecm_output_log");
+db.ecm_output_log.createIndex({ "reference_id": 1 });
+db.ecm_output_log.createIndex({ "user_id": 1 });
+db.ecm_output_log.createIndex({ "engine": 1 });
+db.ecm_output_log.createIndex({ "request_id": 1 });
+db.ecm_output_log.createIndex({ "client_id": 1 });
+
+// 4. Ecm Request Log
+db.createCollection("ecm_request_log");
+db.ecm_request_log.createIndex({ "reference_id": 1 });
+db.ecm_request_log.createIndex({ "user_id": 1 });
+db.ecm_request_log.createIndex({ "request_id": 1 });
+db.ecm_request_log.createIndex({ "engine": 1 });
+db.ecm_request_log.createIndex({ "client_id": 1 });
+
+// 5. Ecm Response Log
+db.createCollection("ecm_response_log");
+db.ecm_response_log.createIndex({ "reference_id": 1 });
+db.ecm_response_log.createIndex({ "request_id": 1 });
+db.ecm_response_log.createIndex({ "user_id": 1 });
+db.ecm_response_log.createIndex({ "engine": 1 });
+db.ecm_response_log.createIndex({ "client_id": 1 });
+
+// 6. Request Workflow State
+db.createCollection("request_workflow_state");
+db.request_workflow_state.createIndex({ "client_id": 1 });
+db.request_workflow_state.createIndex({ "created_date": 1 });
+db.request_workflow_state.createIndex({ "user_id": 1 });
+db.request_workflow_state.createIndex({ "request_id": 1 });
+db.request_workflow_state.createIndex({ "reference_id": 1 });
+db.request_workflow_state.createIndex({ "workflow_strategy": 1 });
+db.request_workflow_state.createIndex({ "workflow_endpoint": 1 });
+
+// 7. Unauthorized Requests
+db.createCollection("unauthorized_requests");
+db.unauthorized_requests.createIndex({ "client_id": 1 });
+db.unauthorized_requests.createIndex({ "request_id": 1 });
+
+// 8. Usage
+db.createCollection("usage");
+db.usage.createIndex({ "client_id": 1 });
+db.usage.createIndex({ "request_id": 1 });
+db.usage.createIndex({ "api_name": 1 });
+
+// 9. Workflow Configs
+db.createCollection("workflow_configs");
+db.workflow_configs.createIndex({ "workflow_name": 1 });
+db.workflow_configs.createIndex({ "client_id": 1 });
+
+// 10. Workflow Endpoint Config
+db.createCollection("workflow_endpoint_config");
+db.workflow_endpoint_config.createIndex({ "workflow_endpoint": 1 });
+db.workflow_endpoint_config.createIndex({ "client_id": 1 });
+
+// 11. Workflow Event Log
+db.createCollection("workflow_event_log");
+db.workflow_event_log.createIndex({ "client_id": 1 });
+db.workflow_event_log.createIndex({ "reference_id": 1 });
+db.workflow_event_log.createIndex({ "request_id": 1 });
+db.workflow_event_log.createIndex({ "user_id": 1 });
+db.workflow_event_log.createIndex({ "event_type": 1 });
+```
+
+### Important Notes
+
+1. Replace `your_secure_password` with a strong, secure password in all scripts
+2. Ensure proper network security rules are in place before running these scripts
+3. For production environments, use AWS Secrets Manager or similar services to manage credentials
+4. Regularly rotate database credentials
+5. Monitor database access logs for any unauthorized access attempts
+
+## Security Considerations
+
+1. Always use strong passwords
+2. Enable encryption at rest
+3. Configure network security (firewalls, security groups)
+4. Regular backups
+5. Monitor database performance and logs
+6. Keep databases updated with security patches
+
+## Backup and Recovery
+
+### MongoDB
+- Regular automated backups
+- Point-in-time recovery (for DocumentDB)
+- Backup verification
+- Recovery testing
+
+### PostgreSQL
+- Automated snapshots
+- Point-in-time recovery
+- WAL archiving
+- Backup verification
+- Recovery testing
+
+## Monitoring
+
+1. Set up CloudWatch metrics (for AWS deployments)
+2. Configure database-specific monitoring tools
+3. Set up alerts for:
+   - High CPU usage
+   - Low disk space
+   - Connection count
+   - Error rates
+   - Replication lag
+
+## Maintenance
+
+1. Regular security updates
+2. Performance optimization
+3. Index maintenance
+4. Vacuum operations (PostgreSQL)
+5. Database statistics updates
+
+## Scaling Ladder
+
+The following table provides recommended node specifications and counts for PostgreSQL and MongoDB deployments at various Daily Active User (DAU) scales.
+
+- **PostgreSQL**: 1GB RAM, 2 vCPU, 25GB disk (3000 IOPS, 125 MBPS)
+- **MongoDB**: 4GB RAM, 2 vCPU, 100GB disk (3000 IOPS, 125 MBPS)
+
+| Requests / Day | PostgreSQL Nodes| MongoDB Nodes |
+|----------------|:---------------:|:-------------:|
+| **10K**        | 1               | 1             |
+| **25K**        | 2               | 2             |
+| **50K**        | 3               | 3             |
+| **75K**        | 4               | 4             |
+| **100K**       | 5               | 5             |
+
+**Notes:**
+
+- For high availability and failover, consider running at least 2 nodes (primary + standby/replica) at all times, even at lower DAU.
+- Scale up node count and/or instance size if you observe CPU, RAM, or disk IOPS/throughput consistently above 50% utilization.
+- Adjust disk size and IOPS as data volume grows.
+- Monitor database metrics and tune accordingly.

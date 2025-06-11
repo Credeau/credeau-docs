@@ -476,9 +476,9 @@ db.contacts_sync_request_contacts_data.createIndex({ "client_id": 1, "user_id": 
 
 // 5. Device Transpose
 db.createCollection("device_transpose")
-db.device_transpose.createIndex({ "client_id": 1})
-db.device_transpose.createIndex({ "value": 1})
-db.device_transpose.createIndex({ "value_type": 1})
+db.device_transpose.createIndex({ "client_id": 1 })
+db.device_transpose.createIndex({ "value": 1 })
+db.device_transpose.createIndex({ "value_type": 1 })
 
 // 6. Device Sync Request iOS Device Data
 db.createCollection("device_sync_request_ios_device_data")
@@ -490,12 +490,12 @@ db.sms_sync_request_sms_data.createIndex({ "client_id": 1, "user_id": 1 })
 
 // 8. Device ID Mapper
 db.createCollection("device_id_mapper")
-db.device_transpose.createIndex({ "android_id": 1})
-db.device_transpose.createIndex({ "app_device_id": 1})
-db.device_transpose.createIndex({ "device_id": 1})
-db.device_transpose.createIndex({ "assembled_id": 1})
-db.device_transpose.createIndex({ "client_id": 1})
-db.device_transpose.createIndex({ "google_adv_id": 1})
+db.device_id_mapper.createIndex({ "android_id": 1 })
+db.device_id_mapper.createIndex({ "app_device_id": 1 })
+db.device_id_mapper.createIndex({ "device_id": 1 })
+db.device_id_mapper.createIndex({ "assembled_id": 1 })
+db.device_id_mapper.createIndex({ "client_id": 1 })
+db.device_id_mapper.createIndex({ "google_adv_id": 1 })
 ```
 
 ### Important Notes
