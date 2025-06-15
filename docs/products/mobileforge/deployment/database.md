@@ -432,6 +432,52 @@ CREATE TABLE public.usage_default
 
 ```
 
+#### Add authentication tokens
+
+```sql
+-- Master auth token for enabling the tools
+INSERT INTO public.clients (client_id, email, auth_token, geography)
+VALUES (
+    'credentials',         -- client_id (required)
+    'contact@example.com', -- email (nullable)
+    '<auth_token>',        -- auth_token (required)
+    'india'                -- geography (optional, defaults to 'india')
+);
+
+-- SDK auth token embedded in SDK for Authentication
+INSERT INTO public.clients (client_id, email, auth_token, geography)
+VALUES (
+    '<client_id>',         -- client_id (required)
+    'contact@example.com', -- email (nullable)
+    '<uuid>',              -- auth_token (required)
+    'india'                -- geography (optional, defaults to 'india')
+);
+
+-- Auth token used by internal servers to fetch insights
+INSERT INTO public.clients (client_id, email, auth_token, geography)
+VALUES (
+    '<client_id>_insights', -- client_id (required)
+    'contact@example.com',  -- email (nullable)
+    '<uuid>',               -- auth_token (required)
+    'india'                 -- geography (optional, defaults to 'india')
+);
+```
+
+> **Note**:
+>
+> - `client_id` - a preferred name of organization unit
+> - `auth_token` - will be provided by Credeau during onboarding
+> - `uuid` - A 36 chars long unique alphanumeric string
+
+Generating uuid (Python) -
+
+```python
+import uuid
+
+token = str(uuid.uuid4())
+print(f'your authentication token - {token}')
+```
+
 ### MongoDB Database Setup
 
 #### Create databases and user
