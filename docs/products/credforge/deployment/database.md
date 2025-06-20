@@ -243,9 +243,6 @@ CREATE TABLE forge_application_logs (
     extra_data JSON,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (timestamp, id)
-) ENGINE=InnoDB
-PARTITION BY RANGE (UNIX_TIMESTAMP(timestamp)) (
-    PARTITION p_first VALUES LESS THAN (UNIX_TIMESTAMP('2024-01-01 00:00:00'))
 );
 
 -- Create indexes
