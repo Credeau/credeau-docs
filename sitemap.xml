@@ -2,78 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.credeau.com/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/bureaugator/</loc>
+         <lastmod>2025-07-09</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/bureaugator/bureau/</loc>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/credforge/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/credforge/components/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/credforge/deployment/coreapis/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/credforge/deployment/database/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/components/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/deployment/database/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/deployment/insights_pipeline/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobileforge/deployment/sync_pipeline/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/insights/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/android/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/errorcodes/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/flutter/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/ioniccapacitor/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/ios/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/reactnative/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
     <url>
          <loc>https://docs.credeau.com/products/mobilegator/sdk/web/</loc>
-         <lastmod>2025-06-20</lastmod>
+         <lastmod>2025-07-09</lastmod>
     </url>
 </urlset>
