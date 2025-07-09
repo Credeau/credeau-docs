@@ -55,6 +55,9 @@ nav:
           - Components: products/credforge/components.md
           - Deployment:
               - Database: products/credforge/deployment/database.md
+      - BureauGator:
+          - Overview: products/bureaugator/index.md
+          - Insights: products/bureaugator/bureau.md
 
 extra:
   consent:

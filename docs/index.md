@@ -7,3 +7,4 @@ Get started with Credeau’s products using our comprehensive guides and technic
 - [MobileForge](products/mobileforge/index.md)
 - [MobileGator](products/mobilegator/index.md)
 - [CredForge](products/credforge/index.md)
+- [BureauGator](products/bureaugator/index.md)
