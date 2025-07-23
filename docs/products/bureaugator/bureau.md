@@ -668,6 +668,45 @@ print(json.dumps(result, indent=2))
 }
 ```
 
+### `experian_xml`
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <processResponse xmlns="http://nextgenws.ngwsconnect.experian.com">
+      <processReturn>
+        <INProfileResponse>
+          <Header>
+          </Header>
+          <UserMessage>
+          </UserMessage>
+          <CreditProfileHeader>
+          </CreditProfileHeader>
+          <Current_Application>
+          </Current_Application>
+          <CAIS_Account>
+          </CAIS_Account>
+          <Match_result>
+          </Match_result>
+          <TotalCAPS_Summary>
+          </TotalCAPS_Summary>
+          <CAPS>
+          </CAPS>
+          <NonCreditCAPS>
+          </NonCreditCAPS>
+          <SCORE>
+            <BureauScore>580</BureauScore>
+            <BureauScoreConfidLevel/>
+          </SCORE>
+        </INProfileResponse>
+      </processReturn>
+    </processResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
+```
+
 ### `equifax_softpull_json`
 
 ```json
