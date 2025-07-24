@@ -29,7 +29,6 @@ The CollectDeviceData Flutter plugin supports Android 5.0 and above (API level 2
     <uses-permission android:name="android.permission.READ_CALL_LOG" /> 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    
     ```
  
 
@@ -39,8 +38,6 @@ The CollectDeviceData Flutter plugin supports Android 5.0 and above (API level 2
 ### Create Podfile (if not present):
 
 Run `flutter build ios` in ios folder - creates a podfile
-
-<br>
 
 Inject sdk dependency into the podfile in the ios application (developer needs to have access to the private repository – ask the admin team)
 
@@ -62,13 +59,9 @@ Inject sdk dependency into the podfile in the ios application (developer needs t
 
 Now run `pod install`
 
-
-
-
 ## Installing the `flutter_collect_data` plugin:
 
 Add the `flutter_collect_data` plugin into the `pubspec.yaml` file in your flutter app to implement the functions of the CollectDeviceData SDK.
-
 
 === "pubspec.yaml"
 
@@ -81,19 +74,15 @@ Add the `flutter_collect_data` plugin into the `pubspec.yaml` file in your flutt
       flutter_collect_data:
         git:
           url: https://github.com/Credeau/flutter_collect_data
-          ref: shubham/other-markets-version
+          ref: shubham/india-privacy-version
 
       permission_handler: ^11.3.1
       http: ^1.4.0
       firebase_core: ^3.13.1
       firebase_messaging: ^15.2.6
-
-
     ```
 
 Now run `flutter pub get`
-
-<br>
 
 ## Import the Class from the flutter plugin.
 
@@ -104,8 +93,6 @@ Now run `flutter pub get`
     import 'package:flutter_collect_data/flutter_collect_data_method_channel.dart';
     
     ```
-
-<br>
 
 ## Initialize the `MethodChannelFlutterCollectData` instance:
 
@@ -119,9 +106,6 @@ This creates an instance of the MethodChannelFlutterCollectData class, which is 
 
     
     ```
-
-
-<br>
 
 ### Request Required Permissions:
 
@@ -140,15 +124,9 @@ Before calling any sync operation, request runtime permissions. For example:
         final locationStatus = await Permission.location.request();
     
     }
-
-    
     ```
 
 > **Note**: All permissions must be granted for successful data collection.
->
-
-
-<br>
 
 ### To match the details (Fullname, Phone no., Email):
 
@@ -169,15 +147,10 @@ To use this feature, initialize the function by providing the customer's email a
 
     ```
 
-<br>
-
-
 ### To disable syncs for the particular categories (sms, call logs, contacts):
 
 
 Disable syncs function disable the sync functionality for the categories passed in the parameters. This function needs to be called before the `startBackgroundSyncProcess` or `syncAllData` functions.
-
-
 
 === "Main.dart"
 
@@ -188,14 +161,9 @@ Disable syncs function disable the sync functionality for the categories passed 
     
     ```
 
-<br>
-<br>
-
 ### To start iterative sync process:
 
-
 `startBackgroundSyncProcess` is a function that syncs the sms, call logs, contacts and device meta data for extracting features. This function iteratively runs in the background after set intervals, to keep the data syncing updated.
-
 
 === "Main.dart"
 
@@ -217,8 +185,6 @@ Disable syncs function disable the sync functionality for the categories passed 
     whenComplete(() {
         print("Sync Completed!");           
     });
-
-
     ```
 
 > **The following will be shared by the Credeau team:**
@@ -227,14 +193,9 @@ Disable syncs function disable the sync functionality for the categories passed 
 > - `<CLIENT_KEY>`
 > - `<SERVER_URL>`
 
-<br>
-<br>
-
 ### To sync data once:
 
-
 `syncAllData` is a function that syncs the sms, call logs, contacts and device meta data for extracting features. Unlike `startBackgroundSyncProcess` function this function only runs once when called.
-
 
 === "Main.dart"
 
@@ -255,20 +216,13 @@ Disable syncs function disable the sync functionality for the categories passed 
     whenComplete(() {
         print("Sync Completed!");           
     });
-
-    
     ```
-
-
 
 > **The following will be shared by the Credeau team:**
 >
 > - `<CLIENT_NAME>`
 > - `<CLIENT_KEY>`
 > - `<SERVER_URL>`
-
-<br>
-<br>
 
 ## Send Incoming Notifications to the SDK
 
@@ -278,28 +232,23 @@ To handle this, the SDK leverages Firebase Cloud Messaging (FCM). Forwarding FCM
 
 To support this functionality, add the following code inside the overridden `onMessageReceived` method in your service class that extends `FirebaseMessagingService`.
 
-
-
 === "FirebaseListener.dart"
 
     ```dart
     
     Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+        final Map<String, dynamic> data = {
+            'data': message.data,
+        };
 
-    final Map<String, dynamic> data = {
-        'data': message.data,
-    };
+        final isCredNotification =
+            await plugin.isDeviceDataCollectionNotification(messageData: data);
 
-    final isCredNotification =
-        await plugin.isDeviceDataCollectionNotification(messageData: data);
-
-    if (isCredNotification) {
-        print("CREDEAU NOTIFICATION");
-        await plugin.triggerOnMessageReceived(messageData: data);
-    } else {
-        print("NON CREDEAU NOTIFICATION");
+        if (isCredNotification) {
+            print("CREDEAU NOTIFICATION");
+            await plugin.triggerOnMessageReceived(messageData: data);
+        } else {
+            print("NON CREDEAU NOTIFICATION");
+        }
     }
-  
-    }
-
     ```
