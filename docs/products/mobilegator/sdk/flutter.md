@@ -6,23 +6,16 @@ The CollectDeviceData Flutter plugin provides a seamless interface to the underl
 
 The CollectDeviceData Flutter plugin supports Android 5.0 and above (API level 21+), requires Java 8 or higher, and is built using AndroidX. To ensure compatibility with Android 7.0 and lower, desugaring must be enabled in your project.
 
-## Repository Configuration
+## gradle.properties configuration
 
-In your app level `build.gradle` file, add the repository URLs to the `repositories` block above the `dependencies` block:
+In your `gradle.properties` file in android folder, add `AWS_ACCESS_KEY` and `AWS_SECRET_KEY`.
 
-=== "build.gradle"
+=== "gradle.properties"
 
     ```kotlin
    
-    repositories {
-        maven {
-            url "s3://deviceinsightssdk"
-            credentials(AwsCredentials) {
-                accessKey = <ACCESS_KEY>
-                secretKey = <SECRET_KEY>
-            }   
-        }   
-    }
+    AWS_ACCESS_KEY = <ACCESS_KEY>
+    AWS_SECRET_KEY = <SECRET_KEY>
 
     ```
 
@@ -50,6 +43,7 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" /> 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
