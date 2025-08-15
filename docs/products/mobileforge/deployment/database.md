@@ -160,277 +160,445 @@ GRANT CONNECT ON DATABASE api_insights_db TO mobileforge_user;
 GRANT USAGE ON SCHEMA public TO mobileforge_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO mobileforge_user;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO mobileforge_user;
-
--- Set default privileges for future tables in both databases
-ALTER DEFAULT PRIVILEGES IN SCHEMA public 
-GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO mobileforge_user;
-
-ALTER DEFAULT PRIVILEGES IN SCHEMA public 
-GRANT USAGE, SELECT ON SEQUENCES TO mobileforge_user;
 ```
 
 #### Create Tables
 
 Database to use - `api_insights_db`
 
-```sql
--- public.clients definition
+=== "Usual Postgres"
 
-CREATE TABLE public.clients (
-	id bigint GENERATED ALWAYS AS IDENTITY,
-	client_id varchar(72) NOT NULL,
-	email varchar(32) NULL,
-	auth_token varchar(36) NOT NULL,
-	created_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	updated_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	geography varchar(128) DEFAULT 'india'::character varying NOT NULL,
-	CONSTRAINT clients_pkey PRIMARY KEY (id, created_at)
-);
-CREATE INDEX idx_clients_client_id ON public.clients USING btree (client_id);
+	```sql
+	-- public.clients definition
+	CREATE TABLE public.clients (
+		id bigint GENERATED ALWAYS AS IDENTITY,
+		client_id varchar(72) NOT NULL,
+		email varchar(32) NULL,
+		auth_token varchar(36) NOT NULL,
+		created_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		updated_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		geography varchar(128) DEFAULT 'india'::character varying NOT NULL,
+		CONSTRAINT clients_pkey PRIMARY KEY (id, created_at)
+	);
 
--- public.ext_fetch_features_request_dump definition
+	CREATE INDEX idx_clients_client_id ON public.clients USING btree (client_id);
 
-CREATE TABLE public.ext_fetch_features_request_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	cutoff_date varchar(128) NOT NULL,
-	CONSTRAINT ext_fetch_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_ext_featurize_req_client_id ON public.ext_fetch_features_request_dump USING btree (client_id);
-CREATE INDEX idx_ext_featurize_req_user_id ON public.ext_fetch_features_request_dump USING btree (user_id);
+	-- public.ext_fetch_features_request_dump definition
+	CREATE TABLE public.ext_fetch_features_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT ext_fetch_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.ext_fetch_features_request_dump_default 
-    PARTITION OF public.ext_fetch_features_request_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE INDEX idx_ext_featurize_req_client_id ON public.ext_fetch_features_request_dump USING btree (client_id);
+	CREATE INDEX idx_ext_featurize_req_user_id ON public.ext_fetch_features_request_dump USING btree (user_id);
 
--- public.ext_fetch_features_response_dump definition
+	-- public.ext_fetch_features_response_dump definition
+	CREATE TABLE public.ext_fetch_features_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		groupings json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT ext_fetch_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.ext_fetch_features_response_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	response_dump json NULL,
-	groupings json NULL,
-	time_to_featurize float8 NULL,
-	time_json json NULL,
-	CONSTRAINT ext_fetch_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);;
-CREATE INDEX idx_ext_featurize_resp_client_id ON public.ext_fetch_features_response_dump USING btree (client_id);
-CREATE INDEX idx_ext_featurize_resp_user_id ON public.ext_fetch_features_response_dump USING btree (user_id);
+	CREATE INDEX idx_ext_featurize_resp_client_id ON public.ext_fetch_features_response_dump USING btree (client_id);
+	CREATE INDEX idx_ext_featurize_resp_user_id ON public.ext_fetch_features_response_dump USING btree (user_id);
 
-CREATE TABLE public.ext_fetch_features_response_dump_default 
-    PARTITION OF public.ext_fetch_features_response_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	-- public.fetch_extracted_request_dump definition
+	CREATE TABLE public.fetch_extracted_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT fetch_extracted_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
--- public.fetch_extracted_request_dump definition
+	CREATE INDEX idx_fetch_extracted_req_client_id ON public.fetch_extracted_request_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_extracted_req_user_id ON public.fetch_extracted_request_dump USING btree (user_id);
 
-CREATE TABLE public.fetch_extracted_request_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	cutoff_date varchar(128) NOT NULL,
-	CONSTRAINT fetch_extracted_request_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_fetch_extracted_req_client_id ON public.fetch_extracted_request_dump USING btree (client_id);
-CREATE INDEX idx_fetch_extracted_req_user_id ON public.fetch_extracted_request_dump USING btree (user_id);
+	-- public.fetch_extracted_response_dump definition
+	CREATE TABLE public.fetch_extracted_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT fetch_extracted_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.fetch_extracted_request_dump_default 
-    PARTITION OF public.fetch_extracted_request_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE INDEX idx_fetch_extracted_resp_client_id ON public.fetch_extracted_response_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_extracted_resp_user_id ON public.fetch_extracted_response_dump USING btree (user_id);
 
--- public.fetch_extracted_response_dump definition
+	-- public.fetch_request_dump definition
+	CREATE TABLE public.fetch_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT fetch_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.fetch_extracted_response_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	response_dump json NULL,
-	time_to_featurize float8 NULL,
-	time_json json NULL,
-	CONSTRAINT fetch_extracted_response_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_fetch_extracted_resp_client_id ON public.fetch_extracted_response_dump USING btree (client_id);
-CREATE INDEX idx_fetch_extracted_resp_user_id ON public.fetch_extracted_response_dump USING btree (user_id);
+	CREATE INDEX idx_fetch_req_client_id ON public.fetch_request_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_req_user_id ON public.fetch_request_dump USING btree (user_id);
 
-CREATE TABLE public.fetch_extracted_response_dump_default 
-    PARTITION OF public.fetch_extracted_response_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	-- public.fetch_response_dump definition
+	CREATE TABLE public.fetch_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT fetch_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
--- public.fetch_request_dump definition
+	CREATE INDEX idx_fetch_resp_client_id ON public.fetch_response_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_resp_user_id ON public.fetch_response_dump USING btree (user_id);
 
-CREATE TABLE public.fetch_request_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	cutoff_date varchar(128) NOT NULL,
-	CONSTRAINT fetch_request_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_fetch_req_client_id ON public.fetch_request_dump USING btree (client_id);
-CREATE INDEX idx_fetch_req_user_id ON public.fetch_request_dump USING btree (user_id);
+	-- public.get_features_request_dump definition
+	CREATE TABLE public.get_features_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		sms_data json NULL,
+		apps_data json NULL,
+		device_data json NULL,
+		call_data json NULL,
+		contacts_data json NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT get_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.fetch_request_dump_default 
-    PARTITION OF public.fetch_request_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE INDEX idx_featurize_req_client_id ON public.get_features_request_dump USING btree (client_id);
+	CREATE INDEX idx_featurize_req_user_id ON public.get_features_request_dump USING btree (user_id);
 
--- public.fetch_response_dump definition
+	-- public.get_features_response_dump definition
+	CREATE TABLE public.get_features_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		groupings json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT get_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.fetch_response_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	response_dump json NULL,
-	time_to_featurize float8 NULL,
-	time_json json NULL,
-	CONSTRAINT fetch_response_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_fetch_resp_client_id ON public.fetch_response_dump USING btree (client_id);
-CREATE INDEX idx_fetch_resp_user_id ON public.fetch_response_dump USING btree (user_id);
+	CREATE INDEX idx_featurize_resp_client_id ON public.get_features_response_dump USING btree (client_id);
+	CREATE INDEX idx_featurize_resp_user_id ON public.get_features_response_dump USING btree (user_id);
 
-CREATE TABLE public.fetch_response_dump_default 
-    PARTITION OF public.fetch_response_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	-- public.insights_request_dump definition
+	CREATE TABLE public.insights_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT insights_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
--- public.get_features_request_dump definition
+	CREATE INDEX idx_insights_req_client_id ON public.insights_request_dump USING btree (client_id);
+	CREATE INDEX idx_insights_req_user_id ON public.insights_request_dump USING btree (user_id);
 
-CREATE TABLE public.get_features_request_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	sms_data json NULL,
-	apps_data json NULL,
-	device_data json NULL,
-	call_data json NULL,
-	contacts_data json NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	cutoff_date varchar(128) NOT NULL,
-	CONSTRAINT get_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_featurize_req_client_id ON public.get_features_request_dump USING btree (client_id);
-CREATE INDEX idx_featurize_req_user_id ON public.get_features_request_dump USING btree (user_id);
+	-- public.insights_response_dump definition
+	CREATE TABLE public.insights_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		groupings json DEFAULT '[]'::json NOT NULL,
+		CONSTRAINT insights_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.get_features_request_dump_default 
-    PARTITION OF public.get_features_request_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE INDEX idx_insights_resp_client_id ON public.insights_response_dump USING btree (client_id);
+	CREATE INDEX idx_insights_resp_user_id ON public.insights_response_dump USING btree (user_id);
 
--- public.get_features_response_dump definition
+	-- public.sync_events_log definition
+	CREATE TABLE public.sync_events_log (
+		id bigint GENERATED ALWAYS AS IDENTITY,
+		event_type varchar(128) NULL,
+		event_value varchar(128) NULL,
+		sync_request_id varchar(128) NULL,
+		client_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		CONSTRAINT sync_events_log_pkey PRIMARY KEY (id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.get_features_response_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	response_dump json NULL,
-	groupings json NULL,
-	time_to_featurize float8 NULL,
-	time_json json NULL,
-	CONSTRAINT get_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_featurize_resp_client_id ON public.get_features_response_dump USING btree (client_id);
-CREATE INDEX idx_featurize_resp_user_id ON public.get_features_response_dump USING btree (user_id);
+	CREATE INDEX idx_sync_events_log_client_id ON public.sync_events_log USING btree (client_id);
+	CREATE INDEX idx_sync_events_log_sync_request_id ON public.sync_events_log USING btree (sync_request_id);
+	CREATE INDEX idx_sync_events_log_user_id ON public.sync_events_log USING btree (user_id);
 
-CREATE TABLE public.get_features_response_dump_default 
-    PARTITION OF public.get_features_response_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	-- public.unauthorized_requests definition
+	CREATE TABLE public.unauthorized_requests (
+		id bigint GENERATED ALWAYS AS IDENTITY,
+		client_id varchar(128) NOT NULL,
+		request_id varchar(128) NOT NULL,
+		auth_token varchar(256) NOT NULL,
+		req_body json NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		CONSTRAINT unauthorized_requests_pkey PRIMARY KEY (id, created_at)
+	) PARTITION BY RANGE (created_at);
 
--- public.insights_request_dump definition
+	CREATE INDEX idx_unauthorized_requests_client_id ON public.unauthorized_requests USING btree (client_id);
 
-CREATE TABLE public.insights_request_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	cutoff_date varchar(128) NOT NULL,
-	CONSTRAINT insights_request_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_insights_req_client_id ON public.insights_request_dump USING btree (client_id);
-CREATE INDEX idx_insights_req_user_id ON public.insights_request_dump USING btree (user_id);
+	-- public."usage" definition
+	CREATE TABLE public."usage" (
+		id bigint GENERATED ALWAYS AS IDENTITY,
+		request_id varchar(128) NULL,
+		client_id varchar(128) NOT NULL,
+		api_name varchar(128) NOT NULL,
+		response_code int4 NULL,
+		created_at timestamp NOT NULL,
+		CONSTRAINT usage_pkey PRIMARY KEY (id, created_at)
+	) PARTITION BY RANGE (created_at);
 
-CREATE TABLE public.insights_request_dump_default 
-    PARTITION OF public.insights_request_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE INDEX idx_usage_api_name ON public.usage USING btree (api_name);
+	CREATE INDEX idx_usage_client_id ON public.usage USING btree (client_id);
+	```
 
--- public.insights_response_dump definition
+=== "Aurora Limitless Postgres"
 
-CREATE TABLE public.insights_response_dump (
-	request_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	client_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	response_dump json NULL,
-	time_to_featurize float8 NULL,
-	time_json json NULL,
-	groupings json DEFAULT '[]'::json NOT NULL,
-	CONSTRAINT insights_response_dump_pkey PRIMARY KEY (request_id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_insights_resp_client_id ON public.insights_response_dump USING btree (client_id);
-CREATE INDEX idx_insights_resp_user_id ON public.insights_response_dump USING btree (user_id);
+	```sql
+	-- public.clients definition
+	CREATE SEQUENCE public.clients_id_seq;
 
-CREATE TABLE public.insights_response_dump_default 
-    PARTITION OF public.insights_response_dump 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE TABLE public.clients (
+		id bigint NOT NULL DEFAULT nextval('public.clients_id_seq'::regclass),
+		client_id varchar(72) NOT NULL,
+		email varchar(32) NULL,
+		auth_token varchar(36) NOT NULL,
+		created_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		updated_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		geography varchar(128) DEFAULT 'india'::character varying NOT NULL,
+		CONSTRAINT clients_pkey PRIMARY KEY (id, created_at)
+	);
 
--- public.sync_events_log definition
+	ALTER SEQUENCE public.clients_id_seq OWNED BY public.clients.id;
 
-CREATE TABLE public.sync_events_log (
-	id bigint GENERATED ALWAYS AS IDENTITY,
-	event_type varchar(128) NULL,
-	event_value varchar(128) NULL,
-	sync_request_id varchar(128) NULL,
-	client_id varchar(128) NOT NULL,
-	user_id varchar(128) NOT NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT sync_events_log_pkey PRIMARY KEY (id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_sync_events_log_client_id ON public.sync_events_log USING btree (client_id);
-CREATE INDEX idx_sync_events_log_sync_request_id ON public.sync_events_log USING btree (sync_request_id);
-CREATE INDEX idx_sync_events_log_user_id ON public.sync_events_log USING btree (user_id);
+	CREATE INDEX idx_clients_client_id ON public.clients USING btree (client_id);
 
-CREATE TABLE public.sync_events_log_default 
-    PARTITION OF public.sync_events_log 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	-- public.ext_fetch_features_request_dump definition
+	CREATE TABLE public.ext_fetch_features_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT ext_fetch_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
 
--- public.unauthorized_requests definition
+	CREATE INDEX idx_ext_featurize_req_client_id ON public.ext_fetch_features_request_dump USING btree (client_id);
+	CREATE INDEX idx_ext_featurize_req_user_id ON public.ext_fetch_features_request_dump USING btree (user_id);
 
-CREATE TABLE public.unauthorized_requests (
-	id bigint GENERATED ALWAYS AS IDENTITY,
-	client_id varchar(128) NOT NULL,
-	request_id varchar(128) NOT NULL,
-	auth_token varchar(256) NOT NULL,
-	req_body json NULL,
-	created_at timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT unauthorized_requests_pkey PRIMARY KEY (id, created_at)
-) PARTITION BY RANGE (created_at);
+	-- public.ext_fetch_features_response_dump definition
+	CREATE TABLE public.ext_fetch_features_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		groupings json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT ext_fetch_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
 
-CREATE TABLE public.unauthorized_requests_default 
-    PARTITION OF public.unauthorized_requests 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	CREATE INDEX idx_ext_featurize_resp_client_id ON public.ext_fetch_features_response_dump USING btree (client_id);
+	CREATE INDEX idx_ext_featurize_resp_user_id ON public.ext_fetch_features_response_dump USING btree (user_id);
 
--- public."usage" definition
+	-- public.fetch_extracted_request_dump definition
+	CREATE TABLE public.fetch_extracted_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT fetch_extracted_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
 
-CREATE TABLE public."usage" (
-	id bigint GENERATED ALWAYS AS IDENTITY,
-	request_id varchar(128) NULL,
-	client_id varchar(128) NOT NULL,
-	api_name varchar(128) NOT NULL,
-	response_code int4 NULL,
-	created_at timestamp NOT NULL,
-	CONSTRAINT usage_pkey PRIMARY KEY (id, created_at)
-) PARTITION BY RANGE (created_at);
-CREATE INDEX idx_usage_api_name ON public.usage USING btree (api_name);
-CREATE INDEX idx_usage_client_id ON public.usage USING btree (client_id);
+	CREATE INDEX idx_fetch_extracted_req_client_id ON public.fetch_extracted_request_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_extracted_req_user_id ON public.fetch_extracted_request_dump USING btree (user_id);
 
-CREATE TABLE public.usage_default 
-    PARTITION OF public.usage 
-    FOR VALUES FROM (MINVALUE) TO (MAXVALUE);
+	-- public.fetch_extracted_response_dump definition
+	CREATE TABLE public.fetch_extracted_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT fetch_extracted_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
 
-```
+	CREATE INDEX idx_fetch_extracted_resp_client_id ON public.fetch_extracted_response_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_extracted_resp_user_id ON public.fetch_extracted_response_dump USING btree (user_id);
+
+	-- public.fetch_request_dump definition
+	CREATE TABLE public.fetch_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT fetch_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
+
+	CREATE INDEX idx_fetch_req_client_id ON public.fetch_request_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_req_user_id ON public.fetch_request_dump USING btree (user_id);
+
+	-- public.fetch_response_dump definition
+	CREATE TABLE public.fetch_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT fetch_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
+
+	CREATE INDEX idx_fetch_resp_client_id ON public.fetch_response_dump USING btree (client_id);
+	CREATE INDEX idx_fetch_resp_user_id ON public.fetch_response_dump USING btree (user_id);
+
+	-- public.get_features_request_dump definition
+	CREATE TABLE public.get_features_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		sms_data json NULL,
+		apps_data json NULL,
+		device_data json NULL,
+		call_data json NULL,
+		contacts_data json NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT get_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
+
+	CREATE INDEX idx_featurize_req_client_id ON public.get_features_request_dump USING btree (client_id);
+	CREATE INDEX idx_featurize_req_user_id ON public.get_features_request_dump USING btree (user_id);
+
+	-- public.get_features_response_dump definition
+	CREATE TABLE public.get_features_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		groupings json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		CONSTRAINT get_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
+
+	CREATE INDEX idx_featurize_resp_client_id ON public.get_features_response_dump USING btree (client_id);
+	CREATE INDEX idx_featurize_resp_user_id ON public.get_features_response_dump USING btree (user_id);
+
+	-- public.insights_request_dump definition
+	CREATE TABLE public.insights_request_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		cutoff_date varchar(128) NOT NULL,
+		CONSTRAINT insights_request_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
+
+	CREATE INDEX idx_insights_req_client_id ON public.insights_request_dump USING btree (client_id);
+	CREATE INDEX idx_insights_req_user_id ON public.insights_request_dump USING btree (user_id);
+
+	-- public.insights_response_dump definition
+	CREATE TABLE public.insights_response_dump (
+		request_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		groupings json DEFAULT '[]'::json NOT NULL,
+		CONSTRAINT insights_response_dump_pkey PRIMARY KEY (request_id, created_at)
+	);
+
+	CREATE INDEX idx_insights_resp_client_id ON public.insights_response_dump USING btree (client_id);
+	CREATE INDEX idx_insights_resp_user_id ON public.insights_response_dump USING btree (user_id);
+
+	-- public.sync_events_log definition
+	CREATE SEQUENCE public.sync_events_log_id_seq;
+
+	CREATE TABLE public.sync_events_log (
+		id bigint NOT NULL DEFAULT nextval('public.sync_events_log_id_seq'::regclass),
+		event_type varchar(128) NULL,
+		event_value varchar(128) NULL,
+		sync_request_id varchar(128) NULL,
+		client_id varchar(128) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		CONSTRAINT sync_events_log_pkey PRIMARY KEY (id, created_at)
+	);
+
+	ALTER SEQUENCE public.sync_events_log_id_seq OWNED BY public.sync_events_log.id;
+
+	CREATE INDEX idx_sync_events_log_client_id ON public.sync_events_log USING btree (client_id);
+	CREATE INDEX idx_sync_events_log_sync_request_id ON public.sync_events_log USING btree (sync_request_id);
+	CREATE INDEX idx_sync_events_log_user_id ON public.sync_events_log USING btree (user_id);
+
+	-- public.unauthorized_requests definition
+	CREATE SEQUENCE public.unauthorized_requests_id_seq;
+
+	CREATE TABLE public.unauthorized_requests (
+		id bigint NOT NULL DEFAULT nextval('public.unauthorized_requests_id_seq'::regclass),
+		client_id varchar(128) NOT NULL,
+		request_id varchar(128) NOT NULL,
+		auth_token varchar(256) NOT NULL,
+		req_body json NULL,
+		created_at timestamp DEFAULT now() NOT NULL,
+		CONSTRAINT unauthorized_requests_pkey PRIMARY KEY (id, created_at)
+	);
+
+	ALTER SEQUENCE public.unauthorized_requests_id_seq OWNED BY public.unauthorized_requests.id;
+
+	CREATE INDEX idx_unauthorized_requests_client_id ON public.unauthorized_requests USING btree (client_id);
+
+	-- public."usage" definition
+	CREATE SEQUENCE public.usage_id_seq;
+
+	CREATE TABLE public."usage" (
+		id bigint NOT NULL DEFAULT nextval('public.usage_id_seq'::regclass),
+		request_id varchar(128) NULL,
+		client_id varchar(128) NOT NULL,
+		api_name varchar(128) NOT NULL,
+		response_code int4 NULL,
+		created_at timestamp NOT NULL,
+		CONSTRAINT usage_pkey PRIMARY KEY (id, created_at)
+	);
+
+	ALTER SEQUENCE public.usage_id_seq OWNED BY public.usage.id;
+
+	CREATE INDEX idx_usage_api_name ON public.usage USING btree (api_name);
+	CREATE INDEX idx_usage_client_id ON public.usage USING btree (client_id);
+	```
 
 #### Add authentication tokens
 
