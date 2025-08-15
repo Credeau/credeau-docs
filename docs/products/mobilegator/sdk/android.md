@@ -47,10 +47,17 @@ Add the SDK to your application by adding the dependencies into your app level `
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.google.android.gms:play-services-ads-identifier:18.0.1")
     implementation("androidx.work:work-runtime-ktx:2.7.1")
-    implementation("com.credeau:collectDeviceData:2.0.6@aar")
+    implementation("com.credeau:collectDeviceData:<sdk_version>@aar")
     implementation("com.google.firebase:firebase-messaging:24.1.0")
        
     ``` 
+
+> Note:
+> 
+> `<sdk_version>` will vary based on the concerned geography -
+>
+> - India - `3.0.6`
+> - For Others, pLease connect with the Credeau team.
 
 ## Add the required permissions in Android.manifest file:
 
