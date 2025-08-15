@@ -1429,12 +1429,20 @@
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.preference:preference-ktx:1.2.1&quot;</span><span class="p">)</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.google.android.gms:play-services-ads-identifier:18.0.1&quot;</span><span class="p">)</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.work:work-runtime-ktx:2.7.1&quot;</span><span class="p">)</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.credeau:collectDeviceData:2.0.6@aar&quot;</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.credeau:collectDeviceData:&lt;sdk_version&gt;@aar&quot;</span><span class="p">)</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.google.firebase:firebase-messaging:24.1.0&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
+<blockquote>
+<p>Note:</p>
+<p><code>&lt;sdk_version&gt;</code> will vary based on the concerned geography -</p>
+<ul>
+<li>India - <code>3.0.6</code></li>
+<li>For Others, pLease connect with the Credeau team.</li>
+</ul>
+</blockquote>
 <h2 id="add-the-required-permissions-in-androidmanifest-file">Add the required permissions in Android.manifest file:<a class="headerlink" href="#add-the-required-permissions-in-androidmanifest-file" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">AndroidManifest.xml</label></div>
 <div class="tabbed-content">
@@ -1450,10 +1458,11 @@
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="na">tools:ignore</span><span class="o">=</span><span class="s">&quot;ProtectedPermissions&quot;</span> <span class="p">/&gt;</span>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.READ_CALL_LOG&quot;</span> <span class="p">/&gt;</span>
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.READ_CONTACTS&quot;</span> <span class="p">/&gt;</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.RECEIVE_SMS&quot;</span> <span class="p">/&gt;</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.READ_SMS&quot;</span> <span class="p">/&gt;</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.ACCESS_FINE_LOCATION&quot;</span> <span class="p">/&gt;</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.ACCESS_COARSE_LOCATION&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.READ_PHONE_STATE&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.RECEIVE_SMS&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.READ_SMS&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.ACCESS_FINE_LOCATION&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">&lt;</span><span class="nt">uses-permission</span> <span class="na">android:name</span><span class="o">=</span><span class="s">&quot;android.permission.ACCESS_COARSE_LOCATION&quot;</span> <span class="p">/&gt;</span>
 </span></code></pre></div>
 </div>
 </div>
