@@ -375,6 +375,10 @@ Database to use - `api_insights_db`
 	CREATE INDEX idx_usage_client_id ON public.usage USING btree (client_id);
 	```
 
+	> Note:
+	>
+	> All the heavy tables are partitioned on `created_at` timestamp field. Which can be used to further create daily/weekly/monthly partitions based on analytical use cases.
+
 === "Aurora Limitless Postgres"
 
 	```sql
