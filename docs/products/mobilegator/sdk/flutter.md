@@ -92,13 +92,21 @@ Add the `flutter_collect_data` plugin into the `pubspec.yaml` file in your flutt
       flutter_collect_data:
         git:
           url: https://github.com/Credeau/flutter_collect_data
-          ref: shubham/india-privacy-version
+          ref: <ref_name>
 
       permission_handler: ^11.3.1
       http: ^1.4.0
       firebase_core: ^3.13.1
       firebase_messaging: ^15.2.6
     ```
+
+> Note:
+> 
+> `<ref_name>` will vary based on the concerned geography -
+>
+> - India - `shubham/india-privacy-version`
+> - South-East Asia - `shubham/other-markets-version`
+> - For Others, pLease connect with the Credeau team.
 
 Now run `flutter pub get`
 

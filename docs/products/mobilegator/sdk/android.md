@@ -57,6 +57,7 @@ Add the SDK to your application by adding the dependencies into your app level `
 > `<sdk_version>` will vary based on the concerned geography -
 >
 > - India - `3.0.6`
+> - South-East Asia - `2.0.8`
 > - For Others, pLease connect with the Credeau team.
 
 ## Add the required permissions in Android.manifest file:
