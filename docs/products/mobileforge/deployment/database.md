@@ -169,6 +169,42 @@ Database to use - `api_insights_db`
 === "Usual Postgres"
 
 	```sql
+	-- public.api_request_dump definition
+	CREATE TABLE public.api_request_dump (
+		request_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT (now() AT TIME ZONE 'UTC'::text) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		request_dump json NOT NULL,
+		api_name varchar(128) NOT NULL,
+		CONSTRAINT api_request_dump_pkey PRIMARY KEY (request_id)
+	);
+
+	CREATE INDEX idx_api_request_dump_api_name ON public.api_request_dump USING btree (api_name);
+	CREATE INDEX idx_api_request_dump_client_id ON public.api_request_dump USING btree (client_id);
+	CREATE INDEX idx_api_request_dump_created_at ON public.api_request_dump USING btree (created_at);
+	CREATE INDEX idx_api_request_dump_request_id ON public.api_request_dump USING btree (request_id);
+	CREATE INDEX idx_api_request_dump_user_id ON public.api_request_dump USING btree (user_id);
+
+	-- public.api_response_dump definition
+	CREATE TABLE public.api_response_dump (
+		request_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT (now() AT TIME ZONE 'UTC'::text) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		api_name varchar(128) NOT NULL,
+		CONSTRAINT api_response_dump_pkey PRIMARY KEY (request_id)
+	);
+
+	CREATE INDEX idx_api_response_dump_api_name ON public.api_response_dump USING btree (api_name);
+	CREATE INDEX idx_api_response_dump_client_id ON public.api_response_dump USING btree (client_id);
+	CREATE INDEX idx_api_response_dump_created_at ON public.api_response_dump USING btree (created_at);
+	CREATE INDEX idx_api_response_dump_request_id ON public.api_response_dump USING btree (request_id);
+	CREATE INDEX idx_api_response_dump_user_id ON public.api_response_dump USING btree (user_id);
+
 	-- public.clients definition
 	CREATE TABLE public.clients (
 		id bigint GENERATED ALWAYS AS IDENTITY,
@@ -382,6 +418,42 @@ Database to use - `api_insights_db`
 === "Aurora Limitless Postgres"
 
 	```sql
+	-- public.api_request_dump definition
+	CREATE TABLE public.api_request_dump (
+		request_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT (now() AT TIME ZONE 'UTC'::text) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		request_dump json NOT NULL,
+		api_name varchar(128) NOT NULL,
+		CONSTRAINT api_request_dump_pkey PRIMARY KEY (request_id)
+	);
+
+	CREATE INDEX idx_api_request_dump_api_name ON public.api_request_dump USING btree (api_name);
+	CREATE INDEX idx_api_request_dump_client_id ON public.api_request_dump USING btree (client_id);
+	CREATE INDEX idx_api_request_dump_created_at ON public.api_request_dump USING btree (created_at);
+	CREATE INDEX idx_api_request_dump_request_id ON public.api_request_dump USING btree (request_id);
+	CREATE INDEX idx_api_request_dump_user_id ON public.api_request_dump USING btree (user_id);
+
+	-- public.api_response_dump definition
+	CREATE TABLE public.api_response_dump (
+		request_id varchar(128) NOT NULL,
+		created_at timestamp DEFAULT (now() AT TIME ZONE 'UTC'::text) NOT NULL,
+		user_id varchar(128) NOT NULL,
+		client_id varchar(128) NOT NULL,
+		response_dump json NULL,
+		time_to_featurize float8 NULL,
+		time_json json NULL,
+		api_name varchar(128) NOT NULL,
+		CONSTRAINT api_response_dump_pkey PRIMARY KEY (request_id)
+	);
+
+	CREATE INDEX idx_api_response_dump_api_name ON public.api_response_dump USING btree (api_name);
+	CREATE INDEX idx_api_response_dump_client_id ON public.api_response_dump USING btree (client_id);
+	CREATE INDEX idx_api_response_dump_created_at ON public.api_response_dump USING btree (created_at);
+	CREATE INDEX idx_api_response_dump_request_id ON public.api_response_dump USING btree (request_id);
+	CREATE INDEX idx_api_response_dump_user_id ON public.api_response_dump USING btree (user_id);
+
 	-- public.clients definition
 	CREATE SEQUENCE public.clients_id_seq;
 
