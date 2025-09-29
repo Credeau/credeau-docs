@@ -258,6 +258,113 @@ CREATE INDEX idx_application_logs_level ON forge_application_logs(level);
 CREATE INDEX idx_application_logs_created_date ON forge_application_logs(created_date);
 ```
 
+#### Create Table Partitions
+
+```sql
+CREATE OR REPLACE FUNCTION public.create_daily_partition(parent_table text, partition_date date, days_ahead integer DEFAULT 0)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    partition_name text;
+    partition_start timestamp;
+    partition_end timestamp;
+    partition_col_name text;
+    d date := partition_date;
+    end_date date := partition_date + days_ahead;
+BEGIN
+    -- Detect the partition key column
+    SELECT a.attname INTO partition_col_name
+    FROM pg_partitioned_table pt
+    JOIN pg_class c ON pt.partrelid = c.oid
+    JOIN pg_attribute a ON a.attrelid = pt.partrelid AND a.attnum = ANY(pt.partattrs)
+    WHERE c.relname = parent_table
+    LIMIT 1;
+
+    IF partition_col_name IS NULL THEN
+        RAISE EXCEPTION 'Partition column not found for table %', parent_table;
+    END IF;
+
+    -- Iterate using WHILE loop (safe for DATE)
+    WHILE d <= end_date LOOP
+        partition_start := d::timestamp;
+        partition_end := (d + 1)::timestamp;
+        partition_name := parent_table || '_' || to_char(d, 'YYYY_MM_DD');
+
+        BEGIN
+            IF NOT EXISTS (
+                SELECT 1
+                FROM pg_class c
+                JOIN pg_namespace n ON n.oid = c.relnamespace
+                WHERE c.relname = partition_name
+                AND n.nspname = 'public'
+            ) THEN
+                EXECUTE format(
+                    'CREATE TABLE IF NOT EXISTS %I PARTITION OF %I FOR VALUES FROM (%L) TO (%L)',
+                    partition_name,
+                    parent_table,
+                    partition_start,
+                    partition_end
+                );
+
+                RAISE NOTICE 'Created partition % for table % on %', partition_name, parent_table, partition_col_name;
+            END IF;
+
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Failed to create partition %: %', partition_name, SQLERRM;
+        END;
+
+        d := d + INTERVAL '1 day';
+    END LOOP;
+
+    RETURN;
+END;
+$function$
+;
+```
+
+#### Purge Table Partitions
+
+```sql
+CREATE OR REPLACE FUNCTION public.cleanup_old_partitions_for_table(parent_table text, retention_days integer DEFAULT 90)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    partition_record record;
+    partition_date date;
+BEGIN
+    FOR partition_record IN 
+        SELECT tablename, schemaname
+        FROM pg_tables 
+        WHERE schemaname = 'public' 
+        AND tablename LIKE parent_table || '_%_%_%'  
+    LOOP
+        BEGIN
+            -- Extract the last three parts of the table name which contain the date
+            partition_date := to_date(
+                split_part(partition_record.tablename, '_', -3) || '_' ||
+                split_part(partition_record.tablename, '_', -2) || '_' ||
+                split_part(partition_record.tablename, '_', -1),
+                'YYYY_MM_DD'
+            );
+
+            IF partition_date < current_date - retention_days THEN
+                EXECUTE format('DROP TABLE IF EXISTS %I.%I', 
+                               partition_record.schemaname, 
+                               partition_record.tablename);
+                RAISE NOTICE 'Deleted partition: %', partition_record.tablename;
+            END IF;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Error processing partition %: %', partition_record.tablename, SQLERRM;
+            CONTINUE;
+        END;
+    END LOOP;
+END;
+$function$
+;
+```
+
 ### MongoDB Database Setup
 
 #### Create databases and user
