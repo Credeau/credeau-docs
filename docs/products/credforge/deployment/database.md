@@ -243,7 +243,7 @@ CREATE TABLE forge_application_logs (
     extra_data JSON,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_date date GENERATED ALWAYS AS ("timestamp"::date) STORED
-) PARTITION BY RANGE ( (created_at::date) );
+) PARTITION BY RANGE (created_at);
 
 -- Create indexes
 CREATE INDEX idx_application_logs_request_id ON forge_application_logs(request_id);
