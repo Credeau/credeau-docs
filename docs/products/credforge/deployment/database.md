@@ -323,6 +323,14 @@ $function$
 ;
 ```
 
+Execute, or set crons for -
+
+```SQL
+SELECT create_daily_partition('forge_request_workflow_state', CURRENT_DATE, 10);
+SELECT create_daily_partition('forge_ecm_response_log', CURRENT_DATE, 10);
+SELECT create_daily_partition('forge_application_logs', CURRENT_DATE, 10);
+```
+
 #### Purge Table Partitions
 
 ```sql
@@ -363,6 +371,14 @@ BEGIN
 END;
 $function$
 ;
+```
+
+Execute, or set crons for -
+
+```SQL
+SELECT cleanup_old_partitions_for_table('forge_request_workflow_state', 7);
+SELECT cleanup_old_partitions_for_table('forge_ecm_response_log', 7);
+SELECT cleanup_old_partitions_for_table('forge_application_logs', 7);
 ```
 
 ### MongoDB Database Setup
