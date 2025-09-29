@@ -175,7 +175,7 @@ Database to use - `cred_forge_db`
 
 ```sql
 CREATE TABLE forge_request_workflow_state (
-    request_id VARCHAR(255) PRIMARY KEY,
+    request_id VARCHAR(255),
     user_id VARCHAR(255),
     reference_id VARCHAR(255),
     client_id VARCHAR(255),
@@ -190,7 +190,7 @@ CREATE TABLE forge_request_workflow_state (
     created_at TIMESTAMP NOT NULL,
     created_date TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
-);
+) PARTITION BY RANGE (created_date);;
 
 -- Optional indices for better query performance
 CREATE INDEX idx_request_workflow_state_reference_id ON forge_request_workflow_state(reference_id);
@@ -202,7 +202,7 @@ CREATE INDEX idx_request_workflow_state_workflow_strategy ON forge_request_workf
 CREATE INDEX idx_request_workflow_state_created_date ON forge_request_workflow_state(created_date);
 
 CREATE TABLE forge_ecm_response_log (
-    id SERIAL PRIMARY KEY,
+    id SERIAL,
     request_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255),
     reference_id VARCHAR(255),
@@ -218,7 +218,7 @@ CREATE TABLE forge_ecm_response_log (
     ecm_status_code INTEGER,
     created_at TIMESTAMP NOT NULL,
     created_date TIMESTAMP NOT NULL
-);
+) PARTITION BY RANGE (created_date);
 
 -- Indices for better query performance
 CREATE INDEX idx_ecm_response_log_request_id ON forge_ecm_response_log(request_id);
@@ -242,8 +242,8 @@ CREATE TABLE forge_application_logs (
     message TEXT NOT NULL,
     extra_data JSON,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (timestamp, id)
-);
+    created_date date GENERATED ALWAYS AS ("timestamp"::date) STORED
+) PARTITION BY RANGE ( (created_at::date) );
 
 -- Create indexes
 CREATE INDEX idx_application_logs_request_id ON forge_application_logs(request_id);
@@ -255,6 +255,7 @@ CREATE INDEX idx_application_logs_api_endpoint ON forge_application_logs(api_end
 CREATE INDEX idx_application_logs_engine_name ON forge_application_logs(engine_name);
 CREATE INDEX idx_application_logs_workflow_name ON forge_application_logs(workflow_name);
 CREATE INDEX idx_application_logs_level ON forge_application_logs(level);
+CREATE INDEX idx_application_logs_created_date ON forge_application_logs(created_date);
 ```
 
 ### MongoDB Database Setup
