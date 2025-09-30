@@ -190,7 +190,7 @@ CREATE TABLE forge_request_workflow_state (
     created_at TIMESTAMP NOT NULL,
     created_date TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
-) PARTITION BY RANGE (created_date);;
+) PARTITION BY RANGE (created_date);
 
 -- Optional indices for better query performance
 CREATE INDEX idx_request_workflow_state_reference_id ON forge_request_workflow_state(reference_id);
