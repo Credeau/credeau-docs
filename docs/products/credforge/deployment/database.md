@@ -331,6 +331,44 @@ SELECT create_daily_partition('forge_ecm_response_log', CURRENT_DATE, 10);
 SELECT create_daily_partition('forge_application_logs', CURRENT_DATE, 10);
 ```
 
+To setup crons using `pg_cron` -
+
+Enable `pg_cron` -
+
+```sql
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+
+SELECT * FROM pg_extension WHERE extname = 'pg_cron';
+
+GRANT USAGE ON SCHEMA cron TO credforge_user;
+
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA cron TO credforge_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA cron GRANT EXECUTE ON FUNCTIONS TO credforge_user;
+```
+
+Set crons -
+
+```sql
+SELECT cron.schedule(
+  'create_daily_partitions_for_forge_request_workflow_state',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('forge_request_workflow_state', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_forge_ecm_response_log',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('forge_ecm_response_log', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_forge_application_logs',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('forge_application_logs', CURRENT_DATE, 10);$$
+);
+```
+
 #### Purge Table Partitions
 
 ```sql
@@ -379,6 +417,34 @@ Execute, or set crons for -
 SELECT cleanup_old_partitions_for_table('forge_request_workflow_state', 7);
 SELECT cleanup_old_partitions_for_table('forge_ecm_response_log', 7);
 SELECT cleanup_old_partitions_for_table('forge_application_logs', 7);
+```
+
+To setup crons using `pg_cron` -
+
+Enable `pg_cron` -
+
+> Follow cron setup steps above.
+
+Set crons -
+
+```sql
+SELECT cron.schedule(
+  'create_daily_partitions_for_forge_request_workflow_state',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('forge_request_workflow_state', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_forge_ecm_response_log',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('forge_ecm_response_log', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_forge_application_logs',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('forge_application_logs', CURRENT_DATE, 10);$$
+);
 ```
 
 ### MongoDB Database Setup
