@@ -70,35 +70,6 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     ```
- 
-
-## IOS Configuration
-
-Inject sdk dependency into the podfile in the ios application (developer needs to have access to the private repository – ask the admin team)
-
-=== "Podfile"
-
-    ```ruby
-    target 'DemoReactNativeApp' do
-        config = use_native_modules!
-  
-        pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.2.3'
-
-        use_react_native!(
-            :path => config[:reactNativePath],
-            # An absolute path to your application root.
-            :app_path => "#{Pod::Config.instance.installation_root}/.."
-        )
-
-    target 'DemoReactNativeAppTests' do
-        inherit! :complete
-        # Pods for testing
-    end
-       
-    ``` 
-
-Now run `pod install`
-
 
 
 ## Installing the `react native wrapper`:
@@ -106,7 +77,6 @@ Now run `pod install`
 Place the Package File into any path within your react app e.g. `native_modules\react-native-collect-data-0.1.4.tgz`
 
 Run npm install with file reference. E,g : `npm install .\native_modules\react-native-collect-data-0.1.4.tgz`
-
 
 
 ## Import the functions from the `react-native-collect-data` module:

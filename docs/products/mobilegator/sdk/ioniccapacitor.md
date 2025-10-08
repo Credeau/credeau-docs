@@ -37,8 +37,6 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
 > - `<ACCESS_KEY>`
 > - `<SECRET_KEY>`
 
-
- 
 ## Add the required permissions in Android.manifest file:
 
 
@@ -74,36 +72,12 @@ In your app level `build.gradle` file, add the repository URLs to the `repositor
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     ```
 
-<br>
-
-## IOS Configuration
-
-Inject sdk dependency into the podfile in the ios application (developer needs to have access to the private repository – ask the admin team)
-
-=== "Podfile"
-
-    ```ruby
-
-    target 'App' do
-      capacitor_pods
-      pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.2.3'
-    end
-       
-    ``` 
-
-Now run `pod install`
-
-
-<br>
-
 
 ## Installing the `Ionic Capacitor plugin`:
 
 Place the Package File into any path within your react app e.g. `native_modules\ionic-capacitor-collect-data-0.1.1.tgz`
 
 Run npm install with file reference. E,g : `npm install .\native_modules\ionic-capacitor-collect-data-0.1.1.tgz`
-
-<br>
 
 
 ## Import the functions from the `ionic-capacitor-collect-data` module:
@@ -116,43 +90,6 @@ Run npm install with file reference. E,g : `npm install .\native_modules\ionic-c
 
     ```
 
-<br>
-
-<!-- ### Request Required Permissions:
-
-Before calling any sync operation, request runtime permissions:
-
-For example, to request SMS permissions follow - 
-
-=== "ResuestPermissions.tsx"
-
-    ```typescript
-    
-        // Request SMS Permission
-        const smsStatus = await request(PERMISSIONS.ANDROID.READ_SMS);
-        if (smsStatus === RESULTS.GRANTED) {
-          setSmsPermission(true);
-        } else if (smsStatus === RESULTS.BLOCKED) {
-          Alert.alert(
-            'Permission Required',
-            'SMS permission is required for this feature. Please enable it in the app settings.',
-            [
-              {text: 'Cancel', style: 'cancel'},
-              {text: 'Open Settings', onPress: () => Linking.openSettings()},
-            ],
-          );
-        } else {
-          console.log('SMS permission denied');
-        }
-
-    
-    ```
-
-> **Note**: All permissions (sms, call logs, contacts, phone state, location) must be granted for successful data collection.
-> -->
-
-
-
 ### To match the details (Fullname, Phone no., Email):
 
 Device matching enhances pattern recognition to identify users based on their email address, phone number, and name. All matching is performed locally on the device, ensuring that no personal information—such as phone numbers or email addresses—is transmitted off the device.
@@ -162,37 +99,20 @@ To use this feature, initialize the function by providing the customer's email a
 === "App.js"
 
     ```javascript
-    
     await CollectDataPlugin.setDeviceMatchParams({fullname: fullnameInput.value, email: emailInput.value, phone: phoneInput.value});
-
-
-
     ```
-
-<br>
-
 
 ### To disable syncs for the particular categories (sms, call logs, contacts):
 
-
 Disable syncs function disable the sync functionality for the categories passed in the parameters. This function needs to be called before the `startBackgroundSyncProcess` or `syncAllData` functions.
-
-
 
 === "App.js"
 
     ```javascript
-    
     await CollectDataPlugin.disableSync({disable_syncs:["sms"]});
-
-    
     ```
 
-<br>
-<br>
-
 ### To start iterative sync process:
-
 
 `startBackgroundSyncProcess` is a function that syncs the sms, call logs, contacts and device meta data for extracting features. This function iteratively runs in the background after set intervals, to keep the data syncing updated.
 
@@ -215,9 +135,6 @@ Disable syncs function disable the sync functionality for the categories passed 
 > - `<CLIENT_NAME>`
 > - `<CLIENT_KEY>`
 > - `<SERVER_URL>`
-
-<br>
-<br>
 
 ### To sync data once:
 

@@ -59,34 +59,7 @@ In your `gradle.properties` file in android folder, add `AWS_ACCESS_KEY` and `AW
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     ```
- 
 
-## IOS Configuration
-
-
-### Create Podfile (if not present):
-
-Run `flutter build ios` in ios folder - creates a podfile
-
-Inject sdk dependency into the podfile in the ios application (developer needs to have access to the private repository – ask the admin team)
-
-=== "Podfile"
-
-    ```ruby
-    target 'Runner' do
-        use_frameworks!
-
-        pod 'CollectDeviceIOSData', :git => 'https://github.com/Credeau/CollectDeviceIOSData', :tag => '0.2.3'
-  
-        flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-        target 'RunnerTests' do
-          inherit! :search_paths
-        end
-    end
-       
-    ``` 
-
-Now run `pod install`
 
 ## Installing the `flutter_collect_data` plugin:
 

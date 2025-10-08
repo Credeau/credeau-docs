@@ -106,8 +106,6 @@ Add the SDK to your application by adding the dependencies into your app level `
 
     ```
 
-<br>
-
 
 ### Now initialize the object of `DeviceDataManager` class from the SDK:
 
@@ -133,20 +131,14 @@ Add the SDK to your application by adding the dependencies into your app level `
 > - `AUTH_TOKEN`
 > - `SERVER_URL`
 
-<br>
 
 ### Set the username by calling `setUsername`:
 
 === "MainActivity.java"
 
     ```java
-    
     deviceDataManager.setUsername("username");
-
-    
     ```
-
-<br>
 
 ### To match the details (Fullname, Phone no., Email):
 
@@ -157,17 +149,12 @@ To use this feature, initialize the builder by providing the customer's email ad
 === "MainActivity.java"
 
     ```java
-    
     deviceDataManager.setDeviceMatchParams(
-                        "Full name",
-                        "9999999999",
-                        "useremail@gmail.com"
-                      );
-
-    
+        "Full name",
+        "9999999999",
+        "useremail@gmail.com"
+    );
     ```
-
-<br>
 
 
 ### To disable syncs for the particular categories (sms, call logs, contacts):
@@ -175,19 +162,11 @@ To use this feature, initialize the builder by providing the customer's email ad
 
 Disable syncs function disable the sync functionality for the categories passed in the parameters. This function needs to be called before the `startBackgroundSyncProcess` or `syncAllData` functions.
 
-
-
 === "MainActivity.java"
 
     ```java
-    
     deviceDataManager.disableSyncs(new String[]{"sms", "contacts", "call_logs"});
-
-
     ```
-
-<br>
-<br>
 
 ### To start iterative sync process:
 
@@ -213,11 +192,7 @@ Disable syncs function disable the sync functionality for the categories passed 
 
     }, 1800L);
 
-    
     ```
-
-<br>
-<br>
 
 ### To sync data once:
 
@@ -246,11 +221,6 @@ Disable syncs function disable the sync functionality for the categories passed 
     
     ```
 
-
-
-<br>
-<br>
-
 ## Send Incoming Notifications to the SDK
 
 Some phone manufacturers implement aggressive battery optimization techniques that terminate background apps after periods of inactivity. This behavior can interfere with the DeviceConnect SDK’s ability to perform continuous syncing, as it depends on background data collection. When this happens, Credeau's server may need to request data from the SDK if the sync process has been halted.
@@ -258,7 +228,6 @@ Some phone manufacturers implement aggressive battery optimization techniques th
 To handle this, the SDK leverages Firebase Cloud Messaging (FCM). Forwarding FCM notifications helps the app sync the data even if it has been stopped by the device's background processes by sending in the silent notification to the deviec enabling it to resume data collection seamlessly.
 
 To support this functionality, add the following code inside the overridden `onMessageReceived` method in your service class that extends `FirebaseMessagingService`.
-
 
 
 === "AppCollectMessagingService.java"
