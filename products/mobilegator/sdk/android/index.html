@@ -1486,7 +1486,6 @@
 </div>
 </div>
 </div>
-<p><br></p>
 <h3 id="now-initialize-the-object-of-devicedatamanager-class-from-the-sdk">Now initialize the object of <code>DeviceDataManager</code> class from the SDK:<a class="headerlink" href="#now-initialize-the-object-of-devicedatamanager-class-from-the-sdk" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">MainActivity.java</label></div>
 <div class="tabbed-content">
@@ -1510,7 +1509,6 @@
 <li><code>SERVER_URL</code></li>
 </ul>
 </blockquote>
-<p><br></p>
 <h3 id="set-the-username-by-calling-setusername">Set the username by calling <code>setUsername</code>:<a class="headerlink" href="#set-the-username-by-calling-setusername" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">MainActivity.java</label></div>
 <div class="tabbed-content">
@@ -1520,7 +1518,6 @@
 </div>
 </div>
 </div>
-<p><br></p>
 <h3 id="to-match-the-details-fullname-phone-no-email">To match the details (Fullname, Phone no., Email):<a class="headerlink" href="#to-match-the-details-fullname-phone-no-email" title="Permanent link">&para;</a></h3>
 <p>Device matching enhances pattern recognition to identify users based on their email address, phone number, and name. All matching is performed locally on the device, ensuring that no personal information—such as phone numbers or email addresses—is transmitted off the device.</p>
 <p>To use this feature, initialize the builder by providing the customer's email address, phone number, and name.</p>
@@ -1528,15 +1525,14 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">deviceDataManager</span><span class="p">.</span><span class="na">setDeviceMatchParams</span><span class="p">(</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">                    </span><span class="s">&quot;Full name&quot;</span><span class="p">,</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">                    </span><span class="s">&quot;9999999999&quot;</span><span class="p">,</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">                    </span><span class="s">&quot;useremail@gmail.com&quot;</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">                  </span><span class="p">);</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="s">&quot;Full name&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="s">&quot;9999999999&quot;</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="s">&quot;useremail@gmail.com&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">);</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
-<p><br></p>
 <h3 id="to-disable-syncs-for-the-particular-categories-sms-call-logs-contacts">To disable syncs for the particular categories (sms, call logs, contacts):<a class="headerlink" href="#to-disable-syncs-for-the-particular-categories-sms-call-logs-contacts" title="Permanent link">&para;</a></h3>
 <p>Disable syncs function disable the sync functionality for the categories passed in the parameters. This function needs to be called before the <code>startBackgroundSyncProcess</code> or <code>syncAllData</code> functions.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">MainActivity.java</label></div>
@@ -1547,8 +1543,6 @@
 </div>
 </div>
 </div>
-<p><br>
-<br></p>
 <h3 id="to-start-iterative-sync-process">To start iterative sync process:<a class="headerlink" href="#to-start-iterative-sync-process" title="Permanent link">&para;</a></h3>
 <p><code>startBackgroundSyncProcess</code> is a function that syncs the sms, call logs, contacts and device meta data for extracting features. This function iteratively runs in the background after set intervals, to keep the data syncing updated.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">MainActivity.java</label></div>
@@ -1571,8 +1565,6 @@
 </div>
 </div>
 </div>
-<p><br>
-<br></p>
 <h3 id="to-sync-data-once">To sync data once:<a class="headerlink" href="#to-sync-data-once" title="Permanent link">&para;</a></h3>
 <p><code>syncAllData</code> is a function that syncs the sms, call logs, contacts and device meta data for extracting features. Unlike <code>startBackgroundSyncProcess</code> function this function only runs once when called.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">MainActivity.java</label></div>
@@ -1595,8 +1587,6 @@
 </div>
 </div>
 </div>
-<p><br>
-<br></p>
 <h2 id="send-incoming-notifications-to-the-sdk">Send Incoming Notifications to the SDK<a class="headerlink" href="#send-incoming-notifications-to-the-sdk" title="Permanent link">&para;</a></h2>
 <p>Some phone manufacturers implement aggressive battery optimization techniques that terminate background apps after periods of inactivity. This behavior can interfere with the DeviceConnect SDK’s ability to perform continuous syncing, as it depends on background data collection. When this happens, Credeau's server may need to request data from the SDK if the sync process has been halted.</p>
 <p>To handle this, the SDK leverages Firebase Cloud Messaging (FCM). Forwarding FCM notifications helps the app sync the data even if it has been stopped by the device's background processes by sending in the silent notification to the deviec enabling it to resume data collection seamlessly.</p>

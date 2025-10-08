@@ -787,15 +787,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ios-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      IOS Configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#installing-the-ionic-capacitor-plugin" class="md-nav__link">
     <span class="md-ellipsis">
       Installing the Ionic Capacitor plugin:
@@ -1278,15 +1269,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ios-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      IOS Configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#installing-the-ionic-capacitor-plugin" class="md-nav__link">
     <span class="md-ellipsis">
       Installing the Ionic Capacitor plugin:
@@ -1437,100 +1419,50 @@
 </div>
 </div>
 </div>
-<p><br></p>
-<h2 id="ios-configuration">IOS Configuration<a class="headerlink" href="#ios-configuration" title="Permanent link">&para;</a></h2>
-<p>Inject sdk dependency into the podfile in the ios application (developer needs to have access to the private repository – ask the admin team)</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Podfile</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">target</span><span class="w"> </span><span class="s1">&#39;App&#39;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="n">capacitor_pods</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="n">pod</span><span class="w"> </span><span class="s1">&#39;CollectDeviceIOSData&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:git</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;https://github.com/Credeau/CollectDeviceIOSData&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:tag</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;0.2.3&#39;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">end</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<p>Now run <code>pod install</code></p>
-<p><br></p>
 <h2 id="installing-the-ionic-capacitor-plugin">Installing the <code>Ionic Capacitor plugin</code>:<a class="headerlink" href="#installing-the-ionic-capacitor-plugin" title="Permanent link">&para;</a></h2>
 <p>Place the Package File into any path within your react app e.g. <code>native_modules\ionic-capacitor-collect-data-0.1.1.tgz</code></p>
 <p>Run npm install with file reference. E,g : <code>npm install .\native_modules\ionic-capacitor-collect-data-0.1.1.tgz</code></p>
-<p><br></p>
 <h2 id="import-the-functions-from-the-ionic-capacitor-collect-data-module">Import the functions from the <code>ionic-capacitor-collect-data</code> module:<a class="headerlink" href="#import-the-functions-from-the-ionic-capacitor-collect-data-module" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">App.js</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">App.js</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;capacitor-collect-data&#39;</span><span class="p">;</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;capacitor-collect-data&#39;</span><span class="p">;</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
-<p><br></p>
-<!-- ### Request Required Permissions:
-
-Before calling any sync operation, request runtime permissions:
-
-For example, to request SMS permissions follow - 
-
-=== "ResuestPermissions.tsx"
-
-    <div class="language-typescript highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="c1">// Request SMS Permission</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">smsStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">request</span><span class="p">(</span><span class="nx">PERMISSIONS</span><span class="p">.</span><span class="nx">ANDROID</span><span class="p">.</span><span class="nx">READ_SMS</span><span class="p">);</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">smsStatus</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">RESULTS</span><span class="p">.</span><span class="nx">GRANTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nx">setSmsPermission</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">smsStatus</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">RESULTS</span><span class="p">.</span><span class="nx">BLOCKED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="nx">Alert</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="s1">&#39;Permission Required&#39;</span><span class="p">,</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="s1">&#39;SMS permission is required for this feature. Please enable it in the app settings.&#39;</span><span class="p">,</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="p">[</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">          </span><span class="p">{</span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Cancel&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cancel&#39;</span><span class="p">},</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">          </span><span class="p">{</span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Open Settings&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">onPress</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Linking</span><span class="p">.</span><span class="nx">openSettings</span><span class="p">()},</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="p">],</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">      </span><span class="p">);</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;SMS permission denied&#39;</span><span class="p">);</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="p">}</span>
-</span></code></pre></div>
-
-> **Note**: All permissions (sms, call logs, contacts, phone state, location) must be granted for successful data collection.
-> -->
-
 <h3 id="to-match-the-details-fullname-phone-no-email">To match the details (Fullname, Phone no., Email):<a class="headerlink" href="#to-match-the-details-fullname-phone-no-email" title="Permanent link">&para;</a></h3>
 <p>Device matching enhances pattern recognition to identify users based on their email address, phone number, and name. All matching is performed locally on the device, ensuring that no personal information—such as phone numbers or email addresses—is transmitted off the device.</p>
 <p>To use this feature, initialize the function by providing the customer's email address, phone number, and name.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">App.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">setDeviceMatchParams</span><span class="p">({</span><span class="nx">fullname</span><span class="o">:</span><span class="w"> </span><span class="nx">fullnameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">emailInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">phone</span><span class="o">:</span><span class="w"> </span><span class="nx">phoneInput</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="to-disable-syncs-for-the-particular-categories-sms-call-logs-contacts">To disable syncs for the particular categories (sms, call logs, contacts):<a class="headerlink" href="#to-disable-syncs-for-the-particular-categories-sms-call-logs-contacts" title="Permanent link">&para;</a></h3>
+<p>Disable syncs function disable the sync functionality for the categories passed in the parameters. This function needs to be called before the <code>startBackgroundSyncProcess</code> or <code>syncAllData</code> functions.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">App.js</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">setDeviceMatchParams</span><span class="p">({</span><span class="nx">fullname</span><span class="o">:</span><span class="w"> </span><span class="nx">fullnameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">emailInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">phone</span><span class="o">:</span><span class="w"> </span><span class="nx">phoneInput</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">disableSync</span><span class="p">({</span><span class="nx">disable_syncs</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">]});</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
-<p><br></p>
-<h3 id="to-disable-syncs-for-the-particular-categories-sms-call-logs-contacts">To disable syncs for the particular categories (sms, call logs, contacts):<a class="headerlink" href="#to-disable-syncs-for-the-particular-categories-sms-call-logs-contacts" title="Permanent link">&para;</a></h3>
-<p>Disable syncs function disable the sync functionality for the categories passed in the parameters. This function needs to be called before the <code>startBackgroundSyncProcess</code> or <code>syncAllData</code> functions.</p>
+<h3 id="to-start-iterative-sync-process">To start iterative sync process:<a class="headerlink" href="#to-start-iterative-sync-process" title="Permanent link">&para;</a></h3>
+<p><code>startBackgroundSyncProcess</code> is a function that syncs the sms, call logs, contacts and device meta data for extracting features. This function iteratively runs in the background after set intervals, to keep the data syncing updated.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">App.js</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">disableSync</span><span class="p">({</span><span class="nx">disable_syncs</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">]});</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<p><br>
-<br></p>
-<h3 id="to-start-iterative-sync-process">To start iterative sync process:<a class="headerlink" href="#to-start-iterative-sync-process" title="Permanent link">&para;</a></h3>
-<p><code>startBackgroundSyncProcess</code> is a function that syncs the sms, call logs, contacts and device meta data for extracting features. This function iteratively runs in the background after set intervals, to keep the data syncing updated.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">App.js</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">startBackgroundSyncProcess</span><span class="p">({</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">        </span><span class="nx">user_id</span><span class="o">:</span><span class="w"> </span><span class="nx">usernameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="nx">client_name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;CLIENT_NAME&gt;&#39;</span><span class="p">,</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="nx">client_key</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;CLIENT_KEY&gt;&#39;</span><span class="p">,</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nx">server_url</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;SERVER_URL&gt;&#39;</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">});</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">startBackgroundSyncProcess</span><span class="p">({</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="nx">user_id</span><span class="o">:</span><span class="w"> </span><span class="nx">usernameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="nx">client_name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;CLIENT_NAME&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="nx">client_key</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;CLIENT_KEY&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nx">server_url</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;SERVER_URL&gt;&#39;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">});</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -1543,19 +1475,17 @@ For example, to request SMS permissions follow -
 <li><code>&lt;SERVER_URL&gt;</code></li>
 </ul>
 </blockquote>
-<p><br>
-<br></p>
 <h3 id="to-sync-data-once">To sync data once:<a class="headerlink" href="#to-sync-data-once" title="Permanent link">&para;</a></h3>
 <p><code>syncAllData</code> is a function that syncs the sms, call logs, contacts and device meta data for extracting features. Unlike <code>startBackgroundSyncProcess</code> function this function only runs once when called.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">App.js</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">App.js</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">syncAllData</span><span class="p">({</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">        </span><span class="nx">user_id</span><span class="o">:</span><span class="w"> </span><span class="nx">usernameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">        </span><span class="nx">client_name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;CLIENT_NAME&gt;&#39;</span><span class="p">,</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="nx">client_key</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;CLIENT_KEY&gt;&#39;</span><span class="p">,</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="nx">server_url</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;SERVER_URL&gt;&#39;</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">});</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">syncAllData</span><span class="p">({</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="nx">user_id</span><span class="o">:</span><span class="w"> </span><span class="nx">usernameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="nx">client_name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;CLIENT_NAME&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="nx">client_key</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;CLIENT_KEY&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nx">server_url</span><span class="o">:</span><span class="w">  </span><span class="s1">&#39;&lt;SERVER_URL&gt;&#39;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">});</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -1573,35 +1503,35 @@ For example, to request SMS permissions follow -
 <p>Some phone manufacturers implement aggressive battery optimization techniques that terminate background apps after periods of inactivity. This behavior can interfere with the DeviceConnect SDK’s ability to perform continuous syncing, as it depends on background data collection. When this happens, Credeau's server may need to request data from the SDK if the sync process has been halted.</p>
 <p>To handle this, the SDK leverages Firebase Cloud Messaging (FCM). Forwarding FCM notifications helps the app sync the data even if it has been stopped by the device's background processes by sending in the silent notification to the deviec enabling it to resume data collection seamlessly.</p>
 <p>To support this functionality, add the following code inside the FCM listener method in your class.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">App.js</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">App.js</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">PushNotifications</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="s1">&#39;pushNotificationReceived&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">notification</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">rawData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">message</span><span class="o">?</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">rawData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">&#39;No data found in notification:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">notification</span><span class="p">);</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">isCollecting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">isDeviceDataCollectionNotification</span><span class="p">({</span>
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">            </span><span class="nx">message_data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">rawData</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isCollecting&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">isCollecting</span><span class="p">);</span>
-</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
-</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isCollecting</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">triggerOnMessageReceived</span><span class="p">({</span>
-</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">                </span><span class="nx">message_data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">rawData</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">            </span><span class="p">});</span>
-</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
-</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Background sync error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>
-</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="p">});</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">PushNotifications</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="s1">&#39;pushNotificationReceived&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">notification</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">rawData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">notification</span><span class="o">?</span><span class="p">.</span><span class="nx">message</span><span class="o">?</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">rawData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">&#39;No data found in notification:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">notification</span><span class="p">);</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">isCollecting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">isDeviceDataCollectionNotification</span><span class="p">({</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">            </span><span class="nx">message_data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">rawData</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isCollecting&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">isCollecting</span><span class="p">);</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isCollecting</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">CollectDataPlugin</span><span class="p">.</span><span class="nx">triggerOnMessageReceived</span><span class="p">({</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">                </span><span class="nx">message_data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">rawData</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">            </span><span class="p">});</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Background sync error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="p">});</span>
 </span></code></pre></div>
 </div>
 </div>
