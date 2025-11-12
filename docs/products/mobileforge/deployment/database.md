@@ -751,6 +751,7 @@ use sync_db
 // 1. Device Sync Request Device Data
 db.createCollection("device_sync_request_device_data")
 db.device_sync_request_device_data.createIndex({ "client_id": 1, "user_id": 1 })
+db.device_sync_request_device_data.createIndex({ "request_id": 1 })
 
 // 2. Call Logs Sync Request Data
 db.createCollection("call_logs_sync_request_call_logs_data")
@@ -773,6 +774,7 @@ db.device_transpose.createIndex({ "value_type": 1 })
 // 6. Device Sync Request iOS Device Data
 db.createCollection("device_sync_request_ios_device_data")
 db.device_sync_request_ios_device_data.createIndex({ "client_id": 1, "user_id": 1 })
+db.device_sync_request_ios_device_data.createIndex({ "request_id": 1 })
 
 // 7. SMS Sync Request Data
 db.createCollection("sms_sync_request_sms_data")
