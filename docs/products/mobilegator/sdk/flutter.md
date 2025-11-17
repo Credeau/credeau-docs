@@ -88,8 +88,8 @@ Add the `flutter_collect_data` plugin into the `pubspec.yaml` file in your flutt
 > 
 > `<ref_name>` will vary based on the concerned geography -
 >
-> - India - `shubham/india-privacy-version`
-> - South-East Asia - `shubham/other-markets-version`
+> - India - `3.0.6`
+> - South-East Asia - `2.0.8`
 > - For Others, pLease connect with the Credeau team.
 
 Now run `flutter pub get`
