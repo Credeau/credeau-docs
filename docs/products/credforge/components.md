@@ -26,8 +26,6 @@ Exposes core APIs that orchestrate the decisioning workflow by integrating workf
 
 ## Config Manager
 
-⭐ `Releasing Soon, currently powered by Git. Follow below documentation for more.`
-
 Responsible for orchestrating and managing the core decisioning components including workflow configuration, rules engine, feature computation engine, and external system integrations.
 
 **Components:**
@@ -38,16 +36,6 @@ Responsible for orchestrating and managing the core decisioning components inclu
 
 - **Databases**:
     - **MongoDB**: Document database for storing versioned configurations, system metadata, and portal settings with support for configuration history and rollback capabilities.
-
-**Components (Legacy deployments):**
-
-Client-managed Git repositories that store versioned configuration files for each core API component, enabling version control and deployment management.
-
-- **Git Repositories**:
-    - `cred-forge-wm-configs`
-    - `cred-forge-re-configs`
-    - `cred-forge-fe-configs`
-    - `cred-forge-ecm-configs`
 
 ---
 

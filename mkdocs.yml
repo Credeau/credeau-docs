@@ -53,6 +53,7 @@ nav:
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md
+          - BRE: products/credforge/bre.md
           - Deployment:
               - Database: products/credforge/deployment/database.md
       - BureauGator:
