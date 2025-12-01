@@ -223,7 +223,7 @@ A Workflow can contain the following components in an order that justifies a bus
     - Output - Features
 5. Rule Engine (Bureau Checks)
     - `bureau_score` >= 600
-    - `obligations` <= 2
+    - `obligations` <= 20000
     - `bounces` <= 1
     - Decision - `Proceed` if all above conditions are met else `Reject`
 6. ECM (Account Aggregator)
@@ -233,7 +233,7 @@ A Workflow can contain the following components in an order that justifies a bus
     - Generate features from account aggregator report
     - Output - Features
 8. Rule Engine (Account Aggregator Checks)
-    - `obligations` <= 2
+    - `obligations` <= 20000
     - `bounces` <= 1
     - Decision - `Approved` if all above conditions are met else `Reject`
 
@@ -326,6 +326,37 @@ POST /execute/${client_id}/bureau_mobile_bre
 ```
 
 #### Request Body
+
+Bureau API called from within the workflow -
+
+```json
+{
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "input_data": {
+        "lead_id": "<lead_id>",
+        "app_user_id": "<app_user_id>",
+        "declared_income": <income>,
+        "pan_number": "<pan_number>",
+        "name_aadhar": "<name_aadhar>",
+        "address_aadhar": "<address_aadhar>",
+        "state_aadhar": "<state_aadhar>",
+        "city_aadhar": "<city_aadhar>",
+        "pincode_aadhar": "<pincode_aadhar>",
+        "phone": "<PHONE>",
+        "pan_name": "<PAN_NAME>",
+        "dob": "<DOB>",
+        "profession": "<profession>",
+        "salary_source": "<salary_source>",
+        "declared_income": "<declared_income>",
+        "loan_purpose": "<loan_purpose>",
+        "income_type": "<income_type>",
+        "gender": "<gender>"
+    }
+}
+```
+
+Bureau API called externally -
 
 ```json
 {
