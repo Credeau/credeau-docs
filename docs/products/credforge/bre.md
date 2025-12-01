@@ -331,7 +331,7 @@ POST /execute/${client_id}/bureau_mobile_bre
 >
 > The `input_data` differs based on how the bureau data is passed.
 
-##### Bureau API called from within the workflow -
+##### Bureau API called from within the workflow
 
 ```json
 {
@@ -360,7 +360,7 @@ POST /execute/${client_id}/bureau_mobile_bre
 }
 ```
 
-##### Bureau API called externally -
+##### Bureau API called externally
 
 ```json
 {
@@ -470,7 +470,7 @@ POST /execute/${client_id}/bank_bre
 >
 > The `input_data` differs based on how the banking data is passed.
 
-##### Account Aggregator API called from within the workflow -
+##### Account Aggregator API called from within the workflow
 
 ```json
 {
@@ -483,7 +483,7 @@ POST /execute/${client_id}/bank_bre
 }
 ```
 
-##### Bank Statement Analyzer API called from within the workflow -
+##### Bank Statement Analyzer API called from within the workflow
 
 ```json
 {
@@ -497,7 +497,7 @@ POST /execute/${client_id}/bank_bre
 }
 ```
 
-##### Account Aggregator / Bank Statement Analyser API called externally -
+##### Account Aggregator / Bank Statement Analyser API called externally
 
 ```json
 {
