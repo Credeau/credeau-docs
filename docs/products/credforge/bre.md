@@ -327,6 +327,10 @@ POST /execute/${client_id}/bureau_mobile_bre
 
 #### Request Body
 
+> ⚠️ **Note**
+>
+> The `input_data` differs based on how the bureau data is passed.
+
 Bureau API called from within the workflow -
 
 ```json
@@ -536,6 +540,79 @@ Account Aggregator / Bank Statement Analyser API called externally -
             "output_features": {}
         },
         "prev_output_features": {},
+    }
+}
+```
+
+### Repeat BRE
+
+Provides decision for a reapeat customer based on the information already there in the LOS.
+
+#### Endpoint
+
+```bash
+POST /execute/${client_id}/repeat_bre
+```
+
+#### Request Body
+
+```json
+{
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "input_data": {
+        "pan_number": "<pan_number>",
+        "name_aadhar": "<name_aadhar>",
+        "address_aadhar": "<address_aadhar>",
+        "state_aadhar": "<state_aadhar>",
+        "city_aadhar": "<city_aadhar>",
+        "pincode_aadhar": "<pincode_aadhar>",
+        "phone": "<phone>",
+        "dob": "<dob>",
+        "max_dpd_last_loan": <max_dpd_last_loan>,
+        "max_dpd_ever_internal": <max_dpd_ever_internal>,
+        "previous_loan_amount": <previous_loan_amount>,
+        "decided_tenure_last_loan": <decided_tenure_last_loan>,
+        "actual_tenure_last_loan": <actual_tenure_loan_last>,
+        "days_since_last_loan_closed": <days_since_last_loan_closed>,
+        "number_of_loans_closed": <number_of_loans_closed>,
+        "days_since_last_loan_taken": <days_since_last_loan_taken>,
+        "days_since_first_loan_taken": <days_since_first_loan_taken>,
+        "flag_current_default": <flag_current_default>,
+        "number_of_loans_closed_with_dpd_0_full_cycle": <number_of_loans_closed_with_dpd_0_full_cycle>
+    }
+}
+```
+
+#### Response Body
+
+```json
+{
+  "request_id": "<request_id>",
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "workflow_version_path": "workflow_repeat_v1",
+    "engine_history": [],
+    "output_data": {
+        "ecm": {},
+        "rules_output": {
+        "final_decision": {
+            "Decision": "Approve",
+            "LoanAmount": 7000,
+            "ReplaymentDate": "2025-05-03",
+            "DecisionReason": "repeat bre passed with approval",
+            "RulesEvaluation": {},
+            "version": "v1",
+            "rule_engine_name": "basic"
+        },
+        },
+        "features": {
+            "output_features": {
+                "basic": {}
+            },
+            "basic": {},
+            "prev_output_features": {}
+        }
     }
 }
 ```
