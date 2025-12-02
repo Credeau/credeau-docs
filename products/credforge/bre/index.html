@@ -1372,16 +1372,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Example">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#for-paydaybullet-loans" class="md-nav__link">
     <span class="md-ellipsis">
       For Payday/Bullet Loans
@@ -1396,11 +1386,6 @@
       For EMI Loans
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2063,16 +2048,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Example">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#for-paydaybullet-loans" class="md-nav__link">
     <span class="md-ellipsis">
       For Payday/Bullet Loans
@@ -2087,11 +2062,6 @@
       For EMI Loans
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2758,8 +2728,7 @@
 </span></code></pre></div>
 <h3 id="serving-multiple-products">Serving Multiple Products<a class="headerlink" href="#serving-multiple-products" title="Permanent link">&para;</a></h3>
 <p>The workflow samples mentioned above use intelligence based on Bank, Bureau and Mobile data, which are commonly used for serving multiple products like Payday/Bullet Loans, EMI loans, etc... And to cater to all these the <code>input_data</code> remains similar but the <code>output_data</code> changes accrodingly.</p>
-<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
-<h5 id="for-paydaybullet-loans">For Payday/Bullet Loans<a class="headerlink" href="#for-paydaybullet-loans" title="Permanent link">&para;</a></h5>
+<h4 id="for-paydaybullet-loans">For Payday/Bullet Loans<a class="headerlink" href="#for-paydaybullet-loans" title="Permanent link">&para;</a></h4>
 <p>Look for <code>output_data → rules_output → final_decision → LoanAmount</code>  key in the output response to get a fixed amount calculated for approved amount.</p>
 <p>Example -</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">{</span>
@@ -2791,7 +2760,7 @@
 </span><span id="__span-24-27"><a id="__codelineno-24-27" name="__codelineno-24-27" href="#__codelineno-24-27"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-24-28"><a id="__codelineno-24-28" name="__codelineno-24-28" href="#__codelineno-24-28"></a><span class="p">}</span>
 </span></code></pre></div>
-<h5 id="for-emi-loans">For EMI Loans<a class="headerlink" href="#for-emi-loans" title="Permanent link">&para;</a></h5>
+<h4 id="for-emi-loans">For EMI Loans<a class="headerlink" href="#for-emi-loans" title="Permanent link">&para;</a></h4>
 <p>Look for <code>output_data → rules_output → final_decision → LoanOffers</code> key in the output response to get a list of approved loans.</p>
 <p>Example -</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p">{</span>
