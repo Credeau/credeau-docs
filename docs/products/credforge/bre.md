@@ -621,9 +621,7 @@ POST /execute/${client_id}/repeat_bre
 
 The workflow samples mentioned above use intelligence based on Bank, Bureau and Mobile data, which are commonly used for serving multiple products like Payday/Bullet Loans, EMI loans, etc... And to cater to all these the `input_data` remains similar but the `output_data` changes accrodingly.
 
-#### Example
-
-##### For Payday/Bullet Loans
+#### For Payday/Bullet Loans
 
 Look for `output_data → rules_output → final_decision → LoanAmount`  key in the output response to get a fixed amount calculated for approved amount.
 
@@ -660,7 +658,7 @@ Example -
 }
 ```
 
-##### For EMI Loans
+#### For EMI Loans
 
 Look for `output_data → rules_output → final_decision → LoanOffers` key in the output response to get a list of approved loans.
 
