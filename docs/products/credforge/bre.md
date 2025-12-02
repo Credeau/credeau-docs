@@ -617,6 +617,90 @@ POST /execute/${client_id}/repeat_bre
 }
 ```
 
+### Serving Multiple Products
+
+The workflow samples mentioned above use intelligence based on Bank, Bureau and Mobile data, which are commonly used for serving multiple products like Payday/Bullet Loans, EMI loans, etc... And to cater to all these the `input_data` remains similar but the `output_data` changes accrodingly.
+
+#### Example
+
+##### For Payday/Bullet Loans
+
+Look for `output_data → rules_output → final_decision → LoanAmount`  key in the output response to get a fixed amount calculated for approved amount.
+
+Example -
+
+```json
+{
+  "request_id": "<request_id>",
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "workflow_version_path": "workflow_repeat_v1",
+    "engine_history": [],
+    "output_data": {
+        "ecm": {},
+        "rules_output": {
+        "final_decision": {
+            "Decision": "Approve",
+            "LoanAmount": 7000,
+            "ReplaymentDate": "2025-05-03",
+            "DecisionReason": "repeat bre passed with approval",
+            "RulesEvaluation": {},
+            "version": "v1",
+            "rule_engine_name": "basic"
+        },
+        },
+        "features": {
+            "output_features": {
+                "basic": {}
+            },
+            "basic": {},
+            "prev_output_features": {}
+        }
+    }
+}
+```
+
+##### For EMI Loans
+
+Look for `output_data → rules_output → final_decision → LoanOffers` key in the output response to get a list of approved loans.
+
+Example -
+
+```json
+{
+  "request_id": "<request_id>",
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "workflow_version_path": "workflow_bureau_v1",
+    "engine_history": [],
+    "output_data": {
+        "ecm": {},
+        "rules_output": {
+        "final_decision": {
+            "Decision": "Approve",
+            "LoanOffers": [
+                {
+                    "product_code": "PL_EMI_LT_25K",
+                    "tenure_months": 3,
+                    "pf_percent": 4,
+                    "interest_rate": 25,
+                    "emi_amount": 4000,
+                    "loan_amount": 10000
+                }
+            ],
+            "DecisionReason": "bureau bre passed with approval",
+            "RulesEvaluation": {},
+            "version": "v1",
+            "rule_engine_name": "bureau_bre"
+        },
+        },
+        "features": {
+            "output_features": {}
+        }
+    }
+}
+```
+
 ## Consideration
 
 This is a highly customisable API that can serve multiple business strategies. Thus, the fields mentioned in `input_data` and `output_data` in the [sample workflows](#sample-workflows) above are not limited to the provided values, and will change as per the requirements of the strategy.
