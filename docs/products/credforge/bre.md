@@ -583,6 +583,139 @@ POST /execute/${client_id}/bank_bre
 }
 ```
 
+### Bureau Mobile Bank BRE
+
+Provides decision based on the Account, Mobile & Bureau Intelligence (Account Aggregator + Credit Bureau + BureauGator + MobileGator).
+
+#### Endpoint
+
+```bash
+POST /execute/${client_id}/bureau_mobile_bank_bre
+```
+
+#### Request Body
+
+```json
+{
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "input_data": {
+        "lead_id": "<lead_id>",
+        "app_user_id": "<app_user_id>",
+        "declared_income": <income>,
+        "external": {
+            "bureau_type": "<bureau_format_name>",
+            "bureau_raw_json": "<base64_encoded_raw_bureau_report>",
+            "bank_type": "bank_aa/bank_bsa",
+            "bank_data": {
+                "metadata": {
+                    "currency": "<currency>",
+                    "bank_name": "<bank_name>",
+                    "ifsc_code": "<ifsc_code>",
+                    "account_type": "<account_type>",
+                    "employer_name": "<employer_name>",
+                    "account_number": "<account_number>",
+                    "account_holder_name": "<account_holder_name>",
+                    "statement_fetch_date": "<statement_fetch_date>",
+                    "statement_start_date": "<statement_start_date>",
+                    "statement_end_date": "<statement_end_date>"
+                },
+                "transaction_data": [
+                    {
+                        "txnId": "S99114288",
+                        "type": "DEBIT",
+                        "amount": 262.5,
+                        "currentBalance": "30585.51",
+                        "transactionTimestamp": "2025-05-24 02:45:58",
+                        "narration": "UPI/MPOKKET FINANCI/514408328499/OidmpokketVA1b8"
+                    },
+                    {
+                        "txnId": "S63581773",
+                        "type": "DEBIT",
+                        "amount": 32,
+                        "currentBalance": "52339.77",
+                        "transactionTimestamp": "2025-06-10 19:42:06",
+                        "narration": "UPI/Ganesh Kirana S/106258920869/UPI"
+                    },
+                    {
+                        "type": "DEBIT",
+                        "amount": 35,
+                        "currentBalance": "52304.77",
+                        "transactionTimestamp": "2025-06-11 16:49:35",
+                        "txnId": "S99003246",
+                        "narration": "UPI/KANTIBHAI DHAMO/106299053289/UPI"
+                    }
+                ]
+            }
+        }
+    }
+}
+```
+
+> ⚠️ **Note**
+>
+> The `bureau_format_name` supports values like -
+> 
+> - `cibil_json`
+> - `crif_json`
+> - `crif_json_v2`
+> - `crif_xml`
+> - `crif_hardpull`
+> - `experian_softpull_json`
+> - `equifax_softpull_json`
+> - `experian_softpull_json_v2`
+
+Encoding a bureau report (Python) -
+
+```python
+import base64
+
+def encode_base64(data: str, encoding: str='utf-8') -> str:
+    '''
+    Convert given string into base64 encoded string
+    '''
+    b64_encoded_data = base64.b64encode(bytes(data, encoding=encoding))
+    return b64_encoded_data.decode(encoding)
+```
+
+#### Response Body
+
+```json
+{
+    "request_id": "<request_id>",
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "workflow_version_path": "workflow_bureau_mobile_bank_v1",
+    "engine_history": [],
+    "output_data": {
+        "ecm": {},
+        "rules_output": {
+            "final_decision": {
+                "Decision": "Approve",
+                "LoanAmount": 5000,
+                "RulesEvaluation": {
+                    "bureau bre checked": true
+                },
+                "DecisionReason": "bureau bre checked",
+                "version": "v1",
+                "rule_engine_name": "bureaugator"
+            },
+            "basic": {}
+        },
+        "features": {
+            "output_features": {
+                "bureaugator": {},
+                "mobilegator": {},
+                "accountgator": {}
+            },
+            "bureaugator": {},
+            "mobilegator": {},
+            "prev_output_features": {},
+        }
+    }
+}
+```
+
 ### Repeat BRE
 
 Provides decision for a reapeat customer based on the information already there in the LOS.
