@@ -508,7 +508,46 @@ POST /execute/${client_id}/bank_bre
         "declared_income": <income>,
         "external": {
             "bank_type": "bank_aa/bank_bsa",
-            "bank_data": "<banking_data>"
+            "bank_data": {
+                "metadata": {
+                    "currency": "<currency>",
+                    "bank_name": "<bank_name>",
+                    "ifsc_code": "<ifsc_code>",
+                    "account_type": "<account_type>",
+                    "employer_name": "<employer_name>",
+                    "account_number": "<account_number>",
+                    "account_holder_name": "<account_holder_name>",
+                    "statement_fetch_date": "<statement_fetch_date>",
+                    "statement_start_date": "<statement_start_date>",
+                    "statement_end_date": "<statement_end_date>"
+                },
+                "transaction_data": [
+                    {
+                        "txnId": "S99114288",
+                        "type": "DEBIT",
+                        "amount": 262.5,
+                        "currentBalance": "30585.51",
+                        "transactionTimestamp": "2025-05-24 02:45:58",
+                        "narration": "UPI/MPOKKET FINANCI/514408328499/OidmpokketVA1b8"
+                    },
+                    {
+                        "txnId": "S63581773",
+                        "type": "DEBIT",
+                        "amount": 32,
+                        "currentBalance": "52339.77",
+                        "transactionTimestamp": "2025-06-10 19:42:06",
+                        "narration": "UPI/Ganesh Kirana S/106258920869/UPI"
+                    },
+                    {
+                        "type": "DEBIT",
+                        "amount": 35,
+                        "currentBalance": "52304.77",
+                        "transactionTimestamp": "2025-06-11 16:49:35",
+                        "txnId": "S99003246",
+                        "narration": "UPI/KANTIBHAI DHAMO/106299053289/UPI"
+                    }
+                ]
+            }
         }
     }
 }
