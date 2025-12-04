@@ -1,0 +1,11 @@
+/* Increase content width */
+.md-grid {
+  max-width: 65rem; /* Default is 61rem (976px), this sets it to 1280px */
+}
+
+/* Alternative: Use percentage-based width for more flexibility */
+/* 
+.md-grid {
+  max-width: 90%;
+}
+*/

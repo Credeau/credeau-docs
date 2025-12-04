@@ -60,6 +60,9 @@ nav:
           - Overview: products/bureaugator/index.md
           - Insights: products/bureaugator/bureau.md
 
+extra_css:
+  - stylesheets/extra.css
+
 extra:
   consent:
     title: Cookie consent
