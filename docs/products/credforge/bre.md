@@ -699,7 +699,10 @@ Example -
 
 #### For EMI Loans
 
-Look for `output_data → rules_output → final_decision → LoanOffers` key in the output response to get a list of approved loans.
+Look for -
+
+1. `output_data → rules_output → final_decision → EmiDecision` key in the output response to get the decision.
+2. `output_data → rules_output → final_decision → LoanOffers` key in the output response to get a list of approved loans.
 
 Example -
 
@@ -714,7 +717,58 @@ Example -
         "ecm": {},
         "rules_output": {
         "final_decision": {
+            "EmiDecision": "Approve",
+            "LoanOffers": [
+                {
+                    "product_code": "PL_EMI_LT_25K",
+                    "tenure_months": 3,
+                    "pf_percent": 4,
+                    "interest_rate": 25,
+                    "emi_amount": 4000,
+                    "loan_amount": 10000
+                }
+            ],
+            "DecisionReason": "bureau bre passed with approval",
+            "RulesEvaluation": {},
+            "version": "v1",
+            "rule_engine_name": "bureau_bre"
+        },
+        },
+        "features": {
+            "output_features": {}
+        }
+    }
+}
+```
+
+#### For Payday/Bullet & EMI Loans Combined
+
+For Payday/Bullet Loan, look for -
+
+1. `output_data → rules_output → final_decision → Decision` key in the output response to get the decision of Payday/Bullet loan product.
+2. `output_data → rules_output → final_decision → LoanAmount` key in the output response to get a fixed amount calculated for Payday/Bullet loan product.
+
+For EMI Loan, look for -
+
+1. `output_data → rules_output → final_decision → EmiDecision` key in the output response to get the decision of EMI loan product.
+2. `output_data → rules_output → final_decision → LoanOffers` key in the output response to get a list of approved loans for EMI loan product.
+
+Example -
+
+```json
+{
+  "request_id": "<request_id>",
+    "user_id": "<user_id>",
+    "reference_id": "<reference_id>",
+    "workflow_version_path": "workflow_bureau_v1",
+    "engine_history": [],
+    "output_data": {
+        "ecm": {},
+        "rules_output": {
+        "final_decision": {
+            "EmiDecision": "Approve",
             "Decision": "Approve",
+            "LoanAmount": 7000,
             "LoanOffers": [
                 {
                     "product_code": "PL_EMI_LT_25K",
