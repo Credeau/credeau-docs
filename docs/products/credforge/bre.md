@@ -662,7 +662,10 @@ The workflow samples mentioned above use intelligence based on Bank, Bureau and 
 
 #### For Payday/Bullet Loans
 
-Look for `output_data → rules_output → final_decision → LoanAmount`  key in the output response to get a fixed amount calculated for approved amount.
+Look for -
+
+1. `output_data → rules_output → final_decision → Decision` key in the output response to get the decision.
+2. `output_data → rules_output → final_decision → LoanAmount` key in the output response to get a fixed amount calculated.
 
 Example -
 
