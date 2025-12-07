@@ -1,6 +1,6 @@
-# Deployment: MobileForge Sync Pipeline
+# Deployment: MobileForge Data Sync Pipeline
 
-This document outlines the deployment steps for different components of the sync pipeline.
+This document outlines the deployment steps for different components of the data sync pipeline.
 
 ## Components Overview
 
@@ -12,63 +12,54 @@ The sync pipeline consists of three main components -
 
 > **Note:** All required Docker images for the sync pipeline components will be provided by Credeau via AWS ECR or another designated container registry. Please ensure you have access credentials as required.
 
-## 1. Producer API Deployment
+## Producer API
 
-### Prerequisites
+### Environment Variables
 
-- Access to AWS ECR or other container registry
-- Docker installed on the deployment machine
-- AWS CLI configured (if using AWS ECR)
+The application supports various environment variables to provide application with necessary runtime values -
 
-### Deployment Steps
+- `DI_POSTGRES_USERNAME` - Username for postgres database authentication
+- `DI_POSTGRES_PASSWORD` - Password for postgres database authentication
+- `DI_POSTGRES_HOST` - Host address of postgres database server to connect
+- `DI_POSTGRES_PORT` - Mapped port of postgres database server to connect
+- `DI_POSTGRES_DATABASE` - Database name for postgres database connection
+- `DI_POSTGRES_SYNC_DATABASE` - Database name for postgres database connection
+- `DI_KAFKA_BROKER_ENDPOINT` - List of Kafka broker endpoints to connect to
 
-#### Pull the Producer API Image
+### Deployment: Using Docker
+
+Pull the Producer API docker image from AWS ECR or similar container registry -
 
 ```bash
-# For AWS ECR
-aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
-docker pull <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-producer-api:<version>
+aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 1234567890.dkr.ecr.ap-south-1.amazonaws.com
+docker pull 1234567890.dkr.ecr.ap-south-1.amazonaws.com/credeau-producer-api:v1.0.0
 ```
 
-#### Configure Environment Variables
+Create a `.env` file with the appropriate values of following -
 
-Create a `.env` file with the following variables -
-
-```bash
+```
 DI_POSTGRES_USERNAME="mobileforge_user"
 DI_POSTGRES_PASSWORD="your_secure_password"
 DI_POSTGRES_HOST="<host address of deployed PostgresSQL host>"
 DI_POSTGRES_PORT="5432"
 DI_POSTGRES_DATABASE="api_insights_db"
 DI_POSTGRES_SYNC_DATABASE="sync_db"
-DI_MONGODB_USERNAME="mobileforge_user"
-DI_MONGODB_PASSWORD="your_secure_password"
-DI_MONGODB_HOST="<host address of deployed MongoDB host>"
-DI_MONGODB_PORT="27017"
-DI_MONGODB_DATABASE="sync_db"
-DI_MONGODB_ENABLED_SOURCES="*"
-DI_MONGODB_MAX_POOL_SIZE="100"
-DI_MONGODB_MIN_POOL_SIZE="10"
-DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS="15000"
-DI_MONGODB_CONNECT_TIMEOUT_MS="10000"
-DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
-DI_MONGODB_RETRY_WRITES="true"
-DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
 DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
 ```
 
-#### Run the Container
+Now, run the container -
+
 ```bash
 docker run -d \
     --name producer-api \
     --env-file .env \
     -p 8000:8000 \
-    <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-producer-api:<version>
+    1234567890.dkr.ecr.ap-south-1.amazonaws.com/credeau-producer-api:v1.0.0
 ```
 
-### Nodes Exposure and Scaling Recommendations
+### Production Readiness
 
-#### Exposing Nodes with Load Balancer
+#### Use Load Balancer
 
 - For production deployments, expose your Producer API service using a load balancer (such as AWS Application Load Balancer or Network Load Balancer).
 - This ensures high availability, fault tolerance, and even distribution of traffic.
@@ -77,8 +68,12 @@ docker run -d \
 
 #### Recommended Node Specifications
 
-- Use nodes/EC2 instances with **at least 2GB RAM and 2 vCPUs** for running Producer API.
-- This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.
+Ensure each node has the following amount of resources available at runtime to avoid out-of-memory and CPU throttle like issues -
+
+| Environment     | CPU (vCPUs) | Memory (GB) |
+|-----------------|-------------|-------------|
+| Dev/UAT         | 2           | 2           |
+| Production      | 4           | 8           |
 
 #### Scaling Guidance
 

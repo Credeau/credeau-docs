@@ -25,16 +25,9 @@ This architecture highlights key components such as -
 3. Robust data syncing
 4. The combined use of MongoDB and PostgreSQL for optimized storage and profiling operations
 
-> ⚠️ Note!
->
-> The MobileForge platform,
-> 
-> 1. receives authentication keys, and 
-> 2. shares API usage information
->
-> with the Credeau servers. This information is used for billing and compliance purposes.
-> 
-> Apart from these, no other data point leaves the institution's premises, ensuring complete data privacy.
+## Data Privacy
+
+The MobileForge platform maintains strict data privacy by design. Only authentication keys and API usage metrics are transmitted to Credeau servers for billing and compliance purposes. All user data remains within your institution's infrastructure, ensuring complete data sovereignty and privacy.
 
 ## Components
 
