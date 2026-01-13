@@ -59,6 +59,9 @@ nav:
       - BureauGator:
           - Overview: products/bureaugator/index.md
           - Insights: products/bureaugator/bureau.md
+      - NameMatch:
+          - Overview: products/namematch/index.md
+          - Insights: products/namematch/namematch.md
 
 extra_css:
   - stylesheets/extra.css
