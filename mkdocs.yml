@@ -62,6 +62,9 @@ nav:
       - NameMatch:
           - Overview: products/namematch/index.md
           - Insights: products/namematch/namematch.md
+      - ReverseGeocode:
+          - Overview: products/reversegeocode/index.md
+          - Insights: products/reversegeocode/reversegeocode.md
 
 extra_css:
   - stylesheets/extra.css
