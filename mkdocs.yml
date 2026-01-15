@@ -50,6 +50,7 @@ nav:
               - iOS: products/mobilegator/sdk/ios.md
               - Error Codes: products/mobilegator/sdk/errorcodes.md
           - Insights: products/mobilegator/insights.md
+          - Extract SMS: products/mobilegator/extraction.md
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md
@@ -59,12 +60,15 @@ nav:
       - BureauGator:
           - Overview: products/bureaugator/index.md
           - Insights: products/bureaugator/bureau.md
+      - AccountGator:
+          - Overview: products/accountgator/index.md
+          - Insights: coming_soon.md
       - NameMatch:
           - Overview: products/namematch/index.md
-          - Insights: products/namematch/namematch.md
+          - NameMatch: products/namematch/namematch.md
       - ReverseGeocode:
           - Overview: products/reversegeocode/index.md
-          - Insights: products/reversegeocode/reversegeocode.md
+          - ReverseGeocode: products/reversegeocode/reversegeocode.md
 
 extra_css:
   - stylesheets/extra.css
