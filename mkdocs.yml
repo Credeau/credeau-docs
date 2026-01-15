@@ -62,7 +62,7 @@ nav:
           - Insights: products/bureaugator/bureau.md
       - AccountGator:
           - Overview: products/accountgator/index.md
-          - Insights: coming_soon.md
+          - Insights: products/accountgator/accountgator.md
       - NameMatch:
           - Overview: products/namematch/index.md
           - NameMatch: products/namematch/namematch.md
