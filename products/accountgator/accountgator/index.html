@@ -789,6 +789,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobilegator/extraction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract SMS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1096,7 +1119,7 @@
   
   
   <span class="md-ellipsis">
-    NameMatch
+    AccountGator
     
   </span>
   
@@ -1107,7 +1130,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
-            NameMatch
+            AccountGator
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1118,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../namematch/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1141,7 +1164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../namematch/namematch/" class="md-nav__link">
+      <a href="../../../coming_soon/" class="md-nav__link">
         
   
   
@@ -1188,7 +1211,7 @@
   
   
   <span class="md-ellipsis">
-    ReverseGeocode
+    NameMatch
     
   </span>
   
@@ -1198,6 +1221,98 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            NameMatch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../namematch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../namematch/namematch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NameMatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ReverseGeocode
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             ReverseGeocode
           </label>
@@ -1238,7 +1353,7 @@
   
   
   <span class="md-ellipsis">
-    Insights
+    ReverseGeocode
     
   </span>
   
@@ -1585,91 +1700,161 @@
 <td><code>user_id</code></td>
 <td>string</td>
 <td>Yes</td>
-<td>Unique identifier of the user</td>
+<td>Unique identifier for the end user (e.g., "test-user-1")</td>
 </tr>
 <tr>
-<td><code>source_name</code></td>
+<td><code>client_id</code></td>
 <td>string</td>
 <td>Yes</td>
-<td>Base name vaue to match with</td>
+<td>Your organization's unique client identifier</td>
 </tr>
 <tr>
-<td><code>target_name</code></td>
+<td><code>raw_data</code></td>
+<td>map[string]object</td>
+<td>Yes</td>
+<td>Container object for account metadata and transaction data</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata</code></td>
+<td>map[string]string</td>
+<td>Yes</td>
+<td>Account and statement metadata information</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata.currency</code></td>
 <td>string</td>
 <td>Yes</td>
-<td>Target value to match with base value</td>
+<td>Currency code for the account (e.g., "INR")</td>
 </tr>
 <tr>
-<td><code>verbose</code></td>
-<td>bool</td>
-<td>No</td>
-<td>Enable detailed output with additional matching information and metadata</td>
+<td><code>raw_data.metadata.bank_name</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Name of the bank (e.g., "ICICI BANK")</td>
 </tr>
 <tr>
-<td><code>reversible</code></td>
-<td>bool</td>
-<td>No</td>
-<td>Allow matching in both directions (source to target and target to source)</td>
+<td><code>raw_data.metadata.ifsc_code</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Indian Financial System Code for the bank branch (e.g., "ICIC0004106")</td>
 </tr>
 <tr>
-<td><code>soft_phonetics</code></td>
-<td>bool</td>
-<td>No</td>
-<td>Enable phonetic matching to handle pronunciation variations and transliterations</td>
+<td><code>raw_data.metadata.account_type</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Type of bank account (e.g., "Savings", "Current")</td>
 </tr>
 <tr>
-<td><code>first_name_order_not_important</code></td>
+<td><code>raw_data.metadata.employer_name</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Name of the account holder's employer (can be empty string)</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata.account_number</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Bank account number (can be empty string for privacy)</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata.account_holder_name</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Name of the account holder (can be empty string for privacy)</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata.statement_fetch_date</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Date and time when the statement was fetched (format: "YYYY-MM-DD HH:MM:SS.mmm")</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata.statement_start_date</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Start date of the statement period (format: "YYYY-MM-DD")</td>
+</tr>
+<tr>
+<td><code>raw_data.metadata.statement_end_date</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>End date of the statement period (format: "YYYY-MM-DD")</td>
+</tr>
+<tr>
+<td><code>raw_data.transaction_data</code></td>
+<td>array[<code>&lt;transaction_entry&gt;</code>]</td>
+<td>Yes</td>
+<td>Array of transaction entries from the bank statement</td>
+</tr>
+<tr>
+<td><code>cutoff_date</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Analysis cutoff date and time (format: "YYYY-MM-DD HH:MM:SS")</td>
+</tr>
+<tr>
+<td><code>format_type</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Format of the input data (e.g., "generic_json")</td>
+</tr>
+<tr>
+<td><code>fetch_extraction_report</code></td>
 <td>bool</td>
-<td>No</td>
-<td>Ignore first name position for matching, useful for Indian naming conventions</td>
+<td>Yes</td>
+<td>Whether to include detailed extraction report in the response</td>
 </tr>
 </tbody>
 </table>
-<p>user_id
-client_id
-raw_data
-raw_data.metadata
-raw_data.metadata.currency
-raw_data.metadata.bank_name
-raw_data.metadata.ifsc_code
-raw_data.metadata.account_type
-raw_data.metadata.employer_name
-raw_data.metadata.account_number
-raw_data.metadata.account_holder_name
-raw_data.metadata.statement_fetch_date
-raw_data.metadata.statement_start_date
-raw_data.metadata.statement_end_date
-    "transaction_data": [
-        {
-            "txnId": "00000001",
-            "type": "DEBIT",
-            "amount": 3000,
-            "currentBalance": "555.96",
-            "transactionTimestamp": "2024-09-01T00:00:00.000+00:00",
-            "narration": "UPI/kjvaishukj@okax/UPI/Federal Bank/424568888143/SBI7b7d76759af8494790ee09a0e35cf155"
-        },
-        {
-            "txnId": "00000771",
-            "type": "DEBIT",
-            "amount": 98,
-            "currentBalance": "29146.81",
-            "transactionTimestamp": "2024-12-12T00:06:00.000+00:00",
-            "narration": "BIL/IMB/000941773667/PayeeName/Fee/397301508 379"
-        },
-        {
-            "txnId": "00000772",
-            "type": "DEBIT",
-            "amount": 9000,
-            "currentBalance": "20146.81",
-            "transactionTimestamp": "2024-12-12T00:08:00.000+00:00",
-            "narration": "MMT/IMPS/434705724233/590546858/UTIB0001351"
-        }
-    ]
-},
-"cutoff_date": "2024-12-12 23:59:59",
-"save_to_s3": false,
-"format_type": "generic_json",
-"fetch_extraction_report": false</p>
+<p><code>&lt;transaction_entry&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>txnId</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Unique transaction identifier (e.g., "00000001")</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Transaction type: "DEBIT" or "CREDIT"</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>float</td>
+<td>Yes</td>
+<td>Transaction amount in the account currency</td>
+</tr>
+<tr>
+<td><code>currentBalance</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Account balance after this transaction</td>
+</tr>
+<tr>
+<td><code>transactionTimestamp</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Date and time of the transaction (ISO 8601 format: "YYYY-MM-DDTHH:MM:SS.mmm+00:00")</td>
+</tr>
+<tr>
+<td><code>narration</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Transaction description/narration from the bank statement</td>
+</tr>
+</tbody>
+</table>
 <h3 id="request-curl">Request cURL<a class="headerlink" href="#request-curl" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>--location<span class="w"> </span><span class="s1">&#39;https://gator.credeau.com/api/account_gator_api&#39;</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>--header<span class="w"> </span><span class="s1">&#39;x-client-id: &lt;client_id&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -1719,10 +1904,9 @@ raw_data.metadata.statement_end_date
 </span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="s1">        ]</span>
 </span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="s1">    },</span>
 </span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="s1">    &quot;cutoff_date&quot;: &quot;2024-12-12 23:59:59&quot;,</span>
-</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="s1">    &quot;save_to_s3&quot;: false,</span>
-</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="s1">    &quot;format_type&quot;: &quot;generic_json&quot;,</span>
-</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="s1">    &quot;fetch_extraction_report&quot;: false</span>
-</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="s1">}&#39;</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="s1">    &quot;format_type&quot;: &quot;generic_json&quot;,</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="s1">    &quot;fetch_extraction_report&quot;: false</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="s1">}&#39;</span>
 </span></code></pre></div>
 <h2 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
 <h3 id="response-fields-json">Response Fields (JSON)<a class="headerlink" href="#response-fields-json" title="Permanent link">&para;</a></h3>
