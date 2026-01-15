@@ -68,8 +68,6 @@ and, one content type header:
 | `raw_data.metadata.statement_end_date`   | string                       | Yes      | End date of the statement period (format: "YYYY-MM-DD") |
 | `raw_data.transaction_data`              | array[`<transaction_entry>`] | Yes      | Array of transaction entries from the bank statement |
 | `cutoff_date`                            | string                       | Yes      | Analysis cutoff date and time (format: "YYYY-MM-DD HH:MM:SS") |
-| `format_type`                            | string                       | Yes      | Format of the input data (e.g., "generic_json") |
-| `fetch_extraction_report`                | bool                         | Yes      | Whether to include detailed extraction report in the response |
 
 `<transaction_entry>`
 
@@ -90,7 +88,7 @@ curl --location 'https://gator.credeau.com/api/account_gator_api' \
 --header 'x-auth-token: <auth_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "user_id": "test-user-1",
+    "user_id": "<user_id>",
     "client_id": "<client_id>",
     "raw_data": {
         "metadata": {
@@ -132,9 +130,7 @@ curl --location 'https://gator.credeau.com/api/account_gator_api' \
             }
         ]
     },
-    "cutoff_date": "2024-12-12 23:59:59",
-    "format_type": "generic_json",
-    "fetch_extraction_report": false
+    "cutoff_date": "2024-12-12 23:59:59"
 }'
 ```
 
@@ -142,33 +138,39 @@ curl --location 'https://gator.credeau.com/api/account_gator_api' \
 
 ### Response Fields (JSON)
 
-| Field Name         | Type   | Description |
-|--------------------|--------|-------------|
-| `name_match_flag`  | bool   | Boolean indicator whether the names match based on the configured threshold |
-| `name_match_score` | float  | Numerical match score ranging from 0-100, indicating the degree of similarity |
-| `name_match_algo`  | string | Identifier of the matching algorithm used for audit and transparency |
-| `fuzz_score`       | float  | Fuzzy matching score (0-100) using fuzzy logic algorithms for additional validation |
-| `first_name`       | string | Extracted first name component from the input names (null if not detected) |
-| `last_name`        | string | Extracted last name component from the input names |
-| `gender`           | string | Detected gender based on name analysis (e.g., "Male", "Female", "Unknown") |
-| `gender_prob`      | float  | Confidence probability (0-1) for the gender detection result |
+| Field Name            | Type   | Description |
+|-----------------------|--------|-------------|
+| `user_id`             | string |`<user_id>` |
+| `request_id`          | string | `<request_id>` |
+| `data_requested_time` | string | The timestamp (in `YYYY-MM-DD HH:MM:SS` format) when the API request was received |
+| `data_processed_time` | string | The timestamp (in `YYYY-MM-DD HH:MM:SS` format) when the API finished processing and returned the response |
+| `message`             | string | The current status of the request processing (e.g., "featurization completed", "featurization in progress", "user not found") |
+| `<feature_name>`      | Object | Features generated based on the provided transactions |
 
 ### Success Responses
 
 #### HTTP 200 OK (Success)
 
-When the name matching successfully completes.
+When the account transactions are successfully processed and features are generated:
 
 ```json
 {
-    "name_match_flag": true,
-    "name_match_score": 83.33333333333333,
-    "name_match_algo": "1-5",
-    "fuzz_score": 100.0,
-    "first_name": "sanyam",
-    "last_name": "jain",
-    "gender": "Male",
-    "gender_prob": 1.0
+    "user_id": "<user_id>",
+    "request_id": "<request_id>",
+    "data_requested_time": "2026-01-15 07:45:43",
+    "data_processed_time": "2026-01-15 07:45:45",
+    "message": "featurization completed",
+    "cutoff_date": "2024-12-12 23:59:59",
+    "format_type": "generic_json",
+    "fetch_extraction_report": false,
+    "reference_id": "",
+    "currency": "INR",
+    "bank_name": "ICICI BANK",
+    "ifsc_code": "ICIC0004106",
+    "account_type": "Savings",
+    ...
+    "emi_affordability_balance_based": 9969.92,
+    "credeau_payday_score_probability_v1": 0.2023
 }
 ```
 
@@ -225,8 +227,48 @@ This error is returned when any of the required parameters is missing from the r
             ],
             "msg": "Field required",
             "input": {
-                "source_name": "...",
-                "target_name": "..."
+                "client_id": "<client_id>",
+                "raw_data": {
+                    "metadata": {
+                        "currency": "INR",
+                        "bank_name": "ICICI BANK",
+                        "ifsc_code": "ICIC0004106",
+                        "account_type": "Savings",
+                        "employer_name": "",
+                        "account_number": "",
+                        "account_holder_name": "",
+                        "statement_fetch_date": "2024-12-12 15:15:05.561",
+                        "statement_start_date": "2024-09-01",
+                        "statement_end_date": "2024-12-12"
+                    },
+                    "transaction_data": [
+                        {
+                            "txnId": "00000001",
+                            "type": "DEBIT",
+                            "amount": 3000,
+                            "currentBalance": "555.96",
+                            "transactionTimestamp": "2024-09-01T00:00:00.000+00:00",
+                            "narration": "UPI/kjvadshakj@okax/UPI/Federal Bank/424568888143/SBI7b7d76759af8494790ee09a0e35cf155"
+                        },
+                        {
+                            "txnId": "00000771",
+                            "type": "DEBIT",
+                            "amount": 98,
+                            "currentBalance": "29146.81",
+                            "transactionTimestamp": "2024-12-12T00:06:00.000+00:00",
+                            "narration": "BIL/IMB/000941773667/PayeeName/Fee/397301508 379"
+                        },
+                        {
+                            "txnId": "00000772",
+                            "type": "DEBIT",
+                            "amount": 9000,
+                            "currentBalance": "20146.81",
+                            "transactionTimestamp": "2024-12-12T00:08:00.000+00:00",
+                            "narration": "MMT/IMPS/434705724233/590546858/UTIB0001351"
+                        }
+                    ]
+                },
+                "cutoff_date": "2024-12-12 23:59:59"
             }
         }
     ]
