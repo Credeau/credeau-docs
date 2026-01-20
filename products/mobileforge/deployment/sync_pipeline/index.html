@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deployment-mobileforge-sync-pipeline" class="md-skip">
+        <a href="#deployment-mobileforge-data-sync-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -364,29 +364,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../components/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Components
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -400,10 +377,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
             
   
   
@@ -416,8 +393,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_1_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1_2">
             <span class="md-nav__icon md-icon"></span>
             Deployment
           </label>
@@ -512,80 +489,47 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-producer-api-deployment" class="md-nav__link">
+  <a href="#producer-api" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Producer API Deployment
+      Producer API
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Producer API Deployment">
+    <nav class="md-nav" aria-label="Producer API">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Environment Variables
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment-steps" class="md-nav__link">
+  <a href="#deployment-using-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment Steps
+      Deployment: Using Docker
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deployment Steps">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-readiness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Readiness
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production Readiness">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pull-the-producer-api-image" class="md-nav__link">
+  <a href="#use-load-balancing" class="md-nav__link">
     <span class="md-ellipsis">
-      Pull the Producer API Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configure-environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configure Environment Variables
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-the-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run the Container
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nodes-exposure-and-scaling-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nodes Exposure and Scaling Recommendations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Nodes Exposure and Scaling Recommendations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exposing-nodes-with-load-balancer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exposing Nodes with Load Balancer
+      Use Load Balancing
     </span>
   </a>
   
@@ -601,9 +545,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scaling-guidance" class="md-nav__link">
+  <a href="#enable-auto-scaling" class="md-nav__link">
     <span class="md-ellipsis">
-      Scaling Guidance
+      Enable Auto-Scaling
     </span>
   </a>
   
@@ -620,63 +564,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-kafka-deployment" class="md-nav__link">
+  <a href="#kafka" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Kafka Deployment
+      Kafka
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Kafka Deployment">
+    <nav class="md-nav" aria-label="Kafka">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites_1" class="md-nav__link">
+  <a href="#topics" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Topics
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deployment-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deployment Methods
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deployment Methods">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-using-docker-compose-recommended-for-dev-testing-uat-environments" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Using Docker Compose (Recommended for Dev Testing / UAT Environments)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-aws-managed-kafka-recommended-for-production-environments" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. AWS Managed Kafka (Recommended for Production Environments)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cost-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cost Optimization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -686,74 +588,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-consumer-deployment" class="md-nav__link">
+  <a href="#consumer-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Consumer Deployment
+      Consumer Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Consumer Deployment">
+    <nav class="md-nav" aria-label="Consumer Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites_2" class="md-nav__link">
+  <a href="#environment-variables_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Environment Variables
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment-steps_1" class="md-nav__link">
+  <a href="#deployment-using-docker_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment Steps
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deployment Steps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pull-the-consumer-api-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pull the Consumer API Image
+      Deployment: Using Docker
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configure-environment-variables_1" class="md-nav__link">
+  <a href="#production-readiness_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure Environment Variables
+      Production Readiness
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-the-container_1" class="md-nav__link">
+  <a href="#consumer-groups" class="md-nav__link">
     <span class="md-ellipsis">
-      Run the Container
+      Consumer Groups
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scaling-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scaling Recommendations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Scaling Recommendations">
+    <nav class="md-nav" aria-label="Consumer Groups">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -766,9 +644,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scaling-guidance_1" class="md-nav__link">
+  <a href="#enable-auto-scaling_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Scaling Guidance
+      Enable Auto-Scaling
     </span>
   </a>
   
@@ -1758,80 +1636,47 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-producer-api-deployment" class="md-nav__link">
+  <a href="#producer-api" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Producer API Deployment
+      Producer API
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Producer API Deployment">
+    <nav class="md-nav" aria-label="Producer API">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Environment Variables
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment-steps" class="md-nav__link">
+  <a href="#deployment-using-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment Steps
+      Deployment: Using Docker
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deployment Steps">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-readiness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Readiness
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production Readiness">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pull-the-producer-api-image" class="md-nav__link">
+  <a href="#use-load-balancing" class="md-nav__link">
     <span class="md-ellipsis">
-      Pull the Producer API Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configure-environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configure Environment Variables
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-the-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run the Container
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nodes-exposure-and-scaling-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nodes Exposure and Scaling Recommendations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Nodes Exposure and Scaling Recommendations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exposing-nodes-with-load-balancer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exposing Nodes with Load Balancer
+      Use Load Balancing
     </span>
   </a>
   
@@ -1847,9 +1692,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scaling-guidance" class="md-nav__link">
+  <a href="#enable-auto-scaling" class="md-nav__link">
     <span class="md-ellipsis">
-      Scaling Guidance
+      Enable Auto-Scaling
     </span>
   </a>
   
@@ -1866,63 +1711,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-kafka-deployment" class="md-nav__link">
+  <a href="#kafka" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Kafka Deployment
+      Kafka
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Kafka Deployment">
+    <nav class="md-nav" aria-label="Kafka">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites_1" class="md-nav__link">
+  <a href="#topics" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Topics
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deployment-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deployment Methods
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deployment Methods">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-using-docker-compose-recommended-for-dev-testing-uat-environments" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Using Docker Compose (Recommended for Dev Testing / UAT Environments)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-aws-managed-kafka-recommended-for-production-environments" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. AWS Managed Kafka (Recommended for Production Environments)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cost-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cost Optimization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1932,74 +1735,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-consumer-deployment" class="md-nav__link">
+  <a href="#consumer-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Consumer Deployment
+      Consumer Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Consumer Deployment">
+    <nav class="md-nav" aria-label="Consumer Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites_2" class="md-nav__link">
+  <a href="#environment-variables_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Environment Variables
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment-steps_1" class="md-nav__link">
+  <a href="#deployment-using-docker_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment Steps
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deployment Steps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pull-the-consumer-api-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pull the Consumer API Image
+      Deployment: Using Docker
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configure-environment-variables_1" class="md-nav__link">
+  <a href="#production-readiness_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure Environment Variables
+      Production Readiness
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-the-container_1" class="md-nav__link">
+  <a href="#consumer-groups" class="md-nav__link">
     <span class="md-ellipsis">
-      Run the Container
+      Consumer Groups
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scaling-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scaling Recommendations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Scaling Recommendations">
+    <nav class="md-nav" aria-label="Consumer Groups">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2012,9 +1791,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scaling-guidance_1" class="md-nav__link">
+  <a href="#enable-auto-scaling_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Scaling Guidance
+      Enable Auto-Scaling
     </span>
   </a>
   
@@ -2055,8 +1834,8 @@
 
 
 
-<h1 id="deployment-mobileforge-sync-pipeline">Deployment: MobileForge Sync Pipeline<a class="headerlink" href="#deployment-mobileforge-sync-pipeline" title="Permanent link">&para;</a></h1>
-<p>This document outlines the deployment steps for different components of the sync pipeline.</p>
+<h1 id="deployment-mobileforge-data-sync-pipeline">Deployment: MobileForge Data Sync Pipeline<a class="headerlink" href="#deployment-mobileforge-data-sync-pipeline" title="Permanent link">&para;</a></h1>
+<p>This document outlines the deployment steps for different components of the data sync pipeline.</p>
 <h2 id="components-overview">Components Overview<a class="headerlink" href="#components-overview" title="Permanent link">&para;</a></h2>
 <p>The sync pipeline consists of three main components -</p>
 <ol>
@@ -2067,51 +1846,70 @@
 <blockquote>
 <p><strong>Note:</strong> All required Docker images for the sync pipeline components will be provided by Credeau via AWS ECR or another designated container registry. Please ensure you have access credentials as required.</p>
 </blockquote>
-<h2 id="1-producer-api-deployment">1. Producer API Deployment<a class="headerlink" href="#1-producer-api-deployment" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Access to AWS ECR or other container registry</li>
-<li>Docker installed on the deployment machine</li>
-<li>AWS CLI configured (if using AWS ECR)</li>
-</ul>
-<h3 id="deployment-steps">Deployment Steps<a class="headerlink" href="#deployment-steps" title="Permanent link">&para;</a></h3>
-<h4 id="pull-the-producer-api-image">Pull the Producer API Image<a class="headerlink" href="#pull-the-producer-api-image" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># For AWS ECR</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>docker<span class="w"> </span>pull<span class="w"> </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/credeau-producer-api:&lt;version&gt;
+<h2 id="producer-api">Producer API<a class="headerlink" href="#producer-api" title="Permanent link">&para;</a></h2>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<p>The application supports various environment variables to provide application with necessary runtime values -</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DI_POSTGRES_USERNAME</code></td>
+<td>Username for postgres database authentication</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_PASSWORD</code></td>
+<td>Password for postgres database authentication</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_HOST</code></td>
+<td>Host address of postgres database server to connect</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_PORT</code></td>
+<td>Mapped port of postgres database server to connect</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_DATABASE</code></td>
+<td>Database name for postgres database connection</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_SYNC_DATABASE</code></td>
+<td>Sync Database name for postgres database connection</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_BROKER_ENDPOINT</code></td>
+<td>List of Kafka broker endpoints to connect to</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deployment-using-docker">Deployment: Using Docker<a class="headerlink" href="#deployment-using-docker" title="Permanent link">&para;</a></h3>
+<p>Pull the Producer API docker image from AWS ECR or similar container registry -</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span><span class="m">1234567890</span>.dkr.ecr.ap-south-1.amazonaws.com
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>pull<span class="w"> </span><span class="m">1234567890</span>.dkr.ecr.ap-south-1.amazonaws.com/credeau-producer-api:v1.0.0
 </span></code></pre></div>
-<h4 id="configure-environment-variables">Configure Environment Variables<a class="headerlink" href="#configure-environment-variables" title="Permanent link">&para;</a></h4>
-<p>Create a <code>.env</code> file with the following variables -</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">DI_POSTGRES_USERNAME</span><span class="o">=</span><span class="s2">&quot;mobileforge_user&quot;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">DI_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_secure_password&quot;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">DI_POSTGRES_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;host address of deployed PostgresSQL host&gt;&quot;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">DI_POSTGRES_PORT</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">DI_POSTGRES_DATABASE</span><span class="o">=</span><span class="s2">&quot;api_insights_db&quot;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nv">DI_POSTGRES_SYNC_DATABASE</span><span class="o">=</span><span class="s2">&quot;sync_db&quot;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nv">DI_MONGODB_USERNAME</span><span class="o">=</span><span class="s2">&quot;mobileforge_user&quot;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nv">DI_MONGODB_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_secure_password&quot;</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nv">DI_MONGODB_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;host address of deployed MongoDB host&gt;&quot;</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nv">DI_MONGODB_PORT</span><span class="o">=</span><span class="s2">&quot;27017&quot;</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nv">DI_MONGODB_DATABASE</span><span class="o">=</span><span class="s2">&quot;sync_db&quot;</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nv">DI_MONGODB_ENABLED_SOURCES</span><span class="o">=</span><span class="s2">&quot;*&quot;</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nv">DI_MONGODB_MAX_POOL_SIZE</span><span class="o">=</span><span class="s2">&quot;100&quot;</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nv">DI_MONGODB_MIN_POOL_SIZE</span><span class="o">=</span><span class="s2">&quot;10&quot;</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nv">DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;15000&quot;</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nv">DI_MONGODB_CONNECT_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;10000&quot;</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="nv">DI_MONGODB_SOCKET_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;10000&quot;</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nv">DI_MONGODB_RETRY_WRITES</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="nv">DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;2000&quot;</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="nv">DI_KAFKA_BROKER_ENDPOINT</span><span class="o">=</span><span class="s2">&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;</span>
+<p>Create a <code>.env</code> file with the appropriate values of following -</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>DI_POSTGRES_USERNAME=&quot;mobileforge_user&quot;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>DI_POSTGRES_PASSWORD=&quot;your_secure_password&quot;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>DI_POSTGRES_HOST=&quot;&lt;host address of deployed PostgresSQL host&gt;&quot;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>DI_POSTGRES_PORT=&quot;5432&quot;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>DI_POSTGRES_DATABASE=&quot;api_insights_db&quot;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>DI_POSTGRES_SYNC_DATABASE=&quot;sync_db&quot;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>DI_KAFKA_BROKER_ENDPOINT=&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;
 </span></code></pre></div>
-<h4 id="run-the-container">Run the Container<a class="headerlink" href="#run-the-container" title="Permanent link">&para;</a></h4>
+<p>Now, run the container -</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>--name<span class="w"> </span>producer-api<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>--env-file<span class="w"> </span>.env<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/credeau-producer-api:&lt;version&gt;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="m">1234567890</span>.dkr.ecr.ap-south-1.amazonaws.com/credeau-producer-api:v1.0.0
 </span></code></pre></div>
-<h3 id="nodes-exposure-and-scaling-recommendations">Nodes Exposure and Scaling Recommendations<a class="headerlink" href="#nodes-exposure-and-scaling-recommendations" title="Permanent link">&para;</a></h3>
-<h4 id="exposing-nodes-with-load-balancer">Exposing Nodes with Load Balancer<a class="headerlink" href="#exposing-nodes-with-load-balancer" title="Permanent link">&para;</a></h4>
+<h3 id="production-readiness">Production Readiness<a class="headerlink" href="#production-readiness" title="Permanent link">&para;</a></h3>
+<h4 id="use-load-balancing">Use Load Balancing<a class="headerlink" href="#use-load-balancing" title="Permanent link">&para;</a></h4>
 <ul>
 <li>For production deployments, expose your Producer API service using a load balancer (such as AWS Application Load Balancer or Network Load Balancer).</li>
 <li>This ensures high availability, fault tolerance, and even distribution of traffic.</li>
@@ -2119,235 +1917,237 @@
 <li>For Docker Compose or EC2, place your containers behind an AWS ELB/ALB.</li>
 </ul>
 <h4 id="recommended-node-specifications">Recommended Node Specifications<a class="headerlink" href="#recommended-node-specifications" title="Permanent link">&para;</a></h4>
+<p>Ensure each node has the following amount of resources available at runtime to avoid out-of-memory and CPU throttle like issues -</p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>CPU (vCPUs)</th>
+<th>Memory (GB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dev/UAT</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>4</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enable-auto-scaling">Enable Auto-Scaling<a class="headerlink" href="#enable-auto-scaling" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Use nodes/EC2 instances with <strong>at least 2GB RAM and 2 vCPUs</strong> for running Producer API.</li>
-<li>This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.</li>
+<li>Keep a check on CPU and Memory consumption of the deployed nodes</li>
+<li>Assign a appropriate threshold for <strong>scaling up</strong> and <strong>scaling down</strong> of nodes - eg: 50%</li>
+<li>Raise an event as soon as this threshold is breached and scale up/down the nodes accordingly</li>
+<li>Services like AWS Autoscaling, K8s HPA, etc. make this easy to implement</li>
 </ul>
-<h4 id="scaling-guidance">Scaling Guidance<a class="headerlink" href="#scaling-guidance" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Monitor CPU and RAM usage for each service.</li>
-<li><strong>Scale up</strong> (add more pods/containers/instances) if max CPU or RAM usage exceeds <strong>50%</strong> for a period of 1 minute.</li>
-</ul>
-<h2 id="2-kafka-deployment">2. Kafka Deployment<a class="headerlink" href="#2-kafka-deployment" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Kubernetes cluster or Docker Compose</li>
-<li>Sufficient storage for message persistence</li>
-<li>Network access between components</li>
-</ul>
-<h3 id="deployment-methods">Deployment Methods<a class="headerlink" href="#deployment-methods" title="Permanent link">&para;</a></h3>
-<h4 id="1-using-docker-compose-recommended-for-dev-testing-uat-environments">1. Using Docker Compose (Recommended for Dev Testing / UAT Environments)<a class="headerlink" href="#1-using-docker-compose-recommended-for-dev-testing-uat-environments" title="Permanent link">&para;</a></h4>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">zookeeper</span><span class="p">:</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">confluentinc/cp-zookeeper:latest</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nt">ZOOKEEPER_CLIENT_PORT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2181</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2181:2181&quot;</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">kafka</span><span class="p">:</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">confluentinc/cp-kafka:latest</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zookeeper</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9092:9092&quot;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="nt">KAFKA_BROKER_ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="nt">KAFKA_ZOOKEEPER_CONNECT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zookeeper:2181</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="nt">KAFKA_ADVERTISED_LISTENERS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="nt">KAFKA_LISTENER_SECURITY_PROTOCOL_MAP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">        </span><span class="nt">KAFKA_INTER_BROKER_LISTENER_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PLAINTEXT</span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="nt">KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<h2 id="kafka">Kafka<a class="headerlink" href="#kafka" title="Permanent link">&para;</a></h2>
+<p>For Dev/UAT like environments, use the official Kafka/Zookeper images from confluent to spawn up the brokers. For production grade setup, managed services like AWS MSK and Confluent cloud are highly recommended for higher reliability and availability.</p>
+<h3 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h3>
+<p>The Producer API needs the following topics to be present at runtime -</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Partitions</th>
+<th>Replication Factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sms_batched</code></td>
+<td>16</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>events_log</code></td>
+<td>20</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>apps_and_device_batched</code></td>
+<td>10</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>contacts_batched</code> *</td>
+<td>10</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>call_logs_batched</code> *</td>
+<td>10</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>*</code> - Not required for deployments made in India.</p>
+</blockquote>
+<p>The number of partitions mentioned, has to change as per scaling needs. The provided config is sufficient to sustain 150K-200K Daily Active Users on the SDK.</p>
+<h2 id="consumer-deployment">Consumer Deployment<a class="headerlink" href="#consumer-deployment" title="Permanent link">&para;</a></h2>
+<h3 id="environment-variables_1">Environment Variables<a class="headerlink" href="#environment-variables_1" title="Permanent link">&para;</a></h3>
+<p>The application supports various environment variables to provide application with necessary runtime values -</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DI_POSTGRES_USERNAME</code></td>
+<td>Username for postgres database authentication</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_PASSWORD</code></td>
+<td>Password for postgres database authentication</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_HOST</code></td>
+<td>Host address of postgres database server to connect</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_PORT</code></td>
+<td>Mapped port of postgres database server to connect</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_DATABASE</code></td>
+<td>Database name for postgres database connection</td>
+</tr>
+<tr>
+<td><code>DI_POSTGRES_SYNC_DATABASE</code></td>
+<td>Sync Database name for postgres database connection</td>
+</tr>
+<tr>
+<td><code>DI_MONGODB_USERNAME</code></td>
+<td>Username for mongo database authentication</td>
+</tr>
+<tr>
+<td><code>DI_MONGODB_PASSWORD</code></td>
+<td>Password for postgres database authentication</td>
+</tr>
+<tr>
+<td><code>DI_MONGODB_HOST</code></td>
+<td>Host address of mongo database server to connect</td>
+</tr>
+<tr>
+<td><code>DI_MONGODB_PORT</code></td>
+<td>Mapped port of mongo database server to connect</td>
+</tr>
+<tr>
+<td><code>DI_MONGODB_DATABASE</code></td>
+<td>Database name for mongo database connection</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_BROKER_ENDPOINT</code></td>
+<td>List of Kafka broker endpoints to connect to</td>
+</tr>
+<tr>
+<td><code>ENABLED_TOPICS</code></td>
+<td>List of topics name to listen on</td>
+</tr>
+<tr>
+<td><code>KAFKA_CONSUMER_GROUP</code></td>
+<td>Name of data source specific consumer group</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deployment-using-docker_1">Deployment: Using Docker<a class="headerlink" href="#deployment-using-docker_1" title="Permanent link">&para;</a></h3>
+<p>Pull the Producer API docker image from AWS ECR or similar container registry -</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span><span class="m">1234567890</span>.dkr.ecr.ap-south-1.amazonaws.com
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>docker<span class="w"> </span>pull<span class="w"> </span><span class="m">1234567890</span>.dkr.ecr.ap-south-1.amazonaws.com/credeau-producer-api:v1.0.0
 </span></code></pre></div>
-<h4 id="2-aws-managed-kafka-recommended-for-production-environments">2. AWS Managed Kafka (Recommended for Production Environments)<a class="headerlink" href="#2-aws-managed-kafka-recommended-for-production-environments" title="Permanent link">&para;</a></h4>
-<p><strong>Prerequisites</strong></p>
-<ul>
-<li>AWS CLI configured with appropriate permissions</li>
-<li>VPC with at least 2 private subnets in different Availability Zones</li>
-<li>Security groups for MSK cluster</li>
-<li>IAM roles and policies for MSK</li>
-</ul>
-<p><strong>Create Security Groups</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Create security group for MSK</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-security-group<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>--group-name<span class="w"> </span>msk-security-group<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span>--description<span class="w"> </span><span class="s2">&quot;Security group for MSK cluster&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>--vpc-id<span class="w"> </span>&lt;your-vpc-id&gt;
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Add inbound rules for Kafka</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>aws<span class="w"> </span>ec2<span class="w"> </span>authorize-security-group-ingress<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span>--group-id<span class="w"> </span>&lt;msk-security-group-id&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span>--protocol<span class="w"> </span>tcp<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span>--port<span class="w"> </span><span class="m">9092</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span>--source-group<span class="w"> </span>&lt;producer-consumer-security-group-id&gt;
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>aws<span class="w"> </span>ec2<span class="w"> </span>authorize-security-group-ingress<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span>--group-id<span class="w"> </span>&lt;msk-security-group-id&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span>--protocol<span class="w"> </span>tcp<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span>--port<span class="w"> </span><span class="m">2181</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span>--source-group<span class="w"> </span>&lt;producer-consumer-security-group-id&gt;
+<p>Create a <code>.env</code> file with the appropriate values of following -</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>DI_POSTGRES_USERNAME=&quot;mobileforge_user&quot;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>DI_POSTGRES_PASSWORD=&quot;your_secure_password&quot;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>DI_POSTGRES_HOST=&quot;&lt;host address of deployed PostgresSQL host&gt;&quot;
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>DI_POSTGRES_PORT=&quot;5432&quot;
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>DI_POSTGRES_DATABASE=&quot;api_insights_db&quot;
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>DI_POSTGRES_SYNC_DATABASE=&quot;sync_db&quot;
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>DI_MONGODB_USERNAME=&quot;mobileforge_user&quot;
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>DI_MONGODB_PASSWORD=&quot;your_secure_password&quot;
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>DI_MONGODB_HOST=&quot;&lt;host address of deployed MongoDB host&gt;&quot;
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>DI_MONGODB_PORT=&quot;27017&quot;
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>DI_MONGODB_DATABASE=&quot;sync_db&quot;
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>DI_MONGODB_ENABLED_SOURCES=&quot;*&quot;
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>DI_MONGODB_MAX_POOL_SIZE=&quot;100&quot;
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>DI_MONGODB_MIN_POOL_SIZE=&quot;10&quot;
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS=&quot;15000&quot;
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>DI_MONGODB_CONNECT_TIMEOUT_MS=&quot;10000&quot;
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>DI_MONGODB_SOCKET_TIMEOUT_MS=&quot;10000&quot;
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>DI_MONGODB_RETRY_WRITES=&quot;true&quot;
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS=&quot;2000&quot;
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>DI_KAFKA_BROKER_ENDPOINT=&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>ENABLED_TOPICS=&quot;sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log&quot;
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>KAFKA_CONSUMER_GROUP=&quot;some-consumer-group&quot;
 </span></code></pre></div>
-<p><strong>Create MSK Cluster</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>aws<span class="w"> </span>kafka<span class="w"> </span>create-cluster<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--cluster-name<span class="w"> </span><span class="s2">&quot;mobileforge-sync-cluster&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>--kafka-version<span class="w"> </span><span class="s2">&quot;3.8.0&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span>--number-of-broker-nodes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span>--enhanced-monitoring<span class="w"> </span>PER_BROKER<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>--broker-node-group-info<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="s1">&#39;{</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s1">        &quot;ClientSubnets&quot;: [&quot;&lt;subnet-id-1&gt;&quot;, &quot;&lt;subnet-id-2&gt;&quot;, &quot;&lt;subnet-id-3&gt;&quot;],</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s1">        &quot;SecurityGroups&quot;: [&quot;&lt;msk-security-group-id&gt;&quot;],</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s1">        &quot;InstanceType&quot;: &quot;kafka.t3a.large&quot;,</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s1">        &quot;StorageInfo&quot;: {</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s1">            &quot;EbsStorageInfo&quot;: {</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s1">                &quot;VolumeSize&quot;: 100</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="s1">            }</span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="s1">        }</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="s1">    }&#39;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span>--encryption-info<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="s1">&#39;{</span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="s1">        &quot;EncryptionInTransit&quot;: {</span>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="s1">            &quot;ClientBroker&quot;: &quot;TLS&quot;,</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="s1">            &quot;InCluster&quot;: true</span>
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="s1">        }</span>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="s1">    }&#39;</span>
+<p>Now, run the container -</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--name<span class="w"> </span>consumer-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>--env-file<span class="w"> </span>.env<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="m">1234567890</span>.dkr.ecr.ap-south-1.amazonaws.com/credeau-consumer:v1.0.0
 </span></code></pre></div>
-<p><strong>Wait for Cluster Creation</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Check cluster status</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>aws<span class="w"> </span>kafka<span class="w"> </span>describe-cluster<span class="w"> </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;
-</span></code></pre></div>
-<p><strong>Get Bootstrap Servers</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Get bootstrap servers for client configuration</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>aws<span class="w"> </span>kafka<span class="w"> </span>get-bootstrap-brokers<span class="w"> </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;
-</span></code></pre></div>
-<p><strong>Create Topics</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Create the sync topic</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>aws<span class="w"> </span>kafka<span class="w"> </span>create-topic<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>--topic<span class="w"> </span>sms_batched<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>--partitions<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span>--replication-factor<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span>--config<span class="w"> </span>retention.ms<span class="o">=</span><span class="m">1800000</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>aws<span class="w"> </span>kafka<span class="w"> </span>create-topic<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span>--topic<span class="w"> </span>events_log<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span>--partitions<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span>--replication-factor<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span>--config<span class="w"> </span>retention.ms<span class="o">=</span><span class="m">1800000</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>aws<span class="w"> </span>kafka<span class="w"> </span>create-topic<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span>--topic<span class="w"> </span>apps_and_device_batched<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span>--partitions<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span>--replication-factor<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span>--config<span class="w"> </span>retention.ms<span class="o">=</span><span class="m">1800000</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>aws<span class="w"> </span>kafka<span class="w"> </span>create-topic<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span>--topic<span class="w"> </span>contacts_batched<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span>--partitions<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">    </span>--replication-factor<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">    </span>--config<span class="w"> </span>retention.ms<span class="o">=</span><span class="m">1800000</span>
-</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>aws<span class="w"> </span>kafka<span class="w"> </span>create-topic<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span>--cluster-arn<span class="w"> </span>&lt;cluster-arn&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">    </span>--topic<span class="w"> </span>call_logs_batched<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">    </span>--partitions<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">    </span>--replication-factor<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">    </span>--config<span class="w"> </span>retention.ms<span class="o">=</span><span class="m">1800000</span>
-</span></code></pre></div>
-<p><strong>Configuration for Producer and Consumer</strong></p>
-<p>Update the environment variables in your <code>.env</code> files to use the MSK bootstrap servers:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># For Producer and Consumer .env files</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">DI_KAFKA_BROKER_ENDPOINT</span><span class="o">=</span><span class="s2">&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;</span>
-</span></code></pre></div>
-<h4 id="cost-optimization">Cost Optimization<a class="headerlink" href="#cost-optimization" title="Permanent link">&para;</a></h4>
-<ol>
-<li><strong>Instance Types</strong></li>
-<li>Use appropriate instance types based on workload</li>
-<li>Consider reserved instances for production</li>
-<li>
-<p>Monitor broker metrics for right-sizing</p>
-</li>
-<li>
-<p><strong>Storage</strong></p>
-</li>
-<li>Configure appropriate EBS volume sizes</li>
-<li>Monitor storage usage</li>
-<li>Set up alerts for storage thresholds</li>
-</ol>
-<h2 id="3-consumer-deployment">3. Consumer Deployment<a class="headerlink" href="#3-consumer-deployment" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites_2">Prerequisites<a class="headerlink" href="#prerequisites_2" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Access to AWS ECR or other container registry</li>
-<li>Docker installed on the deployment machine</li>
-<li>AWS CLI configured (if using AWS ECR)</li>
-</ul>
-<h3 id="deployment-steps_1">Deployment Steps<a class="headerlink" href="#deployment-steps_1" title="Permanent link">&para;</a></h3>
-<h4 id="pull-the-consumer-api-image">Pull the Consumer API Image<a class="headerlink" href="#pull-the-consumer-api-image" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># For AWS ECR</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>docker<span class="w"> </span>pull<span class="w"> </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/credeau-consumer:&lt;version&gt;
-</span></code></pre></div>
-<h4 id="configure-environment-variables_1">Configure Environment Variables<a class="headerlink" href="#configure-environment-variables_1" title="Permanent link">&para;</a></h4>
-<p>Create a <code>.env</code> file with the following variables -</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">DI_POSTGRES_USERNAME</span><span class="o">=</span><span class="s2">&quot;mobileforge_user&quot;</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">DI_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_secure_password&quot;</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nv">DI_POSTGRES_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;host address of deployed PostgresSQL host&gt;&quot;</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nv">DI_POSTGRES_PORT</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nv">DI_POSTGRES_DATABASE</span><span class="o">=</span><span class="s2">&quot;api_insights_db&quot;</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nv">DI_POSTGRES_SYNC_DATABASE</span><span class="o">=</span><span class="s2">&quot;sync_db&quot;</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nv">DI_MONGODB_USERNAME</span><span class="o">=</span><span class="s2">&quot;mobileforge_user&quot;</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nv">DI_MONGODB_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_secure_password&quot;</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nv">DI_MONGODB_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;host address of deployed MongoDB host&gt;&quot;</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nv">DI_MONGODB_PORT</span><span class="o">=</span><span class="s2">&quot;27017&quot;</span>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="nv">DI_MONGODB_DATABASE</span><span class="o">=</span><span class="s2">&quot;sync_db&quot;</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nv">DI_MONGODB_ENABLED_SOURCES</span><span class="o">=</span><span class="s2">&quot;*&quot;</span>
-</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="nv">DI_MONGODB_MAX_POOL_SIZE</span><span class="o">=</span><span class="s2">&quot;100&quot;</span>
-</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="nv">DI_MONGODB_MIN_POOL_SIZE</span><span class="o">=</span><span class="s2">&quot;10&quot;</span>
-</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="nv">DI_MONGODB_SERVER_SELECTION_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;15000&quot;</span>
-</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="nv">DI_MONGODB_CONNECT_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;10000&quot;</span>
-</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="nv">DI_MONGODB_SOCKET_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;10000&quot;</span>
-</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="nv">DI_MONGODB_RETRY_WRITES</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="nv">DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS</span><span class="o">=</span><span class="s2">&quot;2000&quot;</span>
-</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="nv">DI_KAFKA_BROKER_ENDPOINT</span><span class="o">=</span><span class="s2">&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;</span>
-</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span><span class="s2">&quot;sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log&quot;</span>
-</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span><span class="s2">&quot;some-consumer-group&quot;</span>
-</span></code></pre></div>
-<h4 id="run-the-container_1">Run the Container<a class="headerlink" href="#run-the-container_1" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span>--name<span class="w"> </span>consumer<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>--env-file<span class="w"> </span>.env<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span>&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/credeau-consumer:&lt;version&gt;
-</span></code></pre></div>
-<p>For production setups, split consumer into 3 different consumers sms consumer, events consumer and a common consumer. Change the following configurations to achieve this -</p>
+<h3 id="production-readiness_1">Production Readiness<a class="headerlink" href="#production-readiness_1" title="Permanent link">&para;</a></h3>
+<h3 id="consumer-groups">Consumer Groups<a class="headerlink" href="#consumer-groups" title="Permanent link">&para;</a></h3>
+<p>For production deployments, split consumer into 3 different consumers sms consumer, events consumer and a common consumer. Change the following configurations to achieve this -</p>
 <p>SMS Consumer -</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span>sms_batched
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span>sms-consumer-group
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span>sms_batched
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span>sms-consumer-group
 </span></code></pre></div>
 <p>Events Consumer -</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span>events_log
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span>events-consumer-group
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span>events_log
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span>events-consumer-group
 </span></code></pre></div>
 <p>Common Consumer -</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span>apps_and_device_batched,contacts_batched,call_logs_batched
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span>common-consumer-group
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">ENABLED_TOPICS</span><span class="o">=</span>apps_and_device_batched,contacts_batched,call_logs_batched
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">KAFKA_CONSUMER_GROUP</span><span class="o">=</span>common-consumer-group
 </span></code></pre></div>
-<h3 id="scaling-recommendations">Scaling Recommendations<a class="headerlink" href="#scaling-recommendations" title="Permanent link">&para;</a></h3>
+<p>This segregates the responsibility of each consumer to listen on specific topics and consume the data accordingly.</p>
 <h4 id="recommended-node-specifications_1">Recommended Node Specifications<a class="headerlink" href="#recommended-node-specifications_1" title="Permanent link">&para;</a></h4>
+<p>Ensure each node has the following amount of resources available at runtime to avoid out-of-memory and CPU throttle like issues -</p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>CPU (vCPUs)</th>
+<th>Memory (GB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dev/UAT</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>4</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enable-auto-scaling_1">Enable Auto-Scaling<a class="headerlink" href="#enable-auto-scaling_1" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Use nodes/EC2 instances with <strong>at least 2GB RAM and 2 vCPUs</strong> for running Producer API.</li>
-<li>This ensures sufficient resources for stable operation and avoids out-of-memory or CPU throttling issues.</li>
+<li>Keep a check on CPU and Memory consumption of the deployed nodes<ul>
+<li>Assign a appropriate threshold for <strong>scaling up</strong> and <strong>scaling down</strong> of nodes - eg: 50%</li>
 </ul>
-<h4 id="scaling-guidance_1">Scaling Guidance<a class="headerlink" href="#scaling-guidance_1" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Monitor CPU and RAM usage for each service.</li>
-<li><strong>Scale up</strong> (add more pods/containers/instances) if max CPU or RAM usage exceeds <strong>50%</strong> for a period of 1 minute.</li>
-<li>For more enhanced scaling, monitor Kafka topic lags and trigger scale up as the lag increases more than 50 </li>
+</li>
+<li>Additionally, keep a check on the kafka topic lags and scale the consumers accordingly<ul>
+<li>Assign a appropriate threshold for <strong>scaling up</strong> and <strong>scaling down</strong> of nodes - eg: sms_batched lag &gt; 100 | 500 | 1000 etc.</li>
+</ul>
+</li>
+<li>Raise an event as soon as this threshold is breached and scale up/down the nodes accordingly</li>
+<li>Services like AWS Autoscaling, K8s HPA, K8s KEDA etc. make this easy to implement</li>
 </ul>
 <h2 id="scaling-ladder">Scaling Ladder<a class="headerlink" href="#scaling-ladder" title="Permanent link">&para;</a></h2>
+<p>The following table provides recommended node counts based on daily active users (DAU):</p>
 <table>
 <thead>
 <tr>
@@ -2366,7 +2166,7 @@
 <td style="text-align: center;">1-4</td>
 <td style="text-align: center;">1-2</td>
 <td style="text-align: center;">1-2</td>
-<td style="text-align: center;">1-3</td>
+<td style="text-align: center;">1-2</td>
 </tr>
 <tr>
 <td>50K</td>
@@ -2396,6 +2196,23 @@
 </table>
 <blockquote>
 <p>With increasing data consumer nodes, do adjust the partition count of the respective topics to at least match the max number of nodes expected.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>Note:</strong> These recommendations assume:</p>
+<ul>
+<li>Each node has the minimum recommended specifications (16GB RAM, 4 vCPUs)</li>
+<li>Average user activity patterns</li>
+<li>Standard business hours usage</li>
+<li>Regular maintenance windows</li>
+</ul>
+<p>Adjust node counts based on:</p>
+<ul>
+<li>Peak usage times</li>
+<li>Geographic distribution of users</li>
+<li>Specific workload patterns</li>
+<li>Performance monitoring metrics</li>
+</ul>
 </blockquote>
 
 

@@ -14,7 +14,7 @@
         <link rel="prev" href="../..">
       
       
-        <link rel="next" href="components/">
+        <link rel="next" href="deployment/database/">
       
       
       <link rel="icon" href="../../assets/images/credeau_favicon.ico">
@@ -411,33 +411,52 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Privacy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Data Sync
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-insights-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Insights Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="components/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Components
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -458,10 +477,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
         
           
-          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
             
   
   
@@ -474,8 +493,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_1_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
             <span class="md-nav__icon md-icon"></span>
             Deployment
           </label>
@@ -1491,6 +1510,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Privacy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Data Sync
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-insights-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Insights Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1508,7 +1569,7 @@
 
 
 <h1 id="mobileforge">MobileForge<a class="headerlink" href="#mobileforge" title="Permanent link">&para;</a></h1>
-<p>MobileForge ensures that all data collected from user devices is securely transmitted directly to the institution’s infrastructure, where profiling and processing take place — maintaining full control and compliance within institutional premises.</p>
+<p>MobileForge is a deployable device intelligence platform, that ensures all data collected from user's mobile devices can be securely transmitted to the institution's infrastructure, where profiling and processing take place — maintaining full control and compliance within institutional premises.</p>
 <h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Modular architecture</li>
@@ -1519,9 +1580,60 @@
 </ul>
 <p>Explore the sections below to learn more about MobileForge's components, deployment strategies, scaling guidelines, and data schemas.</p>
 <h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
-<p>The diagram below illustrates a typical deployment of the MobileForge platform on AWS. It is intended as a reference architecture showcasing how various components work together in a production-grade setup.</p>
-<p><img alt="MobileForge Architecture" src="../../assets/diagrams/mobile_forge_solution_diagram_on_aws.png" /></p>
-<p>This architecture highlights key components such as data ingestion from mobile devices, secure transmission to institutional infrastructure, robust data syncing, and the combined use of MongoDB and PostgreSQL for optimized storage and profiling operations.</p>
+<p>The diagram below illustrates a typical deployment of the MobileForge platform. It is intended as a reference architecture showcasing how various components work together in a production-grade setup.</p>
+<p><img alt="MobileForge Architecture" src="../../assets/diagrams/mobile_forge_architecture_diagram.svg" /></p>
+<p>This architecture highlights key components such as -</p>
+<ol>
+<li>Data ingestion from mobile devices</li>
+<li>Secure transmission to institutional infrastructure</li>
+<li>Robust data syncing</li>
+<li>The combined use of MongoDB and PostgreSQL for optimized storage and profiling operations</li>
+</ol>
+<h2 id="data-privacy">Data Privacy<a class="headerlink" href="#data-privacy" title="Permanent link">&para;</a></h2>
+<p>The MobileForge platform maintains strict data privacy by design. Only authentication keys and API usage metrics are transmitted to Credeau servers for billing and compliance purposes. All user data remains within your institution's infrastructure, ensuring complete data sovereignty and privacy.</p>
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<p>The MobileForge solution can be broken down into 2 major pipelines, where each is composed of modular services that can be independently scaled and deployed.</p>
+<h3 id="1-data-sync">1. Data Sync<a class="headerlink" href="#1-data-sync" title="Permanent link">&para;</a></h3>
+<p>Responsible for securely ingesting data from mobile devices and storing it for downstream processing.</p>
+<p><img alt="Data Sync Pipeline Architecture" src="../../assets/diagrams/mobile_forge_architecture_diagram_data_sync_pipeline.svg" /></p>
+<p>Services -</p>
+<ul>
+<li>
+<p><strong>Producer API</strong>: Acts as an entry point to the system, receiving data from the SDK.</p>
+</li>
+<li>
+<p><strong>Kafka Stream</strong>: Serves as the backbone for streaming data reliably between services.</p>
+</li>
+<li>
+<p><strong>Data Consumers</strong>: Process incoming data from Kafka and store into the databases. These can be grouped basis the type of data source to consume.</p>
+</li>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li><strong>MongoDB</strong>: Used for storing the raw data collected from users' devices.</li>
+<li><strong>PostgreSQL</strong>: Used for storing user metadata and API usage data.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-insights-generation">2. Insights Generation<a class="headerlink" href="#2-insights-generation" title="Permanent link">&para;</a></h3>
+<p>Provides APIs for reading, profiling, and deriving insights from the synced data.</p>
+<p><img alt="Insights Generation Pipeline Architecture" src="../../assets/diagrams/mobile_forge_architecture_diagram_insights_pipeline.svg" /></p>
+<p>Services -</p>
+<ul>
+<li>
+<p><strong>Insights API</strong>: Delivers processed insights by executing in-house algorithms and machine learning models on top of user's synced data.</p>
+</li>
+<li>
+<p><strong>Extraction API</strong>: Extracts relevant financial signals from user's raw data.</p>
+</li>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li><strong>MongoDB</strong>: Used for fetching the raw data collected from users' devices.</li>
+<li><strong>PostgreSQL</strong>: Used for fetching user metadata and storing derived insights from the raw data.</li>
+</ul>
+</li>
+</ul>
 
 
 
