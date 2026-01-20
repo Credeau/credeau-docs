@@ -219,35 +219,6 @@ Database to use - `api_insights_db`
 
 	CREATE INDEX idx_clients_client_id ON public.clients USING btree (client_id);
 
-	-- public.ext_fetch_features_request_dump definition
-	CREATE TABLE public.ext_fetch_features_request_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		cutoff_date varchar(128) NOT NULL,
-		CONSTRAINT ext_fetch_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
-	) PARTITION BY RANGE (created_at);
-
-	CREATE INDEX idx_ext_featurize_req_client_id ON public.ext_fetch_features_request_dump USING btree (client_id);
-	CREATE INDEX idx_ext_featurize_req_user_id ON public.ext_fetch_features_request_dump USING btree (user_id);
-
-	-- public.ext_fetch_features_response_dump definition
-	CREATE TABLE public.ext_fetch_features_response_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		response_dump json NULL,
-		groupings json NULL,
-		time_to_featurize float8 NULL,
-		time_json json NULL,
-		CONSTRAINT ext_fetch_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
-	) PARTITION BY RANGE (created_at);
-
-	CREATE INDEX idx_ext_featurize_resp_client_id ON public.ext_fetch_features_response_dump USING btree (client_id);
-	CREATE INDEX idx_ext_featurize_resp_user_id ON public.ext_fetch_features_response_dump USING btree (user_id);
-
 	-- public.fetch_extracted_request_dump definition
 	CREATE TABLE public.fetch_extracted_request_dump (
 		request_id varchar(128) NOT NULL,
@@ -275,68 +246,6 @@ Database to use - `api_insights_db`
 
 	CREATE INDEX idx_fetch_extracted_resp_client_id ON public.fetch_extracted_response_dump USING btree (client_id);
 	CREATE INDEX idx_fetch_extracted_resp_user_id ON public.fetch_extracted_response_dump USING btree (user_id);
-
-	-- public.fetch_request_dump definition
-	CREATE TABLE public.fetch_request_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		cutoff_date varchar(128) NOT NULL,
-		CONSTRAINT fetch_request_dump_pkey PRIMARY KEY (request_id, created_at)
-	) PARTITION BY RANGE (created_at);
-
-	CREATE INDEX idx_fetch_req_client_id ON public.fetch_request_dump USING btree (client_id);
-	CREATE INDEX idx_fetch_req_user_id ON public.fetch_request_dump USING btree (user_id);
-
-	-- public.fetch_response_dump definition
-	CREATE TABLE public.fetch_response_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		response_dump json NULL,
-		time_to_featurize float8 NULL,
-		time_json json NULL,
-		CONSTRAINT fetch_response_dump_pkey PRIMARY KEY (request_id, created_at)
-	) PARTITION BY RANGE (created_at);
-
-	CREATE INDEX idx_fetch_resp_client_id ON public.fetch_response_dump USING btree (client_id);
-	CREATE INDEX idx_fetch_resp_user_id ON public.fetch_response_dump USING btree (user_id);
-
-	-- public.get_features_request_dump definition
-	CREATE TABLE public.get_features_request_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		sms_data json NULL,
-		apps_data json NULL,
-		device_data json NULL,
-		call_data json NULL,
-		contacts_data json NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		cutoff_date varchar(128) NOT NULL,
-		CONSTRAINT get_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
-	) PARTITION BY RANGE (created_at);
-
-	CREATE INDEX idx_featurize_req_client_id ON public.get_features_request_dump USING btree (client_id);
-	CREATE INDEX idx_featurize_req_user_id ON public.get_features_request_dump USING btree (user_id);
-
-	-- public.get_features_response_dump definition
-	CREATE TABLE public.get_features_response_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		response_dump json NULL,
-		groupings json NULL,
-		time_to_featurize float8 NULL,
-		time_json json NULL,
-		CONSTRAINT get_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
-	) PARTITION BY RANGE (created_at);
-
-	CREATE INDEX idx_featurize_resp_client_id ON public.get_features_response_dump USING btree (client_id);
-	CREATE INDEX idx_featurize_resp_user_id ON public.get_features_response_dump USING btree (user_id);
 
 	-- public.insights_request_dump definition
 	CREATE TABLE public.insights_request_dump (
@@ -472,35 +381,6 @@ Database to use - `api_insights_db`
 
 	CREATE INDEX idx_clients_client_id ON public.clients USING btree (client_id);
 
-	-- public.ext_fetch_features_request_dump definition
-	CREATE TABLE public.ext_fetch_features_request_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		cutoff_date varchar(128) NOT NULL,
-		CONSTRAINT ext_fetch_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
-	);
-
-	CREATE INDEX idx_ext_featurize_req_client_id ON public.ext_fetch_features_request_dump USING btree (client_id);
-	CREATE INDEX idx_ext_featurize_req_user_id ON public.ext_fetch_features_request_dump USING btree (user_id);
-
-	-- public.ext_fetch_features_response_dump definition
-	CREATE TABLE public.ext_fetch_features_response_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		response_dump json NULL,
-		groupings json NULL,
-		time_to_featurize float8 NULL,
-		time_json json NULL,
-		CONSTRAINT ext_fetch_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
-	);
-
-	CREATE INDEX idx_ext_featurize_resp_client_id ON public.ext_fetch_features_response_dump USING btree (client_id);
-	CREATE INDEX idx_ext_featurize_resp_user_id ON public.ext_fetch_features_response_dump USING btree (user_id);
-
 	-- public.fetch_extracted_request_dump definition
 	CREATE TABLE public.fetch_extracted_request_dump (
 		request_id varchar(128) NOT NULL,
@@ -528,68 +408,6 @@ Database to use - `api_insights_db`
 
 	CREATE INDEX idx_fetch_extracted_resp_client_id ON public.fetch_extracted_response_dump USING btree (client_id);
 	CREATE INDEX idx_fetch_extracted_resp_user_id ON public.fetch_extracted_response_dump USING btree (user_id);
-
-	-- public.fetch_request_dump definition
-	CREATE TABLE public.fetch_request_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		cutoff_date varchar(128) NOT NULL,
-		CONSTRAINT fetch_request_dump_pkey PRIMARY KEY (request_id, created_at)
-	);
-
-	CREATE INDEX idx_fetch_req_client_id ON public.fetch_request_dump USING btree (client_id);
-	CREATE INDEX idx_fetch_req_user_id ON public.fetch_request_dump USING btree (user_id);
-
-	-- public.fetch_response_dump definition
-	CREATE TABLE public.fetch_response_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		response_dump json NULL,
-		time_to_featurize float8 NULL,
-		time_json json NULL,
-		CONSTRAINT fetch_response_dump_pkey PRIMARY KEY (request_id, created_at)
-	);
-
-	CREATE INDEX idx_fetch_resp_client_id ON public.fetch_response_dump USING btree (client_id);
-	CREATE INDEX idx_fetch_resp_user_id ON public.fetch_response_dump USING btree (user_id);
-
-	-- public.get_features_request_dump definition
-	CREATE TABLE public.get_features_request_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		sms_data json NULL,
-		apps_data json NULL,
-		device_data json NULL,
-		call_data json NULL,
-		contacts_data json NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		cutoff_date varchar(128) NOT NULL,
-		CONSTRAINT get_features_request_dump_pkey PRIMARY KEY (request_id, created_at)
-	);
-
-	CREATE INDEX idx_featurize_req_client_id ON public.get_features_request_dump USING btree (client_id);
-	CREATE INDEX idx_featurize_req_user_id ON public.get_features_request_dump USING btree (user_id);
-
-	-- public.get_features_response_dump definition
-	CREATE TABLE public.get_features_response_dump (
-		request_id varchar(128) NOT NULL,
-		user_id varchar(128) NOT NULL,
-		client_id varchar(128) NOT NULL,
-		created_at timestamp DEFAULT now() NOT NULL,
-		response_dump json NULL,
-		groupings json NULL,
-		time_to_featurize float8 NULL,
-		time_json json NULL,
-		CONSTRAINT get_features_response_dump_pkey PRIMARY KEY (request_id, created_at)
-	);
-
-	CREATE INDEX idx_featurize_resp_client_id ON public.get_features_response_dump USING btree (client_id);
-	CREATE INDEX idx_featurize_resp_user_id ON public.get_features_response_dump USING btree (user_id);
 
 	-- public.insights_request_dump definition
 	CREATE TABLE public.insights_request_dump (

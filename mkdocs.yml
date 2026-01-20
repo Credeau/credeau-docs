@@ -34,7 +34,6 @@ nav:
   - Products:
       - MobileForge:
           - Overview: products/mobileforge/index.md
-          - Components: products/mobileforge/components.md
           - Deployment:
               - Database: products/mobileforge/deployment/database.md
               - Sync Pipeline: products/mobileforge/deployment/sync_pipeline.md
