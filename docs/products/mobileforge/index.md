@@ -1,6 +1,6 @@
 # MobileForge
 
-MobileForge ensures that all data collected from user devices is securely transmitted directly to the institution’s infrastructure, where profiling and processing take place — maintaining full control and compliance within institutional premises.
+MobileForge is the deployable, on-premises version of MobileGator that provides organizations with complete data ownership and control. Unlike the cloud-hosted SaaS model, MobileForge ensures that all data collected from user devices is securely transmitted directly to your infrastructure, where profiling and processing take place entirely within your premises — maintaining full control, compliance, and data sovereignty while meeting the strictest regulatory and security requirements.
 
 ## Key Features
 
