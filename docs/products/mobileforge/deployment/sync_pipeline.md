@@ -221,11 +221,29 @@ Ensure each node has the following amount of resources available at runtime to a
 
 ## Scaling Ladder
 
-| DAU | Producer Nodes | SMS Consumer | Events Consumer | Common Consumer | Kafka Brokers |
-|----------|:-------------:|:------------:|:--------------:|:--------------:|:-------------------------------:|
-| 25K | 1-3 | 1-4 | 1-2 | 1-2 | 1-3 |
-| 50K | 2-5 | 2-8 | 1-5 | 1-5 | 3 |
-| 75K | 3-7 | 3-12 | 2-7 | 2-7 | 3 |
-| 100K | 4-10 | 4-16 | 3-10 | 3-10 | 3-5 |
+The following table provides recommended node counts based on daily active users (DAU):
+
+| DAU  | Producer Nodes | SMS Consumer | Events Consumer | Common Consumer | Kafka Brokers |
+|------|:--------------:|:------------:|:---------------:|:---------------:|:-------------:|
+| 25K  | 1-3            | 1-4          | 1-2             | 1-2             | 1-2           |
+| 50K  | 2-5            | 2-8          | 1-5             | 1-5             | 3             |
+| 75K  | 3-7            | 3-12         | 2-7             | 2-7             | 3             |
+| 100K | 4-10           | 4-16         | 3-10            | 3-10            | 3-5           |
 
 > With increasing data consumer nodes, do adjust the partition count of the respective topics to at least match the max number of nodes expected.
+
+---
+
+> **Note:** These recommendations assume:
+
+> - Each node has the minimum recommended specifications (16GB RAM, 4 vCPUs)
+> - Average user activity patterns
+> - Standard business hours usage
+> - Regular maintenance windows
+>
+> Adjust node counts based on:
+
+> - Peak usage times
+> - Geographic distribution of users
+> - Specific workload patterns
+> - Performance monitoring metrics
