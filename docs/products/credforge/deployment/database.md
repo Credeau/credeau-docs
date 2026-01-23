@@ -505,7 +505,8 @@ db.ecm_response_log.createIndex({ "client_id": 1 });
 // 6. Request Workflow State
 db.createCollection("request_workflow_state");
 db.request_workflow_state.createIndex({ "client_id": 1 });
-db.request_workflow_state.createIndex({ "created_date": 1 });
+db.request_workflow_state.createIndex({ "created_date": -1 });
+db.request_workflow_state.createIndex({ "created_at": -1 });
 db.request_workflow_state.createIndex({ "user_id": 1 });
 db.request_workflow_state.createIndex({ "request_id": 1 });
 db.request_workflow_state.createIndex({ "reference_id": 1 });
