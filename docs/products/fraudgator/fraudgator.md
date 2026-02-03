@@ -104,6 +104,44 @@ curl --location 'https://fraudgator.credeau.com/api/hash-concentrations' \
 }'
 ```
 
+### Generating a valid Payload
+
+```python
+import json
+import hashlib
+
+from datetime import datetime
+
+
+def md5_hash(value: str) -> str:
+    """Generate MD5 hash of a string value"""
+    return hashlib.md5(value.encode()).hexdigest()
+
+
+payload = {
+    "user_id": "demo_user",
+    "use_group_config": True,
+    "cutoff_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    "hash_dob": md5_hash('01/01/2000'),
+    "hash_pan": md5_hash('FRKPS6254W'),
+    "hash_email": md5_hash('dummy@gmail.com'),
+    "hash_aadhar": md5_hash('345286574673'),
+    "hash_pincode": md5_hash('123456'),
+    "hash_bank_name": md5_hash('icici bank pvt ltd'),
+    "hash_ifsc_code": md5_hash('icic001234'),
+    "hash_ip_address": md5_hash('1.1.1.1'),
+    "hash_upi_handle": md5_hash('dummy@icici'),
+    "hash_phone_number": md5_hash('1234567890'),
+    "hash_email_domain": md5_hash('gmail.com'),
+    "hash_full_name_pan": md5_hash('dummy person'),
+    "hash_father_name_pan": md5_hash('dummy person senior'),
+    "hash_ifsc_first_4_chars": md5_hash('icic'),
+    "hash_bank_account_number": md5_hash('123456789012'),
+    "hash_pdf_bank_account_number": md5_hash('123456789012'),
+    "hash_bank_account_number_last_4_digits": md5_hash('9012')
+}
+```
+
 ## Response
 
 ### Response Fields (JSON)
