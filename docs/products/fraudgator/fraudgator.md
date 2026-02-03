@@ -23,15 +23,13 @@ The following variables will be referenced throughout this documentation:
 >
 > Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.
 
-## Endpoints
-
-### Hash-Concentration API
+## Hash-Concentration API
 
 ```bash
 POST /api/hash-concentrations
 ```
 
-## Authentication
+### Authentication
 
 The API requires two authentication headers:
 
@@ -46,9 +44,9 @@ and, one content type header:
 |--------|-------|
 | `Content-Type` | `application/json` |
 
-## Request Parameters
+### Request Parameters
 
-### Request Body (JSON)
+#### Request Body (JSON)
 
 | Parameter                                | Type   | Required | Description |
 |------------------------------------------|--------|----------|-------------|
@@ -73,7 +71,7 @@ and, one content type header:
 | `hash_pdf_bank_account_number`           | string | No       | MD5 hash of Bank account number as per uploaded PDF
 | `hash_bank_account_number_last_4_digits` | string | No       | MD5 hash of Bank account number's last 4 characters
 
-### Request cURL
+#### Request cURL
 
 ```bash
 curl --location 'https://fraudgator.credeau.com/api/hash-concentrations' \
@@ -104,10 +102,9 @@ curl --location 'https://fraudgator.credeau.com/api/hash-concentrations' \
 }'
 ```
 
-### Generating a valid Payload
+#### Generating a valid Payload
 
 ```python
-import json
 import hashlib
 
 from datetime import datetime
@@ -142,9 +139,9 @@ payload = {
 }
 ```
 
-## Response
+### Response
 
-### Response Fields (JSON)
+#### Response Fields (JSON)
 
 | Field Name          | Type   | Description |
 |---------------------|--------|-------------|
@@ -154,9 +151,9 @@ payload = {
 | `feature_name`      | int    | Count features across hashes provided |
 
 
-### Success Responses
+#### Success Response
 
-#### HTTP 200 OK (Success)
+##### HTTP 200 OK (Success)
 
 When the hash concentration is evaluated successfully.
 
@@ -176,9 +173,9 @@ When the hash concentration is evaluated successfully.
 }
 ```
 
-### Error Responses
+#### Error Responses
 
-#### HTTP 401 Unauthorized (Wrong credentials)
+##### HTTP 401 Unauthorized (Wrong credentials)
 
 This error occurs when either an invalid client ID or authentication token is provided in the request headers.
 
@@ -191,7 +188,7 @@ This error occurs when either an invalid client ID or authentication token is pr
 
 ---
 
-#### HTTP 403 Forbidden (Invalid Access)
+##### HTTP 403 Forbidden (Invalid Access)
 
 This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
 
@@ -214,7 +211,7 @@ This error can occur when the requesting IP address is not whitelisted in the Cr
 
 ---
 
-#### HTTP 422 Unprocessable Content (Wrong Request Payload)
+##### HTTP 422 Unprocessable Content (Wrong Request Payload)
 
 This error is returned for the following 2 cases -
 
@@ -279,7 +276,289 @@ This error is returned for the following 2 cases -
 
 ---
 
-#### HTTP 429 Too Many Requests (Rate Limit Exceeded)
+##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
+
+This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
+
+**Best Practice for Rate Limit Handling**
+
+When implementing retries for rate-limited requests:
+
+1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
+2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
+
+Example implementation:
+
+```python
+import random
+import time
+def get_retry_delay(attempt, base_delay=1, max_delay=60):
+    # Calculate exponential backoff
+    delay = min(base_delay * (2 ** attempt), max_delay)
+    # Add jitter (±20%)
+    jitter = delay * 0.2
+    return delay + random.uniform(-jitter, jitter)
+```
+
+This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
+
+## Face-Match API
+
+```bash
+POST /api/face-match
+```
+
+### Authentication
+
+The API requires two authentication headers:
+
+| Header | Value |
+|--------|-------|
+| `x-client-id` | `<client_id>` |
+| `x-auth-token` | `<auth_token>` |
+
+and, one content type header:
+
+| Header | Value |
+|--------|-------|
+| `Content-Type` | `application/json` |
+
+### Request Parameters
+
+#### Request Body (JSON)
+
+| Parameter              | Type   | Required | Description |
+|------------------------|--------|----------|-------------|
+| `user_id`              | string | Yes      | Unique identifier of the user |
+| `source_face`          | string | Yes      | Base64 encoded string of the source image bytes (Aadhar Card, PAN Card, etc.) |
+| `target_face`          | string | Yes      | Base64 encoded string of the target image bytes (User Selfie) |
+| `similarity_threshold` | float  | Yes      | Minimum similarity score (between 0 and 100) required for face match |
+
+#### Request cURL
+
+```bash
+curl --location 'https://fraudgator.credeau.com/api/face-match' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "user_id": "c034852d-238c-49f0-a946-5ef9f3f0eab0",
+  "source_face": "<Base64 encoded string of the source image bytes>",
+  "target_face": "<Base64 encoded string of the target image bytes>",
+  "similarity_threshold": 80.0
+}'
+```
+
+#### Generating a valid Payload
+
+```python
+import base64
+
+
+def load_and_encode_image(file_path: str) -> str:
+    """Generate MD5 hash of a string value"""
+    with open(file_path, 'rb') as f:
+        image_bytes = f.read()
+    
+    return base64.b64encode(image_bytes).decode('utf-8')
+
+
+payload = {
+    "user_id": "c034852d-238c-49f0-a946-5ef9f3f0eab0",
+    "source_face": load_and_encode_image('source_image.jpg'),
+    "target_face": load_and_encode_image('target_image.jpg'),
+    "similarity_threshold": 80.0
+}
+```
+
+### Response
+
+#### Response Fields (JSON)
+
+| Field Name    | Type   | Description |
+|---------------|--------|-------------|
+`user_id`       | string | Unique identifier of the user (as sent in the request) |
+`request_id`    | string | Unique request identifier for reference |
+`matched`       | bool   | Flag indicating if the faces match or not |
+`similarity`    | float  | Similarity score between the faces (between 0 and 100) |
+`confidence`    | float  | Confidence score of the face match prediction (between 0 and 100) |
+`face_detected` | bool   | Flag indicating if a face was detected in the source and target images |
+
+#### Success Response
+
+##### HTTP 200 OK (Success)
+
+1. When the face matches successfully with high confidence -
+
+    ```json
+    {
+        "matched": true,
+        "similarity": 99.99600982666016,
+        "confidence": 99.99996185302734,
+        "face_detected": true,
+        "request_id": "dc32da44b3fb46679cf5a5121ea72481",
+        "user_id": "4630b946-7311-410b-adc1-d66de3c2905c"
+    }
+    ```
+
+2. When the face does not match due to different target image -
+
+    ```json
+    {
+        "matched": false,
+        "similarity": 0.0,
+        "confidence": 0.0,
+        "face_detected": true,
+        "request_id": "ddefe025883a415da0168ef42b922d0c",
+        "user_id": "b79a87e5-a2a7-49d6-8652-f80cbf8bd564"
+    }
+    ```
+
+3. When no face was detected in the source / target image -
+
+    ```json
+    {
+        "matched": false,
+        "similarity": 0.0,
+        "confidence": 0.0,
+        "face_detected": false,
+        "request_id": "b005c7d7488a4574b34e0d040905121b",
+        "user_id": "a3ca6e04-fddd-4f63-8285-ebe621c0c7a4"
+    }
+    ```
+
+#### Error Responses
+
+##### HTTP 401 Unauthorized (Wrong credentials)
+
+This error occurs when either an invalid client ID or authentication token is provided in the request headers.
+
+> ⚠️ **Note**
+>
+> If you receive this error:
+>
+> 1. Verify that you're using the correct client ID and authentication token
+> 2. Contact Credeau support
+
+---
+
+##### HTTP 403 Forbidden (Invalid Access)
+
+This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
+
+```html
+<html>
+    <head><title>403 Forbidden</title></head>
+    <body>
+        <center><h1>403 Forbidden</h1></center>
+    </body>
+</html>
+```
+
+> ⚠️ **Note**
+>
+> To resolve this error:
+>
+> 1. Contact Credeau support to whitelist your IP address
+> 2. Provide your organization's name and the IP address(es) that need access
+> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
+
+---
+
+##### HTTP 422 Unprocessable Content (Wrong Request Payload)
+
+This error is returned for the following 2 cases -
+
+1. Missing Required Field
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "source_face"
+                ],
+                "msg": "Field required",
+                "input": {
+                    "user_id": "a3ca6e04-fddd-4f63-8285-ebe621c0c7a4",
+                    "similarity_threshold": 80.0
+                }
+            },
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "target_face"
+                ],
+                "msg": "Field required",
+                "input": {
+                    "user_id": "a3ca6e04-fddd-4f63-8285-ebe621c0c7a4",
+                    "similarity_threshold": 80.0
+                }
+            }
+        ]
+    }
+    ```
+
+2. Invalid Base64 encoded images
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "value_error",
+                "loc": [
+                    "body",
+                    "source_face"
+                ],
+                "msg": "Value error, Invalid base64 string",
+                "input": "not a valid base64 string",
+                "ctx": {
+                    "error": {}
+                }
+            },
+            {
+                "type": "value_error",
+                "loc": [
+                    "body",
+                    "target_face"
+                ],
+                "msg": "Value error, Invalid base64 string",
+                "input": "not a valid base64 string",
+                "ctx": {
+                    "error": {}
+                }
+            }
+        ]
+    }
+    ```
+
+3. Invalid value for similarity_threshold
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "value_error",
+                "loc": [
+                    "body",
+                    "similarity_threshold"
+                ],
+                "msg": "Value error, similarity_threshold must be between 0 and 100",
+                "input": 101.0,
+                "ctx": {
+                    "error": {}
+                }
+            }
+        ]
+    }
+    ```
+
+---
+
+##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
 
 This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
 
