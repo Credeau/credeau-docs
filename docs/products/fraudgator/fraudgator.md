@@ -375,14 +375,14 @@ payload = {
 
 #### Response Fields (JSON)
 
-| Field Name    | Type   | Description |
-|---------------|--------|-------------|
-`user_id`       | string | Unique identifier of the user (as sent in the request) |
-`request_id`    | string | Unique request identifier for reference |
-`matched`       | bool   | Flag indicating if the faces match or not |
-`similarity`    | float  | Similarity score between the faces (between 0 and 100) |
-`confidence`    | float  | Confidence score of the face match prediction (between 0 and 100) |
-`face_detected` | bool   | Flag indicating if a face was detected in the source and target images |
+| Field Name      | Type   | Description |
+|-----------------|--------|-------------|
+| `user_id`       | string | Unique identifier of the user (as sent in the request) |
+| `request_id`    | string | Unique request identifier for reference |
+| `matched`       | bool   | Flag indicating if the faces match or not |
+| `similarity`    | float  | Similarity score between the faces (between 0 and 100) |
+| `confidence`    | float  | Confidence score of the face match prediction (between 0 and 100) |
+| `face_detected` | bool   | Flag indicating if a face was detected in the source and target images |
 
 #### Success Response
 
@@ -524,6 +524,251 @@ This error is returned for the following 2 cases -
                 "loc": [
                     "body",
                     "target_face"
+                ],
+                "msg": "Value error, Invalid base64 string",
+                "input": "not a valid base64 string",
+                "ctx": {
+                    "error": {}
+                }
+            }
+        ]
+    }
+    ```
+
+3. Invalid value for similarity_threshold
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "value_error",
+                "loc": [
+                    "body",
+                    "similarity_threshold"
+                ],
+                "msg": "Value error, similarity_threshold must be between 0 and 100",
+                "input": 101.0,
+                "ctx": {
+                    "error": {}
+                }
+            }
+        ]
+    }
+    ```
+
+---
+
+##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
+
+This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
+
+**Best Practice for Rate Limit Handling**
+
+When implementing retries for rate-limited requests:
+
+1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
+2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
+
+Example implementation:
+
+```python
+import random
+import time
+def get_retry_delay(attempt, base_delay=1, max_delay=60):
+    # Calculate exponential backoff
+    delay = min(base_delay * (2 ** attempt), max_delay)
+    # Add jitter (±20%)
+    jitter = delay * 0.2
+    return delay + random.uniform(-jitter, jitter)
+```
+
+This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
+
+## Selfie-Dedup API
+
+```bash
+POST /api/selfie-dedup
+```
+
+### Authentication
+
+The API requires two authentication headers:
+
+| Header | Value |
+|--------|-------|
+| `x-client-id` | `<client_id>` |
+| `x-auth-token` | `<auth_token>` |
+
+and, one content type header:
+
+| Header | Value |
+|--------|-------|
+| `Content-Type` | `application/json` |
+
+### Request Parameters
+
+#### Request Body (JSON)
+
+| Parameter              | Type   | Required | Description |
+|------------------------|--------|----------|-------------|
+| `user_id`              | string | Yes      | Unique identifier of the user |
+| `image`                | string | Yes      | Base64 encoded string of the image bytes (User Selfie) |
+| `similarity_threshold` | float  | Yes      | Minimum similarity score (between 0 and 100) required for face match |
+| `max_faces_threshold`  | int    | Yes      | Max number of faces to match during deduplication |
+
+#### Request cURL
+
+```bash
+curl --location 'https://fraudgator.credeau.com/api/selfie-dedup' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "user_id": "c034852d-238c-49f0-a946-5ef9f3f0eab0",
+  "image": "<Base64 encoded string of the image bytes>",
+  "similarity_threshold": 80.0,
+  "max_faces_threshold": 10
+}'
+```
+
+#### Generating a valid Payload
+
+```python
+import base64
+
+
+def load_and_encode_image(file_path: str) -> str:
+    """Generate MD5 hash of a string value"""
+    with open(file_path, 'rb') as f:
+        image_bytes = f.read()
+    
+    return base64.b64encode(image_bytes).decode('utf-8')
+
+
+payload = {
+    "user_id": "c034852d-238c-49f0-a946-5ef9f3f0eab0",
+    "image": load_and_encode_image('image.jpg'),
+    "similarity_threshold": 80.0,
+    "max_faces_threshold": 10
+}
+```
+
+### Response
+
+#### Response Fields (JSON)
+
+| Field Name            | Type   | Description |
+|-----------------------|--------|-------------|
+| `user_id`             | string | Unique identifier of the user (as sent in the request) |
+| `request_id`          | string | Unique request identifier for reference |
+| `indexed`             | bool   | Flag indicating if the image passed was indexed or not |
+| `cnt_users_same_face` | int    | Number of users found with similar faces |
+| `matched_user_ids`    | array  | User ids of users with similar faces |
+| `error`               | string | Error message indicating issues with the image |
+
+#### Success Response
+
+##### HTTP 200 OK (Success)
+
+1. When the selfie deduplication completes successfully -
+
+    ```json
+    {
+        "request_id": "a05a6360e2a14b0e9eb0b5e3caa4c947",
+        "user_id": "5125dbfe-1238-4740-a935-8d6d56345a26",
+        "indexed": true,
+        "cnt_users_same_face": 1,
+        "matched_user_ids": [
+            "2c2a7dfa-f41f-4918-9a1e-ec13ca167654"
+        ]
+    }
+    ```
+
+2. When no face was detected in the image -
+
+    ```json
+    {
+        "request_id": "6139143ab88347e79b8db15a76fa67a5",
+        "user_id": "43bbb576-c76e-4a17-8931-d8d20b20f9a4",
+        "error": "NO_FACE_FOUND",
+        "indexed": false
+    }
+    ```
+
+#### Error Responses
+
+##### HTTP 401 Unauthorized (Wrong credentials)
+
+This error occurs when either an invalid client ID or authentication token is provided in the request headers.
+
+> ⚠️ **Note**
+>
+> If you receive this error:
+>
+> 1. Verify that you're using the correct client ID and authentication token
+> 2. Contact Credeau support
+
+---
+
+##### HTTP 403 Forbidden (Invalid Access)
+
+This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
+
+```html
+<html>
+    <head><title>403 Forbidden</title></head>
+    <body>
+        <center><h1>403 Forbidden</h1></center>
+    </body>
+</html>
+```
+
+> ⚠️ **Note**
+>
+> To resolve this error:
+>
+> 1. Contact Credeau support to whitelist your IP address
+> 2. Provide your organization's name and the IP address(es) that need access
+> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
+
+---
+
+##### HTTP 422 Unprocessable Content (Wrong Request Payload)
+
+This error is returned for the following 2 cases -
+
+1. Missing Required Field
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "image"
+                ],
+                "msg": "Field required",
+                "input": {
+                    "user_id": "2d98f34c-bc51-49d9-ba54-26dcfb59b852",
+                    "similarity_threshold": 80.0,
+                    "max_faces_threshold": 10
+                }
+            }
+        ]
+    }
+    ```
+
+2. Invalid Base64 encoded images
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "value_error",
+                "loc": [
+                    "body",
+                    "image"
                 ],
                 "msg": "Value error, Invalid base64 string",
                 "input": "not a valid base64 string",
