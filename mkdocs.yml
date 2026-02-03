@@ -68,7 +68,9 @@ nav:
       - ReverseGeocode:
           - Overview: products/reversegeocode/index.md
           - ReverseGeocode: products/reversegeocode/reversegeocode.md
-
+      - FraudGator:
+          - Overview: products/fraudgator/index.md
+          - FraudGator: products/fraudgator/fraudgator.md
 extra_css:
   - stylesheets/extra.css
 
