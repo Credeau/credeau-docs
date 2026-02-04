@@ -659,50 +659,63 @@ payload = {
 
 | Field Name            | Type   | Description |
 |-----------------------|--------|-------------|
-| `user_id`             | string | Unique identifier of the user (as sent in the request) |
-| `request_id`          | string | Unique request identifier for reference |
-| `indexed`             | bool   | Flag indicating if the image passed was associated with the user or not |
-| `cnt_users_same_face` | int    | Number of users found with similar faces |
-| `matched_user_ids`    | array  | User ids of users with similar faces |
-| `error`               | string | Error message indicating issues with the image |
+| `user_id`                | string | Unique identifier of the user (as sent in the request) |
+| `request_id`             | string | Unique request identifier for reference |
+| `indexed`                | bool   | Flag indicating if the image passed was successfully indexed in the database or not |
+| `index_error`            | string | Error message indicating issues with indexing the image |
+| `face_associated`        | bool   | Flag indicating if the face was successfully associated with a user in the database or not |
+| `face_association_error` | string | Error message indicating issues with associating the face with a user
+| `matched_user_ids`       | array  | User ids of users with similar faces |
+| `cnt_users_same_face`    | int    | Number of users found with similar faces |
 
 #### Success Response
 
 ##### HTTP 200 OK (Success)
 
-1. When the selfie deduplication completes successfully -
+1. When no other users with same face are found and the selfie face is associated with the user -
 
     ```json
     {
-        "request_id": "a05a6360e2a14b0e9eb0b5e3caa4c947",
-        "user_id": "5125dbfe-1238-4740-a935-8d6d56345a26",
+        "request_id": "b5c98e9b531042bd9b3a8b8050eeb67f",
+        "user_id": "demo-user-1",
         "indexed": true,
-        "cnt_users_same_face": 1,
+        "index_error": null,
+        "face_associated": true,
+        "face_association_error": null,
+        "matched_user_ids": [],
+        "cnt_users_same_face": 0
+    }
+    ```
+
+2. When other users with same face are found and the selfie is not associated to the user
+
+    ```json
+    {
+        "request_id": "fb1448d8b3f14a9a91a71b7923880b01",
+        "user_id": "demo-user-2",
+        "indexed": true,
+        "index_error": null,
+        "face_associated": false,
+        "face_association_error": "OTHER_USERS_WITH_SAME_FACE",
         "matched_user_ids": [
-            "2c2a7dfa-f41f-4918-9a1e-ec13ca167654"
-        ]
+            "demo-user-1"
+        ],
+        "cnt_users_same_face": 1
     }
     ```
 
-2. When no face was detected in the image -
+3. When no face is detected in the selfie -
 
     ```json
     {
-        "request_id": "6139143ab88347e79b8db15a76fa67a5",
-        "user_id": "43bbb576-c76e-4a17-8931-d8d20b20f9a4",
-        "error": "NO_FACE_FOUND",
-        "indexed": false
-    }
-    ```
-
-3. When the face does not match previously uploaded image in case of re-association -
-
-    ```json
-    {
-        "request_id": "6139143ab88347e79b8db15a76fa67a5",
-        "user_id": "43bbb576-c76e-4a17-8931-d8d20b20f9a4",
-        "error": "FACE_MISMATCH",
-        "indexed": false
+        "request_id": "8bc3f64a002c4dc5ac6871a7a48682e1",
+        "user_id": "demo-user-3",
+        "indexed": false,
+        "index_error": "NO_FACE_FOUND",
+        "face_associated": false,
+        "face_association_error": "NO_FACE_FOUND",
+        "matched_user_ids": [],
+        "cnt_users_same_face": 0
     }
     ```
 
@@ -761,7 +774,7 @@ This error is returned for the following 2 cases -
                 ],
                 "msg": "Field required",
                 "input": {
-                    "user_id": "2d98f34c-bc51-49d9-ba54-26dcfb59b852",
+                    "user_id": "demo-user-4",
                     "similarity_threshold": 80.0,
                     "max_faces_threshold": 10
                 }
