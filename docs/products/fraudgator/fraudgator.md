@@ -668,6 +668,10 @@ payload = {
 | `matched_user_ids`       | array  | User ids of users with similar faces |
 | `cnt_users_same_face`    | int    | Number of users found with similar faces |
 
+> ⚠️ Note!
+>
+> Look for `face_associated` flag, if its `true` then the given image has passed all check points and is valid to associate with the user.
+
 #### Success Response
 
 ##### HTTP 200 OK (Success)
