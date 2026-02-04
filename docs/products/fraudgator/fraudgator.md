@@ -661,7 +661,7 @@ payload = {
 |-----------------------|--------|-------------|
 | `user_id`             | string | Unique identifier of the user (as sent in the request) |
 | `request_id`          | string | Unique request identifier for reference |
-| `indexed`             | bool   | Flag indicating if the image passed was indexed or not |
+| `indexed`             | bool   | Flag indicating if the image passed was associated with the user or not |
 | `cnt_users_same_face` | int    | Number of users found with similar faces |
 | `matched_user_ids`    | array  | User ids of users with similar faces |
 | `error`               | string | Error message indicating issues with the image |
@@ -691,6 +691,17 @@ payload = {
         "request_id": "6139143ab88347e79b8db15a76fa67a5",
         "user_id": "43bbb576-c76e-4a17-8931-d8d20b20f9a4",
         "error": "NO_FACE_FOUND",
+        "indexed": false
+    }
+    ```
+
+3. When the face does not match previously uploaded image in case of re-association -
+
+    ```json
+    {
+        "request_id": "6139143ab88347e79b8db15a76fa67a5",
+        "user_id": "43bbb576-c76e-4a17-8931-d8d20b20f9a4",
+        "error": "FACE_MISMATCH",
         "indexed": false
     }
     ```
