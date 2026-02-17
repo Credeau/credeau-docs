@@ -734,12 +734,12 @@ curl --location 'https://fraudgator.credeau.com/api/aadhar-pan-binding' \
 |--------------------------------|--------|-------------|
 | `request_id`                   | string | Unique request identifier for reference |
 | `user_id`                      | string | Unique identifier of the user (as sent in the request) |
-| `aadhar_last_4_digits_match`   | bool   | Flag indicating if the last 4 digits of Aadhar match |
-| `aadhar_first_2_digits_match`  | bool   | Flag indicating if the first 2 digits of Aadhar match |
-| `aadhar_pan_name_match`        | bool   | Flag indicating if the name in Aadhar and PAN matches |
-| `aadhar_pan_dob_match`         | bool   | Flag indicating if the DOB in Aadhar and PAN matches |
-| `aadhar_pan_father_name_match` | bool   | Flag indicating if the Father's Name in Aadhar and PAN matches |
-| `overall_match`                | bool   | Flag indicating if all the checks pass |
+| `aadhar_last_4_digits_match`   | bool   | Flag indicating if the last 4 digits of Aadhar match (`null` if respective input fields are not received) |
+| `aadhar_first_2_digits_match`  | bool   | Flag indicating if the first 2 digits of Aadhar match (`null` if respective input fields are not received) |
+| `aadhar_pan_name_match`        | bool   | Flag indicating if the name in Aadhar and PAN matches (`null` if respective input fields are not received) |
+| `aadhar_pan_dob_match`         | bool   | Flag indicating if the DOB in Aadhar and PAN matches (`null` if respective input fields are not received) |
+| `aadhar_pan_father_name_match` | bool   | Flag indicating if the Father's Name in Aadhar and PAN matches (`null` if respective input fields are not received) |
+| `overall_match`                | bool   | Flag indicating if all the checks pass (`null` if all the match flags are `null`) |
 
 > ⚠️ Note!
 >
@@ -904,16 +904,14 @@ curl --location 'https://fraudgator.credeau.com/api/bank-pan-binding' \
 
 #### Response Fields (JSON)
 
-| Field Name                     | Type   | Description |
-|--------------------------------|--------|-------------|
-| `request_id`                   | string | Unique request identifier for reference |
-| `user_id`                      | string | Unique identifier of the user (as sent in the request) |
-| `aadhar_last_4_digits_match`   | bool   | Flag indicating if the last 4 digits of Aadhar match |
-| `aadhar_first_2_digits_match`  | bool   | Flag indicating if the first 2 digits of Aadhar match |
-| `aadhar_pan_name_match`        | bool   | Flag indicating if the name in Aadhar and PAN matches |
-| `aadhar_pan_dob_match`         | bool   | Flag indicating if the DOB in Aadhar and PAN matches |
-| `aadhar_pan_father_name_match` | bool   | Flag indicating if the Father's Name in Aadhar and PAN matches |
-| `overall_match`                | bool   | Flag indicating if all the checks pass |
+| Field Name                   | Type   | Description |
+|------------------------------|--------|-------------|
+| `request_id`                 | string | Unique request identifier for reference |
+| `user_id`                    | string | Unique identifier of the user (as sent in the request) |
+| `bank_pan_name_match`        | bool   | Flag indicating if the name in Bank and PAN matches (`null` if respective input fields are not received) |
+| `bank_pan_dob_match`         | bool   | Flag indicating if the DOB in Bank and PAN matches (`null` if respective input fields are not received) |
+| `bank_pan_father_name_match` | bool   | Flag indicating if the Father's Name in Bank and PAN matches (`null` if respective input fields are not received) |
+| `overall_match`              | bool   | Flag indicating if all the checks pass (`null` if all the match flags are `null`) |
 
 > ⚠️ Note!
 >
