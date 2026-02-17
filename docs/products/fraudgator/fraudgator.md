@@ -856,3 +856,256 @@ def get_retry_delay(attempt, base_delay=1, max_delay=60):
 ```
 
 This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
+
+## Aadhar PAN Binding API
+
+```bash
+POST /api/aadhar-pan-binding
+```
+
+### Authentication
+
+The API requires two authentication headers:
+
+| Header | Value |
+|--------|-------|
+| `x-client-id` | `<client_id>` |
+| `x-auth-token` | `<auth_token>` |
+
+and, one content type header:
+
+| Header | Value |
+|--------|-------|
+| `Content-Type` | `application/json` |
+
+### Request Parameters
+
+#### Request Body (JSON)
+
+| Parameter              | Type   | Required | Description |
+|------------------------|--------|----------|-------------|
+| `user_id`              | string | Yes      | Unique identifier of the user |
+| `image`                | string | Yes      | Base64 encoded string of the image bytes (User Selfie) |
+| `similarity_threshold` | float  | Yes      | Minimum similarity score (between 0 and 100) required for face match |
+| `max_faces_threshold`  | int    | Yes      | Max number of faces to match during deduplication |
+
+| Parameter                                | Type   | Required | Description |
+|------------------------------------------|--------|----------|-------------|
+| `user_id`                                | string | Yes      | Unique identifier of the user |
+| `aadhar_last_4_digits_from_pan`          | string | No       | Last 4 digits of Aadhar received from PAN
+| `aadhar_number_last_4_digits_mandatory`  | string | No       | Last 4 digits of Aadhar received from user in lending journey
+| `aadhar_first_2_digits_from_pan`         | string | No       | First 2 digits of Aadhar received from PAN
+| `aadhar_number_first_2_digits_mandatory` | string | No       | First 2 digits of Aadhar received from user in lending journey
+| `aadhar_name`                            | string | No       | Name of user received from Aadhar
+| `pan_name`                               | string | No       | Name of user received from PAN
+| `aadhar_dob`                             | string | No       | DOB of user received from Aadhar in `YYYY-MM-DD` format
+| `pan_dob`                                | string | No       | DOB of user received from PAN in `YYYY-MM-DD` format
+| `aadhar_father_name`                     | string | No       | Name of father received from Aadhar
+| `pan_father_name`                        | string | No       | Name of father received from PAN
+
+#### Request cURL
+
+```bash
+curl --location 'https://fraudgator.credeau.com/api/aadhar-pan-binding' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "user_id": "test_user_123",
+    "aadhar_last_4_digits_from_pan": "1234",
+    "aadhar_number_last_4_digits_mandatory": "1234",
+    "aadhar_first_2_digits_from_pan": "56",
+    "aadhar_number_last_2_digits_mandatory": "56",
+    "aadhar_name": "John Doet",
+    "pan_name": "John Doe",
+    "aadhar_dob": "1990-01-01",
+    "pan_dob": "1990-01-01",
+    "aadhar_father_name": "Robert Doe",
+    "pan_father_name": "Robert Doe"
+}'
+```
+
+### Response
+
+#### Response Fields (JSON)
+
+| Field Name                     | Type   | Description |
+|--------------------------------|--------|-------------|
+| `request_id`                   | string | Unique request identifier for reference |
+| `user_id`                      | string | Unique identifier of the user (as sent in the request) |
+| `aadhar_last_4_digits_match`   | bool   | Flag indicating if the last 4 digits of Aadhar match |
+| `aadhar_first_2_digits_match`  | bool   | Flag indicating if the first 2 digits of Aadhar match |
+| `aadhar_pan_name_match`        | bool   | Flag indicating if the name in Aadhar and PAN matches |
+| `aadhar_pan_dob_match`         | bool   | Flag indicating if the DOB in Aadhar and PAN matches |
+| `aadhar_pan_father_name_match` | bool   | Flag indicating if the Father's Name in Aadhar and PAN matches |
+| `overall_match`                | bool   | Flag indicating if all the checks pass |
+
+> ⚠️ Note!
+>
+> Look for `overall_match` flag, if its `true` then the given values have passed all the check points.
+
+#### Success Response
+
+##### HTTP 200 OK (Success)
+
+1. When all the fields match -
+
+    ```json
+    {
+        "request_id": "2485020aa3ca425ba8d38138abd34cbe",
+        "user_id": "test_user_123",
+        "aadhar_last_4_digits_match": true,
+        "aadhar_first_2_digits_match": true,
+        "aadhar_pan_name_match": true,
+        "aadhar_pan_dob_match": true,
+        "aadhar_pan_father_name_match": true,
+        "overall_match": true
+    }
+    ```
+
+2. When some of the fields match -
+
+    ```json
+    {
+        "request_id": "2485020aa3ca425ba8d38138abd34cbe",
+        "user_id": "test_user_123",
+        "aadhar_last_4_digits_match": true,
+        "aadhar_first_2_digits_match": true,
+        "aadhar_pan_name_match": false,
+        "aadhar_pan_dob_match": true,
+        "aadhar_pan_father_name_match": true,
+        "overall_match": false
+    }
+    ```
+
+3. When none of the fields match -
+
+    ```json
+    {
+        "request_id": "2485020aa3ca425ba8d38138abd34cbe",
+        "user_id": "test_user_123",
+        "aadhar_last_4_digits_match": false,
+        "aadhar_first_2_digits_match": false,
+        "aadhar_pan_name_match": false,
+        "aadhar_pan_dob_match": false,
+        "aadhar_pan_father_name_match": false,
+        "overall_match": false
+    }
+    ```
+
+#### Error Responses
+
+##### HTTP 401 Unauthorized (Wrong credentials)
+
+This error occurs when either an invalid client ID or authentication token is provided in the request headers.
+
+> ⚠️ **Note**
+>
+> If you receive this error:
+>
+> 1. Verify that you're using the correct client ID and authentication token
+> 2. Contact Credeau support
+
+---
+
+##### HTTP 403 Forbidden (Invalid Access)
+
+This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
+
+```html
+<html>
+    <head><title>403 Forbidden</title></head>
+    <body>
+        <center><h1>403 Forbidden</h1></center>
+    </body>
+</html>
+```
+
+> ⚠️ **Note**
+>
+> To resolve this error:
+>
+> 1. Contact Credeau support to whitelist your IP address
+> 2. Provide your organization's name and the IP address(es) that need access
+> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
+
+---
+
+##### HTTP 422 Unprocessable Content (Wrong Request Payload)
+
+This error is returned for the following 2 cases -
+
+1. Missing Required Field -
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "user_id"
+                ],
+                "msg": "Field required",
+                "input": {
+                    "aadhar_last_4_digits_from_pan": "1234",
+                    "aadhar_number_last_4_digits_mandatory": "1234",
+                    "aadhar_first_2_digits_from_pan": "56",
+                    "aadhar_number_last_2_digits_mandatory": "56",
+                    "aadhar_name": "John Doet",
+                    "pan_name": "John Doe",
+                    "aadhar_dob": "1990-01-01",
+                    "pan_dob": "1990-01-01",
+                    "aadhar_father_name": "Robert Doe",
+                    "pan_father_name": "Robert Doe"
+                }
+            }
+        ]
+    }
+    ```
+
+2. Invalid datatype -
+
+    ```json
+    {
+        "detail": [
+            {
+                "type": "string_type",
+                "loc": [
+                    "body",
+                    "user_id"
+                ],
+                "msg": "Input should be a valid string",
+                "input": 123
+            }
+        ]
+    }
+    ```
+
+---
+
+##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
+
+This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
+
+**Best Practice for Rate Limit Handling**
+
+When implementing retries for rate-limited requests:
+
+1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
+2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
+
+Example implementation:
+
+```python
+import random
+import time
+def get_retry_delay(attempt, base_delay=1, max_delay=60):
+    # Calculate exponential backoff
+    delay = min(base_delay * (2 ** attempt), max_delay)
+    # Add jitter (±20%)
+    jitter = delay * 0.2
+    return delay + random.uniform(-jitter, jitter)
+```
+
+This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
