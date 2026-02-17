@@ -4107,32 +4107,32 @@
 <tr>
 <td><code>aadhar_last_4_digits_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the last 4 digits of Aadhar match</td>
+<td>Flag indicating if the last 4 digits of Aadhar match (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
 <td><code>aadhar_first_2_digits_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the first 2 digits of Aadhar match</td>
+<td>Flag indicating if the first 2 digits of Aadhar match (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
 <td><code>aadhar_pan_name_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the name in Aadhar and PAN matches</td>
+<td>Flag indicating if the name in Aadhar and PAN matches (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
 <td><code>aadhar_pan_dob_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the DOB in Aadhar and PAN matches</td>
+<td>Flag indicating if the DOB in Aadhar and PAN matches (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
 <td><code>aadhar_pan_father_name_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the Father's Name in Aadhar and PAN matches</td>
+<td>Flag indicating if the Father's Name in Aadhar and PAN matches (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
 <td><code>overall_match</code></td>
 <td>bool</td>
-<td>Flag indicating if all the checks pass</td>
+<td>Flag indicating if all the checks pass (<code>null</code> if all the match flags are <code>null</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -4367,34 +4367,24 @@
 <td>Unique identifier of the user (as sent in the request)</td>
 </tr>
 <tr>
-<td><code>aadhar_last_4_digits_match</code></td>
+<td><code>bank_pan_name_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the last 4 digits of Aadhar match</td>
+<td>Flag indicating if the name in Bank and PAN matches (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
-<td><code>aadhar_first_2_digits_match</code></td>
+<td><code>bank_pan_dob_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the first 2 digits of Aadhar match</td>
+<td>Flag indicating if the DOB in Bank and PAN matches (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
-<td><code>aadhar_pan_name_match</code></td>
+<td><code>bank_pan_father_name_match</code></td>
 <td>bool</td>
-<td>Flag indicating if the name in Aadhar and PAN matches</td>
-</tr>
-<tr>
-<td><code>aadhar_pan_dob_match</code></td>
-<td>bool</td>
-<td>Flag indicating if the DOB in Aadhar and PAN matches</td>
-</tr>
-<tr>
-<td><code>aadhar_pan_father_name_match</code></td>
-<td>bool</td>
-<td>Flag indicating if the Father's Name in Aadhar and PAN matches</td>
+<td>Flag indicating if the Father's Name in Bank and PAN matches (<code>null</code> if respective input fields are not received)</td>
 </tr>
 <tr>
 <td><code>overall_match</code></td>
 <td>bool</td>
-<td>Flag indicating if all the checks pass</td>
+<td>Flag indicating if all the checks pass (<code>null</code> if all the match flags are <code>null</code>)</td>
 </tr>
 </tbody>
 </table>
