@@ -175,42 +175,6 @@ When the hash concentration is evaluated successfully.
 
 #### Error Responses
 
-##### HTTP 401 Unauthorized (Wrong credentials)
-
-This error occurs when either an invalid client ID or authentication token is provided in the request headers.
-
-> ⚠️ **Note**
->
-> If you receive this error:
->
-> 1. Verify that you're using the correct client ID and authentication token
-> 2. Contact Credeau support
-
----
-
-##### HTTP 403 Forbidden (Invalid Access)
-
-This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
-
-```html
-<html>
-    <head><title>403 Forbidden</title></head>
-    <body>
-        <center><h1>403 Forbidden</h1></center>
-    </body>
-</html>
-```
-
-> ⚠️ **Note**
->
-> To resolve this error:
->
-> 1. Contact Credeau support to whitelist your IP address
-> 2. Provide your organization's name and the IP address(es) that need access
-> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
-
----
-
 ##### HTTP 422 Unprocessable Content (Wrong Request Payload)
 
 This error is returned for the following 2 cases -
@@ -273,34 +237,6 @@ This error is returned for the following 2 cases -
         ]
     }
     ```
-
----
-
-##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
-
-This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
-
-**Best Practice for Rate Limit Handling**
-
-When implementing retries for rate-limited requests:
-
-1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
-2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
-
-Example implementation:
-
-```python
-import random
-import time
-def get_retry_delay(attempt, base_delay=1, max_delay=60):
-    # Calculate exponential backoff
-    delay = min(base_delay * (2 ** attempt), max_delay)
-    # Add jitter (±20%)
-    jitter = delay * 0.2
-    return delay + random.uniform(-jitter, jitter)
-```
-
-This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
 
 ## Face-Match API
 
@@ -429,42 +365,6 @@ payload = {
 
 #### Error Responses
 
-##### HTTP 401 Unauthorized (Wrong credentials)
-
-This error occurs when either an invalid client ID or authentication token is provided in the request headers.
-
-> ⚠️ **Note**
->
-> If you receive this error:
->
-> 1. Verify that you're using the correct client ID and authentication token
-> 2. Contact Credeau support
-
----
-
-##### HTTP 403 Forbidden (Invalid Access)
-
-This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
-
-```html
-<html>
-    <head><title>403 Forbidden</title></head>
-    <body>
-        <center><h1>403 Forbidden</h1></center>
-    </body>
-</html>
-```
-
-> ⚠️ **Note**
->
-> To resolve this error:
->
-> 1. Contact Credeau support to whitelist your IP address
-> 2. Provide your organization's name and the IP address(es) that need access
-> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
-
----
-
 ##### HTTP 422 Unprocessable Content (Wrong Request Payload)
 
 This error is returned for the following 2 cases -
@@ -555,34 +455,6 @@ This error is returned for the following 2 cases -
         ]
     }
     ```
-
----
-
-##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
-
-This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
-
-**Best Practice for Rate Limit Handling**
-
-When implementing retries for rate-limited requests:
-
-1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
-2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
-
-Example implementation:
-
-```python
-import random
-import time
-def get_retry_delay(attempt, base_delay=1, max_delay=60):
-    # Calculate exponential backoff
-    delay = min(base_delay * (2 ** attempt), max_delay)
-    # Add jitter (±20%)
-    jitter = delay * 0.2
-    return delay + random.uniform(-jitter, jitter)
-```
-
-This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
 
 ## Selfie-Dedup API
 
@@ -725,42 +597,6 @@ payload = {
 
 #### Error Responses
 
-##### HTTP 401 Unauthorized (Wrong credentials)
-
-This error occurs when either an invalid client ID or authentication token is provided in the request headers.
-
-> ⚠️ **Note**
->
-> If you receive this error:
->
-> 1. Verify that you're using the correct client ID and authentication token
-> 2. Contact Credeau support
-
----
-
-##### HTTP 403 Forbidden (Invalid Access)
-
-This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
-
-```html
-<html>
-    <head><title>403 Forbidden</title></head>
-    <body>
-        <center><h1>403 Forbidden</h1></center>
-    </body>
-</html>
-```
-
-> ⚠️ **Note**
->
-> To resolve this error:
->
-> 1. Contact Credeau support to whitelist your IP address
-> 2. Provide your organization's name and the IP address(es) that need access
-> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
-
----
-
 ##### HTTP 422 Unprocessable Content (Wrong Request Payload)
 
 This error is returned for the following 2 cases -
@@ -828,34 +664,6 @@ This error is returned for the following 2 cases -
         ]
     }
     ```
-
----
-
-##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
-
-This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
-
-**Best Practice for Rate Limit Handling**
-
-When implementing retries for rate-limited requests:
-
-1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
-2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
-
-Example implementation:
-
-```python
-import random
-import time
-def get_retry_delay(attempt, base_delay=1, max_delay=60):
-    # Calculate exponential backoff
-    delay = min(base_delay * (2 ** attempt), max_delay)
-    # Add jitter (±20%)
-    jitter = delay * 0.2
-    return delay + random.uniform(-jitter, jitter)
-```
-
-This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
 
 ## Aadhar PAN Binding API
 
@@ -988,42 +796,6 @@ curl --location 'https://fraudgator.credeau.com/api/aadhar-pan-binding' \
 
 #### Error Responses
 
-##### HTTP 401 Unauthorized (Wrong credentials)
-
-This error occurs when either an invalid client ID or authentication token is provided in the request headers.
-
-> ⚠️ **Note**
->
-> If you receive this error:
->
-> 1. Verify that you're using the correct client ID and authentication token
-> 2. Contact Credeau support
-
----
-
-##### HTTP 403 Forbidden (Invalid Access)
-
-This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
-
-```html
-<html>
-    <head><title>403 Forbidden</title></head>
-    <body>
-        <center><h1>403 Forbidden</h1></center>
-    </body>
-</html>
-```
-
-> ⚠️ **Note**
->
-> To resolve this error:
->
-> 1. Contact Credeau support to whitelist your IP address
-> 2. Provide your organization's name and the IP address(es) that need access
-> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
-
----
-
 ##### HTTP 422 Unprocessable Content (Wrong Request Payload)
 
 This error is returned for the following 2 cases -
@@ -1074,34 +846,6 @@ This error is returned for the following 2 cases -
         ]
     }
     ```
-
----
-
-##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
-
-This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
-
-**Best Practice for Rate Limit Handling**
-
-When implementing retries for rate-limited requests:
-
-1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
-2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
-
-Example implementation:
-
-```python
-import random
-import time
-def get_retry_delay(attempt, base_delay=1, max_delay=60):
-    # Calculate exponential backoff
-    delay = min(base_delay * (2 ** attempt), max_delay)
-    # Add jitter (±20%)
-    jitter = delay * 0.2
-    return delay + random.uniform(-jitter, jitter)
-```
-
-This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
 
 ## Bank PAN Binding API
 
@@ -1220,42 +964,6 @@ curl --location 'https://fraudgator.credeau.com/api/bank-pan-binding' \
 
 #### Error Responses
 
-##### HTTP 401 Unauthorized (Wrong credentials)
-
-This error occurs when either an invalid client ID or authentication token is provided in the request headers.
-
-> ⚠️ **Note**
->
-> If you receive this error:
->
-> 1. Verify that you're using the correct client ID and authentication token
-> 2. Contact Credeau support
-
----
-
-##### HTTP 403 Forbidden (Invalid Access)
-
-This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
-
-```html
-<html>
-    <head><title>403 Forbidden</title></head>
-    <body>
-        <center><h1>403 Forbidden</h1></center>
-    </body>
-</html>
-```
-
-> ⚠️ **Note**
->
-> To resolve this error:
->
-> 1. Contact Credeau support to whitelist your IP address
-> 2. Provide your organization's name and the IP address(es) that need access
-> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
-
----
-
 ##### HTTP 422 Unprocessable Content (Wrong Request Payload)
 
 This error is returned for the following 2 cases -
@@ -1303,9 +1011,46 @@ This error is returned for the following 2 cases -
     }
     ```
 
+
+## General Errors
+
+##### HTTP 401 Unauthorized (Wrong credentials)
+
+This error occurs when either an invalid client ID or authentication token is provided in the request headers.
+
+> ⚠️ **Note**
+>
+> If you receive this error:
+>
+> 1. Verify that you're using the correct client ID and authentication token
+> 2. Contact Credeau support
+
 ---
 
-##### HTTP 429 Too Many Requests (Rate Limit Exceeded)
+### HTTP 403 Forbidden (Invalid Access)
+
+This error can occur when the requesting IP address is not whitelisted in the Credeau firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
+
+```html
+<html>
+    <head><title>403 Forbidden</title></head>
+    <body>
+        <center><h1>403 Forbidden</h1></center>
+    </body>
+</html>
+```
+
+> ⚠️ **Note**
+>
+> To resolve this error:
+>
+> 1. Contact Credeau support to whitelist your IP address
+> 2. Provide your organization's name and the IP address(es) that need access
+> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
+
+---
+
+### HTTP 429 Too Many Requests (Rate Limit Exceeded)
 
 This error is returned when the rate of requests exceeds the allowed limit of 1000 requests per minute per IP.
 
