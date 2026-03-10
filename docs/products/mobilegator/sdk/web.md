@@ -10,27 +10,59 @@ The Web SDK works on Google Chrome, Safari, Firefox, Opera and other popular mod
 
 Add the SDK to your application using one of the following methods.
 
-### NPM/Yarn
-
-Fetch using npm -
+### Step 1 — Configure AWS credentials (one-time)
 
 ```bash
-npm install credlibkit
+aws configure
 ```
 
-Fetch using yarn -
- 
+Enter the AWS credentials shared by Credeau.
+
+### Step 2 — Login npm to CodeArtifact
+
 ```bash
-yarn add credlibkit
+aws codeartifact login \
+  --tool npm \
+  --domain devicesense \
+  --domain-owner 068267901648 \
+  --repository collectdata-web \
+  --region ap-south-1
 ```
 
-Import the sync functions from fetched module -
+This command:
+
+- fetches auth token
+- updates `~/.npmrc`
+- enables npm install
+
+### Step 3 — Install the SDK
+
+```bash
+npm install @credeau/credlibkit
+```
+
+### Token Expiry (Important)
+
+CodeArtifact npm tokens expire periodically.
+
+If clients see:
+
+- `401 Unauthorized`
+- `403 Forbidden`
+
+Simply rerun:
+
+```bash
+aws codeartifact login ...
+```
+
+### Import the sync functions
 
 ```javascript
 import { syncWebData } from "credlibkit";
 ```
 
-Implement data fetch by importing the syncWebData function in your JavaScript code -
+### Implement data fetch
 
 ```javascript
 import { syncWebData } from "credlibkit";
@@ -66,47 +98,6 @@ const App = () => {
 };
 
 export default App;
-```
-
-### CDN Integration
-
-Import the SDK from NPM CDN -
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/credlibkit@latest/dist/web-sdk.min.js"></script>
-```
-
-Implement data fetch by embedding CDN in HTML -
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Web SDK Data Display</title>
-	</head>
-	<body>
-		<script src="https://cdn.jsdelivr.net/npm/credlibkit@latest/dist/web-sdk.min.js"></script>
-
-		<script>
-			const fetchData = async () => {
-				try {
-					const response = await credLibKit.syncWebData(
-						"<user_id>",
-						"<client_id>",
-						"<secret_key>"
-					);
-					console.log("In HTML Client File-Fetched data:", response);
-				} catch (error) {
-					console.error("In HTML Client File-Error fetching data:", error);
-				}
-			};
-
-			fetchData();
-		</script>
-	</body>
-</html>
 ```
 
 > Note:
