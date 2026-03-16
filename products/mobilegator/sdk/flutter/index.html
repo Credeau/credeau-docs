@@ -800,6 +800,75 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#android-only-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android Only Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Android Only Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-dependency-in-pubspecyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Add Dependency in pubspec.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-import-required-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Import Required Packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-plugin-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Create Plugin Instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-request-android-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Request Android Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-create-a-single-android-only-sdk-start-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Create a Single Android-Only SDK Start Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-call-the-sdk-flow-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Call the SDK Flow Automatically
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1754,6 +1823,75 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#android-only-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android Only Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Android Only Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-dependency-in-pubspecyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Add Dependency in pubspec.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-import-required-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Import Required Packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-plugin-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Create Plugin Instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-request-android-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Request Android Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-create-a-single-android-only-sdk-start-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Create a Single Android-Only SDK Start Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-call-the-sdk-flow-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Call the SDK Flow Automatically
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2014,6 +2152,174 @@
 </div>
 </div>
 </div>
+<h2 id="android-only-implementation">Android Only Implementation<a class="headerlink" href="#android-only-implementation" title="Permanent link">&para;</a></h2>
+<p>This guide explains how to integrate the <code>flutter_collect_data</code> SDK into a Flutter application that supports both Android and iOS, while ensuring the SDK runs only on Android. As most organizations choose Flutter to unify the codebase for iOS and Android apps, and since this SDK focuses mainly on Android devices, this documentation helps implement a safe integration that runs only on Android and skips iOS.</p>
+<p>This implementation follows this approach -</p>
+<ul>
+<li>keep the SDK in <code>pubspec.yaml</code></li>
+<li>execute SDK logic only on Android</li>
+<li>skip SDK execution on iOS</li>
+<li>group permission handling and sync startup into one reusable function</li>
+</ul>
+<h3 id="1-add-dependency-in-pubspecyaml">1. Add Dependency in <code>pubspec.yaml</code><a class="headerlink" href="#1-add-dependency-in-pubspecyaml" title="Permanent link">&para;</a></h3>
+<p>Add the SDK and required dependencies:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">dependencies</span><span class="p">:</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">flutter</span><span class="p">:</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flutter</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="nt">flutter_collect_data</span><span class="p">:</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="nt">git</span><span class="p">:</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/Credeau/flutter_collect_data</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">      </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;ref_name&gt;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="nt">permission_handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^11.3.1</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^1.4.0</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">  </span><span class="nt">firebase_core</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^3.13.1</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">  </span><span class="nt">firebase_messaging</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^15.2.6</span>
+</span></code></pre></div>
+<h3 id="2-import-required-packages">2. Import Required Packages<a class="headerlink" href="#2-import-required-packages" title="Permanent link">&para;</a></h3>
+<p>In your <code>main.dart</code> or integration file:</p>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:io&#39;</span><span class="p">;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:permission_handler/permission_handler.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter_collect_data/flutter_collect_data_method_channel.dart&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="3-create-plugin-instance">3. Create Plugin Instance<a class="headerlink" href="#3-create-plugin-instance" title="Permanent link">&para;</a></h3>
+<p>Create a shared plugin instance:</p>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">final</span><span class="w"> </span><span class="n">MethodChannelFlutterCollectData</span><span class="w"> </span><span class="n">plugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MethodChannelFlutterCollectData</span><span class="p">();</span>
+</span></code></pre></div>
+<h3 id="4-request-android-permissions">4. Request Android Permissions<a class="headerlink" href="#4-request-android-permissions" title="Permanent link">&para;</a></h3>
+<p>Create a helper method to request all required permissions before starting sync.</p>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Future</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_requestAndroidPermissions</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">statuses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">Permission</span><span class="p">.</span><span class="n">sms</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">Permission</span><span class="p">.</span><span class="n">phone</span><span class="p">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="n">Permission</span><span class="p">.</span><span class="n">contacts</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="n">Permission</span><span class="p">.</span><span class="n">location</span><span class="p">,</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="p">].</span><span class="n">request</span><span class="p">();</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">mediaLocationStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Permission</span><span class="p">.</span><span class="n">accessMediaLocation</span><span class="p">.</span><span class="n">request</span><span class="p">();</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">allGranted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statuses</span><span class="p">.</span><span class="n">values</span><span class="p">.</span><span class="n">every</span><span class="p">((</span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">status</span><span class="p">.</span><span class="n">isGranted</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">      </span><span class="n">mediaLocationStatus</span><span class="p">.</span><span class="n">isGranted</span><span class="p">;</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">allGranted</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;One or more permissions were denied.&#39;</span><span class="p">);</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">allGranted</span><span class="p">;</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>What this step does</p>
+<p>This method:</p>
+<ul>
+<li>requests all permissions required by the SDK</li>
+<li>checks whether every required permission has been granted</li>
+<li>returns true only if all required permissions are available</li>
+</ul>
+<h3 id="5-create-a-single-android-only-sdk-start-flow">5. Create a Single Android-Only SDK Start Flow<a class="headerlink" href="#5-create-a-single-android-only-sdk-start-flow" title="Permanent link">&para;</a></h3>
+<p>This method combines:</p>
+<ul>
+<li>platform check</li>
+<li>permission request</li>
+<li>device match parameter setup</li>
+<li>background sync start</li>
+</ul>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">startMobileGatorForAndroidOnly</span><span class="p">({</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">fullName</span><span class="p">,</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="kd">required</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">gapSeconds</span><span class="p">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">})</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Platform</span><span class="p">.</span><span class="n">isAndroid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;MobileGator SDK skipped: iOS is not supported.&#39;</span><span class="p">);</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">permissionsGranted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_requestAndroidPermissions</span><span class="p">();</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">permissionsGranted</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">      </span><span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;Required permissions not granted. Aborting SDK startup.&#39;</span><span class="p">);</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">plugin</span><span class="p">.</span><span class="n">setDeviceMatchParams</span><span class="p">(</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">      </span><span class="nl">fullname:</span><span class="w"> </span><span class="n">fullName</span><span class="p">,</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">      </span><span class="nl">phone:</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="w">      </span><span class="nl">email:</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">plugin</span><span class="p">.</span><span class="n">startBackgroundSyncProcess</span><span class="p">(</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">      </span><span class="nl">userId:</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span>
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">      </span><span class="nl">clientName:</span><span class="w"> </span><span class="s1">&#39;&lt;CLIENT_NAME&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="w">      </span><span class="nl">clientKey:</span><span class="w"> </span><span class="s1">&#39;&lt;CLIENT_KEY&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-16-30"><a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="w">      </span><span class="nl">serverUrl:</span><span class="w"> </span><span class="s1">&#39;&lt;SERVER_URL&gt;&#39;</span><span class="p">,</span>
+</span><span id="__span-16-31"><a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="w">      </span><span class="nl">gapSeconds:</span><span class="w"> </span><span class="n">gapSeconds</span><span class="p">,</span>
+</span><span id="__span-16-32"><a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-16-33"><a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>
+</span><span id="__span-16-34"><a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">    </span><span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;Sync completed and background process started!&#39;</span><span class="p">);</span>
+</span><span id="__span-16-35"><a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-36"><a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a><span class="w">    </span><span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;Error during sync: </span><span class="si">$</span><span class="n">error</span><span class="s1">&#39;</span><span class="p">);</span>
+</span><span id="__span-16-37"><a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-38"><a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a><span class="w">    </span><span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;Sync flow finished.&#39;</span><span class="p">);</span>
+</span><span id="__span-16-39"><a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-40"><a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="6-call-the-sdk-flow-automatically">6. Call the SDK Flow Automatically<a class="headerlink" href="#6-call-the-sdk-flow-automatically" title="Permanent link">&para;</a></h3>
+<p>Instead of triggering the SDK with a UI button, you should start the SDK automatically when the app or a screen loads.</p>
+<p>The most common approach is to call the SDK inside the <code>initState()</code> method of a StatefulWidget.</p>
+<p>Example: Start SDK When Screen Loads</p>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">HomePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatefulWidget</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">HomePage</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">key</span><span class="p">});</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nd">@override</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="n">State</span><span class="o">&lt;</span><span class="n">HomePage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_HomePageState</span><span class="p">();</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="p">}</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="kd">class</span><span class="w"> </span><span class="nc">_HomePageState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">HomePage</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="nd">@override</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initState</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="n">_startSdk</span><span class="p">();</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_startSdk</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">startMobileGatorForAndroidOnly</span><span class="p">(</span>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">      </span><span class="nl">fullName:</span><span class="w"> </span><span class="n">_fullNameController</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">trim</span><span class="p">(),</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">      </span><span class="nl">phone:</span><span class="w"> </span><span class="n">_phoneController</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">trim</span><span class="p">(),</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">      </span><span class="nl">email:</span><span class="w"> </span><span class="n">_emailController</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">trim</span><span class="p">(),</span>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="w">      </span><span class="nl">userId:</span><span class="w"> </span><span class="n">_usernameController</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">trim</span><span class="p">(),</span>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">      </span><span class="nl">gapSeconds:</span><span class="w"> </span><span class="n">gapSeconds</span><span class="p">,</span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="w">  </span><span class="nd">@override</span>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span>
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a><span class="w">      </span><span class="nl">body:</span><span class="w"> </span><span class="n">Center</span><span class="p">(</span>
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a><span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;MobileGator SDK Initializing...&quot;</span><span class="p">),</span>
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="w">      </span><span class="p">),</span>
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>What happens in this example:</p>
+<ol>
+<li>The screen is created.</li>
+<li><code>initState()</code> runs automatically.</li>
+<li><code>_startSdk()</code> is called.</li>
+<li><code>_startSdk()</code> triggers <code>startMobileGatorForAndroidOnly(...)</code>.</li>
+<li>The SDK performs:<ul>
+<li>Android platform check</li>
+<li>permission request</li>
+<li>device match parameter setup</li>
+<li>background sync initialization.</li>
+</ul>
+</li>
+</ol>
 
 
 
