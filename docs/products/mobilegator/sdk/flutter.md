@@ -262,3 +262,197 @@ To support this functionality, add the following code inside the overridden `onM
         }
     }
     ```
+
+## Android Only Implementation
+
+This guide explains how to integrate the `flutter_collect_data` SDK into a Flutter application that supports both Android and iOS, while ensuring the SDK runs only on Android. As most organizations choose Flutter to unify the codebase for iOS and Android apps, and since this SDK focuses mainly on Android devices, this documentation helps implement a safe integration that runs only on Android and skips iOS.
+
+This implementation follows this approach -
+
+- keep the SDK in `pubspec.yaml`
+- execute SDK logic only on Android
+- skip SDK execution on iOS
+- group permission handling and sync startup into one reusable function
+
+### 1. Add Dependency in `pubspec.yaml`
+
+Add the SDK and required dependencies:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_collect_data:
+    git:
+      url: https://github.com/Credeau/flutter_collect_data
+      ref: <ref_name>
+
+  permission_handler: ^11.3.1
+  http: ^1.4.0
+  firebase_core: ^3.13.1
+  firebase_messaging: ^15.2.6
+```
+
+### 2. Import Required Packages
+
+In your `main.dart` or integration file:
+
+```dart
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_collect_data/flutter_collect_data_method_channel.dart';
+```
+
+### 3. Create Plugin Instance
+
+Create a shared plugin instance:
+
+```dart
+final MethodChannelFlutterCollectData plugin = MethodChannelFlutterCollectData();
+```
+
+### 4. Request Android Permissions
+
+Create a helper method to request all required permissions before starting sync.
+
+```dart
+Future<bool> _requestAndroidPermissions() async {
+  final statuses = await [
+    Permission.sms,
+    Permission.phone,
+    Permission.contacts,
+    Permission.location,
+  ].request();
+
+  final mediaLocationStatus = await Permission.accessMediaLocation.request();
+
+  final allGranted = statuses.values.every((status) => status.isGranted) &&
+      mediaLocationStatus.isGranted;
+
+  if (!allGranted) {
+    debugPrint('One or more permissions were denied.');
+  }
+
+  return allGranted;
+}
+```
+
+What this step does
+
+This method:
+
+- requests all permissions required by the SDK
+- checks whether every required permission has been granted
+- returns true only if all required permissions are available
+
+### 5. Create a Single Android-Only SDK Start Flow
+
+This method combines:
+
+- platform check
+- permission request
+- device match parameter setup
+- background sync start
+
+```dart
+Future<void> startMobileGatorForAndroidOnly({
+  required String fullName,
+  required String phone,
+  required String email,
+  required String userId,
+  required int gapSeconds,
+}) async {
+  if (!Platform.isAndroid) {
+    debugPrint('MobileGator SDK skipped: iOS is not supported.');
+    return;
+  }
+
+  try {
+    final permissionsGranted = await _requestAndroidPermissions();
+    if (!permissionsGranted) {
+      debugPrint('Required permissions not granted. Aborting SDK startup.');
+      return;
+    }
+
+    await plugin.setDeviceMatchParams(
+      fullname: fullName,
+      phone: phone,
+      email: email,
+    );
+
+    await plugin.startBackgroundSyncProcess(
+      userId: userId,
+      clientName: '<CLIENT_NAME>',
+      clientKey: '<CLIENT_KEY>',
+      serverUrl: '<SERVER_URL>',
+      gapSeconds: gapSeconds,
+    );
+
+    debugPrint('Sync completed and background process started!');
+  } catch (error) {
+    debugPrint('Error during sync: $error');
+  } finally {
+    debugPrint('Sync flow finished.');
+  }
+}
+```
+
+### 6. Call the SDK Flow Automatically
+
+Instead of triggering the SDK with a UI button, you should start the SDK automatically when the app or a screen loads.
+
+The most common approach is to call the SDK inside the `initState()` method of a StatefulWidget.
+
+Example: Start SDK When Screen Loads
+
+```dart
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    _startSdk();
+  }
+
+  Future<void> _startSdk() async {
+    await startMobileGatorForAndroidOnly(
+      fullName: _fullNameController.text.trim(),
+      phone: _phoneController.text.trim(),
+      email: _emailController.text.trim(),
+      userId: _usernameController.text.trim(),
+      gapSeconds: gapSeconds,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text("MobileGator SDK Initializing..."),
+      ),
+    );
+  }
+}
+```
+
+What happens in this example:
+
+1. The screen is created.
+2. `initState()` runs automatically.
+3. `_startSdk()` is called.
+4. `_startSdk()` triggers `startMobileGatorForAndroidOnly(...)`.
+5. The SDK performs:
+    - Android platform check
+    - permission request
+    - device match parameter setup
+    - background sync initialization.
