@@ -200,6 +200,8 @@ CREATE INDEX idx_request_workflow_state_client_id ON forge_request_workflow_stat
 CREATE INDEX idx_request_workflow_state_workflow_endpoint ON forge_request_workflow_state(workflow_endpoint);
 CREATE INDEX idx_request_workflow_state_workflow_strategy ON forge_request_workflow_state(workflow_strategy);
 CREATE INDEX idx_request_workflow_state_created_date ON forge_request_workflow_state(created_date);
+CREATE INDEX idx_frws_analytics ON forge_request_workflow_state(client_id, workflow_endpoint, created_at);
+CREATE INDEX idx_frws_client_date ON forge_request_workflow_state(client_id, created_date);
 
 CREATE TABLE forge_ecm_response_log (
     id SERIAL,
@@ -226,6 +228,8 @@ CREATE INDEX idx_ecm_response_log_reference_id ON forge_ecm_response_log(referen
 CREATE INDEX idx_ecm_response_log_user_id ON forge_ecm_response_log(user_id);
 CREATE INDEX idx_ecm_response_log_engine ON forge_ecm_response_log(engine);
 CREATE INDEX idx_ecm_response_log_created_date ON forge_ecm_response_log(created_date);
+CREATE INDEX idx_ecm_response_log_created_at ON forge_ecm_response_log(created_at);
+CREATE INDEX idx_ecm_analytics ON forge_ecm_response_log(client_id, engine, created_at);
 
 CREATE TABLE forge_application_logs (
     id CHAR(36),
@@ -485,6 +489,7 @@ db.ecm_output_log.createIndex({ "user_id": 1 });
 db.ecm_output_log.createIndex({ "engine": 1 });
 db.ecm_output_log.createIndex({ "request_id": 1 });
 db.ecm_output_log.createIndex({ "client_id": 1 });
+db.ecm_output_log.createIndex({ "created_at": 1 });
 
 // 4. Ecm Request Log
 db.createCollection("ecm_request_log");
@@ -493,6 +498,7 @@ db.ecm_request_log.createIndex({ "user_id": 1 });
 db.ecm_request_log.createIndex({ "request_id": 1 });
 db.ecm_request_log.createIndex({ "engine": 1 });
 db.ecm_request_log.createIndex({ "client_id": 1 });
+db.ecm_request_log.createIndex({ "created_at": 1 });
 
 // 5. Ecm Response Log
 db.createCollection("ecm_response_log");
@@ -512,6 +518,8 @@ db.request_workflow_state.createIndex({ "request_id": 1 });
 db.request_workflow_state.createIndex({ "reference_id": 1 });
 db.request_workflow_state.createIndex({ "workflow_strategy": 1 });
 db.request_workflow_state.createIndex({ "workflow_endpoint": 1 });
+db.request_workflow_state.createIndex({ "client_id": 1, "workflow_strategy": 1 });
+db.request_workflow_state.createIndex({ "client_id": 1, "workflow_strategy": 1, "created_date": -1 });
 
 // 7. Unauthorized Requests
 db.createCollection("unauthorized_requests");
