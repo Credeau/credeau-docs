@@ -87,8 +87,9 @@ const result = await openAccountGator({
 	user_id: "<user_id>",
 	auth_token: "<auth_token>",
 	redirect_url: "<redirect_url>",
+    is_redirecting: true/false, // Optional; default=true if not passed
 	template_name: "<template_name>",
-	mobile_number: "<customer_mobile_number>"
+	mobile_number: "<customer_mobile_number>",
 });
 
 console.log(result);
@@ -112,6 +113,7 @@ console.log(result);
 		user_id: "<user_id>",
 		auth_token: "<auth_token>",
 		redirect_url: "<redirect_url>",
+        is_redirecting: true/false,  // Optional; default=true if not passed
 		template_name: "<template_name>",
 		mobile_number: "<customer_mobile_number>"
 	};
@@ -137,7 +139,17 @@ console.log(result);
 
 The SDK returns the following keys as output - 
 
-- `success` (bool) - Flag indicating if the consent was successfully provided or not.
+- `success` (str) - Boolean as string indicating if the consent was successfully provided or not.
 - `aa_session_id` (str) - Session ID for the Account Aggregator transaction, further used to fetch insights & reports.
 - `error` (str) - Error message indicating if any error occured during the consent session.
-- `timeout` (bool) - Flag indicating if the process timed out or not.
+- `timeout` (str) - Boolean as string indicating if the process timed out or not.
+
+When `is_redirecting` is set to `true`, the SDK will redirect to the passed URL in `redirect_url` with SDK output keys appended as query parameters.
+
+> 💡 **Example:**
+>
+> If, `redirect_url` is set to 'https://yourdomain.com/user/journey' and `is_redirecting` to `true`, then the SDK will redirect the browser window to the following URL - 
+>
+> 'https://yourdomain.com/user/journey?success=true&aa_session_id=f310805cedd0485ba18b6f10bb8b1843&error=null&timeout=false'
+>
+> And, the values can be used within the page from here.
