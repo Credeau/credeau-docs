@@ -153,3 +153,14 @@ When `is_redirecting` is set to `true`, the SDK will redirect to the passed URL 
 > 'https://yourdomain.com/user/journey?success=true&aa_session_id=f310805cedd0485ba18b6f10bb8b1843&error=null&timeout=false'
 >
 > And, the values can be used within the page from here.
+
+Using the values from query parameters -
+
+```javascript
+const params = new URLSearchParams(window.location.search);
+
+const success = params.get("success"); // "true" | "false" | null
+const aa_session_id = params.get("aa_session_id"); // string | null
+const error = params.get("error"); // string | null
+const timeout = params.get("timeout"); // "true" | "false" | null
+```
