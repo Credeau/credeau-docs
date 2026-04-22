@@ -231,12 +231,12 @@ Raw JSON -
 
 ```json
 {
-    "detail": {
-        "error": "error message indicating the issue",
-        "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-        "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    }
+  "detail": {
+    "error": "error message indicating the issue",
+    "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  }
 }
 ```
 
@@ -283,8 +283,8 @@ Raw JSON -
 
 ```json
 {
-    "report_url": "...",
-    "request_id": "<request_id>"
+  "report_url": "...",
+  "request_id": "<request_id>"
 }
 ```
 
@@ -304,12 +304,12 @@ Raw JSON -
 
 ```json
 {
-    "detail": {
-        "error": "error message indicating the issue",
-        "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-        "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    }
+  "detail": {
+    "error": "error message indicating the issue",
+    "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  }
 }
 ```
 
@@ -327,10 +327,10 @@ Response -
 
 ```json
 {
-    "error": {
-        "type": "unauthorized",
-        "detail": "Invalid client credentials"
-    }
+  "error": {
+    "type": "unauthorized",
+    "detail": "Invalid client credentials"
+  }
 }
 ```
 
