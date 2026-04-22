@@ -21,7 +21,7 @@ The following variables will be referenced throughout this documentation:
 | `template_name`          | Account Aggregator template name        | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement                   |
 | `customer_mobile_number` | End user's mobile number                | Like, 9999999999                                             | Provided by customer during journey                |
 | `request_id`             | Unique request identifier               | Alphanumeric string                                          | Received in API response                           |
-| `aa_session_id`          | [AA Session ID ↗](./sdk/web.md#output)    | Alphanumeric string                                          | Received after consent journey on AccountGator SDK |
+| `aa_session_id`          | [AA Session ID ↗](./sdk/web.md#output)  | Alphanumeric string                                          | Received after consent journey on AccountGator SDK |
 
 > ⚠️ **Note**
 >
@@ -46,6 +46,8 @@ and, one content type header:
 
 ### Fetch Transactions
 
+Once a customer provides a consent successfully via the AccountGator SDK, use the details received in response to fetch bank account transactions for the customer.
+
 ```bash
 /aa/fetch_data
 ```
@@ -56,10 +58,10 @@ Request Body -
 
 | Parameter           | Type   | Required   | Description                                                |
 |---------------------|--------|------------|------------------------------------------------------------|
-| `user_id`           | string | Yes | Test | `<user_id>`                                                |
-| `aa_session_id`     | string | Yes | Test | `<aa_session_id>`                                          |
-| `datetimerangefrom` | string | Yes | Test | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format |
-| `datetimerangeto`   | string | Yes | Test | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format   |
+| `user_id`           | string | Yes        | `<user_id>`                                                |
+| `aa_session_id`     | string | Yes        | `<aa_session_id>`                                          |
+| `datetimerangefrom` | string | Yes        | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format |
+| `datetimerangeto`   | string | Yes        | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format   |
 
 cURL -
 
@@ -237,3 +239,80 @@ Raw JSON -
     }
 }
 ```
+
+### Download Transactions Report
+
+```bash
+/aa/retrieve_report
+```
+
+#### Request
+
+Get a link to download CSV report of the transactions fetched against a `user_id` and `aa_session_id` combination in the [Fetch Transactions API](#fetch-transactions).
+
+Request Body -
+
+| Parameter       | Type   | Required   | Description       |
+|---------------- |--------|------------|-------------------|
+| `user_id`       | string | Yes        | `<user_id>`       |
+| `aa_session_id` | string | Yes        | `<aa_session_id>` |
+
+cURL -
+
+```bash
+curl --location 'https://insights.account-gator.credeau.com/aa/retrieve_report' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+	"user_id": "<user_id>",
+	"aa_session_id": "<aa_session_id>"
+}'
+```
+
+#### Success Response (HTTP 200)
+
+Body parameters -
+
+| Field Name   | Type   | Description                             |
+|--------------|--------|-----------------------------------------|
+| `report_url` | string | URL to download the transactions report |
+| `request_id` | string | `<request_id>`                          |
+
+Raw JSON -
+
+```json
+{
+    "report_url": "...",
+    "request_id": "<request_id>"
+}
+```
+
+#### Error Response (HTTP 4xx/5xx)
+
+Body Parameters -
+
+| Field Name             | Type   | Description                        |
+|------------------------|--------|------------------------------------|
+| `detail`               | object | Details of the error occurred      |
+| `detail.error`         | string | Error message indicating the issue |
+| `detail.request_id`    | string | `<request_id>`                     |
+| `detail.user_id`       | string | `<user_id>`                        |
+| `detail.aa_session_id` | string | `aa_session_id`                    |
+
+Raw JSON -
+
+```json
+{
+    "detail": {
+        "error": "error message indicating the issue",
+        "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+}
+```
+
+> ⚠️ **Note:**
+>
+> The download URL is active for 7 Days. Post expiry, you can hit the API again to get a new URL.
