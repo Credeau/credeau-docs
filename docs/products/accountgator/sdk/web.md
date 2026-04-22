@@ -19,6 +19,10 @@ The following variables will be referenced throughout this documentation:
 | `template_name`          | Account Aggregator template name        | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement      |
 | `customer_mobile_number` | End user's mobile number                | Like, 9999999999                                             | Provided by customer during journey   |
 
+> ⚠️ **Note**
+>
+> Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.
+
 ## Adding Dependency
 
 Add the SDK to your application using one of the following methods.

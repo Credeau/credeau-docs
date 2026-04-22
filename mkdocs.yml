@@ -62,6 +62,7 @@ nav:
       - AccountGator:
           - Overview: products/accountgator/index.md
           - Insights: products/accountgator/accountgator.md
+          - Transaction Insights: products/accountgator/transactions.md
           - SDK:
               - Web: products/accountgator/sdk/web.md
       - NameMatch:
