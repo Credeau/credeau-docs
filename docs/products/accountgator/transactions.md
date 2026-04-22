@@ -316,3 +316,117 @@ Raw JSON -
 > ⚠️ **Note:**
 >
 > The download URL is active for 7 Days. Post expiry, you can hit the API again to get a new URL.
+
+## Common API Errors
+
+### Unauthorized (HTTP 401)
+
+This error occurs when either an invalid client ID or authentication token is provided in the request headers.
+
+Response -
+
+```json
+{
+    "error": {
+        "type": "unauthorized",
+        "detail": "Invalid client credentials"
+    }
+}
+```
+
+> ⚠️ **Note**
+>
+> If you receive this error:
+>
+> 1. Verify that you're using the correct client ID and authentication token
+> 2. Contact Credeau support
+
+### Forbidden (HTTP 403)
+
+This error can occur when the requesting IP address is not whitelisted in Credeau's firewall. For security reasons, all API requests must originate from pre-approved IP addresses.
+
+Response -
+
+```html
+<html>
+
+<head>
+    <title>403 Forbidden</title>
+</head>
+
+<body>
+    <center>
+        <h1>403 Forbidden</h1>
+    </center>
+</body>
+
+</html>
+```
+
+> ⚠️ **Note**
+>
+> To resolve this error:
+>
+> 1. Contact Credeau support to whitelist your IP address
+> 2. Provide your organization's name and the IP address(es) that need access
+> 3. Once whitelisted, you'll be able to access the API from the approved IP addresses
+
+### Unprocessable Entity (HTTP 422)
+
+This error is returned when any of the required parameters is missing from the request payload. The response includes details about which fields are missing and the received input.
+
+Response -
+
+```json
+{
+  "error": {
+    "type": "validation_error",
+    "detail": [
+      {
+        "type": "missing",
+        "loc": [
+          "body",
+          "user_id"
+        ],
+        "msg": "Field required",
+        "input": {
+          "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+      }
+    ]
+  }
+}
+```
+
+> ⚠️ **Note**
+>
+> If you receive this error:
+>
+> 1. Verify that you're passing all the required fields in the request payload
+> 2. Contact Credeau support
+
+### Too Many Requests (HTTP 429)
+
+This error is returned when the rate of requests exceeds the allowed limit of requests per IP.
+
+Best practice for rate limit handling -
+
+When implementing retries for rate-limited requests:
+
+1. Use exponential backoff: Start with a base delay (e.g., 1 second) and double it after each retry
+2. Add jitter: Include random variation (±20%) to the delay to prevent thundering herd problems
+
+Example implementation:
+
+```python
+import random
+import time
+def get_retry_delay(attempt, base_delay=1, max_delay=60):
+    # Calculate exponential backoff
+    delay = min(base_delay * (2 ** attempt), max_delay)
+    # Add jitter (±20%)
+    jitter = delay * 0.2
+    return delay + random.uniform(-jitter, jitter)
+```
+
+This approach helps distribute retry attempts and prevents overwhelming the API when rate limits are hit.
