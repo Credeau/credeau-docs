@@ -1,6 +1,6 @@
 # AccountGator Transaction APIs
 
-The AccountGator Transaction APIs provides programmatic access to fetch bank account transactions (Account Aggregators or Bank Statement Analysers) with consent collected using Account Gator SDK, and on top of these transactions our intelligent transaction analysis engine, delivers actionable insights and financial intelligence for enhanced credit decisioning, fraud detection, and customer financial profiling.
+The AccountGator Transaction APIs provide programmatic access to fetch bank account transactions — sourced via Account Aggregators or Bank Statement Analyzers — using consent collected through the AccountGator SDK. Built on top of these transactions, our intelligent analysis engine delivers actionable insights and financial intelligence for credit decisioning, fraud detection, and customer financial profiling.
 
 ## Base URL
 
@@ -31,10 +31,10 @@ The following variables will be referenced throughout this documentation:
 
 The API requires two authentication headers:
 
-| Header | Value |
-|--------|-------|
-| `x-client-id` | `<client_id>` |
-| `x-auth-token` | `<auth_token>` |
+| Header         | Value                          |
+|----------------|--------------------------------|
+| `x-client-id`  | [`<client_id>` ↗](#variables)  |
+| `x-auth-token` | [`<auth_token>` ↗](#variables) |
 
 and, one content type header:
 
@@ -58,8 +58,8 @@ Request Body -
 
 | Parameter           | Type   | Required   | Description                                                |
 |---------------------|--------|------------|------------------------------------------------------------|
-| `user_id`           | string | Yes        | `<user_id>`                                                |
-| `aa_session_id`     | string | Yes        | `<aa_session_id>`                                          |
+| `user_id`           | string | Yes        | [`<user_id>` ↗](#variables)                                |
+| `aa_session_id`     | string | Yes        | [`<aa_session_id>` ↗](#variables)                          |
 | `datetimerangefrom` | string | Yes        | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format |
 | `datetimerangeto`   | string | Yes        | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format   |
 
@@ -88,9 +88,9 @@ Body parameters -
 
 | Field Name         | Type   | Description                                                      |
 |--------------------|--------|------------------------------------------------------------------|
-| `user_id`          | string | `<user_id>`                                                      |
-| `request_id`       | string | `<request_id>`                                                   |
-| `aa_session_id`    | string | `<aa_session_id>`                                                |
+| `user_id`          | string | [`<user_id>` ↗](#variables)                                      |
+| `request_id`       | string | [`<request_id>` ↗](#variables)                                   |
+| `aa_session_id`    | string | [`<aa_session_id>` ↗](#variables)                                |
 | `success`          | bool   | Flag indicating if the request was success or not                |
 | `service`          | string | Name of AccountAggregator Service used to fetch the transactions |
 | `service_response` | object | Transactions response provided by the the Account Aggregator     |
@@ -223,9 +223,9 @@ Body Parameters -
 |------------------------|--------|------------------------------------|
 | `detail`               | object | Details of the error occurred      |
 | `detail.error`         | string | Error message indicating the issue |
-| `detail.request_id`    | string | `<request_id>`                     |
-| `detail.user_id`       | string | `<user_id>`                        |
-| `detail.aa_session_id` | string | `aa_session_id`                    |
+| `detail.request_id`    | string | [`<request_id>` ↗](#variables)     |
+| `detail.user_id`       | string | [`<user_id>` ↗](#variables)        |
+| `detail.aa_session_id` | string | [`<aa_session_id>` ↗](#variables)  |
 
 Raw JSON -
 
@@ -252,10 +252,10 @@ Get a link to download CSV report of the transactions fetched against a `user_id
 
 Request Body -
 
-| Parameter       | Type   | Required   | Description       |
-|---------------- |--------|------------|-------------------|
-| `user_id`       | string | Yes        | `<user_id>`       |
-| `aa_session_id` | string | Yes        | `<aa_session_id>` |
+| Parameter       | Type   | Required   | Description                       |
+|---------------- |--------|------------|-----------------------------------|
+| `user_id`       | string | Yes        | [`<user_id>` ↗](#variables)       |
+| `aa_session_id` | string | Yes        | [`<aa_session_id>` ↗](#variables) |
 
 cURL -
 
@@ -277,7 +277,7 @@ Body parameters -
 | Field Name   | Type   | Description                             |
 |--------------|--------|-----------------------------------------|
 | `report_url` | string | URL to download the transactions report |
-| `request_id` | string | `<request_id>`                          |
+| `request_id` | string | [`<request_id>` ↗](#variables)          |
 
 Raw JSON -
 
@@ -296,9 +296,9 @@ Body Parameters -
 |------------------------|--------|------------------------------------|
 | `detail`               | object | Details of the error occurred      |
 | `detail.error`         | string | Error message indicating the issue |
-| `detail.request_id`    | string | `<request_id>`                     |
-| `detail.user_id`       | string | `<user_id>`                        |
-| `detail.aa_session_id` | string | `aa_session_id`                    |
+| `detail.request_id`    | string | [`<request_id>` ↗](#variables)     |
+| `detail.user_id`       | string | [`<user_id>` ↗](#variables)        |
+| `detail.aa_session_id` | string | [`<aa_session_id>` ↗](#variables)  |
 
 Raw JSON -
 
