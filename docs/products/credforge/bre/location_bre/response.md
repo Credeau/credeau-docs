@@ -47,7 +47,7 @@ Response structure for the Location BRE workflow.
 | `user_id`                                              | string | User identifier from the request                 |
 | `reference_id`                                         | string | Reference identifier from the request            |
 | `workflow_version_path`                                | string | Version of the workflow executed                 |
-| `output_data.rules_output.final_decision.Decision`     | string | Final decision (e.g., "Proceed to Next Rule")    |
+| `output_data.rules_output.final_decision.Decision`     | string | Final decision — `Proceed to Next Rule`, `Reject`    |
 | `output_data.rules_output.final_decision.DecisionReason` | string | Reason for the decision                          |
 | `output_data.features.output_features.geocoding.state` | string | State extracted from location                    |
 | `output_data.features.output_features.geocoding.pincode` | string | Pincode extracted from location                  |

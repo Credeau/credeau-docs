@@ -275,6 +275,8 @@ Where `<key>` can be one of the following:
 
 ## Available BREs
 
+Select the BRE that matches your use case and refer to its dedicated documentation for request parameters, response structure, and configuration details.
+
 | BRE | Endpoint | Description |
 | --- | -------- | ----------- |
 | [Location BRE](location_bre/request.md) | `POST /execute/${client_id}/location_bre` | Decision based on location information |

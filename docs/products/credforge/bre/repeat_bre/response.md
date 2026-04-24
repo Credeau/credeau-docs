@@ -42,7 +42,7 @@ Response structure for the Repeat BRE workflow.
 | Field                                                        | Type   | Description                                      |
 | ------------------------------------------------------------ | ------ | ------------------------------------------------ |
 | `request_id`                                                 | string | Unique identifier for the request                |
-| `output_data.rules_output.final_decision.Decision`           | string | Final decision (e.g., `Approve`, `Reject`)       |
+| `output_data.rules_output.final_decision.Decision`           | string | Final decision — `Approve`, `Reject`             |
 | `output_data.rules_output.final_decision.LoanAmount`         | number | Approved loan amount                             |
 | `output_data.rules_output.final_decision.ReplaymentDate`     | string | Repayment date for the approved loan             |
 | `output_data.rules_output.final_decision.DecisionReason`     | string | Reason for the decision                          |

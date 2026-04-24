@@ -12,6 +12,10 @@ POST /execute/${client_id}/bureau_mobile_bank_bre
 
 Refer to the [BRE API authentication](../index.md#authentication) for headers required on all requests.
 
+> 📖 **Reference**
+>
+> The bureau-related input parameters are derived from BureauGator. Refer to [BureauGator → Insights → Request Parameters](../../../bureaugator/bureau.md) for the full list of supported fields and their descriptions.
+
 ## Request Body
 
 ```json
