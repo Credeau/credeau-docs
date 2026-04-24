@@ -75,6 +75,11 @@ nav:
       - BureauGator:
           - Overview: products/bureaugator/index.md
           - Insights: products/bureaugator/bureau.md
+          - BureauFormats:
+            - CRIF: products/bureaugator/bureauformats/crif_related.md
+            - CIBIL: products/bureaugator/bureauformats/cibil_related.md
+            - Experian: products/bureaugator/bureauformats/experian_related.md
+            - Equifax: products/bureaugator/bureauformats/equifax_related.md
       - AccountGator:
           - Overview: products/accountgator/index.md
           - Insights: products/accountgator/accountgator.md
