@@ -53,7 +53,23 @@ nav:
       - CredForge:
           - Overview: products/credforge/index.md
           - Components: products/credforge/components.md
-          - BRE: products/credforge/bre.md
+          - BRE:
+              - Overview: products/credforge/bre/index.md
+              - Location BRE:
+                  - Request: products/credforge/bre/location_bre/request.md
+                  - Response: products/credforge/bre/location_bre/response.md
+              - Bureau Mobile BRE:
+                  - Request: products/credforge/bre/bureau_mobile_bre/request.md
+                  - Response: products/credforge/bre/bureau_mobile_bre/response.md
+              - Bank BRE:
+                  - Request: products/credforge/bre/bank_bre/request.md
+                  - Response: products/credforge/bre/bank_bre/response.md
+              - Bureau Mobile Bank BRE:
+                  - Request: products/credforge/bre/bureau_mobile_bank_bre/request.md
+                  - Response: products/credforge/bre/bureau_mobile_bank_bre/response.md
+              - Repeat BRE:
+                  - Request: products/credforge/bre/repeat_bre/request.md
+                  - Response: products/credforge/bre/repeat_bre/response.md
           - Deployment:
               - Database: products/credforge/deployment/database.md
       - BureauGator:
