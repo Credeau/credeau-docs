@@ -52,7 +52,8 @@ aws codeartifact login \
     --domain "credeau" \
     --domain-owner "068267901648" \
     --repository "account-gator-web" \
-    --region ap-south-1
+    --region ap-south-1 \
+	--profile credeau
 ```
 
 This command:
