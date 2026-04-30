@@ -114,13 +114,25 @@ Ensure each node has the following amount of resources available at runtime to a
 
 The application supports various environment variables to provide application with necessary runtime values -
 
-| Variable      | Description |
-|---------------|-------------|
-| `DB_USER`     | Username for postgres database authentication |
-| `DB_PASSWORD` | Password for postgres database authentication |
-| `DB_HOST`     | Host address of postgres database server to connect |
-| `DB_PORT`     | Mapped port of postgres database server to connect |
-| `DB_NAME`     | Database name for postgres database connection |
+| Variable                   | Description |
+|----------------------------|-------------|
+| `DB_USER`                  | Username for postgres database authentication |
+| `DB_PASSWORD`              | Password for postgres database authentication |
+| `DB_HOST`                  | Host address of postgres database server to connect |
+| `DB_PORT`                  | Mapped port of postgres database server to connect |
+| `DB_NAME`                  | Database name for postgres database connection |
+| `VOCAB_USE_S3`             | Flag to enable loading vocabulary artifacts from S3 (true/false) |
+| `VOCAB_S3_BUCKET`          | S3 bucket name containing vocabulary extractor artifacts |
+| `VOCAB_S3_KEY`             | S3 object key path to the vocabulary.enc file |
+| `VOCAB_S3_REGION`          | AWS region of the S3 bucket for vocabulary artifacts |
+| `CLASSIFICATION_USE_S3`    | Flag to enable loading classification artifacts from S3 (true/false) |
+| `CLASSIFICATION_S3_BUCKET` | S3 bucket name containing classification extractor artifacts |
+| `CLASSIFICATION_S3_KEY`    | S3 object key path to the classification.enc file |
+| `CLASSIFICATION_S3_REGION` | AWS region of the S3 bucket for classification artifacts |
+| `REGEX_USE_S3`             | Flag to enable loading regex artifacts from S3 (true/false) |
+| `REGEX_S3_BUCKET`          | S3 bucket name containing regex extractor artifacts |
+| `REGEX_S3_KEY`             | S3 object key path to the regex.enc file |
+| `REGEX_S3_REGION`          | AWS region of the S3 bucket for regex artifacts |
 
 ### Deployment: Using Docker
 
@@ -140,6 +152,18 @@ DB_PASSWORD="your_secure_password"
 DB_HOST="<host address of deployed PostgresSQL host>"
 DB_PORT="5432"
 DB_NAME="api_insights_db"
+VOCAB_USE_S3="true"
+VOCAB_S3_BUCKET="<s3 bucket with extractor artifacts>"
+VOCAB_S3_KEY="<s3 key to vocabulary.enc file>"
+VOCAB_S3_REGION="ap-south-1"
+CLASSIFICATION_USE_S3="true"
+CLASSIFICATION_S3_BUCKET="<s3 bucket with extractor artifacts>"
+CLASSIFICATION_S3_KEY="<s3 key to classification.enc file>"
+CLASSIFICATION_S3_REGION="ap-south-1"
+REGEX_USE_S3="true"
+REGEX_S3_BUCKET="<s3 bucket with extractor artifacts>"
+REGEX_S3_KEY="<s3 key to regex.enc file>"
+REGEX_S3_REGION="ap-south-1"
 ```
 
 Now, run the container -
