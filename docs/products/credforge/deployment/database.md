@@ -14,7 +14,7 @@ This document outlines the deployment steps for the required databases: MongoDB 
 #### MongoDB 7.0
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   mongodb:
     image: mongo:7.0
@@ -34,7 +34,7 @@ volumes:
 #### PostgreSQL 16
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   postgres:
     image: postgres:16
@@ -63,6 +63,7 @@ To deploy using Docker Compose:
 #### MongoDB 7.0 Installation
 
 Import MongoDB public GPG key:
+
 ```bash
 curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
    sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
@@ -70,17 +71,20 @@ curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
 ```
 
 Create list file for MongoDB:
+
 ```bash
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 ```
 
 Update package database and install MongoDB:
+
 ```bash
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 ```
 
 Start and enable MongoDB:
+
 ```bash
 sudo systemctl start mongod
 sudo systemctl enable mongod
@@ -89,18 +93,21 @@ sudo systemctl enable mongod
 #### PostgreSQL 16 Installation
 
 Add PostgreSQL repository:
+
 ```bash
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 ```
 
 Install PostgreSQL:
+
 ```bash
 sudo apt-get update
 sudo apt-get install -y postgresql-16
 ```
 
 Start and enable PostgreSQL:
+
 ```bash
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
@@ -111,32 +118,30 @@ sudo systemctl enable postgresql
 #### Amazon DocumentDB (MongoDB Compatible)
 
 1. Create a DocumentDB cluster:
-   - Go to AWS Console → DocumentDB
-   - Click "Create cluster"
-   - Select engine version compatible with MongoDB 7.0
-   - Configure instance class (recommended: db.r6g.large or higher)
-   - Set up VPC and security groups
-   - Configure backup retention period
-   - Set up encryption at rest
-
+  - Go to AWS Console → DocumentDB
+  - Click "Create cluster"
+  - Select engine version compatible with MongoDB 7.0
+  - Configure instance class (recommended: db.r6g.large or higher)
+  - Set up VPC and security groups
+  - Configure backup retention period
+  - Set up encryption at rest
 2. Configure security:
-   - Configure security groups to allow access from application servers
+  - Configure security groups to allow access from application servers
 
 #### Amazon RDS for PostgreSQL 16
 
 1. Create an RDS instance:
-   - Go to AWS Console → RDS
-   - Click "Create database"
-   - Choose PostgreSQL 16
-   - Select instance class (recommended: db.r6g.large or higher)
-   - Configure storage (recommended: 100GB+ with autoscaling)
-   - Set up VPC and security groups
-   - Enable Multi-AZ deployment for high availability
-   - Configure backup retention period
-   - Enable encryption at rest
-
+  - Go to AWS Console → RDS
+  - Click "Create database"
+  - Choose PostgreSQL 16
+  - Select instance class (recommended: db.r6g.large or higher)
+  - Configure storage (recommended: 100GB+ with autoscaling)
+  - Set up VPC and security groups
+  - Enable Multi-AZ deployment for high availability
+  - Configure backup retention period
+  - Enable encryption at rest
 2. Configure security:
-   - Configure security groups to allow access from application servers
+  - Configure security groups to allow access from application servers
 
 ## Database Schema Setup
 
@@ -162,10 +167,10 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO credforge
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO credforge_user;
 
 -- Set default privileges for future tables in both databases
-ALTER DEFAULT PRIVILEGES IN SCHEMA public 
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO credforge_user;
 
-ALTER DEFAULT PRIVILEGES IN SCHEMA public 
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
 GRANT USAGE, SELECT ON SEQUENCES TO credforge_user;
 ```
 
@@ -384,11 +389,11 @@ DECLARE
     partition_record record;
     partition_date date;
 BEGIN
-    FOR partition_record IN 
+    FOR partition_record IN
         SELECT tablename, schemaname
-        FROM pg_tables 
-        WHERE schemaname = 'public' 
-        AND tablename LIKE parent_table || '_%_%_%'  
+        FROM pg_tables
+        WHERE schemaname = 'public'
+        AND tablename LIKE parent_table || '_%_%_%'
     LOOP
         BEGIN
             -- Extract the last three parts of the table name which contain the date
@@ -400,8 +405,8 @@ BEGIN
             );
 
             IF partition_date < current_date - retention_days THEN
-                EXECUTE format('DROP TABLE IF EXISTS %I.%I', 
-                               partition_record.schemaname, 
+                EXECUTE format('DROP TABLE IF EXISTS %I.%I',
+                               partition_record.schemaname,
                                partition_record.tablename);
                 RAISE NOTICE 'Deleted partition: %', partition_record.tablename;
             END IF;
@@ -474,81 +479,121 @@ db.createUser({
 ```javascript
 // 1. Clients
 db.createCollection("clients");
-db.clients.createIndex({ "client_id": 1 });
-db.clients.createIndex({ "auth_token": 1 });
+db.clients.createIndex({ client_id: 1 });
+db.clients.createIndex({ auth_token: 1 });
 
 // 2. Ecm Client Metadata
 db.createCollection("ecm_client_metadata");
-db.ecm_client_metadata.createIndex({ "client_id": 1 });
-db.ecm_client_metadata.createIndex({ "engine": 1 });
+db.ecm_client_metadata.createIndex({ client_id: 1 });
+db.ecm_client_metadata.createIndex({ engine: 1 });
 
 // 3. Ecm Output Log
 db.createCollection("ecm_output_log");
-db.ecm_output_log.createIndex({ "reference_id": 1 });
-db.ecm_output_log.createIndex({ "user_id": 1 });
-db.ecm_output_log.createIndex({ "engine": 1 });
-db.ecm_output_log.createIndex({ "request_id": 1 });
-db.ecm_output_log.createIndex({ "client_id": 1 });
-db.ecm_output_log.createIndex({ "created_at": 1 });
+db.ecm_output_log.createIndex({ reference_id: 1 });
+db.ecm_output_log.createIndex({ user_id: 1 });
+db.ecm_output_log.createIndex({ engine: 1 });
+db.ecm_output_log.createIndex({ request_id: 1 });
+db.ecm_output_log.createIndex({ client_id: 1 });
+db.ecm_output_log.createIndex({ created_at: 1 });
 
 // 4. Ecm Request Log
 db.createCollection("ecm_request_log");
-db.ecm_request_log.createIndex({ "reference_id": 1 });
-db.ecm_request_log.createIndex({ "user_id": 1 });
-db.ecm_request_log.createIndex({ "request_id": 1 });
-db.ecm_request_log.createIndex({ "engine": 1 });
-db.ecm_request_log.createIndex({ "client_id": 1 });
-db.ecm_request_log.createIndex({ "created_at": 1 });
+db.ecm_request_log.createIndex({ reference_id: 1 });
+db.ecm_request_log.createIndex({ user_id: 1 });
+db.ecm_request_log.createIndex({ request_id: 1 });
+db.ecm_request_log.createIndex({ engine: 1 });
+db.ecm_request_log.createIndex({ client_id: 1 });
+db.ecm_request_log.createIndex({ created_at: 1 });
 
 // 5. Ecm Response Log
 db.createCollection("ecm_response_log");
-db.ecm_response_log.createIndex({ "reference_id": 1 });
-db.ecm_response_log.createIndex({ "request_id": 1 });
-db.ecm_response_log.createIndex({ "user_id": 1 });
-db.ecm_response_log.createIndex({ "engine": 1 });
-db.ecm_response_log.createIndex({ "client_id": 1 });
+db.ecm_response_log.createIndex({ reference_id: 1 });
+db.ecm_response_log.createIndex({ request_id: 1 });
+db.ecm_response_log.createIndex({ user_id: 1 });
+db.ecm_response_log.createIndex({ engine: 1 });
+db.ecm_response_log.createIndex({ client_id: 1 });
 
 // 6. Request Workflow State
 db.createCollection("request_workflow_state");
-db.request_workflow_state.createIndex({ "client_id": 1 });
-db.request_workflow_state.createIndex({ "created_date": -1 });
-db.request_workflow_state.createIndex({ "created_at": -1 });
-db.request_workflow_state.createIndex({ "user_id": 1 });
-db.request_workflow_state.createIndex({ "request_id": 1 });
-db.request_workflow_state.createIndex({ "reference_id": 1 });
-db.request_workflow_state.createIndex({ "workflow_strategy": 1 });
-db.request_workflow_state.createIndex({ "workflow_endpoint": 1 });
-db.request_workflow_state.createIndex({ "client_id": 1, "workflow_strategy": 1 });
-db.request_workflow_state.createIndex({ "client_id": 1, "workflow_strategy": 1, "created_date": -1 });
+db.request_workflow_state.createIndex({ client_id: 1 });
+db.request_workflow_state.createIndex({ created_date: -1 });
+db.request_workflow_state.createIndex({ created_at: -1 });
+db.request_workflow_state.createIndex({ user_id: 1 });
+db.request_workflow_state.createIndex({ request_id: 1 });
+db.request_workflow_state.createIndex({ reference_id: 1 });
+db.request_workflow_state.createIndex({ workflow_strategy: 1 });
+db.request_workflow_state.createIndex({ workflow_endpoint: 1 });
+db.request_workflow_state.createIndex({ client_id: 1, workflow_strategy: 1 });
+db.request_workflow_state.createIndex({
+  client_id: 1,
+  workflow_strategy: 1,
+  created_date: -1,
+});
 
 // 7. Unauthorized Requests
 db.createCollection("unauthorized_requests");
-db.unauthorized_requests.createIndex({ "client_id": 1 });
-db.unauthorized_requests.createIndex({ "request_id": 1 });
+db.unauthorized_requests.createIndex({ client_id: 1 });
+db.unauthorized_requests.createIndex({ request_id: 1 });
 
 // 8. Usage
 db.createCollection("usage");
-db.usage.createIndex({ "client_id": 1 });
-db.usage.createIndex({ "request_id": 1 });
-db.usage.createIndex({ "api_name": 1 });
+db.usage.createIndex({ client_id: 1 });
+db.usage.createIndex({ request_id: 1 });
+db.usage.createIndex({ api_name: 1 });
 
 // 9. Workflow Configs
 db.createCollection("workflow_configs");
-db.workflow_configs.createIndex({ "workflow_name": 1 });
-db.workflow_configs.createIndex({ "client_id": 1 });
+db.workflow_configs.createIndex({ workflow_name: 1 });
+db.workflow_configs.createIndex({ client_id: 1 });
 
 // 10. Workflow Endpoint Config
 db.createCollection("workflow_endpoint_config");
-db.workflow_endpoint_config.createIndex({ "workflow_endpoint": 1 });
-db.workflow_endpoint_config.createIndex({ "client_id": 1 });
+db.workflow_endpoint_config.createIndex({ workflow_endpoint: 1 });
+db.workflow_endpoint_config.createIndex({ client_id: 1 });
 
 // 11. Workflow Event Log
 db.createCollection("workflow_event_log");
-db.workflow_event_log.createIndex({ "client_id": 1 });
-db.workflow_event_log.createIndex({ "reference_id": 1 });
-db.workflow_event_log.createIndex({ "request_id": 1 });
-db.workflow_event_log.createIndex({ "user_id": 1 });
-db.workflow_event_log.createIndex({ "event_type": 1 });
+db.workflow_event_log.createIndex({ client_id: 1 });
+db.workflow_event_log.createIndex({ reference_id: 1 });
+db.workflow_event_log.createIndex({ request_id: 1 });
+db.workflow_event_log.createIndex({ user_id: 1 });
+db.workflow_event_log.createIndex({ event_type: 1 });
+```
+
+#### Portal MongoDB Setup
+
+```javascript
+// Switch to portal database
+use fpb
+
+// Create collections
+db.createCollection("audit_logs");
+db.createCollection("config");
+db.createCollection("ecm");
+db.createCollection("ecm_template");
+db.createCollection("endpoint");
+db.createCollection("fe");
+db.createCollection("fe-common-files");
+db.createCollection("re");
+db.createCollection("roles");
+db.createCollection("simulation_results");
+db.createCollection("simulations");
+db.createCollection("users");
+db.createCollection("wm");
+
+// Indexes
+// audit_logs
+db.audit_logs.createIndex({ client_id: 1 });
+db.audit_logs.createIndex({ userId: 1 });
+db.audit_logs.createIndex({ component: 1 });
+db.audit_logs.createIndex({ componentName: 1 });
+db.audit_logs.createIndex({ createdAt: -1 });
+
+// simulation_results (TTL: 7 days)
+db.simulation_results.createIndex(
+  { saved_at: 1 },
+  { expireAfterSeconds: 604800 }
+);
 ```
 
 ### Important Notes
@@ -571,12 +616,14 @@ db.workflow_event_log.createIndex({ "event_type": 1 });
 ## Backup and Recovery
 
 ### MongoDB
+
 - Regular automated backups
 - Point-in-time recovery (for DocumentDB)
 - Backup verification
 - Recovery testing
 
 ### PostgreSQL
+
 - Automated snapshots
 - Point-in-time recovery
 - WAL archiving
@@ -588,11 +635,11 @@ db.workflow_event_log.createIndex({ "event_type": 1 });
 1. Set up CloudWatch metrics (for AWS deployments)
 2. Configure database-specific monitoring tools
 3. Set up alerts for:
-   - High CPU usage
-   - Low disk space
-   - Connection count
-   - Error rates
-   - Replication lag
+  - High CPU usage
+  - Low disk space
+  - Connection count
+  - Error rates
+  - Replication lag
 
 ## Maintenance
 
@@ -609,13 +656,15 @@ The following table provides recommended node specifications and counts for Post
 - **PostgreSQL**: 1GB RAM, 2 vCPU, 25GB disk (3000 IOPS, 125 MBPS)
 - **MongoDB**: 4GB RAM, 2 vCPU, 100GB disk (3000 IOPS, 125 MBPS)
 
-| Requests / Day | PostgreSQL Nodes| MongoDB Nodes |
-|----------------|:---------------:|:-------------:|
-| **10K**        | 1               | 1             |
-| **25K**        | 2               | 2             |
-| **50K**        | 3               | 3             |
-| **75K**        | 4               | 4             |
-| **100K**       | 5               | 5             |
+
+| Requests / Day | PostgreSQL Nodes | MongoDB Nodes |
+| -------------- | ---------------- | ------------- |
+| **10K**        | 1                | 1             |
+| **25K**        | 2                | 2             |
+| **50K**        | 3                | 3             |
+| **75K**        | 4                | 4             |
+| **100K**       | 5                | 5             |
+
 
 **Notes:**
 
@@ -623,3 +672,4 @@ The following table provides recommended node specifications and counts for Post
 - Scale up node count and/or instance size if you observe CPU, RAM, or disk IOPS/throughput consistently above 50% utilization.
 - Adjust disk size and IOPS as data volume grows.
 - Monitor database metrics and tune accordingly.
+
