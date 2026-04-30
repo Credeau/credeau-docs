@@ -2835,6 +2835,54 @@
 <td><code>DB_NAME</code></td>
 <td>Database name for postgres database connection</td>
 </tr>
+<tr>
+<td><code>VOCAB_USE_S3</code></td>
+<td>Flag to enable loading vocabulary artifacts from S3 (true/false)</td>
+</tr>
+<tr>
+<td><code>VOCAB_S3_BUCKET</code></td>
+<td>S3 bucket name containing vocabulary extractor artifacts</td>
+</tr>
+<tr>
+<td><code>VOCAB_S3_KEY</code></td>
+<td>S3 object key path to the vocabulary.enc file</td>
+</tr>
+<tr>
+<td><code>VOCAB_S3_REGION</code></td>
+<td>AWS region of the S3 bucket for vocabulary artifacts</td>
+</tr>
+<tr>
+<td><code>CLASSIFICATION_USE_S3</code></td>
+<td>Flag to enable loading classification artifacts from S3 (true/false)</td>
+</tr>
+<tr>
+<td><code>CLASSIFICATION_S3_BUCKET</code></td>
+<td>S3 bucket name containing classification extractor artifacts</td>
+</tr>
+<tr>
+<td><code>CLASSIFICATION_S3_KEY</code></td>
+<td>S3 object key path to the classification.enc file</td>
+</tr>
+<tr>
+<td><code>CLASSIFICATION_S3_REGION</code></td>
+<td>AWS region of the S3 bucket for classification artifacts</td>
+</tr>
+<tr>
+<td><code>REGEX_USE_S3</code></td>
+<td>Flag to enable loading regex artifacts from S3 (true/false)</td>
+</tr>
+<tr>
+<td><code>REGEX_S3_BUCKET</code></td>
+<td>S3 bucket name containing regex extractor artifacts</td>
+</tr>
+<tr>
+<td><code>REGEX_S3_KEY</code></td>
+<td>S3 object key path to the regex.enc file</td>
+</tr>
+<tr>
+<td><code>REGEX_S3_REGION</code></td>
+<td>AWS region of the S3 bucket for regex artifacts</td>
+</tr>
 </tbody>
 </table>
 <h3 id="deployment-using-docker_1">Deployment: Using Docker<a class="headerlink" href="#deployment-using-docker_1" title="Permanent link">&para;</a></h3>
@@ -2849,6 +2897,18 @@
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">DB_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;host address of deployed PostgresSQL host&gt;&quot;</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">DB_PORT</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">&quot;api_insights_db&quot;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nv">VOCAB_USE_S3</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nv">VOCAB_S3_BUCKET</span><span class="o">=</span><span class="s2">&quot;&lt;s3 bucket with extractor artifacts&gt;&quot;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nv">VOCAB_S3_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;s3 key to vocabulary.enc file&gt;&quot;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nv">VOCAB_S3_REGION</span><span class="o">=</span><span class="s2">&quot;ap-south-1&quot;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="nv">CLASSIFICATION_USE_S3</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nv">CLASSIFICATION_S3_BUCKET</span><span class="o">=</span><span class="s2">&quot;&lt;s3 bucket with extractor artifacts&gt;&quot;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nv">CLASSIFICATION_S3_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;s3 key to classification.enc file&gt;&quot;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nv">CLASSIFICATION_S3_REGION</span><span class="o">=</span><span class="s2">&quot;ap-south-1&quot;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="nv">REGEX_USE_S3</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nv">REGEX_S3_BUCKET</span><span class="o">=</span><span class="s2">&quot;&lt;s3 bucket with extractor artifacts&gt;&quot;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="nv">REGEX_S3_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;s3 key to regex.enc file&gt;&quot;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nv">REGEX_S3_REGION</span><span class="o">=</span><span class="s2">&quot;ap-south-1&quot;</span>
 </span></code></pre></div>
 <p>Now, run the container -</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
