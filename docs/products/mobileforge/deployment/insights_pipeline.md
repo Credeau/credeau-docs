@@ -23,21 +23,53 @@ The sync pipeline consists of three main components -
 
 The application supports various environment variables to provide application with necessary runtime values -
 
-| Variable                    | Description |
-|-----------------------------|-------------|
-| `LAUNCH_ENVIRONMENT`        | Environment in which the service is deployed (dev, staging, prod) |
-| `DI_POSTGRES_USERNAME`      | Username for postgres database authentication |
-| `DI_POSTGRES_PASSWORD`      | Password for postgres database authentication |
-| `DI_POSTGRES_HOST`          | Host address of postgres database server to connect |
-| `DI_POSTGRES_PORT`          | Mapped port of postgres database server to connect |
-| `DI_POSTGRES_DATABASE`      | Database name for postgres database connection |
-| `DI_POSTGRES_SYNC_DATABASE` | Sync Database name for postgres database connection |
-| `SMS_EXTRACTOR_SERVICE_URL` | URL of the SMS Extraction Service |
-| `DI_MONGODB_USERNAME`       | Username for mongo database authentication |
-| `DI_MONGODB_PASSWORD`       | Password for mongo database authentication |
-| `DI_MONGODB_HOST`           | Host address of mongo database server to connect |
-| `DI_MONGODB_PORT`           | Mapped port of mongo database server to connect |
-| `DI_MONGODB_DATABASE`       | Database name for mongo database connection |
+| Variable                                    | Description |
+|---------------------------------------------|-------------|
+| `CLIENT_ID`                                 | Client ID shared by Credeau |
+| `LAUNCH_ENVIRONMENT`                        | Environment in which the service is deployed (dev, staging, prod) |
+| `DI_POSTGRES_USERNAME`                      | Username for postgres database authentication |
+| `DI_POSTGRES_PASSWORD`                      | Password for postgres database authentication |
+| `DI_POSTGRES_HOST`                          | Host address of postgres database server to connect |
+| `DI_POSTGRES_PORT`                          | Mapped port of postgres database server to connect |
+| `DI_POSTGRES_DATABASE`                      | Database name for postgres database connection |
+| `DI_POSTGRES_SYNC_DATABASE`                 | Sync Database name for postgres database connection |
+| `SMS_EXTRACTOR_SERVICE_URL`                 | URL of the SMS Extraction Service |
+| `DI_MONGODB_USERNAME`                       | Username for mongo database authentication |
+| `DI_MONGODB_PASSWORD`                       | Password for mongo database authentication |
+| `DI_MONGODB_HOST`                           | Host address of mongo database server to connect |
+| `DI_MONGODB_PORT`                           | Mapped port of mongo database server to connect |
+| `DI_MONGODB_DATABASE`                       | Database name for mongo database connection |
+| `ENABLED_APIS`                              | API code to enable Featurization API shared by Credeau |
+| `LICENSE_KEY`                               | Product enablement license key shared by Credeau |
+| `SUBSCRIPTION_ID`                           | Subscription ID shared by Credeau |
+| `APPS_MAPPING_PATH`                         | S3 URI of `india_configs_apps_mapping.json.enc` file shared by Credeau |
+| `FRAUD_APPS_MAPPING_PATH`                   | S3 URI of `india_configs_fraud_apps_mapping.json.enc` file shared by Credeau |
+| `AVG_DEVICE_MAPPING_PATH`                   | S3 URI of `india_configs_avg_device_price.json.enc` file shared by Credeau |
+| `DEVICE_MAPPING_PATH`                       | S3 URI of `india_configs_device_pricing.json.enc` file shared by Credeau |
+| `MERCHANT_MAPPING_PATH`                     | S3 URI of `india_configs_merchant_clean_sender_name_mapping.csv.enc` file shared by Credeau |
+| `SMS_MAPPING_PATH`                          | S3 URI of `india_configs_sms_sender_mapping.json.enc` file shared by Credeau |
+| `SMS_MAPPING_V2_PATH`                       | S3 URI of `india_configs_sms_sender_mapping_v2.json.enc` file shared by Credeau |
+| `COMPANY_MODEL_PATH`                        | S3 URI of `india_models_company_model.pkl.enc` file shared by Credeau |
+| `COMPANY_VECTORIZER_PATH`                   | S3 URI of `india_models_company_vectorizer.pkl.enc` file shared by Credeau |
+| `COUNT_VECTORIZER_PATH`                     | S3 URI of `india_models_countvectorizer.pickle.enc` file shared by Credeau |
+| `LABEL_MODEL_PATH`                          | S3 URI of `india_models_label_encoder.pickle.enc` file shared by Credeau |
+| `LR_MODEL_PATH`                             | S3 URI of `india_models_lr.pickle.enc` file shared by Credeau |
+| `MERCHANT_LABEL_V2_PATH`                    | S3 URI of `india_models_merchant_label_encoder_v2.pkl.enc` file shared by Credeau |
+| `MERCHANT_LABEL_PATH`                       | S3 URI of `india_models_merchant_label_encoder.pkl.enc` file shared by Credeau |
+| `MERCHANT_MODEL_V2_PATH`                    | S3 URI of `india_models_merchant_model_v2.pkl.enc` file shared by Credeau |
+| `MERCHANT_MODEL_PATH`                       | S3 URI of `india_models_merchant_model.pkl.enc` file shared by Credeau |
+| `MERCHANT_VECTORIZER_V2_PATH`               | S3 URI of `india_models_merchant_vectorizer_v2.pkl.enc` file shared by Credeau |
+| `MERCHANT_VECTORIZER_PATH`                  | S3 URI of `india_models_merchant_vectorizer.pkl.enc` file shared by Credeau |
+| `LGB_SCORE_MODEL_PATH`                      | S3 URI of `india_scoring_lgb_model.pkl.enc` file shared by Credeau |
+| `PAYDAY_SCORE_LGB_MODEL_PATH`               | S3 URI of `india_scoring_payday_lgb_model.pkl.enc` file shared by Credeau |
+| `PAYDAY_SCORE_LGB_MODEL_V2_PATH`            | S3 URI of `india_scoring_payday_lgb_model_20250623.pkl.enc` file shared by Credeau |
+| `PAYDAY_SCORE_LGB_MODEL_V3_PATH`            | S3 URI of `india_scoring_payday_lgb_model_20250703.pkl.enc` file shared by Credeau |
+| `PREDICTORS_SCORE_LGB_MODEL_PATH`           | S3 URI of `india_scoring_predictors_lgb.pkl.enc` file shared by Credeau |
+| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_PATH`    | S3 URI of `india_scoring_predictors_payday_lgb_model.pkl.enc` file shared by Credeau |
+| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V2_PATH` | S3 URI of `india_scoring_predictors_payday_lgb_model_20250623.pkl.enc` file shared by Credeau |
+| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V3_PATH` | S3 URI of `india_scoring_predictors_payday_lgb_model_20250703.pkl.enc` file shared by Credeau |
+| `EMI_LGB_MODEL_V2_PATH`                     | S3 URI of `india_scoring_EMI_lgb_model_20250730_V2.pkl.enc` file shared by Credeau |
+| `PREDICTORS_EMI_LGB_MODEL_V2_PATH`          | S3 URI of `india_scoring_predictors_EMI_lgb_model_20250730_V2.pkl.enc` file shared by Credeau |
 
 ### Deployment: Using Docker
 
@@ -52,6 +84,7 @@ docker pull <account-id>.dkr.ecr.<region>.amazonaws.com/credeau-insights-api:<ve
 Create a `.env` file with the following variables -
 
 ```bash
+CLIENT_ID="<client id shared by Credeau>"
 LAUNCH_ENVIRONMENT="prod"
 DI_POSTGRES_USERNAME="mobileforge_user"
 DI_POSTGRES_PASSWORD="your_secure_password"
@@ -65,6 +98,37 @@ DI_MONGODB_PASSWORD="your_secure_password"
 DI_MONGODB_HOST="<host address of deployed MongoDB host>"
 DI_MONGODB_PORT="27017"
 DI_MONGODB_DATABASE="sync_db"
+ENABLED_APIS="<API code shared by Credeau>"
+LICENSE_KEY="<product activation license key shared by Credeau>"
+SUBSCRIPTION_ID="<subscription id shared by credeau>"
+APPS_MAPPING_PATH="s3://bucket-name/key/india_configs_apps_mapping.json.enc"
+FRAUD_APPS_MAPPING_PATH="s3://bucket-name/key/india_configs_fraud_apps_mapping.json.enc"
+AVG_DEVICE_MAPPING_PATH="s3://bucket-name/key/india_configs_avg_device_price.json.enc"
+DEVICE_MAPPING_PATH="s3://bucket-name/key/india_configs_device_pricing.json.enc"
+MERCHANT_MAPPING_PATH="s3://bucket-name/key/india_configs_merchant_clean_sender_name_mapping.csv.enc"
+SMS_MAPPING_PATH="s3://bucket-name/key/india_configs_sms_sender_mapping.json.enc"
+SMS_MAPPING_V2_PATH="s3://bucket-name/key/india_configs_sms_sender_mapping_v2.json.enc"
+COMPANY_MODEL_PATH="s3://bucket-name/key/india_models_company_model.pkl.enc"
+COMPANY_VECTORIZER_PATH="s3://bucket-name/key/india_models_company_vectorizer.pkl.enc"
+COUNT_VECTORIZER_PATH="s3://bucket-name/key/india_models_countvectorizer.pickle.enc"
+LABEL_MODEL_PATH="s3://bucket-name/key/india_models_label_encoder.pickle.enc"
+LR_MODEL_PATH="s3://bucket-name/key/india_models_lr.pickle.enc"
+MERCHANT_LABEL_V2_PATH="s3://bucket-name/key/india_models_merchant_label_encoder_v2.pkl.enc"
+MERCHANT_LABEL_PATH="s3://bucket-name/key/india_models_merchant_label_encoder.pkl.enc"
+MERCHANT_MODEL_V2_PATH="s3://bucket-name/key/india_models_merchant_model_v2.pkl.enc"
+MERCHANT_MODEL_PATH="s3://bucket-name/key/india_models_merchant_model.pkl.enc"
+MERCHANT_VECTORIZER_V2_PATH="s3://bucket-name/key/india_models_merchant_vectorizer_v2.pkl.enc"
+MERCHANT_VECTORIZER_PATH="s3://bucket-name/key/india_models_merchant_vectorizer.pkl.enc"
+LGB_SCORE_MODEL_PATH="s3://bucket-name/key/india_scoring_lgb_model.pkl.enc"
+PAYDAY_SCORE_LGB_MODEL_PATH="s3://bucket-name/key/india_scoring_payday_lgb_model.pkl.enc"
+PAYDAY_SCORE_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_payday_lgb_model_20250623.pkl.enc"
+PAYDAY_SCORE_LGB_MODEL_V3_PATH="s3://bucket-name/key/india_scoring_payday_lgb_model_20250703.pkl.enc"
+PREDICTORS_SCORE_LGB_MODEL_PATH="s3://bucket-name/key/india_scoring_predictors_lgb.pkl.enc"
+PREDICTORS_PAYDAY_SCORE_LGB_MODEL_PATH="s3://bucket-name/key/india_scoring_predictors_payday_lgb_model.pkl.enc"
+PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_predictors_payday_lgb_model_20250623.pkl.enc"
+PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V3_PATH="s3://bucket-name/key/india_scoring_predictors_payday_lgb_model_20250703.pkl.enc"
+EMI_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_EMI_lgb_model_20250730_V2.pkl.enc"
+PREDICTORS_EMI_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_predictors_EMI_lgb_model_20250730_V2.pkl.enc"
 ```
 
 Now, run the container -
