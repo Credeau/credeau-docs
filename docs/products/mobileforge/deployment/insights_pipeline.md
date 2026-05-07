@@ -39,7 +39,6 @@ The application supports various environment variables to provide application wi
 | `DI_MONGODB_HOST`                           | Host address of mongo database server to connect |
 | `DI_MONGODB_PORT`                           | Mapped port of mongo database server to connect |
 | `DI_MONGODB_DATABASE`                       | Database name for mongo database connection |
-| `ENABLED_APIS`                              | API code to enable Featurization API shared by Credeau |
 | `LICENSE_KEY`                               | Product enablement license key shared by Credeau |
 | `SUBSCRIPTION_ID`                           | Subscription ID shared by Credeau |
 | `APPS_MAPPING_PATH`                         | S3 URI of `india_configs_apps_mapping.json.enc` file shared by Credeau |
@@ -98,7 +97,6 @@ DI_MONGODB_PASSWORD="your_secure_password"
 DI_MONGODB_HOST="<host address of deployed MongoDB host>"
 DI_MONGODB_PORT="27017"
 DI_MONGODB_DATABASE="sync_db"
-ENABLED_APIS="<API code shared by Credeau>"
 LICENSE_KEY="<product activation license key shared by Credeau>"
 SUBSCRIPTION_ID="<subscription id shared by credeau>"
 APPS_MAPPING_PATH="s3://bucket-name/key/india_configs_apps_mapping.json.enc"
