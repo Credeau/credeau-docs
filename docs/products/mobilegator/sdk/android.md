@@ -56,7 +56,7 @@ Add the SDK to your application by adding the dependencies into your app level `
 > 
 > `<sdk_version>` will vary based on the concerned geography -
 >
-> - India - `3.0.6`
+> - India - `3.0.7`
 > - South-East Asia - `2.0.8`
 > - For Others, pLease connect with the Credeau team.
 
@@ -101,9 +101,7 @@ Add the SDK to your application by adding the dependencies into your app level `
 === "MainActivity.java"
 
     ```java
-    
     import com.credeau.collectdevicedata.DeviceDataManager;
-
     ```
 
 
@@ -113,14 +111,12 @@ Add the SDK to your application by adding the dependencies into your app level `
 === "MainActivity.java"
 
     ```java
-    
     DeviceDataManager deviceDataManager = new DeviceDataManager(
-                MainActivity.this,
-                "<CLIENT_ID>",
-                "<AUTH_TOKEN>",
-                "<SERVER_URL>"
+        MainActivity.this,
+        "<CLIENT_ID>",
+        "<AUTH_TOKEN>",
+        "<SERVER_URL>"
     );
-    
     ```
 
 > Note:
@@ -177,7 +173,6 @@ Disable syncs function disable the sync functionality for the categories passed 
 === "MainActivity.java"
 
     ```java
-    
     deviceDataManager.startBackGroundSyncProcess(new DataDeviceDataCallback() {
                     
         @Override
@@ -190,8 +185,7 @@ Disable syncs function disable the sync functionality for the categories passed 
                     Log.i("SDKResult:DataCollection", "Data synced Failed!");
         }
 
-    }, 1800L);
-
+    }, 14400L);
     ```
 
 ### To sync data once:
@@ -203,7 +197,6 @@ Disable syncs function disable the sync functionality for the categories passed 
 === "MainActivity.java"
 
     ```java
-    
     deviceDataManager.syncAllData(new DataDeviceDataCallback() {
                     
         @Override
@@ -215,10 +208,7 @@ Disable syncs function disable the sync functionality for the categories passed 
         public void onFailure(String s) {
                     Log.i("SDKResult:DataCollection", "Data synced Failed!");
         }
-
     });
-
-    
     ```
 
 ## Send Incoming Notifications to the SDK
