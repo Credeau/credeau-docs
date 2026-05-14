@@ -72,10 +72,10 @@ Refer to the [BRE API authentication](../index.md#authentication) for headers re
 >
 > We support multiple bureau formats. Please explore the format types for each bureau to find the one that matches your report structure and will go as `bureau_format_name` in request_payload:
 > 
-> - **CIBIL (TransUnion)**: [View supported formats](./bureauformats/cibil_related.md) - JSON format with TUEF structure
-> - **CRIF**: [View supported formats](./bureauformats/crif_related.md) - Multiple JSON variations and XML formats
-> - **Experian**: [View supported formats](./bureauformats/experian_related.md) - JSON and XML formats with CAIS/CAPS structure
-> - **Equifax**: [View supported formats](./bureauformats/equifax_related.md) - JSON formats with ERS scoring
+> - **CIBIL (TransUnion)**: [View supported formats](./../../../bureaugator/bureauformats/cibil_related.md) - JSON format with TUEF structure
+> - **CRIF**: [View supported formats](./../../../bureaugator/bureauformats/crif_related.md) - Multiple JSON variations and XML formats
+> - **Experian**: [View supported formats](./../../../bureaugator/bureauformats/experian_related.md) - JSON and XML formats with CAIS/CAPS structure
+> - **Equifax**: [View supported formats](./../../../bureaugator/bureauformats/equifax_related.md) - JSON formats with ERS scoring
 >
 > If none of these formats match your bureau report structure, please send your sample bureau report file to **tech@credeau.com** for format analysis and support.
 
