@@ -49,7 +49,6 @@ Add the SDK to your application by adding the dependencies into your app level `
     implementation("androidx.work:work-runtime-ktx:2.7.1")
     implementation("com.credeau:collectDeviceData:<sdk_version>@aar")
     implementation("com.google.firebase:firebase-messaging:24.1.0")
-       
     ``` 
 
 > Note:
@@ -136,6 +135,8 @@ Add the SDK to your application by adding the dependencies into your app level `
     deviceDataManager.setUsername("username");
     ```
 
+> Note: Do not use PII values like mobile number or email ids as username above. Instead, use the values of consistent hash 
+
 ### To match the details (Fullname, Phone no., Email):
 
 Device matching enhances pattern recognition to identify users based on their email address, phone number, and name. All matching is performed locally on the device, ensuring that no personal information—such as phone numbers or email addresses—is transmitted off the device.
@@ -152,6 +153,7 @@ To use this feature, initialize the builder by providing the customer's email ad
     );
     ```
 
+> Note: Pass empty strings `""`, if any of these values is not available.
 
 ### To disable syncs for the particular categories (sms, call logs, contacts):
 
