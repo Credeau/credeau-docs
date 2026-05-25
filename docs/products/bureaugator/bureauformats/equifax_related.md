@@ -6,244 +6,195 @@ Equifax provides credit reports in JSON format with comprehensive consumer credi
 
 ```json
 {
-    "InquiryResponse": {
-        "xmlns": "http://services.equifax.com/eport/ws/schemas/1.0",
-        "ReportData": {
-            "AccountSummary": {
-                "AccountsSummary": {
-                    "TotalSanctionAmount": 40000,
-                    "NoOfPastDueAccounts": 2,
-                    "TotalCreditLimit": 0,
-                    "NoOfActiveAccounts": 2,
-                    "TotalHighCredit": 0,
-                    "RecentAccount": "Personal Loan on 10-12-2025",
-                    "MostSevereStatusWithIn24Months": "WOF",
-                    "OldestAccount": "Personal Loan on 08-03-2020",
-                    "SingleHighestSanctionAmount": 38000,
-                    "NoOfAccounts": 16,
-                    "NoOfWriteOffs": 1,
-                    "SingleHighestCredit": 0,
-                    "AverageOpenBalance": 15728.5,
-                    "TotalPastDue": 11482,
-                    "NoOfZeroBalanceAccounts": 0,
-                    "TotalMonthlyPaymentAmount": 3799,
-                    "TotalBalanceAmount": 31457,
-                    "SingleHighestBalance": 29457
-                }
-            },
-            "ScoreDetails": {
-                "ScoreDetail": {
-                    "Type": "ERS",
-                    "Version": 4,
-                    "ScoringElements": {
-                        "ScoringElement": [
-                            {
-                                "Description": "Occurances of default account",
-                                "type": "RES",
-                                "Code": 400,
-                                "seq": 1
-                            },
-                            {
-                                "Description": "Overdue Amount",
-                                "type": "RES",
-                                "Code": 402,
-                                "seq": 2
-                            },
-                            {
-                                "Description": "Vintage in Bureau",
-                                "type": "RES",
-                                "Code": 401,
-                                "seq": 3
-                            }
-                        ]
-                    },
-                    "Value": 530,
-                    "Name": "ERS4.0"
-                }
-            },
-            "IDAndContactInfo": {
-                "EmailAddressInfo": {
-                    "ReportedDate": "2025-06-30",
-                    "seq": 1,
-                    "EmailAddress": "XXXXX@GMAIL.COM"
-                },
-                "PersonalInfo": {
-                    "DateOfBirth": "1998-08-12",
-                    "Occupation": "",
-                    "Gender": "Male",
-                    "TotalIncome": 60000,
-                    "Age": {
-                        "Age": 27
-                    },
-                    "Name": {
-                        "FullName": "XXXXX"
-                    }
-                },
-                "IdentityInfo": {
-                    "IDOther": {
-                        "ReportedDate": "2023-11-30",
-                        "IdNumber": XXXXX,
-                        "seq": 2
-                    },
-                    "PANId": {
-                        "ReportedDate": "2025-12-18",
-                        "IdNumber": "XXXXX",
-                        "seq": 1
-                    }
-                },
-                "PhoneInfo": [
+    "InquiryResponseHeader": {
+        "ClientID": "",
+        "CustRefField": "",
+        "ReportOrderNO": "",
+        "ProductCode": [
+            "CCR"
+        ],
+        "SuccessCode": "1",
+        "Date": "2026-04-08",
+        "Time": "10:15:11"
+    },
+    "Score": [
+        {
+            "Type": "ERS",
+            "Version": "4.0"
+        }
+    ],
+    "CCRResponse": {
+        "Status": "1",
+        "CIRReportDataLst": [
+            {
+                "Score": [
                     {
-                        "ReportedDate": "2025-12-18",
-                        "Number": XXXXX,
-                        "seq": 1,
-                        "typeCode": "H"
+                        "Type": "ERS",
+                        "Version": "4.0"
                     }
                 ],
-                "AddressInfo": [
-                    {
-                        "Type": "Rents,Primary",
-                        "ReportedDate": "2025-06-30",
-                        "Address": "DO NO 5 29 96/2 THULLURU GUNTUR ANDHRA PRADESH GUNTUR ANDHRA PRADESH",
-                        "State": "AP",
-                        "seq": 1,
-                        "Postal": 522237
-                    }
-                ]
-            },
-            "OtherKeyInd": {
-                "AgeOfOldestTrade": 73,
-                "AllLinesEVERWrittenIn6Months": 1,
-                "NumberOfOpenTrades": 2,
-                "AllLinesEVERWritten": 6.25,
-                "AllLinesEVERWrittenIn9Months": 0
-            },
-            "EnquirySummary": {
-                "Recent": "18-12-2023",
-                "Past30Days": 0,
-                "Total": 4,
-                "Past12Months": 0,
-                "Past24Months": 0,
-                "Purpose": "ALL"
-            },
-            "RecentActivities": {
-                "TotalInquiries": 0,
-                "AccountsOpened": 0,
-                "AccountsDeliquent": 2,
-                "AccountsUpdated": 2
-            },
-            "Disclaimer": "The entire information contained in this report is furnished by various Credit Institutions/members (\"Members\"), which is neither controlled nor subjected to any alteration by Equifax Credit Information Services Private Limited (ECIS). ECIS by using its proprietary search match logic tools, in compliance with the CIC Laws has collated the information and has generated this report. ECIS provides this report on a best effort basis and does not guarantee the timelines, correctness or completeness of the information contained therein. The use of this report will be governed by the terms and conditions accepted by You or as per Membership Agreement entered by the Member with ECIS. Lending decisions are taken by Members/Credit Institutions who access these reports and may differ from Member to Member. ECIS doesn’t tell a lender whether they should offer credit or not to its customer/borrower– it is solely for the lender to decide.",
-            "AccountDetails": {
-                "Account": [
-                    {
-                        "OwnershipType": "Individual",
-                        "ReportedDate": "2026-04-18",
-                        "DateReported": "2026-04-18",
-                        "TermFrequency": "Monthly",
-                        "History48Months": {
-                            "Month": [
+                "CIRReportData": {
+                    "IDAndContactInfo": {
+                        "PersonalInfo": {
+                            "Name": {
+                                "FullName": "XXXXX",
+                                "FirstName": "XXXXX ",
+                                "MiddleName": "XXXXX "
+                            },
+                            " AliasName": {},
+                            "DateOfBirth": "1991-01-01",
+                            "Gender": "Male",
+                            "Age": {
+                                "Age": "35"
+                            },
+                            "PlaceOfBirthInfo": {},
+                            "TotalIncome": "25000"
+                        },
+                        "IdentityInfo": {
+                            "PANId": [
                                 {
-                                    "SuitFiledStatus": "*",
-                                    "AssetClassificationStatus": "*",
-                                    "key": "04-26",
-                                    "PaymentStatus": "01+"
-                                },
+                                    "seq": "1",
+                                    "ReportedDate": "2026-03-31",
+                                    "IdNumber": "XXXXX"
+                                }
+                            ],
+                            "NationalIDCard": [
                                 {
-                                    "SuitFiledStatus": "*",
-                                    "AssetClassificationStatus": "*",
-                                    "key": "03-26",
-                                    "PaymentStatus": "01+"
-                                },
+                                    "seq": "1",
+                                    "ReportedDate": "2026-03-23",
+                                    "IdNumber": "XXXXXXXXXXXX"
+                                }
+                            ],
+                            "CKYCId": [
                                 {
-                                    "SuitFiledStatus": "*",
-                                    "AssetClassificationStatus": "*",
-                                    "key": "02-26",
-                                    "PaymentStatus": "01+"
-                                },
-                                {
-                                    "SuitFiledStatus": "*",
-                                    "AssetClassificationStatus": "*",
-                                    "key": "01-26",
-                                    "PaymentStatus": "000"
-                                },
-                                {
-                                    "SuitFiledStatus": "*",
-                                    "AssetClassificationStatus": "*",
-                                    "key": "12-25",
-                                    "PaymentStatus": "NEW"
+                                    "seq": "1",
+                                    "ReportedDate": "2024-11-30",
+                                    "IdNumber": "60055492853835"
                                 }
                             ]
                         },
-                        "PastDueAmount": 4897,
-                        "DisputeCode": "",
-                        "Institution": "FINANCE",
-                        "Reason": "",
-                        "Open": "Yes",
-                        "AccountStatus": "1-29 days past due",
-                        "InterestRate": "",
-                        "seq": 1,
-                        "DateOpened": "2025-12-10",
-                        "LastPayment": 3799,
-                        "LastPaymentDate": "2026-04-04",
-                        "RepaymentTenure": 12,
-                        "InstallmentAmount": 3799,
-                        "AccountType": "Personal Loan",
-                        "CollateralType": "",
-                        "AccountNumber": "**********",
-                        "CollateralValue": "",
-                        "SuitFiledStatus": "",
-                        "SanctionAmount": 38000,
-                        "AssetClassification": "",
-                        "Balance": 29457
-                    }
-                ]
-            }
-        },
-        "InquiryResponseHeader": {
-            "ReportOrderNO": 2581479754,
-            "HitCode": 10,
-            "ProductCode": "PCS",
-            "CustomerCode": "",
-            "ClientID": "",
-            "CustRefField": XXXXX,
-            "SuccessCode": 1,
-            "Time": "06:01:13",
-            "Date": "21-04-2026"
-        },
-        "Scores": {
-            "Score": {
-                "Type": "ERS",
-                "Version": 3.1,
-                "seq": 1
-            }
-        },
-        "InquiryRequestInfo": {
-            "InquiryPurpose": "05",
-            "AddrLine1": "5 29 96 2 THULLURU GUNTUR 44 ANDHRA PRADESH",
-            "FirstName": "XXXXX",
-            "MobilePhone": XXXXX,
-            "TransactionAmount": 25000,
-            "State": "AP",
-            "DOB": "1998-08-12",
-            "FullName": "XXXXX",
-            "LastName": "XXXXX",
-            "InquiryPhones": {
-                "InquiryPhone": {
-                    "Number": XXXXX,
-                    "PhoneType": "M",
-                    "seq": 1
+                        "AddressInfo": [
+                            {
+                                "Seq": "1",
+                                "ReportedDate": "2026-03-31",
+                                "Address": "456/10 CHHOTU RAM NAGAR  BAHADURGARH ROHTAK HARYANA 124507",
+                                "State": "HR",
+                                "Postal": "124507",
+                                "Type": "Owns,Permanent"
+                            }
+                        ],
+                        "PhoneInfo": [
+                            {
+                                "seq": "1",
+                                "typeCode": "H",
+                                "ReportedDate": "2026-02-07",
+                                "Number": "XXXXX"
+                            }
+                        ],
+                        "EmailAddressInfo": [
+                            {
+                                "seq": "1",
+                                "ReportedDate": "2024-11-30",
+                                "EmailAddress": "XXXXX@GMAIL.COM"
+                            }
+                        ]
+                    },
+                    "ScoreDetails": [
+                        {
+                            "Type": "ERS",
+                            "Version": "4.0",
+                            "Name": "RTL.ERS4.0",
+                            "Value": "746",
+                            "ScoringElements": [
+                                {
+                                    "type": "RES",
+                                    "seq": "1",
+                                    "code": "600",
+                                    "Description": "Recent Credit exposure"
+                                },
+                                {
+                                    "type": "RES",
+                                    "seq": "2",
+                                    "code": "606",
+                                    "Description": "Earlier Closed Accounts"
+                                },
+                                {
+                                    "type": "RES",
+                                    "seq": "3",
+                                    "code": "605",
+                                    "Description": "Number of Personal Loans"
+                                }
+                            ]
+                        }
+                    ],
+                    "Enquiries": [
+                        {
+                            "seq": "1",
+                            "Institution": "FINANCE",
+                            "Date": "2025-11-16",
+                            "Time": "12:49",
+                            "RequestPurpose": "00"
+                        }
+                    ],
+                    "RetailAccountsSummary": {
+                                "NoOfAccounts": "31",
+                                "NoOfActiveAccounts": "13",
+                                "NoOfWriteOffs": "0",
+                                "TotalPastDue": "0.00",
+                                "MostSevereStatusWithIn24Months": "Non-Delnqt",
+                                "SingleHighestCredit": "0.00",
+                                "SingleHighestSanctionAmount": "83000.00",
+                                "TotalHighCredit": "0.00",
+                                "AverageOpenBalance": "5524.00",
+                                "SingleHighestBalance": "23835.00",
+                                "NoOfPastDueAccounts": "0",
+                                "NoOfZeroBalanceAccounts": "0",
+                                "RecentAccount": "Short Term Personal Loan on 24-03-2026",
+                                "OldestAccount": "Two-Wheeler Loan on 29-08-2024",
+                                "TotalBalanceAmount": "71812.00",
+                                "TotalSanctionAmount": "156500.00",
+                                "TotalCreditLimit": "0.0",
+                                "TotalMonthlyPaymentAmount": "6347.00",
+                                "TotalWrittenOffAmount": "0.00",
+                                "MaxDaysPastDue": "0",
+                                "NumberOfLoansWithReportedEMI": "4",
+                                "NoOfDelinquentAccounts": "0",
+                                "TotalOutstandingDelinquentAccounts": "0",
+                                "TotalOutstandingUnsecured": "47977"
+                    },
+                    "RetailAccountDetails": [
+                        {
+                            "seq": "1",
+                            "AccountNumber": "**********",
+                            "Institution": "FINANCE",
+                            "AccountType": "Short Term Personal Loan",
+                            "OwnershipType": "Individual",
+                            "Balance": "4000",
+                            "PastDueAmount": "0",
+                            "Open": "Yes",
+                            "SanctionAmount": "4000",
+                            "DateReported": "2026-03-31",
+                            "DateOpened": "2026-03-24",
+                            "RepaymentTenure": "6",
+                            "TermFrequency": "Monthly",
+                            "AccountStatus": "New Account",
+                            "DaysPastDue": "0",
+                            "source": "INDIVIDUAL",
+                            "LoanCategoryType": "Unsecured",
+                            "History48Months": [
+                                {
+                                    "key": "03-26",
+                                    "PaymentStatus": "NEW",
+                                    "SuitFiledStatus": "*",
+                                    "AssetClassificationStatus": "*",
+                                    "DaysPastDue": "0"
+                                }
+                            ]
+                        }
+                    ]
                 }
-            },
-            "Postal": 522237,
-            "InquiryAddresses": {
-                "InquiryAddress": {
-                    "AddressLine": "5 29 96 2 THULLURU GUNTUR 44 ANDHRA PRADESH",
-                    "State": "AP",
-                    "seq": 1,
-                    "Postal": 522237
-                }
-            },
-            "PANId": "XXXXX"
-        }
+            }
+        ]
     }
 }
 ```
