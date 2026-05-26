@@ -11,6 +11,19 @@ This package loads your AccountGator web flow inside a native `WebView`, passes 
 - Dart callback (`onResult`) for success, failure, and timeout outcomes.
 - Optional origin allowlist for message hardening.
 
+
+## Variables
+
+| Variable | Description | Format | Source |
+|----------|-------------|--------|--------|
+| `clientId` | Unique identifier for your organisation | Alphanumeric string | Provided by Credeau during onboarding |
+| `authToken` | Secret token for API authentication | Alphanumeric string | Provided by Credeau during onboarding |
+| `userId` | Unique identifier for an end user | Alphanumeric string | Provided by Credeau during onboarding |
+| `mobileNumber` | End user's mobile number | Like, 9999999999 | Provided by customer during journey |
+| `redirectUrl` | URL to redirect to post process | Like, https://yourdomain.com/redirection/path | Set by client as per requirement |
+| `templateName` | Account Aggregator template name | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement |
+
+
 ## Quick start
 
 ### 1. Add the package
@@ -34,52 +47,9 @@ final initData = AccountGatorInitData(
   userId: 'user_123',
   mobileNumber: '9876543210',
   redirectUrl: 'https://your-app.com/accountgator/redirect',
-  templateName: 'BANK_STATEMENT_PERIODIC',
-  backendUrl: 'https://account-gator.credeau.com',
+  templateName: 'BANK_STATEMENT_PERIODIC'
 );
 ```
-
-
-## API
-
-### `AccountGatorInitData`
-
-Required fields:
-
-| Variable | Description | Format | Source |
-|----------|-------------|--------|--------|
-| `clientId` | Unique identifier for your organisation | Alphanumeric string | Provided by Credeau during onboarding |
-| `authToken` | Secret token for API authentication | Alphanumeric string | Provided by Credeau during onboarding |
-| `userId` | Unique identifier for an end user | Alphanumeric string | Provided by Credeau during onboarding |
-| `mobileNumber` | End user's mobile number | Like, 9999999999 | Provided by customer during journey |
-| `redirectUrl` | URL to redirect to post process | Like, https://yourdomain.com/redirection/path | Set by client as per requirement |
-| `templateName` | Account Aggregator template name | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement |
-
-Optional fields:
-
-- `backendUrl`
-
-Helpers:
-
-- `toBase64UrlData()`
-- `toSdkUri(baseUrl)`
-
-### `AccountGatorSdkView`
-
-Required:
-
-- `baseUrl`
-- `initData`
-- `onResult`
-
-Optional:
-
-- `allowedOrigins`
-- `onPageStarted`
-- `onPageFinished`
-- `onProgress`
-- `onWebResourceError`
-- `backgroundColor`
 
 ### 3. Start the AccountGator flow
 
@@ -109,6 +79,15 @@ class ConsentFlowPage extends StatelessWidget {
         baseUrl: 'https://consent-journey.account-gator.credeau.com/',
         initData: initData,
         onResult: (result) {
+
+          // `result` is an `AccountGatorResult` returned by the SDK.
+
+          // Access `result.success` to know whether the consent flow completed.
+          // Access `result.aaSessionId` to get the AA session ID on success.
+          // Access `result.error` to read the failure reason, if any.
+          // Access `result.timeout` to check whether the journey timed out.
+         
+          
           if (result.success) {
             Navigator.of(context).push(
               MaterialPageRoute<void>(
@@ -156,7 +135,56 @@ class SuccessPage extends StatelessWidget {
 }
 ```
 
-### 4. Handle the response
+
+Helpers:
+
+- `toBase64UrlData()`
+- `toSdkUri(baseUrl)`
+
+##   `AccountGatorSdkView`
+
+Required:
+
+- `baseUrl`
+- `initData`
+- `onResult`
+
+Optional:
+
+- `allowedOrigins`
+- `onPageStarted`
+- `onPageFinished`
+- `onProgress`
+- `onWebResourceError`
+- `backgroundColor`
+
+## Output
+
+When the consent journey completes, `onResult` returns an `AccountGatorResult`.
+
+Example response:
+
+```dart
+{
+  "type": "accountgator:result",
+  "success": true,
+  "aa_session_id": "bd87bf398a754fe8b37786829bdc7118",
+  "error": null,
+  "timeout": false,
+  "origin": "https://consent-journey.account-gator.credeau.com"
+}
+```
+
+Response fields:
+
+- `success`: `true` when the consent journey completes successfully.
+- `aaSessionId`: Account Aggregator session ID returned after successful consent.
+- `error`: Error message returned when the journey fails. `null` on success.
+- `timeout`: `true` if the user does not complete the journey within the allowed time.
+- `origin`: Web origin from which the result message was received.
+
+
+### Handle the response
 
 `onResult` is called once with the final consent outcome:
 
@@ -182,4 +210,3 @@ cd example
 flutter pub get
 flutter run
 ```
-
