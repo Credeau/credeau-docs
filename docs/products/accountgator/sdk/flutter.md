@@ -171,7 +171,6 @@ Example response:
   "aa_session_id": "bd87bf398a754fe8b37786829bdc7118",
   "error": null,
   "timeout": false,
-  "origin": "https://consent-journey.account-gator.credeau.com"
 }
 ```
 
@@ -181,7 +180,6 @@ Response fields:
 - `aaSessionId`: Account Aggregator session ID returned after successful consent.
 - `error`: Error message returned when the journey fails. `null` on success.
 - `timeout`: `true` if the user does not complete the journey within the allowed time.
-- `origin`: Web origin from which the result message was received.
 
 
 ### Handle the response
