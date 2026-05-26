@@ -86,6 +86,7 @@ nav:
           - Transaction Insights: products/accountgator/transactions.md
           - SDK:
               - Web: products/accountgator/sdk/web.md
+              - Flutter: products/accountgator/sdk/flutter.md
       - NameMatch:
           - Overview: products/namematch/index.md
           - NameMatch: products/namematch/namematch.md
