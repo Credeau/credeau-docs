@@ -13,7 +13,7 @@ https://insights.account-gator.credeau.com
 The following variables will be referenced throughout this documentation:
 
 | Variable                 | Description                             | Format                                                       | Source                                             |
-|--------------------------|-----------------------------------------|--------------------------------------------------------------|----------------------------------------------------|
+| ------------------------ | --------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------- |
 | `client_id`              | Unique identifier for your organisation | Alphanumeric string                                          | Provided by Credeau during onboarding              |
 | `auth_token`             | Secret token for API authentication     | Alphanumeric string                                          | Provided by Credeau during onboarding              |
 | `user_id`                | Unique identifier for an end user       | Alphanumeric string                                          | Provided by Credeau during onboarding              |
@@ -32,14 +32,14 @@ The following variables will be referenced throughout this documentation:
 The API requires two authentication headers:
 
 | Header         | Value                          |
-|----------------|--------------------------------|
+| -------------- | ------------------------------ |
 | `x-client-id`  | [`<client_id>` ↗](#variables)  |
 | `x-auth-token` | [`<auth_token>` ↗](#variables) |
 
 and, one content type header:
 
-| Header | Value |
-|--------|-------|
+| Header         | Value              |
+| -------------- | ------------------ |
 | `Content-Type` | `application/json` |
 
 ## Account Aggregator Endpoints
@@ -56,12 +56,13 @@ Once a customer provides a consent successfully via the AccountGator SDK, use th
 
 Request Body -
 
-| Parameter           | Type   | Required   | Description                                                |
-|---------------------|--------|------------|------------------------------------------------------------|
-| `user_id`           | string | Yes        | [`<user_id>` ↗](#variables)                                |
-| `aa_session_id`     | string | Yes        | [`<aa_session_id>` ↗](#variables)                          |
-| `datetimerangefrom` | string | Yes        | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format |
-| `datetimerangeto`   | string | Yes        | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format   |
+| Parameter           | Type   | Required | Description                                                            |
+| ------------------- | ------ | -------- | ---------------------------------------------------------------------- |
+| `user_id`           | string | Yes      | [`<user_id>` ↗](#variables)                                            |
+| `aa_session_id`     | string | Yes      | [`<aa_session_id>` ↗](#variables)                                      |
+| `datetimerangefrom` | string | Yes      | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format             |
+| `datetimerangeto`   | string | Yes      | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format               |
+| `generate_insights` | bool   | No       | If `true`, API returns transaction insights in `insights` response key |
 
 cURL -
 
@@ -74,7 +75,8 @@ curl --location 'https://insights.account-gator.credeau.com/aa/fetch_data' \
 	"user_id": "<user_id>",
 	"aa_session_id": "<aa_session_id>",
 	"datetimerangefrom": "01/01/2026 12:00:00 AM",
-	"datetimerangeto": "04/22/2026 11:59:59 PM"
+	"datetimerangeto": "04/22/2026 11:59:59 PM",
+	"generate_insights": true
 }'
 ```
 
@@ -87,13 +89,14 @@ curl --location 'https://insights.account-gator.credeau.com/aa/fetch_data' \
 Body parameters -
 
 | Field Name         | Type   | Description                                                      |
-|--------------------|--------|------------------------------------------------------------------|
+| ------------------ | ------ | ---------------------------------------------------------------- |
 | `user_id`          | string | [`<user_id>` ↗](#variables)                                      |
 | `request_id`       | string | [`<request_id>` ↗](#variables)                                   |
 | `aa_session_id`    | string | [`<aa_session_id>` ↗](#variables)                                |
 | `success`          | bool   | Flag indicating if the request was success or not                |
 | `service`          | string | Name of AccountAggregator Service used to fetch the transactions |
 | `service_response` | object | Transactions response provided by the the Account Aggregator     |
+| `insights`         | object | Insights object returned when `generate_insights` is `true`      |
 
 Raw JSON -
 
@@ -206,6 +209,32 @@ Raw JSON -
         }
       ]
     }
+  },
+  "insights": {
+    "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "data_requested_time": "2026-05-26 09:09:46",
+    "cutoff_date": "2026-05-26 09:09:46",
+    "format_type": "finvu_json",
+    "fetch_extraction_report": false,
+    "fetch_txn_data": false,
+    "bank_name": "XXXXXXXXXX BANK",
+    "account_number": "XXXXXX8434",
+    "account_type": "REGULAR",
+    "ifsc_code": "XXXXXXXXXXX",
+    "account_branch": "XXXXXXXXXX",
+    "account_open_date": "2023-07-24",
+    "account_od_limit": 0.0,
+    "account_drawing_limit": 28560.71,
+    "account_status": "ACTIVE",
+    "account_currency": "INR",
+    "account_current_balance": 28560.71,
+    "account_current_balance_datetime": "2026-05-26 20:09:43",
+    "account_holder_name": "CUSTOMER NAME",
+    "account_holder_dob": "2000-01-01",
+    "account_holder_mobile": "xxxxxxxxxx",
+    "account_holder_nominee": "NOT-REGISTERED",
+    "account_holder_landline": ""
   }
 }
 ```
@@ -214,13 +243,12 @@ Raw JSON -
 >
 > The structure of `service_response` field might differ across different Account Aggregator providers.
 
-
 #### Error Response (HTTP 4xx/5xx)
 
 Body Parameters -
 
 | Field Name             | Type   | Description                        |
-|------------------------|--------|------------------------------------|
+| ---------------------- | ------ | ---------------------------------- |
 | `detail`               | object | Details of the error occurred      |
 | `detail.error`         | string | Error message indicating the issue |
 | `detail.request_id`    | string | [`<request_id>` ↗](#variables)     |
@@ -252,10 +280,12 @@ Get a link to download CSV report of the transactions fetched against a `user_id
 
 Request Body -
 
-| Parameter       | Type   | Required   | Description                       |
-|---------------- |--------|------------|-----------------------------------|
-| `user_id`       | string | Yes        | [`<user_id>` ↗](#variables)       |
-| `aa_session_id` | string | Yes        | [`<aa_session_id>` ↗](#variables) |
+| Parameter              | Type   | Required | Description                                                                           |
+| ---------------------- | ------ | -------- | ------------------------------------------------------------------------------------- |
+| `user_id`              | string | Yes      | [`<user_id>` ↗](#variables)                                                           |
+| `aa_session_id`        | string | Yes      | [`<aa_session_id>` ↗](#variables)                                                     |
+| `generate_insights`    | bool   | No       | If `true`, API returns transaction insights in `insights` response key                |
+| `fetch_current_report` | bool   | No       | If `true`, fetches latest transactions for recurring consent before generating report |
 
 cURL -
 
@@ -266,7 +296,9 @@ curl --location 'https://insights.account-gator.credeau.com/aa/retrieve_report' 
 --header 'Content-Type: application/json' \
 --data '{
 	"user_id": "<user_id>",
-	"aa_session_id": "<aa_session_id>"
+	"aa_session_id": "<aa_session_id>",
+	"generate_insights": true,
+	"fetch_current_report": true
 }'
 ```
 
@@ -274,17 +306,24 @@ curl --location 'https://insights.account-gator.credeau.com/aa/retrieve_report' 
 
 Body parameters -
 
-| Field Name   | Type   | Description                             |
-|--------------|--------|-----------------------------------------|
-| `report_url` | string | URL to download the transactions report |
-| `request_id` | string | [`<request_id>` ↗](#variables)          |
+| Field Name   | Type   | Description                                                 |
+| ------------ | ------ | ----------------------------------------------------------- |
+| `report_url` | string | URL to download the transactions report                     |
+| `request_id` | string | [`<request_id>` ↗](#variables)                              |
+| `insights`   | object | Insights object returned when `generate_insights` is `true` |
 
 Raw JSON -
 
 ```json
 {
   "report_url": "...",
-  "request_id": "<request_id>"
+  "request_id": "<request_id>",
+  "insights": {
+    "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "bank_name": "XXXXXXXXXX BANK",
+    "account_number": "XXXXXX8434"
+  }
 }
 ```
 
@@ -293,7 +332,7 @@ Raw JSON -
 Body Parameters -
 
 | Field Name             | Type   | Description                        |
-|------------------------|--------|------------------------------------|
+| ---------------------- | ------ | ---------------------------------- |
 | `detail`               | object | Details of the error occurred      |
 | `detail.error`         | string | Error message indicating the issue |
 | `detail.request_id`    | string | [`<request_id>` ↗](#variables)     |
@@ -349,17 +388,15 @@ Response -
 
 ```html
 <html>
-
-<head>
+  <head>
     <title>403 Forbidden</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <center>
-        <h1>403 Forbidden</h1>
+      <h1>403 Forbidden</h1>
     </center>
-</body>
-
+  </body>
 </html>
 ```
 
@@ -384,10 +421,7 @@ Response -
     "detail": [
       {
         "type": "missing",
-        "loc": [
-          "body",
-          "user_id"
-        ],
+        "loc": ["body", "user_id"],
         "msg": "Field required",
         "input": {
           "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
