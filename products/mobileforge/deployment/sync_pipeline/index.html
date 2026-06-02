@@ -2736,6 +2736,30 @@
 <td><code>DI_KAFKA_BROKER_ENDPOINT</code></td>
 <td>List of Kafka broker endpoints to connect to</td>
 </tr>
+<tr>
+<td><code>DI_KAFKA_SMS_TOPIC</code></td>
+<td>Name of Kafka topic to stream SMS data (optional; do not set to use default value <code>sms_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_APPS_DEVICE_TOPIC</code></td>
+<td>Name of Kafka topic to stream Apps and Device data (optional; do not set to use default value <code>apps_and_device_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_EVENTS_TOPIC</code></td>
+<td>Name of Kafka topic to stream Events data (optional; do not set to use default value <code>events_log</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_WEB_TOPIC</code></td>
+<td>Name of Kafka topic to stream Web data (optional; do not set to use default value <code>web_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_CONTACTS_TOPIC</code></td>
+<td>Name of Kafka topic to stream Contacts data (optional; do not set to use default value <code>contacts_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_CALL_LOGS_TOPIC</code></td>
+<td>Name of Kafka topic to stream Call Logs data (optional; do not set to use default value <code>call_logs_batched</code>)</td>
+</tr>
 </tbody>
 </table>
 <h3 id="deployment-using-docker">Deployment: Using Docker<a class="headerlink" href="#deployment-using-docker" title="Permanent link">&para;</a></h3>
@@ -2751,6 +2775,12 @@
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>DI_POSTGRES_DATABASE=&quot;api_insights_db&quot;
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>DI_POSTGRES_SYNC_DATABASE=&quot;sync_db&quot;
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>DI_KAFKA_BROKER_ENDPOINT=&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>DI_KAFKA_SMS_TOPIC=&#39;sms_topic_name&#39;
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>DI_KAFKA_APPS_DEVICE_TOPIC=&#39;apps_and_device_topic_name&#39;
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>DI_KAFKA_EVENTS_TOPIC=&#39;events_topic_name&#39;
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>DI_KAFKA_WEB_TOPIC=&#39;web_topic_name&#39;
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>DI_KAFKA_CONTACTS_TOPIC=&#39;contacts_topic_name&#39;
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>DI_KAFKA_CALL_LOGS_TOPIC=&#39;call_logs_topic_name&#39;
 </span></code></pre></div>
 <p>Now, run the container -</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
@@ -2901,8 +2931,32 @@
 <td>List of Kafka broker endpoints to connect to</td>
 </tr>
 <tr>
+<td><code>DI_KAFKA_SMS_TOPIC</code></td>
+<td>Name of Kafka topic to stream SMS data (optional; do not set to use default value <code>sms_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_APPS_DEVICE_TOPIC</code></td>
+<td>Name of Kafka topic to stream Apps and Device data (optional; do not set to use default value <code>apps_and_device_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_EVENTS_TOPIC</code></td>
+<td>Name of Kafka topic to stream Events data (optional; do not set to use default value <code>events_log</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_WEB_TOPIC</code></td>
+<td>Name of Kafka topic to stream Web data (optional; do not set to use default value <code>web_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_CONTACTS_TOPIC</code></td>
+<td>Name of Kafka topic to stream Contacts data (optional; do not set to use default value <code>contacts_batched</code>)</td>
+</tr>
+<tr>
+<td><code>DI_KAFKA_CALL_LOGS_TOPIC</code></td>
+<td>Name of Kafka topic to stream Call Logs data (optional; do not set to use default value <code>call_logs_batched</code>)</td>
+</tr>
+<tr>
 <td><code>ENABLED_TOPICS</code></td>
-<td>List of topics name to listen on</td>
+<td>List of topics name to listen on (if topic names are overridden, use custom values for topic names else use default values)</td>
 </tr>
 <tr>
 <td><code>KAFKA_CONSUMER_GROUP</code></td>
@@ -2936,8 +2990,14 @@
 </span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>DI_MONGODB_RETRY_WRITES=&quot;true&quot;
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS=&quot;2000&quot;
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>DI_KAFKA_BROKER_ENDPOINT=&quot;&lt;bootstrap-server-1&gt;:9092,&lt;bootstrap-server-2&gt;:9092,&lt;bootstrap-server-3&gt;:9092&quot;
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>ENABLED_TOPICS=&quot;sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log&quot;
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>KAFKA_CONSUMER_GROUP=&quot;some-consumer-group&quot;
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>DI_KAFKA_SMS_TOPIC=&#39;sms_topic_name&#39;
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>DI_KAFKA_APPS_DEVICE_TOPIC=&#39;apps_and_device_topic_name&#39;
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>DI_KAFKA_EVENTS_TOPIC=&#39;events_topic_name&#39;
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>DI_KAFKA_WEB_TOPIC=&#39;web_topic_name&#39;
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>DI_KAFKA_CONTACTS_TOPIC=&#39;contacts_topic_name&#39;
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>DI_KAFKA_CALL_LOGS_TOPIC=&#39;call_logs_topic_name&#39;
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>ENABLED_TOPICS=&quot;sms_topic_name,apps_and_device_topic_name,events_topic_name,web_topic_name,call_logs_topic_name&quot;
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>KAFKA_CONSUMER_GROUP=&quot;some-consumer-group&quot;
 </span></code></pre></div>
 <p>Now, run the container -</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
