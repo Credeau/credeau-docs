@@ -356,6 +356,368 @@ Raw JSON -
 >
 > The download URL is active for 7 Days. Post expiry, you can hit the API again to get a new URL.
 
+## Bank Statement Analyzer (BSA) Endpoints
+
+The Bank Statement Analyzer (BSA) flow is used when the customer’s statements are collected via **bank statement upload / analysis** (instead of the Account Aggregator consent pull). This flow is driven by the same `user_id` and `aa_session_id` that you receive after the consent/journey on the AccountGator SDK.
+
+Typical flow:
+
+1. Call [`/bsa/status_check`](#status-check) to confirm the session is ready / completed
+2. (Optional) Call [`/bsa/fetch_uploaded`](#fetch-uploaded-files) to list uploaded statement files and download URLs
+3. Call [`/bsa/fetch_data`](#fetch-analyzed-data) to fetch the parsed statement output (and optionally insights)
+
+### Status Check
+
+Use this endpoint to check whether the BSA session is ready/completed and whether you can call `fetch_data`.
+
+```bash
+/bsa/status_check
+```
+
+#### Request
+
+Request Body -
+
+| Parameter       | Type   | Required | Description                       |
+| --------------- | ------ | -------- | --------------------------------- |
+| `user_id`       | string | Yes      | [`<user_id>` ↗](#variables)       |
+| `aa_session_id` | string | Yes      | [`<aa_session_id>` ↗](#variables) |
+
+cURL -
+
+```bash
+curl --location 'https://insights.account-gator.credeau.com/bsa/status_check' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+	"user_id":"<user_id>",
+	"aa_session_id":"<aa_session_id>"
+}'
+```
+
+#### Success Response (HTTP 200)
+
+Body parameters -
+
+| Field Name             | Type   | Description                                                  |
+| ---------------------- | ------ | ------------------------------------------------------------ |
+| `request_id`           | string | [`<request_id>` ↗](#variables)                               |
+| `user_id`              | string | [`<user_id>` ↗](#variables)                                  |
+| `aa_session_id`        | string | [`<aa_session_id>` ↗](#variables)                            |
+| `ready_for_fetch_data` | bool   | `true` when `fetch_data` can be called                       |
+| `status`               | string | Processing status for the session (for example: `completed`) |
+| `error`                | object | Error details (null when request is successful)              |
+
+Raw JSON -
+
+```json
+{
+  "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "ready_for_fetch_data": true,
+  "status": "completed",
+  "error": null
+}
+```
+
+### Fetch Uploaded Files
+
+Use this endpoint to list the statement files uploaded for a given `user_id` + `aa_session_id`.
+
+```bash
+/bsa/fetch_uploaded
+```
+
+#### Request
+
+Request Body -
+
+| Parameter       | Type   | Required | Description                       |
+| --------------- | ------ | -------- | --------------------------------- |
+| `user_id`       | string | Yes      | [`<user_id>` ↗](#variables)       |
+| `aa_session_id` | string | Yes      | [`<aa_session_id>` ↗](#variables) |
+
+cURL -
+
+```bash
+curl --location 'https://insights.account-gator.credeau.com/bsa/fetch_uploaded' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+	"user_id":"<user_id>",
+	"aa_session_id":"<aa_session_id>"
+}'
+```
+
+#### Success Response (HTTP 200)
+
+Body parameters -
+
+| Field Name               | Type          | Description                                                    |
+| ------------------------ | ------------- | -------------------------------------------------------------- |
+| `request_id`             | string        | [`<request_id>` ↗](#variables)                                 |
+| `user_id`                | string        | [`<user_id>` ↗](#variables)                                    |
+| `aa_session_id`          | string        | [`<aa_session_id>` ↗](#variables)                              |
+| `files`                  | array<object> | List of uploaded files (may be empty)                          |
+| `files[].name`           | string        | Original filename provided by the end user                     |
+| `files[].generated_name` | string        | System-generated filename/key (treat as sensitive identifier)  |
+| `files[].uploaded_at`    | string        | Upload timestamp in ISO-8601 format                            |
+| `files[].file_password`  | string        | Password for the statement file (if applicable). **Sensitive** |
+| `files[].url`            | string        | Pre-signed download URL. **Sensitive**                         |
+
+Raw JSON -
+
+```json
+{
+  "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "files": [
+    {
+      "name": "statement.pdf",
+      "generated_name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.pdf",
+      "uploaded_at": "2026-06-02T07:12:00.143000",
+      "file_password": "<redacted>",
+      "url": "<redacted>"
+    }
+  ]
+}
+```
+
+#### Error Response (HTTP 4xx/5xx)
+
+Body Parameters -
+
+| Field Name          | Type   | Description                        |
+| ------------------- | ------ | ---------------------------------- |
+| `detail`            | object | Details of the error occurred      |
+| `detail.error`      | string | Error message indicating the issue |
+| `detail.request_id` | string | [`<request_id>` ↗](#variables)     |
+| `detail.user_id`    | string | [`<user_id>` ↗](#variables)        |
+
+Raw JSON -
+
+```json
+{
+  "detail": {
+    "error": "no valid uploaded files found for this user and aa_session_id",
+    "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  }
+}
+```
+
+### Fetch Analyzed Data
+
+Use this endpoint to fetch the analyzed statement output for the session. This returns parsed customer info, statement metadata, summary aggregates, and account transactions. Optionally, you can request additional derived insights using `generate_insights`.
+
+```bash
+/bsa/fetch_data
+```
+
+#### Request
+
+Request Body -
+
+| Parameter           | Type   | Required | Description                                                  |
+| ------------------- | ------ | -------- | ------------------------------------------------------------ |
+| `user_id`           | string | Yes      | [`<user_id>` ↗](#variables)                                  |
+| `aa_session_id`     | string | Yes      | [`<aa_session_id>` ↗](#variables)                            |
+| `generate_insights` | bool   | No       | If `true`, includes additional derived insights (if enabled) |
+
+cURL -
+
+```bash
+curl --location 'https://insights.account-gator.credeau.com/bsa/fetch_data' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+	"user_id":"<user_id>",
+	"aa_session_id":"<aa_session_id>",
+	"generate_insights": false
+}'
+```
+
+#### Success Response (HTTP 200)
+
+Body parameters -
+
+| Field Name         | Type   | Description                                                          |
+| ------------------ | ------ | -------------------------------------------------------------------- |
+| `request_id`       | string | [`<request_id>` ↗](#variables)                                       |
+| `user_id`          | string | [`<user_id>` ↗](#variables)                                          |
+| `aa_session_id`    | string | [`<aa_session_id>` ↗](#variables)                                    |
+| `status`           | string | Processing status for the session (for example: `completed`)         |
+| `error`            | object | Error details (null when request is successful)                      |
+| `service_response` | object | BSA output payload (structure may evolve based on upstream analyzer) |
+
+Raw JSON -
+
+```json
+{
+  "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "aa_session_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "status": "completed",
+  "error": null,
+  "service_response": {
+    "customerInfo": {
+      "name": "<redacted>",
+      "address": "<redacted>",
+      "landline": "<redacted>",
+      "mobile": "<redacted>",
+      "email": "<redacted>",
+      "pan": "<redacted>",
+      "perfiosTransactionId": "<redacted>",
+      "customerTransactionId": "<redacted>",
+      "bank": "HDFC Bank, India",
+      "instId": 20
+    },
+    "statementdetails": [
+      {
+        "fileName": "statement.pdf",
+        "statementStatus": "VERIFIED",
+        "customerInfo": {
+          "name": "<redacted>",
+          "address": "<redacted>",
+          "landline": "<redacted>",
+          "mobile": "<redacted>",
+          "email": "<redacted>",
+          "pan": "<redacted>",
+          "bank": "HDFC Bank, India"
+        },
+        "statementAccounts": [
+          {
+            "accountNo": "<redacted>",
+            "accountType": "Bank",
+            "xnsStartDate": "2025-02-01",
+            "xnsEndDate": "2025-02-28"
+          }
+        ]
+      }
+    ],
+    "summaryInfo": {
+      "instName": "HDFC Bank, India",
+      "accNo": "<redacted>",
+      "accType": "Savings Account",
+      "fullMonthCount": 24,
+      "total": {
+        "balAvg": 19769.84,
+        "balMax": 48526.75,
+        "balMin": 14105.2,
+        "cashDeposits": 0,
+        "cashWithdrawals": 0,
+        "chqDeposits": 0,
+        "chqIssues": 0,
+        "credits": 12,
+        "debits": 22,
+        "emiOrLoans": 2,
+        "inwBounces": 0,
+        "loanDisbursals": 1,
+        "outwBounces": 0,
+        "salaries": 0,
+        "totalCashDeposit": 0,
+        "totalCashWithdrawal": 0,
+        "totalChqDeposit": 0,
+        "totalChqIssue": 0,
+        "totalCredit": 104607,
+        "totalDebit": 106366.55,
+        "totalEmiOrLoan": 7310,
+        "totalLoanDisbursal": 2834,
+        "totalSalary": 0
+      },
+      "average": {
+        "balAvg": 823.74,
+        "balMax": 2021.95,
+        "balMin": 587.72,
+        "cashDeposits": 0,
+        "cashWithdrawals": 0,
+        "chqDeposits": 0,
+        "chqIssues": 0,
+        "credits": 0,
+        "debits": 1,
+        "emiOrLoans": 0,
+        "inwBounces": 0,
+        "loanDisbursals": 0,
+        "outwBounces": 0,
+        "salaries": 0,
+        "totalCashDeposit": 0,
+        "totalCashWithdrawal": 0,
+        "totalChqDeposit": 0,
+        "totalChqIssue": 0,
+        "totalCredit": 4358.63,
+        "totalDebit": 4431.94,
+        "totalEmiOrLoan": 304.58,
+        "totalLoanDisbursal": 118.08,
+        "totalSalary": 0
+      }
+    },
+    "monthlyDetails": [],
+    "fCUAnalysis": {
+      "possibleFraudIndicators": {
+        "suspiciousBankEStatements": {
+          "status": "false"
+        }
+      },
+      "behaviouralTransactionalIndicators": {}
+    },
+    "accountXns": [
+      {
+        "accountNo": "<redacted>",
+        "accountType": "Savings Account",
+        "xns": [
+          {
+            "date": "2025-02-01",
+            "chqNo": "<redacted>",
+            "narration": "<redacted>",
+            "amount": 4000,
+            "balance": 5760.75
+          },
+          {
+            "date": "2025-02-01",
+            "chqNo": "<redacted>",
+            "narration": "<redacted>",
+            "amount": -1,
+            "balance": 5759.75
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+#### Error Response (HTTP 4xx/5xx)
+
+Body Parameters -
+
+| Field Name          | Type   | Description                        |
+| ------------------- | ------ | ---------------------------------- |
+| `detail`            | object | Details of the error occurred      |
+| `detail.error`      | string | Error message indicating the issue |
+| `detail.request_id` | string | [`<request_id>` ↗](#variables)     |
+| `detail.user_id`    | string | [`<user_id>` ↗](#variables)        |
+
+Raw JSON -
+
+```json
+{
+  "detail": {
+    "error": "no bsa sessions found for this user and aa_session_id",
+    "request_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "user_id": "null"
+  }
+}
+```
+
+> ⚠️ **Note:**
+>
+> The structure of `service_response` can vary based on the upstream statement analyzer and may include additional keys not documented here. You should parse defensively and avoid strict schema assumptions on nested fields unless explicitly contracted.
+
 ## Common API Errors
 
 ### Unauthorized (HTTP 401)
