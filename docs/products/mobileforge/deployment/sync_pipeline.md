@@ -27,6 +27,12 @@ The application supports various environment variables to provide application wi
 | `DI_POSTGRES_DATABASE` | Database name for postgres database connection |
 | `DI_POSTGRES_SYNC_DATABASE` | Sync Database name for postgres database connection |
 | `DI_KAFKA_BROKER_ENDPOINT` | List of Kafka broker endpoints to connect to |
+| `DI_KAFKA_SMS_TOPIC` | Name of Kafka topic to stream SMS data (optional; do not set to use default value `sms_batched`) |
+| `DI_KAFKA_APPS_DEVICE_TOPIC` | Name of Kafka topic to stream Apps and Device data (optional; do not set to use default value `apps_and_device_batched`) |
+| `DI_KAFKA_EVENTS_TOPIC` | Name of Kafka topic to stream Events data (optional; do not set to use default value `events_log`) |
+| `DI_KAFKA_WEB_TOPIC` | Name of Kafka topic to stream Web data (optional; do not set to use default value `web_batched`) |
+| `DI_KAFKA_CONTACTS_TOPIC` | Name of Kafka topic to stream Contacts data (optional; do not set to use default value `contacts_batched`) |
+| `DI_KAFKA_CALL_LOGS_TOPIC` | Name of Kafka topic to stream Call Logs data (optional; do not set to use default value `call_logs_batched`) |
 
 ### Deployment: Using Docker
 
@@ -47,6 +53,12 @@ DI_POSTGRES_PORT="5432"
 DI_POSTGRES_DATABASE="api_insights_db"
 DI_POSTGRES_SYNC_DATABASE="sync_db"
 DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
+DI_KAFKA_SMS_TOPIC='sms_topic_name'
+DI_KAFKA_APPS_DEVICE_TOPIC='apps_and_device_topic_name'
+DI_KAFKA_EVENTS_TOPIC='events_topic_name'
+DI_KAFKA_WEB_TOPIC='web_topic_name'
+DI_KAFKA_CONTACTS_TOPIC='contacts_topic_name'
+DI_KAFKA_CALL_LOGS_TOPIC='call_logs_topic_name'
 ```
 
 Now, run the container -
@@ -124,7 +136,13 @@ The application supports various environment variables to provide application wi
 | `DI_MONGODB_PORT` | Mapped port of mongo database server to connect |
 | `DI_MONGODB_DATABASE` | Database name for mongo database connection |
 | `DI_KAFKA_BROKER_ENDPOINT` | List of Kafka broker endpoints to connect to |
-| `ENABLED_TOPICS` | List of topics name to listen on |
+| `DI_KAFKA_SMS_TOPIC` | Name of Kafka topic to stream SMS data (optional; do not set to use default value `sms_batched`) |
+| `DI_KAFKA_APPS_DEVICE_TOPIC` | Name of Kafka topic to stream Apps and Device data (optional; do not set to use default value `apps_and_device_batched`) |
+| `DI_KAFKA_EVENTS_TOPIC` | Name of Kafka topic to stream Events data (optional; do not set to use default value `events_log`) |
+| `DI_KAFKA_WEB_TOPIC` | Name of Kafka topic to stream Web data (optional; do not set to use default value `web_batched`) |
+| `DI_KAFKA_CONTACTS_TOPIC` | Name of Kafka topic to stream Contacts data (optional; do not set to use default value `contacts_batched`) |
+| `DI_KAFKA_CALL_LOGS_TOPIC` | Name of Kafka topic to stream Call Logs data (optional; do not set to use default value `call_logs_batched`) |
+| `ENABLED_TOPICS` | List of topics name to listen on (if topic names are overridden, use custom values for topic names else use default values) |
 | `KAFKA_CONSUMER_GROUP` | Name of data source specific consumer group |
 
 ### Deployment: Using Docker
@@ -159,7 +177,13 @@ DI_MONGODB_SOCKET_TIMEOUT_MS="10000"
 DI_MONGODB_RETRY_WRITES="true"
 DI_MONGODB_WAIT_QUEUE_TIMEOUT_MS="2000"
 DI_KAFKA_BROKER_ENDPOINT="<bootstrap-server-1>:9092,<bootstrap-server-2>:9092,<bootstrap-server-3>:9092"
-ENABLED_TOPICS="sms_batched,apps_and_device_batched,contacts_batched,call_logs_batched,events_log"
+DI_KAFKA_SMS_TOPIC='sms_topic_name'
+DI_KAFKA_APPS_DEVICE_TOPIC='apps_and_device_topic_name'
+DI_KAFKA_EVENTS_TOPIC='events_topic_name'
+DI_KAFKA_WEB_TOPIC='web_topic_name'
+DI_KAFKA_CONTACTS_TOPIC='contacts_topic_name'
+DI_KAFKA_CALL_LOGS_TOPIC='call_logs_topic_name'
+ENABLED_TOPICS="sms_topic_name,apps_and_device_topic_name,events_topic_name,web_topic_name,call_logs_topic_name"
 KAFKA_CONSUMER_GROUP="some-consumer-group"
 ```
 
