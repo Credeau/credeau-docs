@@ -594,6 +594,8 @@ db.simulation_results.createIndex(
   { saved_at: 1 },
   { expireAfterSeconds: 604800 }
 );
+
+db.simulation_results.createIndex({ simulation_id: 1 });
 ```
 
 ### Important Notes
