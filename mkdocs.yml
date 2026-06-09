@@ -38,6 +38,7 @@ nav:
               - Database: products/mobileforge/deployment/database.md
               - Sync Pipeline: products/mobileforge/deployment/sync_pipeline.md
               - Insights Pipeline: products/mobileforge/deployment/insights_pipeline.md
+              - Security Overview: products/mobileforge/deployment/security.md
       - MobileGator:
           - Overview: products/mobilegator/index.md
           - SDK:
