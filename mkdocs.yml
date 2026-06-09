@@ -2,8 +2,8 @@ site_name: Credeau Product Documentation
 site_url: https://docs.credeau.com
 theme:
   name: material
-  logo: assets/images/credeau_logo_transparent.png
-  favicon: assets/images/credeau_favicon.ico
+  logo: https://cdn.credeau.com/static/images/logos/credeau-logo-transparent-bg.png
+  favicon: https://cdn.credeau.com/static/images/logos/credeau-favicon.ico
   font:
     code: Roboto Mono
     text: Roboto
