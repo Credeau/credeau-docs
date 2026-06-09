@@ -121,7 +121,7 @@ Only the following endpoints are exposed to external networks:
 
 ### Recommended Network Infrastructure
 
-![MobileForge Solution Diagram](../../../assets/diagrams/mobile-forge-cloud-agnostic-solution.png)
+![MobileForge Solution Diagram](https://cdn.credeau.com/static/images/mobile-forge-cloud-agnostic-solution.png)
 
 ---
 
