@@ -41,34 +41,44 @@ The application supports various environment variables to provide application wi
 | `DI_MONGODB_DATABASE`                       | Database name for mongo database connection |
 | `LICENSE_KEY`                               | Product enablement license key shared by Credeau |
 | `SUBSCRIPTION_ID`                           | Subscription ID shared by Credeau |
-| `APPS_MAPPING_PATH`                         | S3 URI of `india_configs_apps_mapping.json.enc` file shared by Credeau |
-| `FRAUD_APPS_MAPPING_PATH`                   | S3 URI of `india_configs_fraud_apps_mapping.json.enc` file shared by Credeau |
-| `AVG_DEVICE_MAPPING_PATH`                   | S3 URI of `india_configs_avg_device_price.json.enc` file shared by Credeau |
-| `DEVICE_MAPPING_PATH`                       | S3 URI of `india_configs_device_pricing.json.enc` file shared by Credeau |
-| `MERCHANT_MAPPING_PATH`                     | S3 URI of `india_configs_merchant_clean_sender_name_mapping.csv.enc` file shared by Credeau |
-| `SMS_MAPPING_PATH`                          | S3 URI of `india_configs_sms_sender_mapping.json.enc` file shared by Credeau |
-| `SMS_MAPPING_V2_PATH`                       | S3 URI of `india_configs_sms_sender_mapping_v2.json.enc` file shared by Credeau |
-| `COMPANY_MODEL_PATH`                        | S3 URI of `india_models_company_model.pkl.enc` file shared by Credeau |
-| `COMPANY_VECTORIZER_PATH`                   | S3 URI of `india_models_company_vectorizer.pkl.enc` file shared by Credeau |
-| `COUNT_VECTORIZER_PATH`                     | S3 URI of `india_models_countvectorizer.pickle.enc` file shared by Credeau |
-| `LABEL_MODEL_PATH`                          | S3 URI of `india_models_label_encoder.pickle.enc` file shared by Credeau |
-| `LR_MODEL_PATH`                             | S3 URI of `india_models_lr.pickle.enc` file shared by Credeau |
-| `MERCHANT_LABEL_V2_PATH`                    | S3 URI of `india_models_merchant_label_encoder_v2.pkl.enc` file shared by Credeau |
-| `MERCHANT_LABEL_PATH`                       | S3 URI of `india_models_merchant_label_encoder.pkl.enc` file shared by Credeau |
-| `MERCHANT_MODEL_V2_PATH`                    | S3 URI of `india_models_merchant_model_v2.pkl.enc` file shared by Credeau |
-| `MERCHANT_MODEL_PATH`                       | S3 URI of `india_models_merchant_model.pkl.enc` file shared by Credeau |
-| `MERCHANT_VECTORIZER_V2_PATH`               | S3 URI of `india_models_merchant_vectorizer_v2.pkl.enc` file shared by Credeau |
-| `MERCHANT_VECTORIZER_PATH`                  | S3 URI of `india_models_merchant_vectorizer.pkl.enc` file shared by Credeau |
-| `LGB_SCORE_MODEL_PATH`                      | S3 URI of `india_scoring_lgb_model.pkl.enc` file shared by Credeau |
-| `PAYDAY_SCORE_LGB_MODEL_PATH`               | S3 URI of `india_scoring_payday_lgb_model.pkl.enc` file shared by Credeau |
-| `PAYDAY_SCORE_LGB_MODEL_V2_PATH`            | S3 URI of `india_scoring_payday_lgb_model_20250623.pkl.enc` file shared by Credeau |
-| `PAYDAY_SCORE_LGB_MODEL_V3_PATH`            | S3 URI of `india_scoring_payday_lgb_model_20250703.pkl.enc` file shared by Credeau |
-| `PREDICTORS_SCORE_LGB_MODEL_PATH`           | S3 URI of `india_scoring_predictors_lgb.pkl.enc` file shared by Credeau |
-| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_PATH`    | S3 URI of `india_scoring_predictors_payday_lgb_model.pkl.enc` file shared by Credeau |
-| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V2_PATH` | S3 URI of `india_scoring_predictors_payday_lgb_model_20250623.pkl.enc` file shared by Credeau |
-| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V3_PATH` | S3 URI of `india_scoring_predictors_payday_lgb_model_20250703.pkl.enc` file shared by Credeau |
-| `EMI_LGB_MODEL_V2_PATH`                     | S3 URI of `india_scoring_EMI_lgb_model_20250730_V2.pkl.enc` file shared by Credeau |
-| `PREDICTORS_EMI_LGB_MODEL_V2_PATH`          | S3 URI of `india_scoring_predictors_EMI_lgb_model_20250730_V2.pkl.enc` file shared by Credeau |
+| `APPS_MAPPING_PATH`                         | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_apps_mapping.json.enc` |
+| `FRAUD_APPS_MAPPING_PATH`                   | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_fraud_apps_mapping.json.enc` |
+| `AVG_DEVICE_MAPPING_PATH`                   | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_avg_device_price.json.enc` |
+| `DEVICE_MAPPING_PATH`                       | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_device_pricing.json.enc` |
+| `MERCHANT_MAPPING_PATH`                     | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_merchant_clean_sender_name_mapping.csv.enc` |
+| `SMS_MAPPING_PATH`                          | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_sms_sender_mapping.json.enc` |
+| `SMS_MAPPING_V2_PATH`                       | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_sms_sender_mapping_v2.json.enc` |
+| `COMPANY_MODEL_PATH`                        | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_company_model.pkl.enc` |
+| `COMPANY_VECTORIZER_PATH`                   | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_company_vectorizer.pkl.enc` |
+| `COUNT_VECTORIZER_PATH`                     | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_countvectorizer.pickle.enc` |
+| `LABEL_MODEL_PATH`                          | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_label_encoder.pickle.enc` |
+| `LR_MODEL_PATH`                             | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_lr.pickle.enc` |
+| `MERCHANT_LABEL_V2_PATH`                    | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_label_encoder_v2.pkl.enc` |
+| `MERCHANT_LABEL_PATH`                       | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_label_encoder.pkl.enc` |
+| `MERCHANT_MODEL_V2_PATH`                    | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_model_v2.pkl.enc` |
+| `MERCHANT_MODEL_PATH`                       | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_model.pkl.enc` |
+| `MERCHANT_VECTORIZER_V2_PATH`               | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_vectorizer_v2.pkl.enc` |
+| `MERCHANT_VECTORIZER_PATH`                  | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_vectorizer.pkl.enc` |
+| `LGB_SCORE_MODEL_PATH`                      | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_lgb_model.pkl.enc` |
+| `PAYDAY_SCORE_LGB_MODEL_PATH`               | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_payday_lgb_model.pkl.enc` |
+| `PAYDAY_SCORE_LGB_MODEL_V2_PATH`            | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_payday_lgb_model_20250623.pkl.enc` |
+| `PAYDAY_SCORE_LGB_MODEL_V3_PATH`            | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_payday_lgb_model_20250703.pkl.enc` |
+| `PREDICTORS_SCORE_LGB_MODEL_PATH`           | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_lgb.pkl.enc` |
+| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_PATH`    | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_payday_lgb_model.pkl.enc` |
+| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V2_PATH` | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_payday_lgb_model_20250623.pkl.enc` |
+| `PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V3_PATH` | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_payday_lgb_model_20250703.pkl.enc` |
+| `EMI_LGB_MODEL_V2_PATH`                     | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_EMI_lgb_model_20250730_V2.pkl.enc` |
+| `PREDICTORS_EMI_LGB_MODEL_V2_PATH`          | `s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_EMI_lgb_model_20250730_V2.pkl.enc` |
+| `AWS_ACCESS_KEY_ID`                         | AWS Access Key shared by Credeau, for fetching the artifacts |
+| `AWS_SECRET_ACCESS_KEY`                     | AWS Secret Key shared by Credeau, for fetching the artifacts |
+| `AWS_DEFAULT_REGION`                        | AWS Region Name shared by Credeau, for fetching the artifacts |
+
+> ⚠️ **Note!**
+>
+> Following values will be provided by Credeau, during the integration -
+>
+> - `credeau_asset_bucket`
+> - `client_id`
 
 ### Deployment: Using Docker
 
@@ -99,34 +109,37 @@ DI_MONGODB_PORT="27017"
 DI_MONGODB_DATABASE="sync_db"
 LICENSE_KEY="<product activation license key shared by Credeau>"
 SUBSCRIPTION_ID="<subscription id shared by credeau>"
-APPS_MAPPING_PATH="s3://bucket-name/key/india_configs_apps_mapping.json.enc"
-FRAUD_APPS_MAPPING_PATH="s3://bucket-name/key/india_configs_fraud_apps_mapping.json.enc"
-AVG_DEVICE_MAPPING_PATH="s3://bucket-name/key/india_configs_avg_device_price.json.enc"
-DEVICE_MAPPING_PATH="s3://bucket-name/key/india_configs_device_pricing.json.enc"
-MERCHANT_MAPPING_PATH="s3://bucket-name/key/india_configs_merchant_clean_sender_name_mapping.csv.enc"
-SMS_MAPPING_PATH="s3://bucket-name/key/india_configs_sms_sender_mapping.json.enc"
-SMS_MAPPING_V2_PATH="s3://bucket-name/key/india_configs_sms_sender_mapping_v2.json.enc"
-COMPANY_MODEL_PATH="s3://bucket-name/key/india_models_company_model.pkl.enc"
-COMPANY_VECTORIZER_PATH="s3://bucket-name/key/india_models_company_vectorizer.pkl.enc"
-COUNT_VECTORIZER_PATH="s3://bucket-name/key/india_models_countvectorizer.pickle.enc"
-LABEL_MODEL_PATH="s3://bucket-name/key/india_models_label_encoder.pickle.enc"
-LR_MODEL_PATH="s3://bucket-name/key/india_models_lr.pickle.enc"
-MERCHANT_LABEL_V2_PATH="s3://bucket-name/key/india_models_merchant_label_encoder_v2.pkl.enc"
-MERCHANT_LABEL_PATH="s3://bucket-name/key/india_models_merchant_label_encoder.pkl.enc"
-MERCHANT_MODEL_V2_PATH="s3://bucket-name/key/india_models_merchant_model_v2.pkl.enc"
-MERCHANT_MODEL_PATH="s3://bucket-name/key/india_models_merchant_model.pkl.enc"
-MERCHANT_VECTORIZER_V2_PATH="s3://bucket-name/key/india_models_merchant_vectorizer_v2.pkl.enc"
-MERCHANT_VECTORIZER_PATH="s3://bucket-name/key/india_models_merchant_vectorizer.pkl.enc"
-LGB_SCORE_MODEL_PATH="s3://bucket-name/key/india_scoring_lgb_model.pkl.enc"
-PAYDAY_SCORE_LGB_MODEL_PATH="s3://bucket-name/key/india_scoring_payday_lgb_model.pkl.enc"
-PAYDAY_SCORE_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_payday_lgb_model_20250623.pkl.enc"
-PAYDAY_SCORE_LGB_MODEL_V3_PATH="s3://bucket-name/key/india_scoring_payday_lgb_model_20250703.pkl.enc"
-PREDICTORS_SCORE_LGB_MODEL_PATH="s3://bucket-name/key/india_scoring_predictors_lgb.pkl.enc"
-PREDICTORS_PAYDAY_SCORE_LGB_MODEL_PATH="s3://bucket-name/key/india_scoring_predictors_payday_lgb_model.pkl.enc"
-PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_predictors_payday_lgb_model_20250623.pkl.enc"
-PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V3_PATH="s3://bucket-name/key/india_scoring_predictors_payday_lgb_model_20250703.pkl.enc"
-EMI_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_EMI_lgb_model_20250730_V2.pkl.enc"
-PREDICTORS_EMI_LGB_MODEL_V2_PATH="s3://bucket-name/key/india_scoring_predictors_EMI_lgb_model_20250730_V2.pkl.enc"
+APPS_MAPPING_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_apps_mapping.json.enc"
+FRAUD_APPS_MAPPING_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_fraud_apps_mapping.json.enc"
+AVG_DEVICE_MAPPING_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_avg_device_price.json.enc"
+DEVICE_MAPPING_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_device_pricing.json.enc"
+MERCHANT_MAPPING_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_merchant_clean_sender_name_mapping.csv.enc"
+SMS_MAPPING_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_sms_sender_mapping.json.enc"
+SMS_MAPPING_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/configs/india_configs_sms_sender_mapping_v2.json.enc"
+COMPANY_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_company_model.pkl.enc"
+COMPANY_VECTORIZER_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_company_vectorizer.pkl.enc"
+COUNT_VECTORIZER_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_countvectorizer.pickle.enc"
+LABEL_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_label_encoder.pickle.enc"
+LR_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_lr.pickle.enc"
+MERCHANT_LABEL_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_label_encoder_v2.pkl.enc"
+MERCHANT_LABEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_label_encoder.pkl.enc"
+MERCHANT_MODEL_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_model_v2.pkl.enc"
+MERCHANT_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_model.pkl.enc"
+MERCHANT_VECTORIZER_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_vectorizer_v2.pkl.enc"
+MERCHANT_VECTORIZER_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/models/india_models_merchant_vectorizer.pkl.enc"
+LGB_SCORE_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_lgb_model.pkl.enc"
+PAYDAY_SCORE_LGB_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_payday_lgb_model.pkl.enc"
+PAYDAY_SCORE_LGB_MODEL_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_payday_lgb_model_20250623.pkl.enc"
+PAYDAY_SCORE_LGB_MODEL_V3_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_payday_lgb_model_20250703.pkl.enc"
+PREDICTORS_SCORE_LGB_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_lgb.pkl.enc"
+PREDICTORS_PAYDAY_SCORE_LGB_MODEL_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_payday_lgb_model.pkl.enc"
+PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_payday_lgb_model_20250623.pkl.enc"
+PREDICTORS_PAYDAY_SCORE_LGB_MODEL_V3_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_payday_lgb_model_20250703.pkl.enc"
+EMI_LGB_MODEL_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_EMI_lgb_model_20250730_V2.pkl.enc"
+PREDICTORS_EMI_LGB_MODEL_V2_PATH="s3://<credeau_asset_bucket>/clients/client_<client_id>/insights/scoring/india_scoring_predictors_EMI_lgb_model_20250730_V2.pkl.enc"
+AWS_ACCESS_KEY_ID="aws access key id shared by Credeau"
+AWS_SECRET_ACCESS_KEY="aws secret key shared by Credeau"
+AWS_DEFAULT_REGION="aws region name shared by Credeau"
 ```
 
 Now, run the container -
@@ -183,18 +196,28 @@ The application supports various environment variables to provide application wi
 | `DB_HOST`                  | Host address of postgres database server to connect |
 | `DB_PORT`                  | Mapped port of postgres database server to connect |
 | `DB_NAME`                  | Database name for postgres database connection |
-| `VOCAB_USE_S3`             | Flag to enable loading vocabulary artifacts from S3 (true/false) |
-| `VOCAB_S3_BUCKET`          | S3 bucket name containing vocabulary extractor artifacts |
-| `VOCAB_S3_KEY`             | S3 object key path to the vocabulary.enc file |
-| `VOCAB_S3_REGION`          | AWS region of the S3 bucket for vocabulary artifacts |
-| `CLASSIFICATION_USE_S3`    | Flag to enable loading classification artifacts from S3 (true/false) |
-| `CLASSIFICATION_S3_BUCKET` | S3 bucket name containing classification extractor artifacts |
-| `CLASSIFICATION_S3_KEY`    | S3 object key path to the classification.enc file |
-| `CLASSIFICATION_S3_REGION` | AWS region of the S3 bucket for classification artifacts |
-| `REGEX_USE_S3`             | Flag to enable loading regex artifacts from S3 (true/false) |
-| `REGEX_S3_BUCKET`          | S3 bucket name containing regex extractor artifacts |
-| `REGEX_S3_KEY`             | S3 object key path to the regex.enc file |
-| `REGEX_S3_REGION`          | AWS region of the S3 bucket for regex artifacts |
+| `VOCAB_USE_S3`             | `true` |
+| `VOCAB_S3_BUCKET`          | `<credeau_asset_bucket>` |
+| `VOCAB_S3_KEY`             | `clients/client_<client_id>/extractor/vocabulary/vocabulary.enc` |
+| `VOCAB_S3_REGION`          | AWS Region Name shared by Credeau, for fetching the artifacts |
+| `CLASSIFICATION_USE_S3`    | `true` |
+| `CLASSIFICATION_S3_BUCKET` | `<credeau_asset_bucket>` |
+| `CLASSIFICATION_S3_KEY`    | `clients/client_<client_id>/extractor/classification/classification.enc` |
+| `CLASSIFICATION_S3_REGION` | AWS Region Name shared by Credeau, for fetching the artifacts |
+| `REGEX_USE_S3`             | `true` |
+| `REGEX_S3_BUCKET`          | `<credeau_asset_bucket>` |
+| `REGEX_S3_KEY`             | `clients/client_<client_id>/extractor/regex/regex.enc` |
+| `REGEX_S3_REGION`          | AWS Region Name shared by Credeau, for fetching the artifacts |
+| `AWS_ACCESS_KEY_ID`        | AWS Access Key shared by Credeau, for fetching the artifacts |
+| `AWS_SECRET_ACCESS_KEY`    | AWS Secret Key shared by Credeau, for fetching the artifacts |
+| `AWS_DEFAULT_REGION`       | AWS Region Name shared by Credeau, for fetching the artifacts |
+
+> ⚠️ **Note!**
+>
+> Following values will be provided by Credeau, during the integration -
+>
+> - `credeau_asset_bucket`
+> - `client_id`
 
 ### Deployment: Using Docker
 
@@ -215,17 +238,20 @@ DB_HOST="<host address of deployed PostgresSQL host>"
 DB_PORT="5432"
 DB_NAME="api_insights_db"
 VOCAB_USE_S3="true"
-VOCAB_S3_BUCKET="<s3 bucket with extractor artifacts>"
-VOCAB_S3_KEY="<s3 key to vocabulary.enc file>"
+VOCAB_S3_BUCKET="<credeau_asset_bucket>"
+VOCAB_S3_KEY="clients/client_<client_id>/extractor/vocabulary/vocabulary.enc"
 VOCAB_S3_REGION="ap-south-1"
 CLASSIFICATION_USE_S3="true"
-CLASSIFICATION_S3_BUCKET="<s3 bucket with extractor artifacts>"
-CLASSIFICATION_S3_KEY="<s3 key to classification.enc file>"
+CLASSIFICATION_S3_BUCKET="<credeau_asset_bucket>"
+CLASSIFICATION_S3_KEY="clients/client_<client_id>/extractor/classification/classification.en"
 CLASSIFICATION_S3_REGION="ap-south-1"
 REGEX_USE_S3="true"
-REGEX_S3_BUCKET="<s3 bucket with extractor artifacts>"
-REGEX_S3_KEY="<s3 key to regex.enc file>"
+REGEX_S3_BUCKET="<credeau_asset_bucket>"
+REGEX_S3_KEY="clients/client_<client_id>/extractor/regex/regex.enc"
 REGEX_S3_REGION="ap-south-1"
+AWS_ACCESS_KEY_ID="aws access key id shared by Credeau"
+AWS_SECRET_ACCESS_KEY="aws secret key shared by Credeau"
+AWS_DEFAULT_REGION="aws region name shared by Credeau"
 ```
 
 Now, run the container -
