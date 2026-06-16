@@ -97,6 +97,10 @@ nav:
       - FraudGator:
           - Overview: products/fraudgator/index.md
           - FraudGator: products/fraudgator/fraudgator.md
+          - User Data Enrichment: products/fraudgator/user_data_enrichment.md
+          - User Contactability: products/fraudgator/user_contactability.md
+          - User WhatsApp Insights: products/fraudgator/user_whatsapp_txn.md
+          - User Affluence: products/fraudgator/user_affluence.md
 extra_css:
   - stylesheets/extra.css
 
