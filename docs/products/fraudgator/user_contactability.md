@@ -29,9 +29,9 @@ and, one content type header:
 |-----------|--------|----------|-------------|
 | `user_id` | string | Yes      | Unique identifier of the user |
 | `phone`   | string | Yes      | Phone number of the user |
-| `email`   | string | Yes      | Email address of the user |
-| `name`    | string | Yes      | Full name of the user |
-| `pincode` | string | Yes      | Pincode of the user's location |
+| `email`   | string | Optional | Email address of the user |
+| `name`    | string | Optional | Full name of the user |
+| `pincode` | string | Optional | Pincode of the user's location |
 
 ### Request cURL
 
