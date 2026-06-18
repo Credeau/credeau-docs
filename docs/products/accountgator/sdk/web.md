@@ -17,11 +17,14 @@ The following variables will be referenced throughout this documentation:
 | `user_id`                | Unique identifier for an end user       | Alphanumeric string                                          | Provided by Credeau during onboarding |
 | `redirect_url`           | URL to redirect to post process         | Like, https://yourdomain.com/redirection/path                | Set by client as per requirement      |
 | `template_name`          | Account Aggregator template name        | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement      |
+| `consent_templates`      | Account Aggregator template names       | Array of template names, multiple can be passed              | Set by client as per requirement      |
 | `customer_mobile_number` | End user's mobile number                | Like, 9999999999                                             | Provided by customer during journey   |
 
 > ⚠️ **Note**
 >
-> Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.
+> 1. Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.
+> 
+> 2. `template_name` and `consent_templates` are mutually exclusive. Provide `consent_templates` for a multi-template flow; provide `template_name` for a single-template flow. Exactly one of the two must be present.
 
 ## Adding Dependency
 
@@ -77,7 +80,7 @@ npm install @credeau/accountgator
 or, Specific version
 
 ```bash
-npm install @credeau/accountgator@1.0.0
+npm install @credeau/accountgator@1.1.0
 ```
 
 ## Usage
@@ -93,7 +96,8 @@ const result = await openAccountGator({
 	auth_token: "<auth_token>",
 	redirect_url: "<redirect_url>",
     is_redirecting: true/false, // Optional; default=true if not passed
-	template_name: "<template_name>",
+	template_name: "<template_name>", // Pass this if consent_templates is not added
+	consent_templates: ["<template_name_1>","<template_name_2>"], // Pass this if template_name is not added
 	mobile_number: "<customer_mobile_number>",
 });
 
@@ -119,7 +123,8 @@ console.log(result);
 		auth_token: "<auth_token>",
 		redirect_url: "<redirect_url>",
         is_redirecting: true/false,  // Optional; default=true if not passed
-		template_name: "<template_name>",
+		template_name: "<template_name>", // Pass this if consent_templates is not added
+		consent_templates: ["<template_name_1>","<template_name_2>"], // Pass this if template_name is not added
 		mobile_number: "<customer_mobile_number>"
 	};
 
