@@ -574,6 +574,10 @@ SELECT create_daily_partition('fetch_extracted_response_dump', CURRENT_DATE, 10)
 SELECT create_daily_partition('fetch_extracted_request_dump', CURRENT_DATE, 10);
 ```
 
+> Note!
+>
+> Above steps can also be triggered using external scheduled actions like `Linux Cron`, `Airflow Scheduled DAGs`, etc.
+
 To setup crons using `pg_cron` -
 
 Enable `pg_cron` -
@@ -635,6 +639,82 @@ SELECT cron.schedule(
   $$SELECT create_daily_partition('fetch_extracted_request_dump', CURRENT_DATE, 10);$$
 );
 ```
+
+#### Cleanup old partitions `[Optional]`
+
+> Note!
+>
+> As certain tables are automatically partitioned in the above step, those can also be automatically cleaned to restore space on the database.
+
+Create a function to purge partitions of target table older than `N` days -
+
+```sql
+CREATE OR REPLACE FUNCTION public.cleanup_old_partitions_for_table(parent_table text, retention_days integer DEFAULT 90)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    partition_record record;
+    partition_date date;
+BEGIN
+    FOR partition_record IN 
+        SELECT tablename, schemaname
+        FROM pg_tables 
+        WHERE schemaname = 'public' 
+        AND tablename LIKE parent_table || '_%_%_%'  
+    LOOP
+        BEGIN
+            partition_date := to_date(
+                split_part(partition_record.tablename, '_', 2) || '_' ||
+                split_part(partition_record.tablename, '_', 3) || '_' ||
+                split_part(partition_record.tablename, '_', 4),
+                'YYYY_MM_DD'
+            );
+
+            IF partition_date < current_date - retention_days THEN
+                EXECUTE format('DROP TABLE IF EXISTS %I.%I', 
+                               partition_record.schemaname, 
+                               partition_record.tablename);
+                
+                INSERT INTO partition_operations_log (table_name, partition_name, operation_type, status)
+                VALUES (parent_table, 
+                       partition_record.tablename, 
+                       'DROP',
+                       'dropped: older than ' || retention_days || ' days');
+            END IF;
+        EXCEPTION WHEN OTHERS THEN
+            -- Optional: skip partitions with bad names
+            CONTINUE;
+        END;
+    END LOOP;
+END;
+$function$
+;
+```
+
+For example -
+
+To purge partitions of `usage` table post 90 days,
+
+Execute, or set crons for -
+
+```sql
+SELECT cleanup_old_partitions_for_table('usage', 90);
+```
+
+> Note!
+>
+> Above steps can also be triggered using external scheduled actions like `Linux Cron`, `Airflow Scheduled DAGs`, etc.
+
+```sql
+SELECT cron.schedule(
+  'cleanup_partitions_for_usage',
+  '0 0 * * *',
+  $$SELECT cleanup_old_partitions_for_table('usage', 90);$$
+);
+```
+
+Similarly, partition purging can be applied on other tables as well.
 
 #### Add authentication tokens
 
