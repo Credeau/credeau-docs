@@ -640,7 +640,7 @@ SELECT cron.schedule(
 );
 ```
 
-#### Cleanup old partitions `[Optional]`
+#### Cleanup Old Partitions `[Optional]`
 
 > Note!
 >
