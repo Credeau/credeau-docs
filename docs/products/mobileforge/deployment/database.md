@@ -320,10 +320,6 @@ Database to use - `api_insights_db`
 	CREATE INDEX idx_usage_client_id ON public.usage USING btree (client_id);
 	```
 
-	> Note:
-	>
-	> All the heavy tables are partitioned on `created_at` timestamp field. Which can be used to further create daily/weekly/monthly partitions based on analytical use cases.
-
 === "Aurora Limitless Postgres"
 
 	```sql
@@ -493,6 +489,152 @@ Database to use - `api_insights_db`
 	CREATE INDEX idx_usage_api_name ON public.usage USING btree (api_name);
 	CREATE INDEX idx_usage_client_id ON public.usage USING btree (client_id);
 	```
+
+> Note:
+>
+> All the heavy tables are partitioned on `created_at` timestamp field. Which can be used to further create daily/weekly/monthly partitions based on analytical use cases.
+
+
+#### Create Table Partitions
+
+Create helper function to create daily partitions on target tables for `N` days in advance -
+
+```sql
+CREATE OR REPLACE FUNCTION public.create_daily_partition(parent_table text, partition_date date, days_ahead integer DEFAULT 0)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    partition_name text;
+    partition_start timestamp;
+    partition_end timestamp;
+    partition_col_name text;
+    d date := partition_date;
+    end_date date := partition_date + days_ahead;
+BEGIN
+    -- Detect the partition key column
+    SELECT a.attname INTO partition_col_name
+    FROM pg_partitioned_table pt
+    JOIN pg_class c ON pt.partrelid = c.oid
+    JOIN pg_attribute a ON a.attrelid = pt.partrelid AND a.attnum = ANY(pt.partattrs)
+    WHERE c.relname = parent_table
+    LIMIT 1;
+
+    IF partition_col_name IS NULL THEN
+        RAISE EXCEPTION 'Partition column not found for table %', parent_table;
+    END IF;
+
+    -- Iterate using WHILE loop (safe for DATE)
+    WHILE d <= end_date LOOP
+        partition_start := d::timestamp;
+        partition_end := (d + 1)::timestamp;
+        partition_name := parent_table || '_' || to_char(d, 'YYYY_MM_DD');
+
+        BEGIN
+            IF NOT EXISTS (
+                SELECT 1
+                FROM pg_class c
+                JOIN pg_namespace n ON n.oid = c.relnamespace
+                WHERE c.relname = partition_name
+                AND n.nspname = 'public'
+            ) THEN
+                EXECUTE format(
+                    'CREATE TABLE IF NOT EXISTS %I PARTITION OF %I FOR VALUES FROM (%L) TO (%L)',
+                    partition_name,
+                    parent_table,
+                    partition_start,
+                    partition_end
+                );
+
+                RAISE NOTICE 'Created partition % for table % on %', partition_name, parent_table, partition_col_name;
+            END IF;
+
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Failed to create partition %: %', partition_name, SQLERRM;
+        END;
+
+        d := d + INTERVAL '1 day';
+    END LOOP;
+
+    RETURN;
+END;
+$function$
+;
+```
+
+Execute, or set crons for -
+
+```sql
+SELECT create_daily_partition('usage', CURRENT_DATE, 10);
+SELECT create_daily_partition('unauthorized_requests', CURRENT_DATE, 10);
+SELECT create_daily_partition('sync_events_log', CURRENT_DATE, 10);
+SELECT create_daily_partition('insights_response_dump', CURRENT_DATE, 10);
+SELECT create_daily_partition('insights_request_dump', CURRENT_DATE, 10);
+SELECT create_daily_partition('fetch_extracted_response_dump', CURRENT_DATE, 10);
+SELECT create_daily_partition('fetch_extracted_request_dump', CURRENT_DATE, 10);
+```
+
+To setup crons using `pg_cron` -
+
+Enable `pg_cron` -
+
+```sql
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+
+SELECT * FROM pg_extension WHERE extname = 'pg_cron';
+
+GRANT USAGE ON SCHEMA cron TO mobileforge_user;
+
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA cron TO mobileforge_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA cron GRANT EXECUTE ON FUNCTIONS TO mobileforge_user;
+```
+
+Set crons -
+
+```sql
+SELECT cron.schedule(
+  'create_daily_partitions_for_usage',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('usage', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_unauthorized_requests',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('unauthorized_requests', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_sync_events_log',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('sync_events_log', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_insights_response_dump',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('insights_response_dump', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_insights_request_dump',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('insights_request_dump', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_fetch_extracted_response_dump',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('fetch_extracted_response_dump', CURRENT_DATE, 10);$$
+);
+
+SELECT cron.schedule(
+  'create_daily_partitions_for_fetch_extracted_request_dump',
+  '0 0 * * *',
+  $$SELECT create_daily_partition('fetch_extracted_request_dump', CURRENT_DATE, 10);$$
+);
+```
 
 #### Add authentication tokens
 
