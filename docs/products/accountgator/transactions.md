@@ -12,16 +12,17 @@ https://insights.account-gator.credeau.com
 
 The following variables will be referenced throughout this documentation:
 
-| Variable                 | Description                             | Format                                                       | Source                                             |
-| ------------------------ | --------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------- |
-| `client_id`              | Unique identifier for your organisation | Alphanumeric string                                          | Provided by Credeau during onboarding              |
-| `auth_token`             | Secret token for API authentication     | Alphanumeric string                                          | Provided by Credeau during onboarding              |
-| `user_id`                | Unique identifier for an end user       | Alphanumeric string                                          | Provided by Credeau during onboarding              |
-| `redirect_url`           | URL to redirect to post process         | Like, https://yourdomain.com/redirection/path                | Set by client as per requirement                   |
-| `template_name`          | Account Aggregator template name        | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement                   |
-| `customer_mobile_number` | End user's mobile number                | Like, 9999999999                                             | Provided by customer during journey                |
-| `request_id`             | Unique request identifier               | Alphanumeric string                                          | Received in API response                           |
-| `aa_session_id`          | [AA Session ID ↗](./sdk/web.md#output)  | Alphanumeric string                                          | Received after consent journey on AccountGator SDK |
+| Variable                 | Description                             | Format                                                       | Source                                               |
+| ------------------------ | --------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
+| `client_id`              | Unique identifier for your organisation | Alphanumeric string                                          | Provided by Credeau during onboarding                |
+| `auth_token`             | Secret token for API authentication     | Alphanumeric string                                          | Provided by Credeau during onboarding                |
+| `user_id`                | Unique identifier for an end user       | Alphanumeric string                                          | Provided by Credeau during onboarding                |
+| `redirect_url`           | URL to redirect to post process         | Like, https://yourdomain.com/redirection/path                | Set by client as per requirement                     |
+| `template_name`          | Account Aggregator template name        | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement                     |
+| `customer_mobile_number` | End user's mobile number                | Like, 9999999999                                             | Provided by customer during journey                  |
+| `request_id`             | Unique request identifier               | Alphanumeric string                                          | Received in API response                             |
+| `aa_session_id`          | [AA Session ID ↗](./sdk/web.md#output)  | Alphanumeric string                                          | Received after consent journey on AccountGator SDK   |
+| `consent_handle`         | Consent handle for a specific consent   | UUID string                                                  | Received from AccountGator SDK after consent journey |
 
 > ⚠️ **Note**
 >
@@ -46,7 +47,11 @@ and, one content type header:
 
 ### Fetch Transactions
 
-Once a customer provides a consent successfully via the AccountGator SDK, use the details received in response to fetch bank account transactions for the customer.
+Once a customer provides consent successfully via the AccountGator SDK, use the details received in the SDK response to fetch bank account transactions for the customer.
+
+**Single-consent flow** — when a single consent template was requested via the SDK (`template_name`), omit `consent_handle`. The API resolves the consent handle automatically.
+
+**Multi-consent flow** — when multiple consent templates were requested via the SDK (`consent_templates`), the SDK returns multiple consent handles. Pass the relevant [`<consent_handle>` ↗](#variables) in each `fetch_data` call to fetch transactions for that specific consent.
 
 ```bash
 /aa/fetch_data
@@ -56,15 +61,16 @@ Once a customer provides a consent successfully via the AccountGator SDK, use th
 
 Request Body -
 
-| Parameter           | Type   | Required | Description                                                            |
-| ------------------- | ------ | -------- | ---------------------------------------------------------------------- |
-| `user_id`           | string | Yes      | [`<user_id>` ↗](#variables)                                            |
-| `aa_session_id`     | string | Yes      | [`<aa_session_id>` ↗](#variables)                                      |
-| `datetimerangefrom` | string | Yes      | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format             |
-| `datetimerangeto`   | string | Yes      | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format               |
-| `generate_insights` | bool   | No       | If `true`, API returns transaction insights in `insights` response key |
+| Parameter           | Type   | Required | Description                                                                                                                                  |
+| ------------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `user_id`           | string | Yes      | [`<user_id>` ↗](#variables)                                                                                                                  |
+| `aa_session_id`     | string | Yes      | [`<aa_session_id>` ↗](#variables)                                                                                                            |
+| `datetimerangefrom` | string | Yes      | Statement start date in `MM/DD/YYYY HH:MM:SS AM/PM` format                                                                                   |
+| `datetimerangeto`   | string | Yes      | Statement end date in `MM/DD/YYYY HH:MM:SS AM/PM` format                                                                                     |
+| `consent_handle`    | string | No       | [`<consent_handle>` ↗](#variables). Required in multi-consent flows; omit in single-consent flows where the handle is resolved automatically |
+| `generate_insights` | bool   | No       | If `true`, API returns transaction insights in `insights` response key                                                                       |
 
-cURL -
+cURL (single-consent flow) -
 
 ```bash
 curl --location 'https://insights.account-gator.credeau.com/aa/fetch_data' \
@@ -77,6 +83,23 @@ curl --location 'https://insights.account-gator.credeau.com/aa/fetch_data' \
 	"datetimerangefrom": "01/01/2026 12:00:00 AM",
 	"datetimerangeto": "04/22/2026 11:59:59 PM",
 	"generate_insights": true
+}'
+```
+
+cURL (multi-consent flow) -
+
+```bash
+curl --location 'https://insights.account-gator.credeau.com/aa/fetch_data' \
+--header 'x-client-id: <client_id>' \
+--header 'x-auth-token: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+	"user_id": "<user_id>",
+	"aa_session_id": "<aa_session_id>",
+	"datetimerangefrom": "01/01/2026 12:00:00 AM",
+	"datetimerangeto": "06/01/2026 11:59:59 PM",
+	"consent_handle": "<consent_handle>",
+	"generate_insights": false
 }'
 ```
 
