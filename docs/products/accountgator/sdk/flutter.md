@@ -21,7 +21,15 @@ This package loads your AccountGator web flow inside a native `WebView`, passes 
 | `userId` | Unique identifier for an end user | Alphanumeric string | Provided by Credeau during onboarding |
 | `mobileNumber` | End user's mobile number | Like, 9999999999 | Provided by customer during journey |
 | `redirectUrl` | URL to redirect to post process | Like, https://yourdomain.com/redirection/path | Set by client as per requirement |
-| `consentTemplates` | Account Aggregator template array | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` or both | Set by client as per requirement |
+| `template_name` | Account Aggregator template name | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement |
+| `consentTemplates` | Account Aggregator template array | Either [`BANK_STATEMENT_PERIODIC`] or [`BANK_STATEMENT_ONETIME`] or both [`BANK_STATEMENT_PERIODIC`, `BANK_STATEMENT_ONETIME`] | Set by client as per requirement |
+
+
+> ⚠️ **Note**
+>
+> 1. Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.
+> 
+> 2. `template_name` and `consent_templates` are mutually exclusive. Provide `consent_templates` for a multi-template flow; provide `template_name` for a single-template flow. Exactly one of the two must be present.
 
 
 ## Quick start
@@ -45,12 +53,19 @@ final List<String> consentTemplates = <String>[
       'BANK_STATEMENT_PERIODIC', 'BANK_STATEMENT_ONETIME'    
 ];
 
+final String templateName = 'BANK_STATEMENT_PERIODIC';
+
+or 
+
+final String templateName = 'BANK_STATEMENT_ONETIME';
+
 final initData = AccountGatorInitData(
   clientId: 'your_client_id',
   authToken: 'your_auth_token',
   userId: 'user_123',
   mobileNumber: '9876543210',
   redirectUrl: 'https://your-app.com/accountgator/redirect',
+  templateName: templateName,  
   consentTemplates: consentTemplates
 );
 
@@ -71,6 +86,14 @@ class ConsentFlowPage extends StatelessWidget {
     'BANK_STATEMENT_PERIODIC', 'BANK_STATEMENT_ONETIME'    
   ];
 
+
+  final String templateName = 'BANK_STATEMENT_PERIODIC';
+
+  or 
+  
+  final String templateName = 'BANK_STATEMENT_ONETIME';
+
+
   @override
   Widget build(BuildContext context) {
     final initData = AccountGatorInitData(
@@ -80,6 +103,7 @@ class ConsentFlowPage extends StatelessWidget {
       mobileNumber: '9876543210',
       redirectUrl: 'https://your-app.com/accountgator/redirect',
       consentTemplates: consentTemplates,
+      templateName: templateName,
       backendUrl: 'https://account-gator.credeau.com',
     );
 
