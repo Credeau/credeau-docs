@@ -21,7 +21,15 @@ This package loads your AccountGator web flow inside a native `WebView`, passes 
 | `userId` | Unique identifier for an end user | Alphanumeric string | Provided by Credeau during onboarding |
 | `mobileNumber` | End user's mobile number | Like, 9999999999 | Provided by customer during journey |
 | `redirectUrl` | URL to redirect to post process | Like, https://yourdomain.com/redirection/path | Set by client as per requirement |
-| `templateName` | Account Aggregator template name | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement |
+| `template_name` | Account Aggregator template name | Either `BANK_STATEMENT_PERIODIC` or `BANK_STATEMENT_ONETIME` | Set by client as per requirement |
+| `consentTemplates` | Account Aggregator template array | Either [`BANK_STATEMENT_PERIODIC`] or [`BANK_STATEMENT_ONETIME`] or both [`BANK_STATEMENT_PERIODIC`, `BANK_STATEMENT_ONETIME`] | Set by client as per requirement |
+
+
+> ⚠️ **Note**
+>
+> 1. Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.
+> 
+> 2. `template_name` and `consent_templates` are mutually exclusive. Provide `consent_templates` for a multi-template flow; provide `template_name` for a single-template flow. Exactly one of the two must be present.
 
 
 ## Quick start
@@ -32,8 +40,8 @@ This package loads your AccountGator web flow inside a native `WebView`, passes 
 dependencies:
   accountgator_flutter:
     git:
-      url: https://github.com/Credeau/account-gator-flutter-sdk
-      ref: 1.0.0
+      url: https://github.com/Credeau-Engineering/account-gator-flutter-sdk
+      ref: v1.1.0
 ```
 
 ### 2. Create the init payload
@@ -41,14 +49,26 @@ dependencies:
 ```dart
 import 'package:accountgator_flutter/accountgator_flutter.dart';
 
+final List<String> consentTemplates = <String>[
+      'BANK_STATEMENT_PERIODIC', 'BANK_STATEMENT_ONETIME'    
+];
+
+final String templateName = 'BANK_STATEMENT_PERIODIC';
+
+or 
+
+final String templateName = 'BANK_STATEMENT_ONETIME';
+
 final initData = AccountGatorInitData(
   clientId: 'your_client_id',
   authToken: 'your_auth_token',
   userId: 'user_123',
   mobileNumber: '9876543210',
   redirectUrl: 'https://your-app.com/accountgator/redirect',
-  templateName: 'BANK_STATEMENT_PERIODIC'
+  templateName: templateName,  
+  consentTemplates: consentTemplates
 );
+
 ```
 
 ### 3. Start the AccountGator flow
@@ -61,6 +81,19 @@ import 'package:accountgator_flutter/accountgator_flutter.dart';
 class ConsentFlowPage extends StatelessWidget {
   const ConsentFlowPage({super.key});
 
+
+  final List<String> consentTemplates = <String>[
+    'BANK_STATEMENT_PERIODIC', 'BANK_STATEMENT_ONETIME'    
+  ];
+
+
+  final String templateName = 'BANK_STATEMENT_PERIODIC';
+
+  or 
+  
+  final String templateName = 'BANK_STATEMENT_ONETIME';
+
+
   @override
   Widget build(BuildContext context) {
     final initData = AccountGatorInitData(
@@ -69,7 +102,8 @@ class ConsentFlowPage extends StatelessWidget {
       userId: 'user_123',
       mobileNumber: '9876543210',
       redirectUrl: 'https://your-app.com/accountgator/redirect',
-      templateName: 'BANK_STATEMENT_PERIODIC',
+      consentTemplates: consentTemplates,
+      templateName: templateName,
       backendUrl: 'https://account-gator.credeau.com',
     );
 
