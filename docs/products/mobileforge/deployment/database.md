@@ -304,6 +304,8 @@ Database to use - `api_insights_db`
 	) PARTITION BY RANGE (created_at);
 
 	CREATE INDEX idx_unauthorized_requests_client_id ON public.unauthorized_requests USING btree (client_id);
+	CREATE INDEX idx_unauthorized_requests_request_id ON public.unauthorized_requests USING btree (request_id);
+	CREATE INDEX idx_unauthorized_requests_created_at ON public.unauthorized_requests USING btree (created_at);
 
 	-- public."usage" definition
 	CREATE TABLE public."usage" (
@@ -470,6 +472,8 @@ Database to use - `api_insights_db`
 	ALTER SEQUENCE public.unauthorized_requests_id_seq OWNED BY public.unauthorized_requests.id;
 
 	CREATE INDEX idx_unauthorized_requests_client_id ON public.unauthorized_requests USING btree (client_id);
+	CREATE INDEX idx_unauthorized_requests_request_id ON public.unauthorized_requests USING btree (request_id);
+	CREATE INDEX idx_unauthorized_requests_created_at ON public.unauthorized_requests USING btree (created_at);
 
 	-- public."usage" definition
 	CREATE SEQUENCE public.usage_id_seq;
