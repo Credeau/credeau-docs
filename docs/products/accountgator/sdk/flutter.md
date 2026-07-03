@@ -40,7 +40,7 @@ This package loads your AccountGator web flow inside a native `WebView`, passes 
 dependencies:
   accountgator_flutter:
     git:
-      url: https://github.com/Credeau-Engineering/account-gator-flutter-sdk
+      url: https://github.com/Credeau/account-gator-flutter-sdk
       ref: v1.1.0
 ```
 
