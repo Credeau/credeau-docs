@@ -120,6 +120,7 @@ class ConsentFlowPage extends StatelessWidget {
           // Access `result.aaSessionId` to get the AA session ID on success.
           // Access `result.error` to read the failure reason, if any.
           // Access `result.timeout` to check whether the journey timed out.
+          // Access `result.consent_handles_status` (only present when consent_templates is used)
          
           
           if (result.success) {
@@ -216,7 +217,88 @@ Response fields:
 - `error`: Error message returned when the journey fails. `null` on success.
 - `timeout`: `true` if the user does not complete the journey within the allowed time.
 - `origin`: Web origin from which the result message was received.
+- `consent_handles_status` : (json object) - Only present when consent_templates is used. An object keyed by template name, indicating which templates the user gave consent for.
 
+
+
+#### `consent_handles_status` Structure
+
+Each entry in `consent_handles_status` is keyed by the template name and contains:
+
+| Field            | Description                                        |
+| ---------------- | -------------------------------------------------- |
+| `consent_handle` | Unique handle for the consent request              |
+| `consent_status` | Status of the consent (see values below)           |
+| `consent_id`     | Present when consent is accepted; otherwise `null` |
+
+#### `consent_status` values
+
+| Value         | Meaning                                                                      |
+| ------------- | ---------------------------------------------------------------------------- |
+| `"ACCEPTED"`  | User gave consent for that template; `consent_id` will be present            |
+| `"REJECTED"`  | A failure occurred for that template (e.g. an error during the consent flow) |
+| `"REQUESTED"` | User did **not** give consent for that template; `consent_id` is `null`      |
+
+#### Response Examples (when using `consent_templates`)
+
+**Single template:**
+
+Passing one template to `consent_templates`:
+
+```javascript
+consent_templates: ["BANK_STATEMENT_ONETIME"];
+```
+
+Response:
+
+```json
+{
+	"success": "true",
+	"aa_session_id": "3617c94822b94d998f9bdcaefcb01e51",
+	"error": "null",
+	"timeout": "false",
+	"consent_handles_status": {
+		"BANK_STATEMENT_ONETIME": {
+			"consent_handle": "e0312e30-66f0-4793-8b3a-a64f109b036e",
+			"consent_status": "ACCEPTED",
+			"consent_id": "9f59c234-9050-89db-b944-bbfb549c9514"
+		}
+	}
+}
+```
+
+**Multiple templates:**
+
+Passing multiple templates to `consent_templates`:
+
+```javascript
+consent_templates: ["BANK_STATEMENT_PERIODIC", "BANK_STATEMENT_ONETIME"];
+```
+
+Response:
+
+```json
+{
+	"success": "true",
+	"aa_session_id": "783a8122359e4ea5a3b7eba7f8ba8d55",
+	"error": "null",
+	"timeout": "false",
+	"consent_handles_status": {
+		"BANK_STATEMENT_PERIODIC": {
+			"consent_handle": "dbc880e3-799e-44d8-a305-9bad846ed1be",
+			"consent_status": "REQUESTED",
+			"consent_id": null
+		},
+		"BANK_STATEMENT_ONETIME": {
+			"consent_handle": "ec2b3993-890a-4b51-932d-f806351f2b57",
+			"consent_status": "ACCEPTED",
+			"consent_id": "3124912f-6624-2349-8379-246745fadf7b"
+		}
+	}
+}
+```
+
+> **Note:** In the example above, `BANK_STATEMENT_PERIODIC` has `"consent_status": "REQUESTED"` — this means the user did **not** give consent for that template. Only `BANK_STATEMENT_ONETIME` was accepted.
 
 ### Handle the response
 
