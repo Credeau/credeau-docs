@@ -1166,3 +1166,281 @@ Experian delivers credit information through their INProfileResponse format, ava
 </INProfileResponse>
 </processReturn></processResponse></soapenv:Body></soapenv:Envelope>
 ```
+
+
+### `experian_scrub_parser`
+
+The scrub format expects 3 DataFrame tables — tradelines, scores, and enquiries. The column descriptions for each are mentioned below.
+
+#### Tradelines
+
+| Column | Description |
+|---|---|
+| `customer_id` | Unique identifier of the customer |
+| `account_nb` | Account number reported by the lender |
+| `account_type` | Type of credit account (e.g. Consumer Loan, Personal Loan) |
+| `m_sub_id` | Subscriber or member identifier of the reporting institution |
+| `open_dt` | Date the account was opened |
+| `closed_dt` | Date the account was closed |
+| `balance_dt` | Date the balance was last reported |
+| `balance_am` | Current outstanding balance on the account |
+| `orig_loan_am` | Original loan amount sanctioned |
+| `credit_limit_am` | Credit limit on the account |
+| `past_due_am` | Amount currently past due on the account |
+| `written_off_amt_total` | Total written-off amount on the account |
+| `written_off_amt_principal` | Written-off principal amount on the account |
+| `last_payment_dt` | Date of the last payment made |
+| `actual_payment_am` | Amount of the last actual payment made |
+| `interest_rate` | Rate of interest on the account |
+| `cash_limit` | Cash withdrawal limit on the account |
+| `tenure` | Repayment tenure of the account |
+| `payment_frequency` | Frequency of payments (e.g. Monthly, Weekly) |
+| `settlement_amount` | Settlement amount, if the account was settled |
+| `written_off_and_settled_status` | Written-off or settled status of the account |
+| `suit_filed_willful_dflt` | Suit filed or wilful default status on the account |
+| `asset_class` | Asset classification for the account |
+| `days_past_due_01` | Days past due for month 1 (historical payment history) |
+| `days_past_due_02` | Days past due for month 2 (historical payment history) |
+| `days_past_due_03` | Days past due for month 3 (historical payment history) |
+| `days_past_due_04` | Days past due for month 4 (historical payment history) |
+| `days_past_due_05` | Days past due for month 5 (historical payment history) |
+| `days_past_due_06` | Days past due for month 6 (historical payment history) |
+| `days_past_due_07` | Days past due for month 7 (historical payment history) |
+| `days_past_due_08` | Days past due for month 8 (historical payment history) |
+| `days_past_due_09` | Days past due for month 9 (historical payment history) |
+| `days_past_due_10` | Days past due for month 10 (historical payment history) |
+| `days_past_due_11` | Days past due for month 11 (historical payment history) |
+| `days_past_due_12` | Days past due for month 12 (historical payment history) |
+| `days_past_due_13` | Days past due for month 13 (historical payment history) |
+| `days_past_due_14` | Days past due for month 14 (historical payment history) |
+| `days_past_due_15` | Days past due for month 15 (historical payment history) |
+| `days_past_due_16` | Days past due for month 16 (historical payment history) |
+| `days_past_due_17` | Days past due for month 17 (historical payment history) |
+| `days_past_due_18` | Days past due for month 18 (historical payment history) |
+| `days_past_due_19` | Days past due for month 19 (historical payment history) |
+| `days_past_due_20` | Days past due for month 20 (historical payment history) |
+| `days_past_due_21` | Days past due for month 21 (historical payment history) |
+| `days_past_due_22` | Days past due for month 22 (historical payment history) |
+| `days_past_due_23` | Days past due for month 23 (historical payment history) |
+| `days_past_due_24` | Days past due for month 24 (historical payment history) |
+| `days_past_due_25` | Days past due for month 25 (historical payment history) |
+| `days_past_due_26` | Days past due for month 26 (historical payment history) |
+| `days_past_due_27` | Days past due for month 27 (historical payment history) |
+| `days_past_due_28` | Days past due for month 28 (historical payment history) |
+| `days_past_due_29` | Days past due for month 29 (historical payment history) |
+| `days_past_due_30` | Days past due for month 30 (historical payment history) |
+| `days_past_due_31` | Days past due for month 31 (historical payment history) |
+| `days_past_due_32` | Days past due for month 32 (historical payment history) |
+| `days_past_due_33` | Days past due for month 33 (historical payment history) |
+| `days_past_due_34` | Days past due for month 34 (historical payment history) |
+| `days_past_due_35` | Days past due for month 35 (historical payment history) |
+| `days_past_due_36` | Days past due for month 36 (historical payment history) |
+
+#### Enquiries
+
+| Column | Description |
+|---|---|
+| `customer_id` | Unique identifier of the customer |
+| `inquiry_purpose` | Purpose of the credit inquiry |
+| `m_sub_id` | Subscriber or member identifier of the inquiring institution |
+| `amount` | Amount for which the inquiry was made |
+| `inq_date` | Date of the inquiry |
+
+#### Scores
+
+| Column | Description |
+|---|---|
+| `customer_id` | Unique identifier of the customer |
+| `score` | Bureau credit score for the customer |
+
+#### Sample Values
+
+The sample values below illustrate the expected data types and formats for each table. Use these as a reference when preparing scrub data for the parser.
+
+#### Tradelines
+
+<div markdown="0">
+<table>
+<thead>
+<tr><th>Column</th><th>Sample Value</th></tr>
+</thead>
+<tbody>
+    <tr><th><code>customer_id</code></th><td>AB32843931</td></tr>
+    <tr><th><code>account_nb</code></th><td>XXXX</td></tr>
+    <tr><th><code>account_type</code></th><td>Consumer Loan</td></tr>
+    <tr><th><code>m_sub_id</code></th><td>NBF</td></tr>
+    <tr><th><code>open_dt</code></th><td>2025-01-24</td></tr>
+    <tr><th><code>closed_dt</code></th><td>2026-02-01</td></tr>
+    <tr><th><code>balance_dt</code></th><td>2026-02-28</td></tr>
+    <tr><th><code>balance_am</code></th><td>0.0</td></tr>
+    <tr><th><code>orig_loan_am</code></th><td>1499.0</td></tr>
+    <tr><th><code>credit_limit_am</code></th><td>1499.0</td></tr>
+    <tr><th><code>past_due_am</code></th><td>0.0</td></tr>
+    <tr><th><code>written_off_amt_total</code></th><td>NaN</td></tr>
+    <tr><th><code>written_off_amt_principal</code></th><td>NaN</td></tr>
+    <tr><th><code>last_payment_dt</code></th><td>2026-02-01</td></tr>
+    <tr><th><code>actual_payment_am</code></th><td>0.0</td></tr>
+    <tr><th><code>interest_rate</code></th><td>NaN</td></tr>
+    <tr><th><code>cash_limit</code></th><td>NaN</td></tr>
+    <tr><th><code>tenure</code></th><td>NaN</td></tr>
+    <tr><th><code>payment_frequency</code></th><td>Monthly</td></tr>
+    <tr><th><code>settlement_amount</code></th><td>NaN</td></tr>
+    <tr><th><code>written_off_and_settled_status</code></th><td>Settled</td></tr>
+    <tr><th><code>suit_filed_willful_dflt</code></th><td>NaN</td></tr>
+    <tr><th><code>asset_class</code></th><td>NaN</td></tr>
+    <tr><th><code>days_past_due_01</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_02</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_03</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_04</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_05</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_06</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_07</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_08</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_09</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_10</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_11</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_12</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_13</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_14</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_15</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_16</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_17</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_18</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_19</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_20</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_21</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_22</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_23</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_24</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_25</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_26</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_27</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_28</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_29</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_30</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_31</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_32</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_33</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_34</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_35</code></th><td>0.0</td></tr>
+    <tr><th><code>days_past_due_36</code></th><td>0.0</td></tr>
+</tbody>
+</table>
+</div>
+
+The following are the expected values for `account_type`:
+
+1. Auto Loan
+2. Business Loan - Secured
+3. Business Loan - Unsecured
+4. Business Loan – General
+5. Business Loan – Priority Sector – Agriculture
+6. Business Loan – Priority Sector – Others
+7. Business Loan – Priority Sector – Small Business
+8. Business Loans Against Bank Deposits
+9. Business Non-Funded Credit Facility – General
+10. Business Non-Funded Credit Facility – Priority Sector – Agriculture
+11. Business Non-Funded Credit Facility – Priority Sector – Others
+12. Business Non-Funded Credit Facility – Priority Sector – Small Business
+13. Commercial Vehicle Loan
+14. Construction Equipment Loan
+15. Consumer Loan
+16. Corporate Credit Card
+17. Credit Card
+18. Educational Loan
+19. Fleet Card
+20. GECL Loan Secured
+21. GECL Loan Unsecured
+22. Gold Loan
+23. Housing Loan
+24. Kisan Credit Card
+25. Leasing
+26. Loan Against Bank Deposits
+27. Loan Against Shares/Securities
+28. Loan On Credit Card
+29. Loan To Professional
+30. Microfinance - Business Loan
+31. Microfinance - Housing Loan
+32. Microfinance - Personal Loan
+33. Microfinance – Others
+34. Mudra Loans – Shishu / Kishor / Tarun
+35. Non-Funded Credit Facility
+36. Other
+37. Overdraft
+38. P2P Education Loan
+39. P2P Personal Loan
+40. Personal Loan
+41. Pradhan Mantri Awas Yojana - CLSS
+42. Prime Minister Jaan Dhan Yojana - Overdraft
+43. Priority Sector - Gold Loan
+44. Property Loan
+45. Secured Credit Card
+46. Short Term Personal Loan
+47. Staff Loan
+48. Telco – Broadband
+49. Telco – Landline
+50. Telco – Wireless
+51. Temporary Overdraft
+52. Tractor Loan
+53. Two-Wheeler Loan
+54. Used Car Loan
+
+The following are the expected values for `payment_frequency`:
+
+1. Fortnightly
+2. Monthly
+3. Quarterly
+4. Weekly
+
+The following are the expected values for `written_off_and_settled_status`:
+
+1. Account Purchased
+2. Account Purchased and Restructured
+3. Account Purchased and Settled
+4. Account Purchased and Written Off
+5. Account Sold
+6. Post (WO) Settled
+7. Restructured
+8. Restructured Loan
+9. Restructured Loan (Govt. Mandated)
+10. Settled
+11. Written Off and Account Sold
+12. Written-off
+
+The following are the expected values for `suit_filed_willful_dflt`:
+
+1. No Suit Filed
+2. Suit Filed
+3. Suit filed (Wilful default)
+4. Wilful default
+
+#### Enquiries
+
+<div markdown="0">
+<table>
+<thead>
+<tr><th>Column</th><th>Sample Value</th></tr>
+</thead>
+<tbody>
+    <tr><th><code>customer_id</code></th><td>AB32843931</td></tr>
+    <tr><th><code>inquiry_purpose</code></th><td>Personal Loan</td></tr>
+    <tr><th><code>m_sub_id</code></th><td>NBF</td></tr>
+    <tr><th><code>amount</code></th><td>20000</td></tr>
+    <tr><th><code>inq_date</code></th><td>2025-12-13</td></tr>
+</tbody>
+</table>
+</div>
+
+#### Scores
+
+<div markdown="0">
+<table>
+<thead>
+<tr><th>Column</th><th>Sample Value</th></tr>
+</thead>
+<tbody>
+    <tr><th><code>customer_id</code></th><td>AB32843931</td></tr>
+    <tr><th><code>score</code></th><td>628</td></tr>
+</tbody>
+</table>
+</div>
