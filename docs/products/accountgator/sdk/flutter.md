@@ -41,7 +41,7 @@ dependencies:
   accountgator_flutter:
     git:
       url: https://github.com/Credeau/account-gator-flutter-sdk
-      ref: v1.1.0
+      ref: v1.2.0
 ```
 
 ### 2. Create the init payload
