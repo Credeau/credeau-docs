@@ -2046,6 +2046,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consent_handles_status-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      consent_handles_status Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consent_status-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      consent_status values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-examples-when-using-consent_templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Examples (when using consent_templates)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2620,6 +2653,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consent_handles_status-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      consent_handles_status Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consent_status-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      consent_status values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-examples-when-using-consent_templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Examples (when using consent_templates)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2706,12 +2772,8 @@
 <blockquote>
 <p>⚠️ <strong>Note</strong></p>
 <ol>
-<li>
-<p>Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.</p>
-</li>
-<li>
-<p><code>template_name</code> and <code>consent_templates</code> are mutually exclusive. Provide <code>consent_templates</code> for a multi-template flow; provide <code>template_name</code> for a single-template flow. Exactly one of the two must be present.</p>
-</li>
+<li>Keep these credentials secure and never share them publicly. These credentials are unique to your organization and will be used to authenticate all API requests.</li>
+<li><code>template_name</code> and <code>consent_templates</code> are mutually exclusive. Provide <code>consent_templates</code> for a multi-template flow; provide <code>template_name</code> for a single-template flow. Exactly one of the two must be present.</li>
 </ol>
 </blockquote>
 <h2 id="adding-dependency">Adding Dependency<a class="headerlink" href="#adding-dependency" title="Permanent link">&para;</a></h2>
@@ -2763,9 +2825,9 @@
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nx">user_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;user_id&gt;&quot;</span><span class="p">,</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nx">auth_token</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;auth_token&gt;&quot;</span><span class="p">,</span>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nx">redirect_url</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;redirect_url&gt;&quot;</span><span class="p">,</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nx">is_redirecting</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional; default=true if not passed</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nx">is_redirecting</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional; default=true if not passed</span>
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nx">template_name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;template_name&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Pass this if consent_templates is not added</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nx">consent_templates</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&lt;template_name_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;template_name_2&gt;&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Pass this if template_name is not added</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nx">consent_templates</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&lt;template_name_1&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&lt;template_name_2&gt;&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Pass this if template_name is not added</span>
 </span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="nx">mobile_number</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;customer_mobile_number&gt;&quot;</span><span class="p">,</span>
 </span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">});</span>
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
@@ -2776,6 +2838,7 @@
 </span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1">// result.aa_session_id</span>
 </span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1">// result.error</span>
 </span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="c1">// result.timeout</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="c1">// result.consent_handles_status  (only present when consent_templates is used)</span>
 </span></code></pre></div>
 <h3 id="script-tag">Script Tag<a class="headerlink" href="#script-tag" title="Permanent link">&para;</a></h3>
 <div class="language-html highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;</span>Link bank account<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -2787,10 +2850,10 @@
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="nx">user_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;user_id&gt;&quot;</span><span class="p">,</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="nx">auth_token</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;auth_token&gt;&quot;</span><span class="p">,</span>
 </span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="nx">redirect_url</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;redirect_url&gt;&quot;</span><span class="p">,</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="nx">is_redirecting</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="p">,</span><span class="w">  </span><span class="c1">// Optional; default=true if not passed</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="nx">is_redirecting</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional; default=true if not passed</span>
 </span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="nx">template_name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;template_name&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Pass this if consent_templates is not added</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="nx">consent_templates</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&lt;template_name_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;template_name_2&gt;&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Pass this if template_name is not added</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="nx">mobile_number</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;customer_mobile_number&gt;&quot;</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="nx">consent_templates</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&lt;template_name_1&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&lt;template_name_2&gt;&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Pass this if template_name is not added</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="nx">mobile_number</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;customer_mobile_number&gt;&quot;</span><span class="p">,</span>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="p">};</span>
 </span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
 </span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">).</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -2803,34 +2866,137 @@
 </span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">            </span><span class="c1">// result.aa_session_id</span>
 </span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">            </span><span class="c1">// result.error</span>
 </span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">            </span><span class="c1">// result.timeout</span>
-</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;AccountGator error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">);</span>
-</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">            </span><span class="c1">// result.consent_handles_status  (only present when consent_templates is used)</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;AccountGator error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">);</span>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></code></pre></div>
 <h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
-<p>The SDK returns the following keys as output - </p>
+<p>The SDK returns the following keys as output -</p>
 <ul>
 <li><code>success</code> (str) - Boolean as string indicating if the consent was successfully provided or not.</li>
 <li><code>aa_session_id</code> (str) - Session ID for the Account Aggregator transaction, further used to fetch insights &amp; reports.</li>
 <li><code>error</code> (str) - Error message indicating if any error occured during the consent session.</li>
 <li><code>timeout</code> (str) - Boolean as string indicating if the process timed out or not.</li>
+<li><code>consent_handles_status</code> (json object) - <strong>Only present when <code>consent_templates</code> is used.</strong> An object keyed by template name, indicating which templates the user gave consent for.</li>
 </ul>
+<h4 id="consent_handles_status-structure"><code>consent_handles_status</code> Structure<a class="headerlink" href="#consent_handles_status-structure" title="Permanent link">&para;</a></h4>
+<p>Each entry in <code>consent_handles_status</code> is keyed by the template name and contains:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>consent_handle</code></td>
+<td>Unique handle for the consent request</td>
+</tr>
+<tr>
+<td><code>consent_status</code></td>
+<td>Status of the consent (see values below)</td>
+</tr>
+<tr>
+<td><code>consent_id</code></td>
+<td>Present when consent is accepted; otherwise <code>null</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="consent_status-values"><code>consent_status</code> values<a class="headerlink" href="#consent_status-values" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"ACCEPTED"</code></td>
+<td>User gave consent for that template; <code>consent_id</code> will be present</td>
+</tr>
+<tr>
+<td><code>"REJECTED"</code></td>
+<td>A failure occurred for that template (e.g. an error during the consent flow)</td>
+</tr>
+<tr>
+<td><code>"REQUESTED"</code></td>
+<td>User did <strong>not</strong> give consent for that template; <code>consent_id</code> is <code>null</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-examples-when-using-consent_templates">Response Examples (when using <code>consent_templates</code>)<a class="headerlink" href="#response-examples-when-using-consent_templates" title="Permanent link">&para;</a></h4>
+<p><strong>Single template:</strong></p>
+<p>Passing one template to <code>consent_templates</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">consent_templates</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;BANK_STATEMENT_ONETIME&quot;</span><span class="p">];</span>
+</span></code></pre></div>
+<p>Response:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">&quot;aa_session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3617c94822b94d998f9bdcaefcb01e51&quot;</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nt">&quot;consent_handles_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="nt">&quot;BANK_STATEMENT_ONETIME&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="nt">&quot;consent_handle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e0312e30-66f0-4793-8b3a-a64f109b036e&quot;</span><span class="p">,</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="nt">&quot;consent_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACCEPTED&quot;</span><span class="p">,</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="nt">&quot;consent_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9f59c234-9050-89db-b944-bbfb549c9514&quot;</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Multiple templates:</strong></p>
+<p>Passing multiple templates to <code>consent_templates</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">consent_templates</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;BANK_STATEMENT_PERIODIC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;BANK_STATEMENT_ONETIME&quot;</span><span class="p">];</span>
+</span></code></pre></div>
+<p>Response:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">&quot;aa_session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;783a8122359e4ea5a3b7eba7f8ba8d55&quot;</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">&quot;consent_handles_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="nt">&quot;BANK_STATEMENT_PERIODIC&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">            </span><span class="nt">&quot;consent_handle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dbc880e3-799e-44d8-a305-9bad846ed1be&quot;</span><span class="p">,</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">            </span><span class="nt">&quot;consent_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REQUESTED&quot;</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">            </span><span class="nt">&quot;consent_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="nt">&quot;BANK_STATEMENT_ONETIME&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">            </span><span class="nt">&quot;consent_handle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ec2b3993-890a-4b51-932d-f806351f2b57&quot;</span><span class="p">,</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">            </span><span class="nt">&quot;consent_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACCEPTED&quot;</span><span class="p">,</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">            </span><span class="nt">&quot;consent_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3124912f-6624-2349-8379-246745fadf7b&quot;</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> In the example above, <code>BANK_STATEMENT_PERIODIC</code> has <code>"consent_status": "REQUESTED"</code> — this means the user did <strong>not</strong> give consent for that template. Only <code>BANK_STATEMENT_ONETIME</code> was accepted.</p>
+</blockquote>
 <p>When <code>is_redirecting</code> is set to <code>true</code>, the SDK will redirect to the passed URL in <code>redirect_url</code> with SDK output keys appended as query parameters.</p>
 <blockquote>
 <p>💡 <strong>Example:</strong></p>
-<p>If, <code>redirect_url</code> is set to 'https://yourdomain.com/user/journey' and <code>is_redirecting</code> to <code>true</code>, then the SDK will redirect the browser window to the following URL - </p>
+<p>If, <code>redirect_url</code> is set to 'https://yourdomain.com/user/journey' and <code>is_redirecting</code> to <code>true</code>, then the SDK will redirect the browser window to the following URL -</p>
 <p>'https://yourdomain.com/user/journey?success=true&amp;aa_session_id=f310805cedd0485ba18b6f10bb8b1843&amp;error=null&amp;timeout=false'</p>
+<p>When <code>consent_templates</code> is used, <code>consent_handles_status</code> is also appended as a URL-encoded JSON string:</p>
+<p>'https://yourdomain.com/user/journey?success=true&amp;aa_session_id=b167e674e1734e1e8db2d7893bcc827c&amp;error=null&amp;timeout=false&amp;consent_handles_status=%7B%22BANK_STATEMENT_PERIODIC%22%3A%7B%22consent_handle%22%3A%22aadf72dc-76de-4012-8f7a-a3e10a6354be%22%2C%22consent_status%22%3A%22REQUESTED%22%2C%22consent_id%22%3Anull%7D%2C%22BANK_STATEMENT_ONETIME%22%3A%7B%22consent_handle%22%3A%22ae73dce9-5168-4b9d-bcc1-c53368cbb739%22%2C%22consent_status%22%3A%22ACCEPTED%22%2C%22consent_id%22%3A%2242d71264-2944-46d6-b724-c9c8cbd4d046%22%7D%7D'</p>
 <p>And, the values can be used within the page from here.</p>
 </blockquote>
 <p>Using the values from query parameters -</p>
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">);</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;true&quot; | &quot;false&quot; | null</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">aa_session_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;aa_session_id&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// string | null</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// string | null</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;timeout&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;true&quot; | &quot;false&quot; | null</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;true&quot; | &quot;false&quot; | null</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">aa_session_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;aa_session_id&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// string | null</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// string | null</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;timeout&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;true&quot; | &quot;false&quot; | null</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1">// Only present when consent_templates is used:</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">consent_handles_status_raw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;consent_handles_status&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// JSON string | null</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">consent_handles_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">consent_handles_status_raw</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">consent_handles_status_raw</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1">// =&gt; { [templateName]: { consent_handle, consent_status, consent_id } }</span>
 </span></code></pre></div>
 
 
