@@ -81,6 +81,8 @@ nav:
             - CIBIL: products/bureaugator/bureauformats/cibil_related.md
             - Experian: products/bureaugator/bureauformats/experian_related.md
             - Equifax: products/bureaugator/bureauformats/equifax_related.md
+            - Bureau Scrub Formats: products/bureaugator/bureauformats/scrub_related.md
+            - Scrub: products/bureaugator/bureauformats/scrub_related.md
       - AccountGator:
           - Overview: products/accountgator/index.md
           - Insights: products/accountgator/accountgator.md

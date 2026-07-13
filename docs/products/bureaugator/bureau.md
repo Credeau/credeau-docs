@@ -95,6 +95,16 @@ def encode_base64(data: str, encoding: str='utf-8') -> str:
 >
 > If none of these formats match your bureau report structure, please send your sample bureau report file to **tech@credeau.com** for format analysis and support.
 
+> ⚠️ **Note — Bureau Scrub Formats**
+>
+> If you already have bureau data extracted into tabular form (pre-parsed tradelines, enquiries, scores, etc.), use the corresponding scrub format instead of a raw report. These accept structured tables and will go as `format_type` in the request payload. All scrub formats are documented together on the [Bureau Scrub Formats](./bureauformats/scrub_related.md) page:
+>
+> - **CIBIL (TransUnion)**: [`cibil_scrub_parser`](./bureauformats/scrub_related.md#cibil_scrub_parser)
+> - **Experian**: [`experian_scrub_parser`](./bureauformats/scrub_related.md#experian_scrub_parser)
+> - **Equifax**: [`equifax_scrub_parser`](./bureauformats/scrub_related.md#equifax_scrub_parser)
+>
+> If your extracted data does not align with any of these scrub formats, please reach out to **tech@credeau.com** for guidance.
+
 ## Response
 
 ### Response Fields (JSON)
