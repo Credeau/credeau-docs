@@ -103,10 +103,10 @@ The scrub format expects 3 DataFrame tables — loan details, enquiries, and sco
 | `collateral_type` | Collateral type code for the account |
 | `Credit_Facility_Status` | Credit facility status code |
 | `suit_filed_status` | Suit filed status code |
-| `DateOpenedDisbursed` | Date the account was opened or disbursed |
-| `DateClosed` | Date the account was closed |
-| `DateReported_trades` | Date the trade line was last reported |
-| `DateofLastPayment` | Date of the last payment made |
+| `DateOpenedDisbursed` | The date on which the account was opened or disbursed |
+| `DateClosed` | The date on which the account was closed |
+| `DateReported_trades` | The date on which the trade line was last reported |
+| `DateofLastPayment` | The date on which the last payment made |
 | `HighCreditSanctionedAmount` | High credit or sanctioned amount on the account |
 | `credit_limit` | Credit limit on the account |
 | `cash_limit` | Cash withdrawal limit on the account |
@@ -120,7 +120,7 @@ The scrub format expects 3 DataFrame tables — loan details, enquiries, and sco
 | `ROI` | Rate of interest on the account |
 | `tenure` | Repayment tenure in months |
 | `emi_amt` | EMI amount on the account |
-| `accountNumber` | Account number reported by the lender |
+| `accountNumber` | Account reference id of the loan account |
 | `Pay_Hist_Start_Date` | Start date of the payment history period |
 | `pay_hist_end_date` | End date of the payment history period |
 | `Paymt_hst_01` | Payment history status code for month 1 |
@@ -164,7 +164,7 @@ The scrub format expects 3 DataFrame tables — loan details, enquiries, and sco
 
 | Column | Description |
 |---|---|
-| `DateofEnquiry` | Date of the credit enquiry |
+| `DateofEnquiry` | Date of the loan enquiry |
 | `EnquiryPurpose` | Purpose code of the enquiry |
 | `EnquiryAmount` | Amount for which the enquiry was made |
 | `EnquiringMemberShortName` | Short name of the enquiring member institution |
@@ -175,7 +175,7 @@ The scrub format expects 3 DataFrame tables — loan details, enquiries, and sco
 |---|---|
 | `scorename` | Name of the bureau score (e.g. CIBILTUSC3) |
 | `ScoreCardVersion` | Version of the scorecard used |
-| `score` | Bureau credit score for the customer |
+| `score` | Bureau credit score of the customer |
 
 #### Sample Values
 

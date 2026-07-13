@@ -664,18 +664,18 @@ The scrub format expects 4 DataFrame tables — tradelines, histories, enquiries
 |---|---|
 | `mobile_hash` | Unique identifier of the customer |
 | `acct_uniq_id` | Unique loan identifier for the customer |
-| `acct_number` | Account number reported by the lender |
+| `acct_number` | Account reference id of the loan account |
 | `accountstatus` | Current status of the account (e.g. New Account, Closed) |
-| `accounttype` | Type of credit account (e.g. Personal Loan, Credit Card) |
+| `accounttype` | Type of loan account (e.g. Personal Loan, Credit Card) |
 | `assetclassification` | Asset classification status for the account |
 | `balance` | Current outstanding balance on the account |
 | `sanctionamount` | Original sanctioned or approved loan amount |
 | `collateraltype` | Type of collateral securing the account, if any |
 | `collateralvalue` | Value of the collateral, if applicable |
 | `creditlimit` | Credit limit on the account (for revolving credit) |
-| `dateclosed` | Date the account was closed |
-| `dateopened` | Date the account was opened |
-| `datereported` | Date the account was last reported to the bureau |
+| `dateclosed` | The date on which the account was closed |
+| `dateopened` | The date on which the account was opened |
+| `datereported` | The date on which the account was last reported to the bureau |
 | `highcredit` | Highest credit amount utilized or sanctioned on the account |
 | `cash_limit` | Cash withdrawal limit on the account |
 | `settlement_amt` | Settlement amount, if the account was settled |
@@ -698,7 +698,7 @@ The scrub format expects 4 DataFrame tables — tradelines, histories, enquiries
 | `mobile_hash` | Unique identifier of the customer |
 | `acct_uniq_id` | Unique loan identifier for the customer |
 | `pastdueamount` | Past due amount for the history period |
-| `accounttype` | Type of credit account |
+| `accounttype` | Type of loan account |
 | `days_past_due` | Number of days past due for the history period |
 
 #### Enquiries
@@ -706,7 +706,7 @@ The scrub format expects 4 DataFrame tables — tradelines, histories, enquiries
 | Column | Description |
 |---|---|
 | `mobile_hash` | Unique identifier of the customer |
-| `inquiry_purpose` | Purpose of the credit inquiry |
+| `inquiry_purpose` | Purpose of the loan inquiry |
 | `m_sub_id` | Subscriber or member identifier of the inquiring institution |
 | `amount` | Amount for which the inquiry was made |
 | `inq_date` | Date of the inquiry |
@@ -716,7 +716,7 @@ The scrub format expects 4 DataFrame tables — tradelines, histories, enquiries
 | Column | Description |
 |---|---|
 | `mobile_hash` | Unique identifier of the customer |
-| `score` | Bureau credit score for the customer |
+| `score` | Bureau credit score of the customer |
 
 #### Sample Values
 

@@ -1177,12 +1177,12 @@ The scrub format expects 3 DataFrame tables — tradelines, scores, and enquirie
 | Column | Description |
 |---|---|
 | `customer_id` | Unique identifier of the customer |
-| `account_nb` | Account number reported by the lender |
-| `account_type` | Type of credit account (e.g. Consumer Loan, Personal Loan) |
+| `account_nb` | Account reference id of the loan account |
+| `account_type` | Type of loan account (e.g. Consumer Loan, Personal Loan) |
 | `m_sub_id` | Subscriber or member identifier of the reporting institution |
-| `open_dt` | Date the account was opened |
-| `closed_dt` | Date the account was closed |
-| `balance_dt` | Date the balance was last reported |
+| `open_dt` | The date on which the account was opened |
+| `closed_dt` | The date on which the account was closed |
+| `balance_dt` | The date on which the balance was last reported |
 | `balance_am` | Current outstanding balance on the account |
 | `orig_loan_am` | Original loan amount sanctioned |
 | `credit_limit_am` | Credit limit on the account |
@@ -1241,7 +1241,7 @@ The scrub format expects 3 DataFrame tables — tradelines, scores, and enquirie
 | Column | Description |
 |---|---|
 | `customer_id` | Unique identifier of the customer |
-| `inquiry_purpose` | Purpose of the credit inquiry |
+| `inquiry_purpose` | Purpose of the loan inquiry |
 | `m_sub_id` | Subscriber or member identifier of the inquiring institution |
 | `amount` | Amount for which the inquiry was made |
 | `inq_date` | Date of the inquiry |
@@ -1251,7 +1251,7 @@ The scrub format expects 3 DataFrame tables — tradelines, scores, and enquirie
 | Column | Description |
 |---|---|
 | `customer_id` | Unique identifier of the customer |
-| `score` | Bureau credit score for the customer |
+| `score` | Bureau credit score of the customer |
 
 #### Sample Values
 
