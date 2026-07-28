@@ -660,35 +660,127 @@ AS $function$
 DECLARE
     partition_record record;
     partition_date date;
+    partition_date_text text;
+    retention_cutoff date;
 BEGIN
-    FOR partition_record IN 
-        SELECT tablename, schemaname
-        FROM pg_tables 
-        WHERE schemaname = 'public' 
-        AND tablename LIKE parent_table || '_%_%_%'  
+    IF retention_days < 0 THEN
+        RAISE EXCEPTION
+            'retention_days cannot be negative: %',
+            retention_days;
+    END IF;
+
+    retention_cutoff := current_date - retention_days;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_partitioned_table pt
+        JOIN pg_class parent
+            ON parent.oid = pt.partrelid
+        JOIN pg_namespace parent_schema
+            ON parent_schema.oid = parent.relnamespace
+        WHERE parent_schema.nspname = 'public'
+          AND parent.relname = parent_table
+    ) THEN
+        RAISE EXCEPTION
+            'Partitioned table public.% does not exist',
+            parent_table;
+    END IF;
+
+    FOR partition_record IN
+        SELECT
+            child_schema.nspname AS partition_schema,
+            child.relname AS partition_name
+        FROM pg_inherits inheritance
+        JOIN pg_class parent
+            ON parent.oid = inheritance.inhparent
+        JOIN pg_namespace parent_schema
+            ON parent_schema.oid = parent.relnamespace
+        JOIN pg_class child
+            ON child.oid = inheritance.inhrelid
+        JOIN pg_namespace child_schema
+            ON child_schema.oid = child.relnamespace
+        WHERE parent_schema.nspname = 'public'
+          AND parent.relname = parent_table
+        ORDER BY child.relname
     LOOP
         BEGIN
+            partition_date_text := substring(
+                partition_record.partition_name
+                FROM '([0-9]{4}_[0-9]{2}_[0-9]{2})$'
+            );
+
+            IF partition_date_text IS NULL THEN
+                RAISE WARNING
+                    'Skipping %.%: partition name does not end with YYYY_MM_DD',
+                    partition_record.partition_schema,
+                    partition_record.partition_name;
+
+                CONTINUE;
+            END IF;
+
             partition_date := to_date(
-                split_part(partition_record.tablename, '_', 2) || '_' ||
-                split_part(partition_record.tablename, '_', 3) || '_' ||
-                split_part(partition_record.tablename, '_', 4),
+                partition_date_text,
                 'YYYY_MM_DD'
             );
 
-            IF partition_date < current_date - retention_days THEN
-                EXECUTE format('DROP TABLE IF EXISTS %I.%I', 
-                               partition_record.schemaname, 
-                               partition_record.tablename);
-                
-                INSERT INTO partition_operations_log (table_name, partition_name, operation_type, status)
-                VALUES (parent_table, 
-                       partition_record.tablename, 
-                       'DROP',
-                       'dropped: older than ' || retention_days || ' days');
+            IF to_char(partition_date, 'YYYY_MM_DD')
+                <> partition_date_text
+            THEN
+                RAISE WARNING
+                    'Skipping %.%: invalid partition date %',
+                    partition_record.partition_schema,
+                    partition_record.partition_name,
+                    partition_date_text;
+
+                CONTINUE;
             END IF;
+
+            IF partition_date < retention_cutoff THEN
+                RAISE NOTICE
+                    'Dropping %.%: partition date %, cutoff %',
+                    partition_record.partition_schema,
+                    partition_record.partition_name,
+                    partition_date,
+                    retention_cutoff;
+
+                EXECUTE format(
+                    'DROP TABLE IF EXISTS %I.%I',
+                    partition_record.partition_schema,
+                    partition_record.partition_name
+                );
+
+                BEGIN
+                    INSERT INTO public.partition_operations_log (
+                        table_name,
+                        partition_name,
+                        operation_type,
+                        status
+                    )
+                    VALUES (
+                        parent_table,
+                        partition_record.partition_name,
+                        'DROP',
+                        format(
+                            'dropped: partition date %s, retention cutoff %s',
+                            partition_date,
+                            retention_cutoff
+                        )
+                    );
+                EXCEPTION WHEN OTHERS THEN
+                    RAISE WARNING
+                        'Partition %.% was dropped, but logging failed: %',
+                        partition_record.partition_schema,
+                        partition_record.partition_name,
+                        SQLERRM;
+                END;
+            END IF;
+
         EXCEPTION WHEN OTHERS THEN
-            -- Optional: skip partitions with bad names
-            CONTINUE;
+            RAISE WARNING
+                'Failed processing partition %.%: %',
+                partition_record.partition_schema,
+                partition_record.partition_name,
+                SQLERRM;
         END;
     END LOOP;
 END;
