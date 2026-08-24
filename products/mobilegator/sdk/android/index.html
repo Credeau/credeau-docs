@@ -2886,9 +2886,8 @@
 <h2 id="send-incoming-notifications-to-the-sdk">Send Incoming Notifications to the SDK<a class="headerlink" href="#send-incoming-notifications-to-the-sdk" title="Permanent link">&para;</a></h2>
 <p>Some phone manufacturers implement aggressive battery optimization techniques that terminate background apps after periods of inactivity. This behavior can interfere with the DeviceConnect SDK’s ability to perform continuous syncing, as it depends on background data collection. When this happens, Credeau's server may need to request data from the SDK if the sync process has been halted.</p>
 <p>To handle this, the SDK leverages Firebase Cloud Messaging (FCM). Forwarding FCM notifications helps the app sync the data even if it has been stopped by the device's background processes by sending in the silent notification to the deviec enabling it to resume data collection seamlessly.</p>
-<p>To support this functionality, add the following code inside the overridden <code>onMessageReceived</code> method in your service class that extends <code>FirebaseMessagingService</code>.</p>
 <p>Create an instance of <code>SDKCollectMessagingService</code> and call <code>initialize</code> as part of the incoming notification setup. Replace the placeholders with the Firebase configuration values. Do not commit Firebase configuration values directly to your source code; load them from your app's secure configuration instead.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">MainActivity.java</label><label for="__tabbed_11_2">AppCollectMessagingService.java</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">MainActivity.java</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-java highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">SDKCollectMessagingService</span><span class="w"> </span><span class="n">collectMessagingService</span><span class="w"> </span><span class="o">=</span>
@@ -2901,6 +2900,11 @@
 </span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">);</span>
 </span></code></pre></div>
 </div>
+</div>
+</div>
+<p>To support this functionality, add the following code inside the overridden <code>onMessageReceived</code> method in your service class that extends <code>FirebaseMessagingService</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">AppCollectMessagingService.java</label></div>
+<div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-java highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nd">@Override</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onMessageReceived</span><span class="p">(</span><span class="nd">@NonNull</span><span class="w"> </span><span class="n">RemoteMessage</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
