@@ -101,10 +101,11 @@ Add the SDK to your application by adding the dependencies into your app level `
 
     ```java
     import com.credeau.collectdevicedata.DeviceDataManager;
+    import com.credeau.collectdevicedata.SDKCollectMessagingService;
     ```
 
 
-### Now initialize the object of `DeviceDataManager` class from the SDK:
+### Initialize the `DeviceDataManager` object:
 
 
 === "MainActivity.java"
@@ -220,6 +221,21 @@ Some phone manufacturers implement aggressive battery optimization techniques th
 To handle this, the SDK leverages Firebase Cloud Messaging (FCM). Forwarding FCM notifications helps the app sync the data even if it has been stopped by the device's background processes by sending in the silent notification to the deviec enabling it to resume data collection seamlessly.
 
 To support this functionality, add the following code inside the overridden `onMessageReceived` method in your service class that extends `FirebaseMessagingService`.
+
+Create an instance of `SDKCollectMessagingService` and call `initialize` as part of the incoming notification setup. Replace the placeholders with the Firebase configuration values. Do not commit Firebase configuration values directly to your source code; load them from your app's secure configuration instead.
+
+=== "MainActivity.java"
+
+    ```java
+    SDKCollectMessagingService collectMessagingService =
+        new SDKCollectMessagingService(this);
+
+    collectMessagingService.initialize(
+        "<FIREBASE_APP_ID>",
+        "<FIREBASE_PROJECT_ID>",
+        "<FIREBASE_API_KEY>"
+    );
+    ```
 
 
 === "AppCollectMessagingService.java"
