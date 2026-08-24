@@ -237,11 +237,9 @@ Create an instance of `SDKCollectMessagingService` and call `initialize` as part
     );
     ```
 
->
->
+
 To support this functionality, add the following code inside the overridden `onMessageReceived` method in your service class that extends `FirebaseMessagingService`.
->
->
+
 
 === "AppCollectMessagingService.java"
 
