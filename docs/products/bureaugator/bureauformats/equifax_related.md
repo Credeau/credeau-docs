@@ -650,3 +650,8 @@ Equifax provides credit reports in JSON format with comprehensive consumer credi
     }
 }
 ```
+
+
+### `equifax_scrub_parser`
+
+For pre-parsed tabular data (`equifax_scrub_parser`), see [Bureau Scrub Formats](./scrub_related.md#equifax_scrub_parser).

@@ -2,6 +2,8 @@
 
 CIBIL (TransUnion CIBIL) provides credit reports in JSON format featuring the TUEF (TransUnion Exchange Format) structure. The reports include CIBIL scores, account information with payment history strings, inquiry details, and consumer summary data. CIBIL formats are known for their standardized payment status codes and comprehensive account tracking with detailed EMI and tenure information.
 
+For pre-parsed tabular data (`cibil_scrub_parser`), see [Bureau Scrub Formats](./scrub_related.md#cibil_scrub_parser).
+
 ### `cibil_json`
 
 ```json

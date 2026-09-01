@@ -1166,3 +1166,8 @@ Experian delivers credit information through their INProfileResponse format, ava
 </INProfileResponse>
 </processReturn></processResponse></soapenv:Body></soapenv:Envelope>
 ```
+
+
+### `experian_scrub_parser`
+
+For pre-parsed tabular data (`experian_scrub_parser`), see [Bureau Scrub Formats](./scrub_related.md#experian_scrub_parser).
