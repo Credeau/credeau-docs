@@ -80,6 +80,27 @@ The application supports various environment variables to provide application wi
 > - `credeau_asset_bucket`
 > - `client_id`
 
+</br>
+
+> ⚠️ **Note!**
+>
+> For non AWS systems the runtime assets are also avialable to be consumed from the local file system - 
+> 
+> Use `file://` prefix with the exact paths, mounting the docker volume to the directory path with these downloaded assets.
+>
+> Example -
+> 
+> ```bash
+> # Directory with runtime assets
+> /opt/mobileforge/assets/insights
+> 
+> # Mount the directory to the Docker container
+> -v /opt/mobileforge/assets/insights:/assets
+> 
+> # Then, use the file paths in env variables
+> AVG_DEVICE_MAPPING_PATH=file:///assets/configs/india_configs_avg_device_price.json.enc
+> ```
+
 ### Deployment: Using Docker
 
 Pull the Insights API docker image from AWS ECR or similar container registry -
