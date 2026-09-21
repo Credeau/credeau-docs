@@ -90,16 +90,20 @@ The application supports various environment variables to provide application wi
 >
 > Example -
 > 
+> Directory with downloaded assets - `/opt/mobileforge/assets/insights`
+> 
+> Mount the local directory with the Docker container -
+> 
 > ```bash
-> # Directory with runtime assets
-> /opt/mobileforge/assets/insights
-> 
-> # Mount the directory to the Docker container
 > -v /opt/mobileforge/assets/insights:/assets
+> ```
+>
+> then, use the file paths in env variables -
 > 
-> # Then, use the file paths in env variables
+> ```bash
 > AVG_DEVICE_MAPPING_PATH=file:///assets/configs/india_configs_avg_device_price.json.enc
 > ```
+
 
 ### Deployment: Using Docker
 
@@ -239,6 +243,35 @@ The application supports various environment variables to provide application wi
 >
 > - `credeau_asset_bucket`
 > - `client_id`
+
+</br>
+
+> ⚠️ **Note!**
+>
+> For non AWS systems the runtime assets are also avialable to be consumed from the local file system -
+>
+> Example -
+> 
+> Directory with downloaded assets - `/opt/mobileforge/assets/extractor`
+> 
+> Mount the local directory with the Docker container -
+> 
+> ```bash
+> -v /opt/mobileforge/assets/extractor:/assets
+> ```
+> 
+> Set the following flags in environment variables to `false` -
+> 
+> 1. `VOCAB_USE_S3=false`
+> 2. `CLASSIFICATION_USE_S3=false`
+> 3. `REGEX_USE_S3=false`
+>
+> then, provide the file paths using the following environment variables -
+> 
+> 1. VOCAB_FILE_PATH=/assets/vocabulary/vocabulary.enc
+> 2. CLASSIFICATION_FILE_PATH=/assets/classification/classification.enc
+> 3. REGEX_FILE_PATH=/assets/regex/regex.enc
+
 
 ### Deployment: Using Docker
 
