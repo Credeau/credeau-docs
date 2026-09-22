@@ -194,58 +194,51 @@ A Workflow can contain the following components in an order that justifies a bus
 
 1. **Input Data** — Raw applicant information passed into the workflow
 
-    | Field        | Description                        |
-    | ------------ | ---------------------------------- |
-    | `name`       | Full name of the applicant         |
-    | `dob`        | Date of birth                      |
-    | `pan`        | PAN number                         |
-    | `email`      | Email address                      |
-    | `mobile`     | Mobile number                      |
-    | `address`    | Residential address                |
-    | `income`     | Annual income                      |
-    | `occupation` | Occupation type                    |
-    | `loan_amt`   | Loan amount requested              |
+   | Field        | Description                |
+   | ------------ | -------------------------- |
+   | `name`       | Full name of the applicant |
+   | `dob`        | Date of birth              |
+   | `pan`        | PAN number                 |
+   | `email`      | Email address              |
+   | `mobile`     | Mobile number              |
+   | `address`    | Residential address        |
+   | `income`     | Annual income              |
+   | `occupation` | Occupation type            |
+   | `loan_amt`   | Loan amount requested      |
 
 2. **Rule Engine — Basic Checks** — Eligibility screening on raw input
-
-    - `age` >= 18
-    - `income` >= 50,000
-    - `occupation` in `['Salaried', 'Self Employed']`
-    - `address` not in blacklisted pincodes
-    - **Decision:** `Proceed` if all conditions pass, else `Reject`
+   - `age` >= 18
+   - `income` >= 50,000
+   - `occupation` in `['Salaried', 'Self Employed']`
+   - `address` not in blacklisted pincodes
+   - **Decision:** `Proceed` if all conditions pass, else `Reject`
 
 3. **ECM — Bureau Report** — Fetch credit bureau data for the applicant
-
-    - Uses `pan`, `dob`, and `mobile` to pull the bureau report
-    - **Output:** Raw bureau report
+   - Uses `pan`, `dob`, and `mobile` to pull the bureau report
+   - **Output:** Raw bureau report
 
 4. **Feature Engine — Bureau Features** — Derive meaningful variables from bureau data
-
-    - Processes the raw bureau report through custom Python functions
-    - **Output:** Computed bureau features (e.g., `bureau_score`, `obligations`, `bounces`)
+   - Processes the raw bureau report through custom Python functions
+   - **Output:** Computed bureau features (e.g., `bureau_score`, `obligations`, `bounces`)
 
 5. **Rule Engine — Bureau Checks** — Credit assessment based on bureau features
-
-    - `bureau_score` >= 600
-    - `obligations` <= 20,000
-    - `bounces` <= 1
-    - **Decision:** `Proceed` if all conditions pass, else `Reject`
+   - `bureau_score` >= 600
+   - `obligations` <= 20,000
+   - `bounces` <= 1
+   - **Decision:** `Proceed` if all conditions pass, else `Reject`
 
 6. **ECM — Account Aggregator** — Fetch banking/financial data for the applicant
-
-    - Uses `pan`, `dob`, and `mobile` to pull the account aggregator report
-    - **Output:** Raw account aggregator report
+   - Uses `pan`, `dob`, and `mobile` to pull the account aggregator report
+   - **Output:** Raw account aggregator report
 
 7. **Feature Engine — Account Features** — Derive variables from banking data
-
-    - Processes the account aggregator report through custom Python functions
-    - **Output:** Computed account features (e.g., `obligations`, `bounces`, `avg_balance`)
+   - Processes the account aggregator report through custom Python functions
+   - **Output:** Computed account features (e.g., `obligations`, `bounces`, `avg_balance`)
 
 8. **Rule Engine — Account Aggregator Checks** — Final assessment based on banking data
-
-    - `obligations` <= 20,000
-    - `bounces` <= 1
-    - **Decision:** `Approved` if all conditions pass, else `Reject`
+   - `obligations` <= 20,000
+   - `bounces` <= 1
+   - **Decision:** `Approved` if all conditions pass, else `Reject`
 
 ## Reading the Output
 
@@ -277,13 +270,14 @@ Where `<key>` can be one of the following:
 
 Select the BRE that matches your use case and refer to its dedicated documentation for request parameters, response structure, and configuration details.
 
-| BRE | Endpoint | Description |
-| --- | -------- | ----------- |
-| [Location BRE](location_bre/request.md) | `POST /execute/${client_id}/location_bre` | Decision based on location information |
-| [Bureau Mobile BRE](bureau_mobile_bre/request.md) | `POST /execute/${client_id}/bureau_mobile_bre` | Decision based on Mobile & Bureau Intelligence |
-| [Bank BRE](bank_bre/request.md) | `POST /execute/${client_id}/bank_bre` | Decision based on banking transaction data |
-| [Bureau Mobile Bank BRE](bureau_mobile_bank_bre/request.md) | `POST /execute/${client_id}/bureau_mobile_bank_bre` | Decision based on Account, Mobile & Bureau Intelligence |
-| [Repeat BRE](repeat_bre/request.md) | `POST /execute/${client_id}/repeat_bre` | Decision for repeat customers |
+| BRE                                                         | Endpoint                                            | Description                                                           |
+| ----------------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------- |
+| [Location BRE](location_bre/request.md)                     | `POST /execute/${client_id}/location_bre`           | Decision based on location information                                |
+| [Bureau Mobile BRE](bureau_mobile_bre/request.md)           | `POST /execute/${client_id}/bureau_mobile_bre`      | Decision based on Mobile & Bureau Intelligence                        |
+| [Bank BRE](bank_bre/request.md)                             | `POST /execute/${client_id}/bank_bre`               | Decision based on banking transaction data                            |
+| [Bureau Mobile Bank BRE](bureau_mobile_bank_bre/request.md) | `POST /execute/${client_id}/bureau_mobile_bank_bre` | Decision based on Account, Mobile & Bureau Intelligence               |
+| [Repeat BRE](repeat_bre/request.md)                         | `POST /execute/${client_id}/repeat_bre`             | Decision for repeat customers                                         |
+| [Describe API](describe.md)                                 | `POST /api/describe/${client_id}`                   | Retrieve persisted ECM, feature, rule-output, and workflow-state data |
 
 ## Consideration
 
