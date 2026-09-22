@@ -69,10 +69,6 @@
          <lastmod>2026-09-22</lastmod>
     </url>
     <url>
-         <loc>https://docs.credeau.com/products/credforge/bre/describe/</loc>
-         <lastmod>2026-09-22</lastmod>
-    </url>
-    <url>
          <loc>https://docs.credeau.com/products/credforge/bre/bank_bre/request/</loc>
          <lastmod>2026-09-22</lastmod>
     </url>
@@ -94,6 +90,14 @@
     </url>
     <url>
          <loc>https://docs.credeau.com/products/credforge/bre/bureau_mobile_bre/response/</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/credforge/bre/describe/request/</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.credeau.com/products/credforge/bre/describe/response/</loc>
          <lastmod>2026-09-22</lastmod>
     </url>
     <url>
