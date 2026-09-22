@@ -277,7 +277,7 @@ Select the BRE that matches your use case and refer to its dedicated documentati
 | [Bank BRE](bank_bre/request.md)                             | `POST /execute/${client_id}/bank_bre`               | Decision based on banking transaction data                            |
 | [Bureau Mobile Bank BRE](bureau_mobile_bank_bre/request.md) | `POST /execute/${client_id}/bureau_mobile_bank_bre` | Decision based on Account, Mobile & Bureau Intelligence               |
 | [Repeat BRE](repeat_bre/request.md)                         | `POST /execute/${client_id}/repeat_bre`             | Decision for repeat customers                                         |
-| [Describe API](describe.md)                                 | `POST /api/describe/${client_id}`                   | Retrieve persisted ECM, feature, rule-output, and workflow-state data |
+| [Describe API](describe/request.md)                         | `POST /api/describe/${client_id}`                   | Retrieve persisted ECM, feature, rule-output, and workflow-state data |
 
 ## Consideration
 
